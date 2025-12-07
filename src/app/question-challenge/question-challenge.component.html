@@ -1,0 +1,152 @@
+<div class="game-container" [attr.data-theme]="roundTheme()">
+  <!-- Header -->
+  <div class="game-header">
+    @if (!roundComplete()) {
+      <div class="header-stat">
+        <div class="stat-label">ROUND</div>
+        <div class="stat-value">{{ currentRound() }}</div>
+      </div>
+
+      <div class="header-stat timer" [class.warning]="timeRemaining() <= 10">
+        <div class="stat-label">TIME</div>
+        <div class="stat-value">{{ getFormattedTime() }}</div>
+      </div>
+
+      <div class="header-stat">
+        <div class="stat-label">SCORE</div>
+        <div class="stat-value">{{ getCurrentRoundPercent() }}%</div>
+      </div>
+    } @else {
+      <!-- Show action buttons when round is complete -->
+      <div class="header-complete">
+        <div class="header-score-display">
+          <div class="score-badge">
+            <span class="score-label">ROUND {{ currentRound() }}</span>
+            <span class="score-value">{{ getCurrentRoundPercent() }}%</span>
+          </div>
+          <div class="score-badge cumulative">
+            <span class="score-label">TOTAL</span>
+            <span class="score-value">{{ getCumulativePercent() }}%</span>
+          </div>
+        </div>
+        <div class="header-action-buttons">
+          <button class="header-button next-button" (click)="nextRound()">
+            NEXT ROUND
+          </button>
+          <button class="header-button back-button" (click)="backToArcade.emit()">
+            BACK TO MENU
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (allQuestionsAnswered() && !roundComplete()) {
+    <div class="all-answered-indicator">
+      ✓ ALL QUESTIONS ANSWERED
+    </div>
+  }
+
+  <!-- Questions Grid -->
+  <div class="questions-grid">
+    @for (questionState of questionSets; track qIndex; let qIndex = $index) {
+      <div class="question-card">
+        <div class="question-number" [attr.data-number]="qIndex + 1">
+          {{ qIndex + 1 }}
+        </div>
+
+        <div class="question-text">{{ questionState.question.question }}</div>
+
+        <div class="answers">
+          @for (answer of questionState.question.answers; track aIndex; let aIndex = $index) {
+            <label class="answer-option">
+              <input
+                type="radio"
+                [name]="'question-' + qIndex"
+                [disabled]="roundComplete()"
+                [checked]="isSelected(qIndex, aIndex)"
+                (change)="selectAnswer(qIndex, aIndex)"
+              />
+              <span
+                class="answer-label"
+                [class.correct]="isCorrectAnswer(qIndex, aIndex)"
+                [class.wrong]="isWrongAnswer(qIndex, aIndex)"
+              >
+                {{ answer }}
+                @if (roundComplete() && isCorrectAnswer(qIndex, aIndex)) {
+                  <span class="feedback correct-mark">✓</span>
+                }
+                @if (roundComplete() && isWrongAnswer(qIndex, aIndex)) {
+                  <span class="feedback wrong-mark">✗</span>
+                }
+              </span>
+            </label>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Submit Button - positioned below question panels -->
+  @if (!roundComplete()) {
+    <div class="submit-section">
+      <button
+        class="submit-button"
+        [class.ready]="allQuestionsAnswered()"
+        [disabled]="!allQuestionsAnswered()"
+        (click)="submitAnswers()"
+      >
+        SUBMIT ANSWERS
+      </button>
+    </div>
+  }
+
+  <!-- Results Overlay (closeable) -->
+  @if (showCongratulations() && showResultsOverlay()) {
+    <div class="congratulations-overlay" (click)="closeResultsOverlay()">
+      <div class="congratulations-card" [class.perfect]="isPerfectScore()" (click)="$event.stopPropagation()">
+        @if (isPerfectScore()) {
+          <div class="sparkles">✨ ✨ ✨</div>
+        }
+
+        <h2 class="congrats-title" [class.rainbow]="isPerfectScore()">
+          {{ getScoreTitle() }}
+        </h2>
+
+        <div class="score-summary">
+          <div class="score-section">
+            <h3>This Round</h3>
+            <div class="score-display">
+              <span class="score-number">{{ currentRoundCorrect() }}</span>
+              <span class="score-separator">/</span>
+              <span class="score-total">{{ currentRoundTotal() }}</span>
+            </div>
+            <div class="score-percent">{{ getCurrentRoundPercent() }}%</div>
+          </div>
+
+          <div class="score-section">
+            <h3>Total Score</h3>
+            <div class="score-display">
+              <span class="score-number">{{ cumulativeCorrect() }}</span>
+              <span class="score-separator">/</span>
+              <span class="score-total">{{ cumulativeTotal() }}</span>
+            </div>
+            <div class="score-percent">{{ getCumulativePercent() }}%</div>
+          </div>
+        </div>
+
+        @if (timeExpired()) {
+          <div class="time-expired-message">
+            ⏰ Time's up! Some questions may have been left unanswered.
+          </div>
+        }
+
+        <button class="close-overlay-button" (click)="closeResultsOverlay()">
+          CLOSE & VIEW ANSWERS
+        </button>
+
+        <div class="keyboard-hint">Click outside or on button to view answers</div>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,9 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is the capital of France?,Paris,London,Berlin,Madrid
+What keyword is used to define a class in Java?,class,function,def,object
+Which planet is known as the Red Planet?,Mars,Venus,Jupiter,Saturn
+What is 2 + 2?,4,3,5,22
+Who wrote Romeo and Juliet?,William Shakespeare,Charles Dickens,Jane Austen,Mark Twain
+"In Java, which data structure provides
+fast lookup with O(1) average time complexity
+for key-value pairs?",HashMap,ArrayList,LinkedList,TreeMap
