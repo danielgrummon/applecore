@@ -1,5 +1,5 @@
 Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
-"What is the correct syntax for a record?",record Person(String name, int age) {},class record Person(String name, int age),record Person { String name; int age; },record Person(String name; int age)
+"What is the correct syntax for a record?","record Person(String name, int age) {}","class record Person(String name, int age)","record Person { String name; int age; }","record Person(String name; int age)"
 "What is the output?
 class Test {
     static int x = 10;
@@ -254,7 +254,7 @@ class A {
 "What is the output?
 record Person(String name, int age) {}
 Person p = new Person(""John"", 25);
-System.out.println(p.toString());",Person[name=John, age=25],John 25,Compilation error,John
+System.out.println(p.toString());","Person[name=John, age=25]","John 25",Compilation error,John
 "What is the result?
 class Test {
     private int x = 10;

@@ -101,7 +101,7 @@ class Test {
 new Test().display();",20,10,30,Compilation error
 "What happens with varargs?
 void method(String s, int... nums) {}
-method(""Test"", 1, 2, 3);",Valid - varargs receives 1, 2, 3,Compilation error,Runtime error,Only receives 1
+method(""Test"", 1, 2, 3);","Valid - varargs receives 1, 2, 3",Compilation error,Runtime error,Only receives 1
 "Which is true about var?",Cannot be used for method parameters,Can be used for method parameters,Can be used for fields,Can be used for return types
 "What is the result?
 final class Box {

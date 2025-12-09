@@ -1,0 +1,185 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+class Counter {
+    private int count = 0;
+    public synchronized void increment() { count++; }
+    public int getCount() { return count; }
+}",Thread-safe increment,Not thread-safe,Compilation error,Deadlock occurs
+"Which keyword ensures visibility across threads?",volatile,synchronized,transient,static
+"What happens with this code?
+Lock lock = new ReentrantLock();
+lock.lock();
+try {
+    // critical section
+} finally {
+    lock.unlock();
+}",Lock acquired and released properly,Compilation error,Deadlock,Lock not released
+"What is the result?
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+map.put(""A"", 1);
+map.put(""B"", 2);",Thread-safe map operations,Not thread-safe,Compilation error,Throws exception
+"Which collection is thread-safe?",ConcurrentHashMap,HashMap,ArrayList,TreeMap
+"What is the output?
+AtomicInteger count = new AtomicInteger(0);
+count.addAndGet(5);
+System.out.println(count.get());",5,0,Compilation error,1
+"What happens with synchronized method?
+public synchronized void method() {
+    // code
+}",Locks on this object,Locks on class,No locking,Compilation error
+"What is the result?
+ReadWriteLock rwLock = new ReentrantReadWriteLock();
+rwLock.readLock().lock();
+rwLock.readLock().lock();",Both read locks acquired,Deadlock,Compilation error,IllegalStateException
+"Which class provides compare-and-swap operations?",AtomicInteger,Integer,Synchronized,Lock
+"What is the output?
+CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+list.add(""A"");
+list.add(""B"");
+System.out.println(list.size());",2,0,Compilation error,ConcurrentModificationException
+"What happens with ReentrantLock.tryLock()?
+Lock lock = new ReentrantLock();
+if (lock.tryLock()) {
+    try { /* code */ }
+    finally { lock.unlock(); }
+}",Returns true if lock acquired,Blocks forever,Compilation error,Always returns false
+"What is the result?
+synchronized (this) {
+    // critical section
+}",Thread-safe block,Compilation error,Not thread-safe,Locks on class
+"What is the output?
+BlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
+queue.put(5);
+System.out.println(queue.take());",5,Compilation error,Blocks forever,null
+"Which method atomically increments and returns new value?",incrementAndGet(),getAndIncrement(),addAndGet(1),Both A and C
+"What happens with race condition?
+class Counter {
+    private int count = 0;
+    public void increment() { count++; }
+}",Not thread-safe (race condition possible),Thread-safe,Compilation error,Deadlock guaranteed
+"What is the result?
+ConcurrentSkipListMap<Integer, String> map = new ConcurrentSkipListMap<>();
+map.put(2, ""B"");
+map.put(1, ""A"");
+System.out.println(map.firstKey());",1,2,Compilation error,A
+"What is the output?
+AtomicBoolean flag = new AtomicBoolean(false);
+flag.compareAndSet(false, true);
+System.out.println(flag.get());",true,false,Compilation error,null
+"What happens with synchronized static method?
+public static synchronized void method() {
+    // code
+}",Locks on class object,Locks on instance,No locking,Compilation error
+"What is the result?
+Lock lock = new ReentrantLock();
+lock.lock();
+lock.lock();
+lock.unlock();",Still locked (reentrant),Deadlock,Compilation error,Fully unlocked
+"Which interface provides read and write locks?",ReadWriteLock,ReentrantLock,Lock,Synchronized
+"What is the output?
+ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue<>();
+queue.offer(""A"");
+System.out.println(queue.poll());",A,null,Compilation error,ConcurrentModificationException
+"What happens with volatile variable?
+volatile int count = 0;
+count++;",Not atomic (race condition possible),Thread-safe,Compilation error,Atomic operation
+"What is the result?
+Condition condition = lock.newCondition();
+condition.await();",Waits for signal,Continues immediately,Compilation error,IllegalMonitorStateException
+"What is the output?
+Collections.synchronizedList(new ArrayList<>());",Thread-safe list wrapper,Original ArrayList,Compilation error,Not thread-safe
+"Which provides lock-free thread-safe long operations?",AtomicLong,Long,volatile long,synchronized long
+"What happens with wait() and notify()?
+synchronized (obj) {
+    obj.wait();
+}",Thread waits for notify,Compilation error,IllegalMonitorStateException (if not synchronized),Continues immediately
+"What is the result?
+ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+lock.writeLock().lock();
+lock.readLock().lock();",Deadlock possible,Both locks acquired,Compilation error,Write lock upgraded
+"What is the output?
+AtomicReference<String> ref = new AtomicReference<>(""A"");
+ref.set(""B"");
+System.out.println(ref.get());",B,A,Compilation error,null
+"Which collection allows concurrent iteration?",CopyOnWriteArrayList,ArrayList,LinkedList,Vector
+"What happens with double-checked locking?
+private volatile Instance instance;
+if (instance == null) {
+    synchronized (this) {
+        if (instance == null)
+            instance = new Instance();
+    }
+}",Thread-safe singleton,Not thread-safe,Compilation error,volatile not needed
+"What is the result?
+BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+queue.offer(5, 1, TimeUnit.SECONDS);",true (element added),false,Compilation error,Blocks forever
+"What is the output?
+CountDownLatch latch = new CountDownLatch(1);
+latch.countDown();
+latch.await(1, TimeUnit.SECONDS);",Returns true immediately,Waits full second,Compilation error,Returns false
+"Which method exchanges data between threads?",Exchanger.exchange(),BlockingQueue.exchange(),Semaphore.exchange(),Lock.exchange()
+"What happens with ReentrantLock fairness?
+Lock lock = new ReentrantLock(true);",Fair lock (FIFO ordering),Unfair lock,Compilation error,No difference
+"What is the result?
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+map.putIfAbsent(""A"", 1);
+map.putIfAbsent(""A"", 2);
+System.out.println(map.get(""A""));",1,2,Compilation error,null
+"What is the output?
+Semaphore sem = new Semaphore(2);
+sem.acquire();
+sem.acquire();
+System.out.println(sem.availablePermits());",0,2,1,Compilation error
+"What happens with StampedLock optimistic read?
+StampedLock lock = new StampedLock();
+long stamp = lock.tryOptimisticRead();",Read lock without blocking,Exclusive lock,Compilation error,Same as read lock
+"What is the result?
+synchronized (lock1) {
+    synchronized (lock2) {
+        // code
+    }
+}",Nested synchronization,Deadlock always,Compilation error,Only outer lock works
+"What is the output?
+AtomicIntegerArray array = new AtomicIntegerArray(3);
+array.set(0, 10);
+System.out.println(array.get(0));",10,0,Compilation error,ArrayIndexOutOfBoundsException
+"Which provides thread-safe lazy initialization?",ThreadLocal,volatile,synchronized,static
+"What happens with ConcurrentModificationException?
+List<String> list = new ArrayList<>();
+list.add(""A"");
+for (String s : list) {
+    list.add(""B"");
+}",ConcurrentModificationException,Compilation error,Infinite loop,B added successfully
+"What is the result?
+ReadWriteLock rwLock = new ReentrantReadWriteLock();
+rwLock.writeLock().lock();
+rwLock.writeLock().lock();",Both write locks acquired (reentrant),Deadlock,Compilation error,IllegalStateException
+"What is the output?
+Phaser phaser = new Phaser(1);
+phaser.arrive();
+System.out.println(phaser.getPhase());",1,0,Compilation error,IllegalStateException
+"Which ensures happens-before relationship?",synchronized,volatile,Both A and B,Neither
+"What happens with lock ordering to prevent deadlock?
+// Thread 1: lock A then B
+// Thread 2: lock B then A",Potential deadlock,No deadlock,Compilation error,Safe
+"What is the result?
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+map.compute(""A"", (k, v) -> (v == null) ? 1 : v + 1);
+map.compute(""A"", (k, v) -> (v == null) ? 1 : v + 1);
+System.out.println(map.get(""A""));",2,1,Compilation error,null
+"What is the output?
+LongAdder adder = new LongAdder();
+adder.add(5);
+adder.add(3);
+System.out.println(adder.sum());",8,53,Compilation error,5
+"What happens with synchronized(lock) when lock is null?
+Object lock = null;
+synchronized (lock) {
+    // code
+}",NullPointerException,Compilation error,No synchronization,Works normally
+"What is the result?
+ConcurrentSkipListSet<Integer> set = new ConcurrentSkipListSet<>();
+set.add(3);
+set.add(1);
+set.add(2);
+System.out.println(set.first());",1,3,Compilation error,2

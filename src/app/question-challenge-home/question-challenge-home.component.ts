@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Output, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { QuestionChallengeComponent } from '../question-challenge/question-challenge.component';
 import { Question } from '../models/question.model';
 
@@ -12,14 +13,44 @@ import { Question } from '../models/question.model';
 export class QuestionChallengeHomeComponent {
   @Output() backToArcade = new EventEmitter<void>();
 
+  private http = inject(HttpClient);
+
   gameStarted = signal(false);
   questionsLoaded = signal(false);
   uploadError = signal<string | null>(null);
   fileName = signal<string | null>(null);
   questionCount = signal(0);
   questionsPerRound = signal(4);
-  timeLimit = signal(90);
+  secondsPerQuestion = signal(30);
   questions: Question[] = [];
+
+  // Computed total time limit based on questions per round and seconds per question
+  get totalTimeLimit(): number {
+    return this.questionsPerRound() * this.secondsPerQuestion();
+  }
+
+  // Available CSV files in assets directory
+  availableCSVFiles = [
+    'ACCESSING-DATABASES-USING-JDBC-1.csv',
+    'ACCESSING-DATABASES-USING-JDBC-2.csv',
+    'ARRAYS-AND-COLLECTIONS.csv',
+    'CONTROLLING-PROGRAM-FLOW.csv',
+    'HANDLING-DATE-TIME-TEXT-NUMERIC-BOOLEAN.csv',
+    'HANDLING-EXCEPTIONS.csv',
+    'JAVA-OBJECT-ORIENTED-APPROACH-1.csv',
+    'JAVA-OBJECT-ORIENTED-APPROACH-2.csv',
+    'JAVA-OBJECT-ORIENTED-APPROACH-3.csv',
+    'JAVA-OBJECT-ORIENTED-APPROACH-4.csv',
+    'JAVA-OBJECT-ORIENTED-APPROACH-5.csv',
+    'MANAGING-CONCURRENT-CODE-EXECUTION-1.csv',
+    'MANAGING-CONCURRENT-CODE-EXECUTION-2.csv',
+    'MANAGING-CONCURRENT-CODE-EXECUTION-3.csv',
+    'PACKAGING-AND-DEPLOYING-PLATFORM-MODULE-SYSTEM-1.csv',
+    'PACKAGING-AND-DEPLOYING-PLATFORM-MODULE-SYSTEM-2.csv',
+    'STREAMS-AND-LAMDA-EXPRESSIONS-1.csv',
+    'STREAMS-AND-LAMDA-EXPRESSIONS-2.csv',
+    'USING-JAVA-IO-API.csv'
+  ];
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -45,6 +76,38 @@ export class QuestionChallengeHomeComponent {
       }
     };
     reader.readAsText(file);
+  }
+
+  onCSVFileSelected(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    const fileName = select.value;
+
+    if (!fileName) {
+      return;
+    }
+
+    this.fileName.set(fileName);
+    this.uploadError.set(null);
+
+    this.http.get(`assets/${fileName}`, { responseType: 'text' }).subscribe({
+      next: (csvText) => {
+        try {
+          this.questions = this.parseAndValidateCSV(csvText);
+          this.questionCount.set(this.questions.length);
+          this.questionsLoaded.set(true);
+          this.uploadError.set(null);
+        } catch (error) {
+          this.uploadError.set(error instanceof Error ? error.message : 'Invalid CSV format');
+          this.questionsLoaded.set(false);
+          this.questionCount.set(0);
+        }
+      },
+      error: (error) => {
+        this.uploadError.set(`Failed to load ${fileName}: ${error.message}`);
+        this.questionsLoaded.set(false);
+        this.questionCount.set(0);
+      }
+    });
   }
 
   parseAndValidateCSV(csvText: string): Question[] {
@@ -208,8 +271,8 @@ Which exception is thrown for division by zero?,ArithmeticException,NullPointerE
     this.questionsPerRound.set(count);
   }
 
-  setTimeLimit(seconds: number): void {
-    this.timeLimit.set(seconds);
+  setSecondsPerQuestion(seconds: number): void {
+    this.secondsPerQuestion.set(seconds);
   }
 
   backToHome(): void {

@@ -46,7 +46,7 @@ future.get();",ExecutionException thrown,Compilation error,Exception printed,Ret
 "Which executor creates threads as needed?",Executors.newCachedThreadPool(),Executors.newFixedThreadPool(),Executors.newSingleThreadExecutor(),Executors.newThreadPool()
 "What happens with isDone()?
 Future<String> future = executor.submit(() -> ""Done"");
-System.out.println(future.isDone());",false initially, true when complete,Always true,Always false,Compilation error
+System.out.println(future.isDone());","false initially, true when complete",Always true,Always false,Compilation error
 "What is the result?
 ExecutorService executor = Executors.newSingleThreadExecutor();
 executor.execute(() -> System.out.println(""Task""));",Task printed,Compilation error,execute() not valid,Returns Future

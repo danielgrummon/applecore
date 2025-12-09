@@ -133,7 +133,7 @@ System.out.println(evens);","[2, 4] or [4, 2]","[2, 4] always","[1, 3, 5]",Compi
 List<List<Integer>> list = List.of(List.of(1, 2), List.of(3, 4));
 list.parallelStream()
     .flatMap(List::stream)
-    .forEach(System.out::print);",1234 (order may vary),1234 always,Compilation error,[[1,2],[3,4]]
+    .forEach(System.out::print);",1234 (order may vary),1234 always,Compilation error,"[[1,2],[3,4]]"
 "What is the result?
 IntStream.range(1, 1000)
     .parallel()
@@ -208,4 +208,4 @@ System.out.println(sum.get());",10,0,Result may vary,Compilation error
 List<String> list = List.of(""A"", ""B"", ""C"", ""D"");
 String result = list.parallelStream()
     .collect(Collectors.joining("",""));
-System.out.println(result.length());",7 (A,B,C,D with commas),4,0,Compilation error
+System.out.println(result.length());","7 (A,B,C,D with commas)",4,0,Compilation error

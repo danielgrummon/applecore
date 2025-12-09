@@ -14,7 +14,7 @@ abstract class Shape {
     abstract void draw();
 }
 Shape s = new Shape();",Compilation error (cannot instantiate abstract class),Valid code,Runtime error,NullPointerException
-"Which is valid sealed class syntax?",sealed class Shape permits Circle, Square {},sealed class Shape allows Circle, Square {},sealed class Shape extends Circle, Square {},sealed class Shape implements Circle, Square {}
+"Which is valid sealed class syntax?","sealed class Shape permits Circle, Square {}","sealed class Shape allows Circle, Square {}","sealed class Shape extends Circle, Square {}","sealed class Shape implements Circle, Square {}"
 "What happens with method overriding?
 class Parent {
     void display() { System.out.println(""Parent""); }
@@ -49,7 +49,7 @@ class Animal {}
 class Dog extends Animal {}
 Animal a = new Dog();
 System.out.println(a instanceof Dog);",true,false,Compilation error,ClassCastException
-"Which is true about sealed classes?",Permitted subclasses must be final, sealed, or non-sealed,All subclasses are implicitly final,Cannot have any subclasses,Must be abstract
+"Which is true about sealed classes?","Permitted subclasses must be final, sealed, or non-sealed",All subclasses are implicitly final,Cannot have any subclasses,Must be abstract
 "What is the result?
 class Parent {
     private void method() {}
@@ -80,7 +80,7 @@ class B extends A {
     int method() { return 0; }
 }",Compilation error (incompatible return type),Valid override,Runtime error,Returns 0
 "Which is true about reference type vs object type?
-Animal a = new Dog();",Reference type is Animal, object type is Dog,Both are Animal,Both are Dog,Reference type is Dog, object type is Animal
+Animal a = new Dog();","Reference type is Animal, object type is Dog",Both are Animal,Both are Dog,"Reference type is Dog, object type is Animal"
 "What happens with downcasting?
 Object obj = ""Test"";
 String s = (String) obj;
@@ -104,7 +104,7 @@ class Child extends Parent {
     static void method() { System.out.println(""Child""); }
 }
 Parent p = new Child();
-p.method();",Parent (method hiding, not overriding),Child,Compilation error,Runtime error
+p.method();","Parent (method hiding, not overriding)",Child,Compilation error,Runtime error
 "What happens with covariant return types?
 class Animal {
     Animal getAnimal() { return new Animal(); }
@@ -115,7 +115,7 @@ class Dog extends Animal {
 "What is the output?
 Object obj = null;
 System.out.println(obj instanceof String);",false,true,NullPointerException,Compilation error
-"Which statement about hashCode() is correct?",If equals() is overridden, hashCode() should be too,hashCode() cannot be overridden,equals() and hashCode() are unrelated,hashCode() is final in Object
+"Which statement about hashCode() is correct?","If equals() is overridden, hashCode() should be too",hashCode() cannot be overridden,equals() and hashCode() are unrelated,hashCode() is final in Object
 "What is the result?
 sealed class Vehicle permits Car, Truck {}
 class Car extends Vehicle {}
@@ -202,7 +202,7 @@ class Parent {
 class Child extends Parent {
     void method(double x) { System.out.println(""Child""); }
 }
-new Child().method(5);",Parent (overloading, not overriding),Child,Compilation error,ParentChild
+new Child().method(5);","Parent (overloading, not overriding)",Child,Compilation error,ParentChild
 "Which is required for sealed class?",permits clause or subclasses in same file,extends clause,implements clause,abstract modifier
 "What is the result?
 Object obj = ""Test"";

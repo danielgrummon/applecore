@@ -55,7 +55,7 @@ System.out.println(text.lines().count());",3,1,4,Compilation error
 int a = 5;
 int b = 10;
 System.out.println(a++ + ++b);",16,15,17,Compilation error
-"Which method checks if a String starts with a specific prefix?",startsWith(),beginsWith(),prefixOf(),starts(),
+"Which method checks if a String starts with a specific prefix?",startsWith(),beginsWith(),prefixOf(),starts()
 "What is the output?
 LocalDate date = LocalDate.of(2024, 1, 15);
 System.out.println(date.getDayOfWeek());",MONDAY,15,1,January

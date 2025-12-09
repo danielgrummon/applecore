@@ -42,8 +42,8 @@ stream.forEach(System.out::println);",IllegalStateException (stream already oper
 List<List<Integer>> list = List.of(List.of(1, 2), List.of(3, 4));
 list.stream()
     .flatMap(List::stream)
-    .forEach(System.out::print);",1234,[[1, 2], [3, 4]],Compilation error,12 34
-"Which creates an IntStream?",IntStream.of(1, 2, 3),Stream.of(1, 2, 3),new IntStream(1, 2, 3),IntStream.create(1, 2, 3)
+    .forEach(System.out::print);",1234,"[[1, 2], [3, 4]]",Compilation error,12 34
+"Which creates an IntStream?","IntStream.of(1, 2, 3)","Stream.of(1, 2, 3)","new IntStream(1, 2, 3)","IntStream.create(1, 2, 3)"
 "What is the output?
 List<Integer> list = List.of(1, 2, 2, 3);
 list.stream()

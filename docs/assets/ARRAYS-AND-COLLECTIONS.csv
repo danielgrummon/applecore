@@ -51,7 +51,7 @@ map.put(""X"", 20);
 System.out.println(map.size());",1,2,0,Compilation error
 "What happens with array initialization?
 int[] arr = {1, 2, 3};
-arr = {4, 5, 6};",Compilation error,arr = [4, 5, 6],Valid reassignment,Runtime error
+arr = {4, 5, 6};",Compilation error,"arr = [4, 5, 6]",Valid reassignment,Runtime error
 "Which method adds element at end of List?",add(),append(),push(),insert()
 "What is the output?
 Deque<Integer> deque = new ArrayDeque<>();
@@ -97,7 +97,7 @@ Deque<String> stack = new ArrayDeque<>();
 stack.push(""A"");
 stack.push(""B"");
 System.out.println(stack.peek());",B,A,AB,Compilation error
-"Which creates a fixed-size list?",List.of(1, 2, 3),new ArrayList<>(1, 2, 3),Arrays.asList() with add,List.create(1, 2, 3)
+"Which creates a fixed-size list?","List.of(1, 2, 3)","new ArrayList<>(1, 2, 3)",Arrays.asList() with add,"List.create(1, 2, 3)"
 "What is the output?
 Map<Integer, String> map = new HashMap<>();
 map.put(1, ""One"");
@@ -141,7 +141,7 @@ System.out.println(map.get(""A""));",2,1,null,Compilation error
 Set<String> set = new HashSet<>(Set.of(""A"", ""B"", ""C""));
 set.remove(""B"");
 System.out.println(set.size());",2,3,1,Compilation error
-"Which creates multidimensional array?",int[][] arr = new int[3][4];,int[3][4] arr = new int;,int arr[][] = [3][4];,int[][] arr = {3, 4};
+"Which creates multidimensional array?","int[][] arr = new int[3][4];","int[3][4] arr = new int;","int arr[][] = [3][4];","int[][] arr = {3, 4};"
 "What is the output?
 List<String> list = new ArrayList<>();
 list.add(""X"");

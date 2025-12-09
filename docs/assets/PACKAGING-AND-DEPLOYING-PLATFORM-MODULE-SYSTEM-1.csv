@@ -80,7 +80,7 @@ module myapp {
 module myapp {
     provides MyService with Impl1, Impl2;
 }",Provides two implementations,Compilation error (comma not allowed),Only Impl1 registered,Invalid syntax
-"Which is true about exports vs opens?",exports for normal access, opens for reflection,Same functionality,opens is stronger than exports,exports allows reflection
+"Which is true about exports vs opens?","exports for normal access, opens for reflection",Same functionality,opens is stronger than exports,exports allows reflection
 "What happens with jdeps tool?",Analyzes module dependencies,Compiles modules,Runs modules,Creates modules
 "What is the result?
 module myapp {

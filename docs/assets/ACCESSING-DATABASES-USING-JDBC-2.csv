@@ -2,7 +2,7 @@ Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
 "What is the output?
 Locale locale = new Locale(""fr"", ""FR"");
 System.out.println(locale.getLanguage());",fr,FR,fr_FR,French
-"Which creates a Locale for US English?",Locale.US,new Locale(""EN"", ""US""),Locale.ENGLISH,new Locale(""US"")
+"Which creates a Locale for US English?",Locale.US,"new Locale(""EN"", ""US"")",Locale.ENGLISH,"new Locale(""US"")"
 "What is the result?
 ResourceBundle bundle = ResourceBundle.getBundle(""messages"", Locale.US);
 System.out.println(bundle.getString(""greeting""));",Value of greeting key from messages.properties,Compilation error,MissingResourceException always,null
@@ -22,19 +22,19 @@ ResourceBundle bundle = ResourceBundle.getBundle(""messages"", new Locale(""fr""
 "What is the output?
 NumberFormat nf = NumberFormat.getPercentInstance();
 System.out.println(nf.format(0.75));",75%,0.75,0.75%,Compilation error
-"Which creates a Locale with language only?",new Locale(""fr""),new Locale(""fr"", """"),Locale.forLanguage(""fr""),new Locale(""FR"")
+"Which creates a Locale with language only?","new Locale(""fr"")","new Locale(""fr"", """")",Locale.forLanguage(""fr""),"new Locale(""FR"")"
 "What is the result?
 Locale.setDefault(new Locale(""es"", ""ES""));
 System.out.println(Locale.getDefault().getLanguage());",es,ES,es_ES,Spanish
 "What happens with MessageFormat?
 String pattern = ""Hello {0}, you have {1} messages"";
 MessageFormat mf = new MessageFormat(pattern);
-System.out.println(mf.format(new Object[]{""John"", 5}));","Hello John, you have 5 messages",Compilation error,Hello {0}, you have {1} messages,Hello John you have 5
+System.out.println(mf.format(new Object[]{""John"", 5}));","Hello John, you have 5 messages",Compilation error,"Hello {0}, you have {1} messages",Hello John you have 5
 "What is the output?
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""dd-MM-yyyy"");
 LocalDate date = LocalDate.of(2024, 3, 15);
 System.out.println(formatter.format(date));",15-03-2024,2024-03-15,03-15-2024,Compilation error
-"Which method formats a number with locale?",NumberFormat.getInstance(locale).format(number),NumberFormat.format(number, locale),locale.formatNumber(number),Number.format(number)
+"Which method formats a number with locale?","NumberFormat.getInstance(locale).format(number)","NumberFormat.format(number, locale)",locale.formatNumber(number),Number.format(number)
 "What is the result?
 ResourceBundle bundle = ResourceBundle.getBundle(""messages"");
 bundle.getString(""nonexistent"");",MissingResourceException,null,Compilation error,Empty string
@@ -123,7 +123,7 @@ Locale.setDefault(Locale.Category.DISPLAY, Locale.US);",Different locales for fo
 NumberFormat nf = NumberFormat.getCurrencyInstance();
 nf.setMaximumFractionDigits(0);
 System.out.println(nf.format(99.99));",Currency formatted without decimals,99.99,$99,$100
-"Which creates a Locale for simplified Chinese in China?",Locale.SIMPLIFIED_CHINESE or new Locale(""zh"", ""CN""),new Locale(""cn"", ""ZH""),Locale.CHINESE,new Locale(""zh"")
+"Which creates a Locale for simplified Chinese in China?","Locale.SIMPLIFIED_CHINESE or new Locale(""zh"", ""CN"")","new Locale(""cn"", ""ZH"")",Locale.CHINESE,"new Locale(""zh"")"
 "What is the result?
 DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 LocalDateTime dt = LocalDateTime.of(2024, 1, 15, 10, 30);
@@ -142,7 +142,7 @@ Locale locale = new Locale(""ar"", ""SA"");
 NumberFormat nf = NumberFormat.getNumberInstance(locale);
 System.out.println(nf.format(123));",Arabic numeral format,123,Compilation error,١٢٣
 "Which method parses a date string?
-DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""dd/MM/yyyy"");",LocalDate.parse(""15/01/2024"", formatter),formatter.parse(""15/01/2024""),Both A and B,DateTimeFormatter.parse(""15/01/2024"")
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""dd/MM/yyyy"");","LocalDate.parse(""15/01/2024"", formatter)",formatter.parse(""15/01/2024""),Both A and B,DateTimeFormatter.parse(""15/01/2024"")
 "What is the result?
 MessageFormat mf = new MessageFormat(""There {0,choice,0#are no files|1#is one file|1<are {0,number,integer} files}"");
 System.out.println(mf.format(new Object[]{0}));",there are no files,There are 0 files,Compilation error,there is one file

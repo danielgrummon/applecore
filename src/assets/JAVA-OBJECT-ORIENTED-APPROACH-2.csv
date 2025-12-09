@@ -1,0 +1,277 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the correct syntax for a record?","record Person(String name, int age) {}","class record Person(String name, int age)","record Person { String name; int age; }","record Person(String name; int age)"
+"What is the output?
+class Test {
+    static int x = 10;
+}
+System.out.println(Test.x);",10,Compilation error,0,NullPointerException
+"Which statement about records is true?",Records are implicitly final,Records can be extended,Records can have non-final fields,Records must have a no-arg constructor
+"What is the result?
+class Test {
+    int x;
+    Test() {
+        x = 10;
+    }
+}
+Test t = new Test();
+System.out.println(t.x);",10,0,Compilation error,null
+"What happens with static initializer?
+class Test {
+    static int x;
+    static {
+        x = 20;
+    }
+}
+System.out.println(Test.x);",20,0,Compilation error,NullPointerException
+"Which is true about instance methods?",Require object instance to be called,Can be called on class name,Cannot access instance variables,Are shared across all instances
+"What is the output?
+class Test {
+    int x = 5;
+    {
+        x = 10;
+    }
+}
+System.out.println(new Test().x);",10,5,0,Compilation error
+"What is a compact constructor in records?",Constructor without parameter list,Constructor with all parameters,Static constructor,Private constructor
+"What is the result?
+class Test {
+    static int count = 0;
+    {
+        count++;
+    }
+}
+new Test();
+new Test();
+System.out.println(Test.count);",2,0,1,Compilation error
+"Which statement about static methods is correct?",Cannot access instance variables directly,Can access all instance variables,Require this keyword,Cannot be called on class name
+"What is the output?
+record Point(int x, int y) {}
+Point p = new Point(5, 10);
+System.out.println(p.x());",5,10,Compilation error,x
+"What happens with constructor overloading?
+class Box {
+    int size;
+    Box() { size = 10; }
+    Box(int s) { size = s; }
+}
+Box b = new Box(20);
+System.out.println(b.size);",20,10,30,Compilation error
+"Which is true about record components?",Automatically generate accessor methods,Must manually create getters,Cannot be accessed outside record,Are mutable by default
+"What is the result?
+class Test {
+    static {
+        System.out.println(""Static"");
+    }
+    {
+        System.out.println(""Instance"");
+    }
+}
+new Test();",Static Instance,Instance Static,Static,Instance
+"What happens with this keyword in constructor?
+class Box {
+    int size;
+    Box(int size) {
+        this.size = size;
+    }
+}",this refers to current object,this refers to class,Compilation error,this is optional
+"Which is true about static fields?",Shared among all instances,Unique to each instance,Cannot be modified,Must be private
+"What is the output?
+class Test {
+    int x = 10;
+    void display() {
+        int x = 20;
+        System.out.println(this.x);
+    }
+}
+new Test().display();",10,20,30,Compilation error
+"What is the canonical constructor in a record?",Constructor with all components as parameters,Default no-arg constructor,Copy constructor,Static factory method
+"What is the result?
+class Test {
+    static int x = 10;
+    static void change() {
+        x = 20;
+    }
+}
+Test.change();
+System.out.println(Test.x);",20,10,30,Compilation error
+"Which statement about instance initializers is true?",Execute before constructor body,Execute after constructor body,Execute only once per class,Are static by default
+"What is the output?
+record Person(String name) {
+    Person {
+        name = name.toUpperCase();
+    }
+}
+Person p = new Person(""john"");
+System.out.println(p.name());",JOHN,john,Compilation error,null
+"What happens with constructor chaining?
+class Box {
+    int size;
+    Box() {
+        this(10);
+    }
+    Box(int s) {
+        size = s;
+    }
+}
+Box b = new Box();
+System.out.println(b.size);",10,0,Compilation error,null
+"Which is true about records?",Cannot declare instance variables beyond components,Can add any instance variables,Must have at least one component,Cannot have constructors
+"What is the result?
+class Test {
+    static int x;
+    int y;
+}
+System.out.println(Test.x);",0,Compilation error,null,Undefined
+"What happens with method overloading?
+class Calc {
+    int add(int a, int b) { return a + b; }
+    double add(double a, double b) { return a + b; }
+}
+System.out.println(new Calc().add(5, 10));",15,15.0,Compilation error,Runtime error
+"Which is true about static initializer blocks?",Execute when class is loaded,Execute for each object creation,Execute after instance initializers,Cannot modify static variables
+"What is the output?
+class Test {
+    int x;
+    Test(int x) {
+        x = x;
+    }
+}
+System.out.println(new Test(10).x);",0,10,Compilation error,null
+"What is the result of record inheritance?",Records cannot extend other classes except Record,Records can extend any class,Records can be extended,Records must extend Object explicitly
+"What happens with multiple instance initializers?
+class Test {
+    int x;
+    { x = 10; }
+    { x = 20; }
+}
+System.out.println(new Test().x);",20,10,30,Compilation error
+"Which statement about constructors is true?",Constructor name must match class name,Constructors can have return types,Constructors are inherited,Constructors must be public
+"What is the output?
+class Test {
+    static int x = getValue();
+    static int getValue() {
+        return 10;
+    }
+}
+System.out.println(Test.x);",10,0,Compilation error,NullPointerException
+"What is the result?
+record Box(int size) {
+    Box {
+        if (size < 0)
+            throw new IllegalArgumentException();
+    }
+}
+Box b = new Box(5);",Object created successfully,IllegalArgumentException thrown,Compilation error,NullPointerException
+"Which is true about static methods in records?",Can be declared like regular classes,Cannot be declared in records,Must access record components,Are automatically generated
+"What is the output?
+class Outer {
+    static int x = 10;
+    class Inner {
+        void display() {
+            System.out.println(x);
+        }
+    }
+}
+new Outer().new Inner().display();",10,Compilation error,0,NullPointerException
+"What happens with default constructor?
+class Box {
+    int size = 10;
+}
+Box b = new Box();
+System.out.println(b.size);",10,0,Compilation error,No default constructor available
+"Which is true about instance variables?",Initialized to default values if not set,Must be initialized explicitly,Cannot be accessed in methods,Are shared across instances
+"What is the result?
+class Test {
+    static {
+        System.out.println(""1"");
+    }
+    static {
+        System.out.println(""2"");
+    }
+}
+Test t = new Test();",1 2,2 1,1,2
+"What is the output?
+record Point(int x, int y) {
+    Point(int x) {
+        this(x, 0);
+    }
+}
+Point p = new Point(5);
+System.out.println(p.y());",0,5,Compilation error,null
+"What happens with final instance variables?
+class Box {
+    final int size;
+    Box(int s) {
+        size = s;
+    }
+}",size must be initialized,size can be modified later,Compilation error,size is optional
+"Which statement about records is correct?",Records automatically implement equals() and hashCode(),Must manually implement equals(),Cannot override equals(),Records don't support equality
+"What is the result?
+class Test {
+    int x = 10;
+    static void display() {
+        System.out.println(x);
+    }
+}",Compilation error,10,0,NullPointerException
+"What is the output?
+class Test {
+    int x;
+    Test() {
+        this(10);
+    }
+    Test(int x) {
+        this.x = x;
+    }
+}
+System.out.println(new Test().x);",10,0,Compilation error,NullPointerException
+"Which is true about record components?",Are implicitly private and final,Are public and mutable,Must be explicitly declared private,Cannot be primitive types
+"What is the result?
+class Test {
+    static Test instance = new Test();
+    static {
+        System.out.println(""Static"");
+    }
+    {
+        System.out.println(""Instance"");
+    }
+}
+Test t = Test.instance;",Instance Static,Static Instance,Static,Instance
+"What happens with varargs in methods?
+class Test {
+    void print(String... args) {
+        System.out.println(args.length);
+    }
+}
+new Test().print(""A"", ""B"", ""C"");",3,0,Compilation error,1
+"Which is true about constructor calls?
+class A {
+    A() {
+        super();
+        this(10);
+    }
+    A(int x) {}
+}",Compilation error (this must be first),Valid code,super must be after this,No error if reordered
+"What is the output?
+record Person(String name, int age) {}
+Person p = new Person(""John"", 25);
+System.out.println(p.toString());","Person[name=John, age=25]","John 25",Compilation error,John
+"What is the result?
+class Test {
+    private int x = 10;
+    public int getX() {
+        return x;
+    }
+}
+System.out.println(new Test().getX());",10,Compilation error,0,Private access error
+"Which statement about static imports is correct?",Can import static members of a class,Can import instance members,Makes class static,Only works with methods
+"What is the output?
+class Test {
+    int x;
+    {
+        this.x = 10;
+    }
+    Test() {
+        this.x = 20;
+    }
+}
+System.out.println(new Test().x);",20,10,30,0

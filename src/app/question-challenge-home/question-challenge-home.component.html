@@ -14,6 +14,21 @@
                         <span class="upload-icon">📁</span>
                         <span class="upload-text">Choose CSV File</span>
                     </label>
+
+                    <div class="divider">
+                        <span class="divider-text">OR</span>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <label for="csv-select" class="select-label">Select from Available Question Sets:</label>
+                        <select id="csv-select" class="csv-select" (change)="onCSVFileSelected($event)">
+                            <option value="">-- Choose a Question Set --</option>
+                            @for (file of availableCSVFiles; track file) {
+                                <option [value]="file">{{ file.replace('.csv', '').replace(/-/g, ' ') }}</option>
+                            }
+                        </select>
+                    </div>
+
                     @if (fileName()) {
                     <div class="file-info success">
                         <span class="check-icon">✓</span>
@@ -41,32 +56,39 @@
                         (click)="setQuestionsPerRound(4)">
                         4 Questions
                     </button>
-                    <button class="config-button" [class.active]="questionsPerRound() === 5"
-                        (click)="setQuestionsPerRound(5)">
-                        5 Questions
-                    </button>
                     <button class="config-button" [class.active]="questionsPerRound() === 10"
                         (click)="setQuestionsPerRound(10)">
                         10 Questions
                     </button>
+                    <button class="config-button" [class.active]="questionsPerRound() === 20"
+                        (click)="setQuestionsPerRound(20)">
+                        20 Questions
+                    </button>
+                    <button class="config-button" [class.active]="questionsPerRound() === 50"
+                        (click)="setQuestionsPerRound(50)">
+                        50 Questions
+                    </button>
                 </div>
             </div>
 
-            <!-- Time Limit Configuration -->
+            <!-- Seconds Per Question Configuration -->
             <div class="config-section">
-                <h2 class="config-title">Time Limit Per Round</h2>
+                <h2 class="config-title">Seconds Per Question</h2>
                 <div class="config-options">
-                    <button class="config-button" [class.active]="timeLimit() === 60" (click)="setTimeLimit(60)">
+                    <button class="config-button" [class.active]="secondsPerQuestion() === 5" (click)="setSecondsPerQuestion(5)">
+                        5 Seconds
+                    </button>
+                    <button class="config-button" [class.active]="secondsPerQuestion() === 10" (click)="setSecondsPerQuestion(10)">
+                        10 Seconds
+                    </button>
+                    <button class="config-button" [class.active]="secondsPerQuestion() === 30" (click)="setSecondsPerQuestion(30)">
+                        30 Seconds
+                    </button>
+                    <button class="config-button" [class.active]="secondsPerQuestion() === 60" (click)="setSecondsPerQuestion(60)">
                         60 Seconds
                     </button>
-                    <button class="config-button" [class.active]="timeLimit() === 90" (click)="setTimeLimit(90)">
-                        90 Seconds
-                    </button>
-                    <button class="config-button" [class.active]="timeLimit() === 120" (click)="setTimeLimit(120)">
-                        120 Seconds
-                    </button>
-                    <button class="config-button" [class.active]="timeLimit() === 180" (click)="setTimeLimit(180)">
-                        180 Seconds
+                    <button class="config-button" [class.active]="secondsPerQuestion() === 108" (click)="setSecondsPerQuestion(108)">
+                        108 Seconds
                     </button>
                 </div>
             </div>
@@ -117,8 +139,9 @@ for i in range(3):<br>
                 <h2>HOW TO PLAY</h2>
                 <p><strong>Game Format:</strong></p>
                 <ul class="format-list">
-                    <li>Configure questions per round (4, 5, or 10)</li>
-                    <li>Set time limit per round (60, 90, 120, or 180 seconds)</li>
+                    <li>Configure questions per round (4, 10, 20, or 50)</li>
+                    <li>Set seconds per question (5, 10, 30, 60, or 108)</li>
+                    <li>Total time = questions × seconds per question</li>
                     <li>Questions are randomly selected from your CSV file</li>
                 </ul>
                 <p><strong>During Each Round:</strong></p>
@@ -145,6 +168,6 @@ for i in range(3):<br>
         </div>
     </div>
     } @else {
-    <app-question-challenge [questions]="questions" [questionsPerRound]="questionsPerRound()" [timeLimit]="timeLimit()" (backToHome)="backToHome()" (backToArcade)="backToMenuFromGame()"></app-question-challenge>
+    <app-question-challenge [questions]="questions" [questionsPerRound]="questionsPerRound()" [timeLimit]="totalTimeLimit" (backToHome)="backToHome()" (backToArcade)="backToMenuFromGame()"></app-question-challenge>
     }
 </div>

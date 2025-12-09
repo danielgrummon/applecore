@@ -12,7 +12,7 @@ Stream.concat(s1, s2).forEach(System.out::print);",ABCD,AB,CD,Compilation error
 List<List<Integer>> list = List.of(List.of(1, 2), List.of(3, 4));
 list.stream()
     .flatMap(Collection::stream)
-    .forEach(System.out::print);",1234,[[1,2],[3,4]],Compilation error,12 34
+    .forEach(System.out::print);",1234,"[[1,2],[3,4]]",Compilation error,12 34
 "What is the output?
 List<String> list = List.of(""Java"", ""Python"", ""C++"");
 Map<Integer, List<String>> map = list.stream()
@@ -89,7 +89,7 @@ list.parallelStream()
 "What is the result?
 Stream<List<Integer>> stream = Stream.of(List.of(1, 2), List.of(3, 4), List.of(5));
 stream.flatMap(List::stream)
-    .forEach(System.out::print);",12345,[[1,2],[3,4],[5]],Compilation error,1 2 3 4 5
+    .forEach(System.out::print);",12345,"[[1,2],[3,4],[5]]",Compilation error,1 2 3 4 5
 "What is the output?
 List<String> list = List.of(""Cat"", ""Dog"", ""Cow"", ""Duck"");
 Map<Integer, List<String>> map = list.stream()
