@@ -1,0 +1,189 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+List<Integer> list = List.of(1, 2, 3, 4, 5);
+list.stream()
+    .filter(n -> n > 2)
+    .forEach(System.out::print);",345,12345,123,Compilation error
+"Which is a valid lambda expression?
+Function<String, Integer> f = ?",s -> s.length(),(s) -> { return s.length(); },Both A and B,String s -> return s.length();
+"What is the result?
+Stream<String> stream = Stream.of(""A"", ""B"", ""C"");
+long count = stream.count();
+System.out.println(count);",3,0,ABC,Compilation error
+"What happens with this code?
+List<Integer> list = List.of(1, 2, 3);
+list.stream()
+    .filter(n -> n > 5)
+    .forEach(System.out::println);",Nothing is printed,123,Compilation error,NullPointerException
+"Which functional interface has test() method?",Predicate,Function,Supplier,Consumer
+"What is the output?
+IntStream.range(1, 4)
+    .forEach(System.out::print);",123,1234,012,Compilation error
+"What is the result?
+List<String> list = List.of(""a"", ""b"", ""c"");
+list.stream()
+    .map(String::toUpperCase)
+    .forEach(System.out::print);",ABC,abc,Compilation error,A B C
+"What happens with Stream.generate()?
+Stream.generate(() -> ""X"")
+    .limit(3)
+    .forEach(System.out::print);",XXX,X,Infinite loop,Compilation error
+"Which operation is terminal?",forEach(),filter(),map(),sorted()
+"What is the output?
+List<Integer> list = List.of(3, 1, 2);
+list.stream()
+    .sorted()
+    .forEach(System.out::print);",123,312,321,Compilation error
+"What is the result?
+Stream<Integer> stream = Stream.of(1, 2, 3);
+stream.forEach(System.out::println);
+stream.forEach(System.out::println);",IllegalStateException (stream already operated upon),123 printed twice,Compilation error,Nothing printed
+"What happens with flatMap()?
+List<List<Integer>> list = List.of(List.of(1, 2), List.of(3, 4));
+list.stream()
+    .flatMap(List::stream)
+    .forEach(System.out::print);",1234,[[1, 2], [3, 4]],Compilation error,12 34
+"Which creates an IntStream?",IntStream.of(1, 2, 3),Stream.of(1, 2, 3),new IntStream(1, 2, 3),IntStream.create(1, 2, 3)
+"What is the output?
+List<Integer> list = List.of(1, 2, 2, 3);
+list.stream()
+    .distinct()
+    .forEach(System.out::print);",123,1223,12,Compilation error
+"What is the result?
+List<String> list = List.of(""Java"", ""Python"");
+List<Integer> result = list.stream()
+    .map(String::length)
+    .collect(Collectors.toList());
+System.out.println(result);","[4, 6]","[Java, Python]",Compilation error,[10]
+"What happens with reduce()?
+List<Integer> list = List.of(1, 2, 3, 4);
+int sum = list.stream()
+    .reduce(0, (a, b) -> a + b);
+System.out.println(sum);",10,0,1234,Compilation error
+"Which is true about streams?",Streams are not data structures,Streams store elements,Streams are mutable,Streams can be reused
+"What is the output?
+IntStream.rangeClosed(1, 3)
+    .forEach(System.out::print);",123,12,0123,Compilation error
+"What is the result?
+List<Integer> list = List.of(1, 2, 3, 4, 5);
+list.stream()
+    .skip(2)
+    .limit(2)
+    .forEach(System.out::print);",34,12,345,1234
+"What happens with peek()?
+List<Integer> list = List.of(1, 2, 3);
+list.stream()
+    .peek(System.out::print)
+    .count();",123,Nothing printed,Compilation error,Count only
+"Which functional interface has accept() method?",Consumer,Supplier,Function,Predicate
+"What is the output?
+Stream<String> stream = Stream.of(""A"", ""B"", ""C"");
+stream.limit(2).forEach(System.out::print);",AB,ABC,A,Compilation error
+"What is the result?
+List<Integer> list = List.of(1, 2, 3);
+boolean result = list.stream()
+    .allMatch(n -> n > 0);
+System.out.println(result);",true,false,Compilation error,123
+"What happens with anyMatch()?
+List<Integer> list = List.of(1, 2, 3);
+boolean result = list.stream()
+    .anyMatch(n -> n > 2);
+System.out.println(result);",true,false,3,Compilation error
+"Which is a primitive stream?",IntStream,Stream<Integer>,NumberStream,PrimitiveStream
+"What is the output?
+List<String> list = List.of(""a"", ""b"", ""c"");
+String result = list.stream()
+    .reduce("""", (a, b) -> a + b);
+System.out.println(result);",abc,"""",Compilation error,a b c
+"What is the result?
+IntStream.of(5, 3, 1, 4, 2)
+    .sorted()
+    .forEach(System.out::print);",12345,53142,54321,Compilation error
+"What happens with findFirst()?
+List<Integer> list = List.of(1, 2, 3);
+Optional<Integer> result = list.stream()
+    .filter(n -> n > 1)
+    .findFirst();
+System.out.println(result.get());",2,1,3,Optional[2]
+"Which method reference is equivalent to: s -> s.toLowerCase()",String::toLowerCase,s::toLowerCase,toLowerCase::String,String.toLowerCase()
+"What is the output?
+List<Integer> list = List.of(1, 2, 3);
+long count = list.stream()
+    .filter(n -> n % 2 == 0)
+    .count();
+System.out.println(count);",1,2,3,0
+"What is the result?
+DoubleStream.of(1.5, 2.5, 3.5)
+    .average()
+    .ifPresent(System.out::println);",2.5,1.5,3.5,Compilation error
+"What happens with noneMatch()?
+List<Integer> list = List.of(1, 2, 3);
+boolean result = list.stream()
+    .noneMatch(n -> n > 5);
+System.out.println(result);",true,false,Compilation error,None
+"Which operation is intermediate?",map(),forEach(),collect(),count()
+"What is the output?
+Stream.iterate(1, n -> n + 1)
+    .limit(4)
+    .forEach(System.out::print);",1234,1,Infinite loop,Compilation error
+"What is the result?
+List<String> list = List.of(""1"", ""2"", ""3"");
+int sum = list.stream()
+    .mapToInt(Integer::parseInt)
+    .sum();
+System.out.println(sum);",6,123,0,Compilation error
+"What happens with Supplier?
+Supplier<String> supplier = () -> ""Hello"";
+System.out.println(supplier.get());",Hello,Compilation error,Nothing printed,supplier
+"Which creates a stream from array?
+int[] arr = {1, 2, 3};",Arrays.stream(arr),Stream.of(arr),arr.stream(),new Stream(arr)
+"What is the output?
+List<Integer> list = List.of(1, 2, 3, 4);
+list.stream()
+    .filter(n -> n % 2 == 0)
+    .map(n -> n * 2)
+    .forEach(System.out::print);",48,24,1234,Compilation error
+"What is the result?
+Stream<String> stream = Stream.empty();
+System.out.println(stream.count());",0,null,Compilation error,Empty
+"What happens with collect()?
+List<String> list = List.of(""A"", ""B"", ""C"");
+String result = list.stream()
+    .collect(Collectors.joining("",""));
+System.out.println(result);","A,B,C",ABC,"[A, B, C]",Compilation error
+"Which terminal operation returns Optional?",findFirst(),forEach(),collect(),filter()
+"What is the output?
+IntStream.range(0, 3)
+    .map(n -> n * 2)
+    .forEach(System.out::print);",024,0123,123,Compilation error
+"What is the result?
+List<Integer> list = List.of(1, 2, 3);
+Optional<Integer> max = list.stream()
+    .max(Integer::compare);
+System.out.println(max.get());",3,1,Optional[3],Compilation error
+"What happens with parallel streams?
+List<Integer> list = List.of(1, 2, 3);
+list.parallelStream()
+    .forEach(System.out::print);",Order may vary,123,321,Compilation error
+"Which functional interface has get() method?",Supplier,Consumer,Predicate,Function
+"What is the output?
+List<String> list = List.of(""Java"", ""Python"", ""C++"");
+list.stream()
+    .filter(s -> s.length() > 3)
+    .sorted()
+    .forEach(System.out::println);",Java Python,Java,Python,Compilation error
+"What is the result?
+LongStream.of(1L, 2L, 3L)
+    .sum();",6,123,1L+2L+3L,Compilation error
+"What happens with groupingBy()?
+List<String> list = List.of(""A"", ""BB"", ""CCC"", ""DD"");
+Map<Integer, List<String>> map = list.stream()
+    .collect(Collectors.groupingBy(String::length));
+System.out.println(map.get(2));","[BB, DD]","[A, BB, CCC, DD]","[CCC]",Compilation error
+"Which is true about lazy evaluation?",Intermediate operations are lazy,All operations execute immediately,Terminal operations are lazy,Streams execute on creation
+"What is the output?
+Stream.of(""a"", ""b"", ""c"")
+    .map(String::toUpperCase)
+    .filter(s -> s.equals(""B""))
+    .findFirst()
+    .ifPresent(System.out::println);",B,b,ABC,Optional[B]

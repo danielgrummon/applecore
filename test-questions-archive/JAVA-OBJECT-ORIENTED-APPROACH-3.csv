@@ -1,0 +1,268 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"Which method is called?
+class Test {
+    void print(int x) { System.out.println(""int""); }
+    void print(double x) { System.out.println(""double""); }
+}
+new Test().print(5);",int,double,Compilation error,Ambiguous call
+"What is the output?
+class Test {
+    void display(String... args) {
+        System.out.println(args.length);
+    }
+}
+new Test().display(""A"", ""B"", ""C"");",3,1,0,Compilation error
+"Which is valid use of var?",var list = new ArrayList<>();,var x;,var x = null;,var can be used as field type
+"What is the result?
+class Box {
+    private int size;
+    public int getSize() { return size; }
+    public void setSize(int s) { size = s; }
+}
+Box b = new Box();
+b.size = 10;",Compilation error (private access),10,0,Runtime error
+"What happens with this immutable class?
+final class Person {
+    private final String name;
+    Person(String n) { name = n; }
+    public String getName() { return name; }
+}
+Person p = new Person(""John"");
+p.name = ""Jane"";",Compilation error (private final field),Jane,John,Runtime error
+"Which method is called?
+class Test {
+    void print(int... nums) { System.out.println(""varargs""); }
+    void print(int n) { System.out.println(""int""); }
+}
+new Test().print(5);",int,varargs,Compilation error,Both
+"What is the output?
+int x = 10;
+{
+    int x = 20;
+    System.out.println(x);
+}",Compilation error (duplicate variable),20,10,30
+"Which statement about var is true?",Type is inferred from initializer,var can be used without initializer,var can change type,var works with null
+"What is the result?
+class Test {
+    void method(Object obj) { System.out.println(""Object""); }
+    void method(String s) { System.out.println(""String""); }
+}
+new Test().method(""Hello"");",String,Object,Compilation error,Both
+"What happens with variable scope?
+class Test {
+    int x = 10;
+    void display() {
+        System.out.println(x);
+        int x = 20;
+    }
+}",Compilation error (variable used before declaration),10,20,30
+"Which encapsulation practice is correct?",Private fields with public getters/setters,Public fields,Protected fields only,Package-private fields with no methods
+"What is the output?
+class Test {
+    void print(int a, int b) { System.out.println(""two""); }
+    void print(int... nums) { System.out.println(""varargs""); }
+}
+new Test().print(1, 2);",two,varargs,Compilation error,Both
+"What is the result?
+var x = 10;
+x = ""Hello"";",Compilation error (type mismatch),Hello,10,Runtime error
+"Which makes a class immutable?
+final class Person {
+    private final String name;
+    Person(String n) { name = n; }
+}",No setter methods,Public fields,Non-final fields,Mutable fields
+"What is the output?
+for (int i = 0; i < 3; i++) {
+    int x = i;
+}
+System.out.println(x);",Compilation error (x out of scope),2,0,3
+"Which method call is valid?
+class Test {
+    void method(int... nums) {}
+}",new Test().method(),new Test().method(int...),new Test().method(varargs),All invalid
+"What happens with method overloading?
+class Test {
+    void print(int x) {}
+    int print(int x) { return x; }
+}",Compilation error (same signature),Valid overloading,Runtime error,Second method ignored
+"What is the result?
+var list = new ArrayList<String>();
+list.add(""Java"");
+list.add(17);",Compilation error (type mismatch),Valid,Runtime error,17 added as String
+"Which statement about encapsulation is true?",Hide implementation details,Expose all fields,Use public fields,Avoid methods
+"What is the output?
+class Test {
+    static int x = 10;
+    void display() {
+        int x = 20;
+        System.out.println(x);
+    }
+}
+new Test().display();",20,10,30,Compilation error
+"What happens with varargs?
+void method(String s, int... nums) {}
+method(""Test"", 1, 2, 3);",Valid - varargs receives 1, 2, 3,Compilation error,Runtime error,Only receives 1
+"Which is true about var?",Cannot be used for method parameters,Can be used for method parameters,Can be used for fields,Can be used for return types
+"What is the result?
+final class Box {
+    private int size;
+    Box(int s) { size = s; }
+    public void setSize(int s) { size = s; }
+}
+Box b = new Box(10);
+b.setSize(20);",Object is mutable (not truly immutable),Object is immutable,Compilation error,Runtime error
+"What is the output?
+class Test {
+    void print(Integer x) { System.out.println(""Integer""); }
+    void print(int x) { System.out.println(""int""); }
+}
+new Test().print(5);",int,Integer,Compilation error,Both
+"Which variable scope is narrowest?
+void method() {
+    for (int i = 0; i < 10; i++) {
+        int x = i;
+    }
+}",x (block scope),i (loop scope),Both same,Method scope
+"What happens with overloading and widening?
+class Test {
+    void print(long x) { System.out.println(""long""); }
+}
+new Test().print(5);",long,Compilation error,int,Runtime error
+"What is the result?
+var x = 10;
+var y = 20;
+var z = x + y;
+System.out.println(z);",30,Compilation error,1020,Runtime error
+"Which demonstrates proper encapsulation?
+class Person {
+    private String name;
+    public String getName() { return name; }
+    public void setName(String n) { name = n; }
+}",All of the above,Private field only,Public getter only,Public setter only
+"What is the output?
+class Test {
+    void method(int... nums) {
+        System.out.println(nums.length);
+    }
+}
+new Test().method();",0,Compilation error,NullPointerException,1
+"What happens with immutable object?
+final class Point {
+    private final int x, y;
+    Point(int x, int y) { this.x = x; this.y = y; }
+    public int getX() { return x; }
+}
+Point p = new Point(5, 10);
+p.x = 15;",Compilation error (private final),15,5,Runtime error
+"Which is invalid with var?",var x = null;,var x = 10;,var list = new ArrayList<>();,var x = ""Hello"";
+"What is the result?
+class Test {
+    void print(Object... objs) { System.out.println(""Object""); }
+    void print(String... strs) { System.out.println(""String""); }
+}
+new Test().print(""A"", ""B"");",String,Object,Compilation error,Both
+"What is the output?
+int x = 10;
+if (true) {
+    x = 20;
+}
+System.out.println(x);",20,10,Compilation error,30
+"Which overload is chosen?
+class Test {
+    void method(int x, long y) { System.out.println(""1""); }
+    void method(long x, int y) { System.out.println(""2""); }
+}
+new Test().method(5, 10);",Compilation error (ambiguous),1,2,Both
+"What is the result?
+var arr = new int[]{1, 2, 3};
+System.out.println(arr[0]);",1,Compilation error,0,NullPointerException
+"Which makes defensive copy for immutability?
+final class Data {
+    private final Date date;
+    Data(Date d) { date = new Date(d.getTime()); }
+    public Date getDate() { return new Date(date.getTime()); }
+}",Both constructor and getter,Constructor only,Getter only,Neither needed
+"What is the output?
+class Test {
+    private static int count = 0;
+    public static int getCount() { return count; }
+    public static void increment() { count++; }
+}
+Test.increment();
+System.out.println(Test.getCount());",1,0,Compilation error,Private access error
+"What happens with varargs position?
+void method(int... nums, String s) {}",Compilation error (varargs must be last),Valid,Runtime error,nums receives empty array
+"What is the result?
+class Outer {
+    int x = 10;
+    void method() {
+        int y = 20;
+        System.out.println(x + y);
+    }
+}
+new Outer().method();",30,10,20,Compilation error
+"Which is true about local variable type inference?",var reduces verbosity while maintaining type safety,var makes Java dynamically typed,var can change types,var works at runtime
+"What is the output?
+class Test {
+    void print(int x, int y) { System.out.println(""two ints""); }
+    void print(Integer x, Integer y) { System.out.println(""two Integers""); }
+}
+new Test().print(5, 10);",two ints,two Integers,Compilation error,Both
+"What happens with overloading return types?
+class Test {
+    int calculate(int x) { return x * 2; }
+    double calculate(int x) { return x * 2.0; }
+}",Compilation error (same signature),Valid overloading,First method chosen,Second method chosen
+"What is the result?
+final class Config {
+    private final List<String> items;
+    Config(List<String> list) {
+        items = new ArrayList<>(list);
+    }
+    public List<String> getItems() {
+        return items;
+    }
+}",Not fully immutable (returns mutable reference),Fully immutable,Compilation error,items cannot be modified
+"What is the output?
+var x = 5;
+var y = 10.5;
+var z = x + y;
+System.out.println(z);",15.5,15,Compilation error,510
+"Which demonstrates poor encapsulation?
+class Person {
+    public String name;
+}",Public field exposure,All of the code,Private field,Using methods
+"What is the result?
+class Test {
+    void method(int x, double... nums) {
+        System.out.println(nums.length);
+    }
+}
+new Test().method(5, 1.0, 2.0, 3.0);",3,4,0,Compilation error
+"What happens with static variable scope?
+class Test {
+    static int x = 10;
+    void method() {
+        int x = 20;
+        System.out.println(Test.x);
+    }
+}
+new Test().method();",10,20,30,Compilation error
+"Which is invalid?
+var x = (String s) -> s.length();",Invalid - cannot infer lambda type,Valid,Invalid - wrong syntax,Invalid - var not allowed
+"What is the output?
+class Test {
+    void print(Number n) { System.out.println(""Number""); }
+    void print(Integer i) { System.out.println(""Integer""); }
+}
+new Test().print(new Integer(5));",Integer,Number,Compilation error,Both
+"What is the result?
+final class ImmutablePerson {
+    private final String name;
+    private final List<String> hobbies;
+    ImmutablePerson(String n, List<String> h) {
+        name = n;
+        hobbies = List.copyOf(h);
+    }
+    public List<String> getHobbies() { return hobbies; }
+}",Properly immutable,Not immutable,Compilation error,hobbies can be modified

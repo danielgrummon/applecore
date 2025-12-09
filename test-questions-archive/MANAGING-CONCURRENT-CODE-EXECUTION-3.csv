@@ -1,0 +1,211 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+List<Integer> list = List.of(1, 2, 3, 4);
+list.parallelStream()
+    .forEach(System.out::print);",Order may vary (1234 in any order),1234 always,4321 always,Compilation error
+"Which method creates a parallel stream?",parallelStream(),parallel(),makeParallel(),toParallel()
+"What happens with this code?
+List<Integer> list = List.of(1, 2, 3, 4);
+int sum = list.parallelStream()
+    .reduce(0, (a, b) -> a + b);
+System.out.println(sum);",10,Order dependent result,Compilation error,Race condition
+"What is the result?
+Stream<Integer> stream = Stream.of(1, 2, 3, 4);
+stream.parallel()
+    .forEach(System.out::print);",Order may vary,1234 always,Compilation error,Sequential execution
+"Which maintains order in parallel streams?",forEachOrdered(),forEach(),parallelForEach(),orderedForEach()
+"What is the output?
+List<String> list = List.of(""A"", ""B"", ""C"");
+list.parallelStream()
+    .forEachOrdered(System.out::print);",ABC,Order may vary,CBA,Compilation error
+"What happens with parallel reduce?
+List<Integer> list = List.of(1, 2, 3, 4);
+int result = list.parallelStream()
+    .reduce(10, (a, b) -> a + b);
+System.out.println(result);",50 (10 added for each element in parallel),20,10,60
+"What is the result?
+List<Integer> list = List.of(1, 2, 3, 4);
+boolean anyMatch = list.parallelStream()
+    .anyMatch(n -> n > 2);
+System.out.println(anyMatch);",true,false,Order dependent,Compilation error
+"Which collector is thread-safe for parallel streams?",Collectors.toConcurrentMap(),Collectors.toMap(),Both work the same,Neither is thread-safe
+"What is the output?
+List<Integer> list = List.of(1, 2, 3, 4, 5);
+long count = list.parallelStream()
+    .filter(n -> n % 2 == 0)
+    .count();
+System.out.println(count);",2,3,5,Compilation error
+"What happens with isParallel()?
+Stream<Integer> stream = Stream.of(1, 2, 3).parallel();
+System.out.println(stream.isParallel());",true,false,Compilation error,null
+"What is the result?
+List<Integer> list = List.of(1, 2, 3, 4);
+list.parallelStream()
+    .sequential()
+    .forEach(System.out::print);",1234 (sequential execution),Order may vary,Compilation error,4321
+"What is the output?
+IntStream.range(1, 5)
+    .parallel()
+    .forEach(System.out::print);",Order may vary (1234 in any order),1234 always,Compilation error,4321
+"Which operation is not suitable for parallel streams?",Operations with side effects on shared mutable state,Stateless operations,Independent operations,Pure functions
+"What happens with findAny() in parallel?
+List<Integer> list = List.of(1, 2, 3, 4);
+Optional<Integer> result = list.parallelStream()
+    .findAny();",Returns any element (non-deterministic),Returns first element always,Returns last element,Compilation error
+"What is the result?
+List<String> list = List.of(""a"", ""b"", ""c"");
+String result = list.parallelStream()
+    .reduce("""", (a, b) -> a + b);",abc or any permutation,abc always,Compilation error,""
+"What is the output?
+List<Integer> list = List.of(1, 2, 3, 4);
+List<Integer> result = list.parallelStream()
+    .map(n -> n * 2)
+    .collect(Collectors.toList());
+System.out.println(result.size());",4,8,0,Compilation error
+"What happens with parallel stream and ArrayList?
+List<String> list = new ArrayList<>();
+Stream.of(""A"", ""B"", ""C"")
+    .parallel()
+    .forEach(list::add);",Not thread-safe (race condition),Thread-safe,Compilation error,Always works correctly
+"What is the result?
+List<Integer> list = List.of(1, 2, 3, 4);
+int max = list.parallelStream()
+    .max(Integer::compare)
+    .get();
+System.out.println(max);",4,1,Compilation error,Order dependent
+"Which is true about parallel streams?",Use ForkJoinPool by default,Create new thread for each element,Use single thread,Use ExecutorService
+"What is the output?
+List<Integer> list = List.of(5, 3, 8, 1, 9);
+list.parallelStream()
+    .sorted()
+    .forEach(System.out::print);",13589,Order may vary,95831,Compilation error
+"What happens with groupingByConcurrent()?
+List<String> list = List.of(""A"", ""BB"", ""CCC"", ""DD"");
+Map<Integer, List<String>> map = list.parallelStream()
+    .collect(Collectors.groupingByConcurrent(String::length));",Thread-safe grouping,Not thread-safe,Compilation error,Same as groupingBy
+"What is the result?
+List<Integer> list = List.of(1, 2, 3);
+boolean allMatch = list.parallelStream()
+    .allMatch(n -> n > 0);
+System.out.println(allMatch);",true,false,Order dependent,Compilation error
+"What is the output?
+Stream.iterate(1, n -> n + 1)
+    .parallel()
+    .limit(4)
+    .forEach(System.out::print);",1234 (but order may vary),Infinite loop,Compilation error,1 only
+"Which reduces performance with parallel streams?",Small data sets,Large data sets,Independent operations,Stateless operations
+"What happens with distinct() in parallel?
+List<Integer> list = List.of(1, 2, 2, 3, 3, 3);
+long count = list.parallelStream()
+    .distinct()
+    .count();
+System.out.println(count);",3,6,1,Compilation error
+"What is the result?
+List<Integer> list = List.of(1, 2, 3, 4);
+int product = list.parallelStream()
+    .reduce(1, (a, b) -> a * b, (a, b) -> a * b);
+System.out.println(product);",24,10,1,Compilation error
+"What is the output?
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+Stream.of(""A"", ""B"", ""C"")
+    .parallel()
+    .forEach(s -> map.put(s, s.length()));
+System.out.println(map.size());",3,0,Compilation error,Race condition
+"Which is true about parallel stream overhead?",Not beneficial for small collections,Always faster,No overhead,Only for sorted data
+"What happens with peek() in parallel?
+List<Integer> list = List.of(1, 2, 3, 4);
+list.parallelStream()
+    .peek(System.out::print)
+    .count();",Prints elements (order may vary),Nothing printed,Compilation error,1234 always
+"What is the result?
+List<String> list = List.of(""Java"", ""Python"", ""C++"");
+list.parallelStream()
+    .map(String::length)
+    .forEach(System.out::print);",463 (order may vary),463 always,Compilation error,Sum of lengths
+"What is the output?
+List<Integer> list = List.of(1, 2, 3, 4, 5);
+List<Integer> evens = list.parallelStream()
+    .filter(n -> n % 2 == 0)
+    .collect(Collectors.toList());
+System.out.println(evens);","[2, 4] or [4, 2]","[2, 4] always","[1, 3, 5]",Compilation error
+"Which collector should be used with parallel streams?",Collectors.toConcurrentMap() for better performance,Collectors.toMap() always,Non-concurrent collectors only,Custom collectors only
+"What happens with flatMap() in parallel?
+List<List<Integer>> list = List.of(List.of(1, 2), List.of(3, 4));
+list.parallelStream()
+    .flatMap(List::stream)
+    .forEach(System.out::print);",1234 (order may vary),1234 always,Compilation error,[[1,2],[3,4]]
+"What is the result?
+IntStream.range(1, 1000)
+    .parallel()
+    .sum();",499500 (sum of 1 to 999),Result may vary,Compilation error,1000
+"What is the output?
+List<Integer> list = List.of(10, 20, 30);
+Optional<Integer> min = list.parallelStream()
+    .min(Integer::compare);
+System.out.println(min.get());",10,30,20,Compilation error
+"What happens with unordered()?
+List<Integer> list = List.of(1, 2, 3, 4);
+list.parallelStream()
+    .unordered()
+    .forEach(System.out::print);",Order may vary (better performance),1234 always,Compilation error,4321
+"What is the result?
+Stream.generate(() -> 1)
+    .parallel()
+    .limit(5)
+    .reduce(0, (a, b) -> a + b);",5,1,Infinite,Compilation error
+"What is the output?
+List<String> list = Collections.synchronizedList(new ArrayList<>());
+IntStream.range(1, 5)
+    .parallel()
+    .forEach(i -> list.add(""Item"" + i));
+System.out.println(list.size());",4,0,Compilation error,Race condition
+"Which is true about parallel stream stateful operations?",May reduce parallelism benefits,Always improve performance,Not allowed,Only for primitives
+"What happens with skip() in parallel?
+IntStream.range(1, 10)
+    .parallel()
+    .skip(5)
+    .forEach(System.out::print);",6789 (order may vary),6789 always,Compilation error,12345
+"What is the result?
+List<Integer> list = List.of(1, 2, 3, 4);
+long count = list.stream()
+    .parallel()
+    .count();
+System.out.println(count);",4,0,Compilation error,Varies
+"What is the output?
+List<Integer> list = List.of(1, 2, 3);
+int sum = list.parallelStream()
+    .mapToInt(Integer::intValue)
+    .sum();
+System.out.println(sum);",6,123,0,Compilation error
+"What happens with partitioningBy() in parallel?
+List<Integer> list = List.of(1, 2, 3, 4, 5);
+Map<Boolean, List<Integer>> map = list.parallelStream()
+    .collect(Collectors.partitioningBy(n -> n % 2 == 0));",Thread-safe partitioning,Not thread-safe,Compilation error,Order dependent
+"What is the result?
+CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
+IntStream.range(1, 5)
+    .parallel()
+    .forEach(list::add);
+System.out.println(list.size());",4,0,Race condition,Compilation error
+"What is the output?
+List<Integer> list = List.of(1, 2, 3, 4);
+boolean noneMatch = list.parallelStream()
+    .noneMatch(n -> n > 5);
+System.out.println(noneMatch);",true,false,Order dependent,Compilation error
+"Which is recommended for parallel stream performance?",Large data sets with independent operations,Small lists,Operations with side effects,Sequential dependencies
+"What happens with toArray() in parallel?
+List<Integer> list = List.of(1, 2, 3, 4);
+Integer[] array = list.parallelStream()
+    .toArray(Integer[]::new);
+System.out.println(array.length);",4,0,Compilation error,Order dependent length
+"What is the result?
+AtomicInteger sum = new AtomicInteger(0);
+IntStream.range(1, 5)
+    .parallel()
+    .forEach(i -> sum.addAndGet(i));
+System.out.println(sum.get());",10,0,Result may vary,Compilation error
+"What is the output?
+List<String> list = List.of(""A"", ""B"", ""C"", ""D"");
+String result = list.parallelStream()
+    .collect(Collectors.joining("",""));
+System.out.println(result.length());",7 (A,B,C,D with commas),4,0,Compilation error

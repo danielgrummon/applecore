@@ -1,0 +1,277 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+interface Printable {
+    void print();
+}
+class Test implements Printable {
+    public void print() { System.out.println(""Test""); }
+}
+new Test().print();",Test,Compilation error,null,Nothing printed
+"Which statement about functional interfaces is true?",Has exactly one abstract method,Has exactly one method (any type),Cannot have default methods,Must be marked with @FunctionalInterface
+"What is the result?
+interface Calculator {
+    default int add(int a, int b) {
+        return a + b;
+    }
+}
+class Calc implements Calculator {}
+System.out.println(new Calc().add(5, 10));",15,Compilation error,0,Method not found
+"What happens with static interface methods?
+interface Utility {
+    static void print() {
+        System.out.println(""Static"");
+    }
+}
+Utility.print();",Static,Compilation error (cannot call on interface),Instance required,Nothing printed
+"What is the output?
+enum Day {
+    MONDAY, TUESDAY, WEDNESDAY
+}
+System.out.println(Day.MONDAY);",MONDAY,0,monday,Compilation error
+"Which is true about private interface methods?",Allowed since Java 9,Allowed since Java 8,Not allowed in interfaces,Must be abstract
+"What is the result?
+@FunctionalInterface
+interface Runnable {
+    void run();
+    default void start() {}
+}",Valid functional interface,Compilation error (too many methods),Not a functional interface,@FunctionalInterface not allowed
+"What happens with enum constructors?
+enum Size {
+    SMALL(10), MEDIUM(20);
+    int value;
+    Size(int v) { value = v; }
+}
+System.out.println(Size.SMALL.value);",10,SMALL,Compilation error,0
+"What is the output?
+interface A {
+    default void method() { System.out.println(""A""); }
+}
+interface B {
+    default void method() { System.out.println(""B""); }
+}
+class C implements A, B {
+    public void method() { System.out.println(""C""); }
+}
+new C().method();",C,Compilation error (ambiguous),AB,A
+"Which statement about interfaces is correct?",All methods are implicitly public,Methods can be private by default,Methods are protected by default,Methods can be package-private
+"What is the result?
+enum Color {
+    RED, GREEN, BLUE;
+    public static void main(String[] args) {
+        System.out.println(Color.RED.ordinal());
+    }
+}",0,1,RED,Compilation error
+"What happens with interface inheritance?
+interface A {
+    void methodA();
+}
+interface B extends A {
+    void methodB();
+}
+class C implements B {
+    public void methodA() {}
+    public void methodB() {}
+}",Valid implementation,Compilation error,Only methodB needed,Only methodA needed
+"What is the output?
+enum Season {
+    WINTER, SPRING, SUMMER, FALL
+}
+System.out.println(Season.valueOf(""SPRING""));",SPRING,1,spring,Compilation error
+"Which is true about default methods?",Can be overridden in implementing class,Cannot be overridden,Must be overridden,Are always final
+"What is the result?
+interface Test {
+    private void helper() {
+        System.out.println(""Helper"");
+    }
+    default void display() {
+        helper();
+    }
+}
+class Impl implements Test {}
+new Impl().display();",Helper,Compilation error,Nothing printed,Method not found
+"What happens with enum methods?
+enum Day {
+    MONDAY, TUESDAY;
+    public String lowercase() {
+        return this.name().toLowerCase();
+    }
+}
+System.out.println(Day.MONDAY.lowercase());",monday,MONDAY,Compilation error,lowercase
+"What is the output?
+@FunctionalInterface
+interface Calculator {
+    int calculate(int a, int b);
+}
+Calculator c = (a, b) -> a + b;
+System.out.println(c.calculate(3, 4));",7,Compilation error,34,0
+"Which is true about enum constructors?",Always private (implicitly or explicitly),Can be public,Can be protected,Must be public
+"What is the result?
+interface A {
+    default void method() { System.out.println(""A""); }
+}
+class B implements A {}
+new B().method();",A,Compilation error,B,Nothing printed
+"What happens with static interface method inheritance?
+interface Parent {
+    static void method() { System.out.println(""Parent""); }
+}
+interface Child extends Parent {}
+Child.method();",Compilation error (static methods not inherited),Parent,Compilation error (different reason),Method not found
+"What is the output?
+enum Level {
+    LOW(1), MEDIUM(5), HIGH(10);
+    private int value;
+    Level(int v) { value = v; }
+    public int getValue() { return value; }
+}
+System.out.println(Level.HIGH.getValue());",10,HIGH,Compilation error,2
+"Which annotation marks a functional interface?",@FunctionalInterface,@Functional,@Interface,@SingleMethod
+"What is the result?
+interface Test {
+    void method();
+    default void display() {}
+    static void print() {}
+}",Valid interface,Compilation error,Too many methods,Invalid static method
+"What happens with enum values()?
+enum Color { RED, GREEN, BLUE }
+Color[] colors = Color.values();
+System.out.println(colors.length);",3,0,Compilation error,4
+"Which is true about interface fields?",Implicitly public static final,Can be non-final,Can be private,Can be instance variables
+"What is the output?
+enum Day {
+    MON, TUE, WED
+}
+Day d = Day.MON;
+System.out.println(d.name());",MON,0,mon,Compilation error
+"What is the result?
+@FunctionalInterface
+interface Converter {
+    int convert(String s);
+    default void log() {}
+    static void print() {}
+}",Valid functional interface,Compilation error (too many methods),Not functional,Invalid annotation
+"What happens with multiple interface implementation?
+interface A { void methodA(); }
+interface B { void methodB(); }
+class C implements A, B {
+    public void methodA() {}
+    public void methodB() {}
+}",Valid implementation,Compilation error,Only one interface allowed,Methods conflict
+"What is the output?
+enum Operation {
+    ADD { int apply(int a, int b) { return a + b; } },
+    SUBTRACT { int apply(int a, int b) { return a - b; } };
+    abstract int apply(int a, int b);
+}
+System.out.println(Operation.ADD.apply(5, 3));",8,53,Compilation error,ADD
+"Which is true about private interface methods?",Can only be called from within the interface,Can be called by implementing classes,Are inherited,Must be static
+"What is the result?
+interface Shape {
+    double PI = 3.14;
+}
+class Circle implements Shape {
+    void display() { System.out.println(PI); }
+}
+new Circle().display();",3.14,Compilation error,0,PI
+"What happens with enum switch?
+enum Day { MON, TUE, WED }
+Day d = Day.TUE;
+switch(d) {
+    case MON: System.out.println(""Monday""); break;
+    case TUE: System.out.println(""Tuesday""); break;
+}",Tuesday,MON,Compilation error,Monday
+"What is the output?
+interface Test {
+    default void method() { System.out.println(""Default""); }
+}
+class Impl implements Test {
+    public void method() { System.out.println(""Override""); }
+}
+new Impl().method();",Override,Default,Compilation error,Both printed
+"Which statement about enums is correct?",Enums cannot extend classes,Enums can extend any class,Enums extend Enum by default and can extend others,Enums don't extend anything
+"What is the result?
+@FunctionalInterface
+interface Predicate {
+    boolean test(int x);
+}
+Predicate p = x -> x > 0;
+System.out.println(p.test(5));",true,false,Compilation error,5
+"What happens with interface default method conflict?
+interface A { default void m() { System.out.println(""A""); } }
+interface B { default void m() { System.out.println(""B""); } }
+class C implements A, B {}",Compilation error (must override m),Prints A,Prints B,Valid code
+"What is the output?
+enum Size {
+    SMALL, MEDIUM, LARGE;
+    public static Size getDefault() { return MEDIUM; }
+}
+System.out.println(Size.getDefault());",MEDIUM,1,Compilation error,SMALL
+"Which is true about functional interfaces?",Can have multiple default methods,Can have multiple abstract methods,Cannot have static methods,Cannot have Object class methods
+"What is the result?
+interface Calculator {
+    private int helper(int x) { return x * 2; }
+    default int calculate(int x) { return helper(x); }
+}
+class Calc implements Calculator {}
+new Calc().calculate(5);",10,5,Compilation error,0
+"What happens with enum compareTo()?
+enum Day { MON, TUE, WED }
+System.out.println(Day.WED.compareTo(Day.MON));",2,0,-2,Compilation error
+"What is the output?
+interface A { void method(); }
+interface B { void method(); }
+class C implements A, B {
+    public void method() { System.out.println(""C""); }
+}
+new C().method();",C,Compilation error,Must implement twice,AB
+"Which is true about static interface methods?",Not inherited by implementing classes or sub-interfaces,Inherited by implementing classes,Inherited by sub-interfaces,Must be overridden
+"What is the result?
+enum Color {
+    RED(""#FF0000""), GREEN(""#00FF00"");
+    private String hex;
+    Color(String h) { hex = h; }
+    public String getHex() { return hex; }
+}
+System.out.println(Color.RED.getHex());",#FF0000,RED,Compilation error,0
+"What happens with interface method visibility?
+interface Test {
+    void method();
+}
+class Impl implements Test {
+    void method() { System.out.println(""Test""); }
+}",Compilation error (must be public),Valid implementation,Runtime error,Test
+"What is the output?
+enum Level { LOW, MEDIUM, HIGH }
+for (Level l : Level.values()) {
+    System.out.print(l + "" "");
+}",LOW MEDIUM HIGH ,0 1 2 ,Compilation error,LOW
+"Which is a valid functional interface?
+interface A {
+    void method1();
+    void method2();
+}",Not a functional interface,Valid functional interface,Needs @FunctionalInterface,Compilation error
+"What is the result?
+interface Flyable { void fly(); }
+interface Swimmable { void swim(); }
+class Duck implements Flyable, Swimmable {
+    public void fly() { System.out.println(""Flying""); }
+    public void swim() { System.out.println(""Swimming""); }
+}
+new Duck().fly();",Flying,Swimming,Compilation error,FlyingSwimming
+"What happens with enum constructor parameters?
+enum Planet {
+    EARTH(5.976e+24, 6.37814e6);
+    private double mass, radius;
+    Planet(double m, double r) { mass = m; radius = r; }
+}",Valid enum with constructor,Compilation error,Constructor must be public,Cannot have parameters
+"What is the output?
+interface Test {
+    default void method() {
+        System.out.println(""Interface"");
+    }
+}
+class A implements Test {}
+class B extends A {
+    public void method() { System.out.println(""B""); }
+}
+new B().method();",B,Interface,Compilation error,InterfaceB

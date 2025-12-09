@@ -1,0 +1,136 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"Which class reads bytes from a file?",FileInputStream,FileReader,BufferedReader,Scanner
+"What is the output?
+Path path = Path.of(""/user/data/file.txt"");
+System.out.println(path.getFileName());",file.txt,/user/data/file.txt,data,/user
+"What happens with serialization?
+class Person implements Serializable {
+    String name;
+    transient int age;
+}",age is not serialized,Both fields serialized,Compilation error,NotSerializableException
+"Which method reads a line from console?
+Console console = System.console();",console.readLine(),console.read(),console.nextLine(),console.getLine()
+"What is the result?
+try (FileReader fr = new FileReader(""test.txt"")) {
+    int data = fr.read();
+}",Character code of first character,First character as String,Entire file content,Compilation error
+"What is the output?
+Path p1 = Path.of(""/home/user"");
+Path p2 = Path.of(""docs/file.txt"");
+System.out.println(p1.resolve(p2));",/home/user/docs/file.txt,docs/file.txt,/home/user,Compilation error
+"Which interface must a class implement to be serializable?",Serializable,Externalizable,Cloneable,Comparable
+"What happens with Files.exists()?
+Path path = Path.of(""test.txt"");
+System.out.println(Files.exists(path));",true or false depending on file existence,Always true,Always false,IOException
+"What is the result?
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(""data.ser""));
+oos.writeObject(new String(""Hello""));",Object serialized successfully,Compilation error,NotSerializableException,String cannot be serialized
+"Which class provides buffered character input?",BufferedReader,FileReader,InputStreamReader,Scanner
+"What is the output?
+Path path = Path.of(""/a/b/../c/file.txt"");
+System.out.println(path.normalize());",/a/c/file.txt,/a/b/../c/file.txt,/a/b/c/file.txt,Compilation error
+"What happens when serializing an object without Serializable?
+class Test {}
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(""test.ser""));
+oos.writeObject(new Test());",NotSerializableException,Compilation error,Object serialized,IOException
+"Which method creates a new file?",Files.createFile(path),Files.newFile(path),Files.create(path),new File(path)
+"What is the result?
+PrintWriter writer = new PrintWriter(""output.txt"");
+writer.println(""Hello"");
+writer.close();",File contains ""Hello"",Compilation error,Nothing written,File is empty
+"What is the output?
+Path path = Path.of(""/home/user/docs"");
+System.out.println(path.getParent());",/home/user,/home,docs,null
+"What happens with ObjectInputStream?
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream(""data.ser""));
+String s = (String) ois.readObject();",Object deserialized successfully,Compilation error,ClassCastException always,Cannot cast
+"Which method writes bytes to a file?",FileOutputStream.write(),FileWriter.write(),PrintWriter.write(),BufferedWriter.write()
+"What is the result?
+Path path = Path.of(""file.txt"");
+System.out.println(path.isAbsolute());",false,true,Compilation error,null
+"What is the output?
+Path p1 = Path.of(""/home/user/docs"");
+Path p2 = Path.of(""/home/user/pics"");
+System.out.println(p1.relativize(p2));",../pics,pics,/home/user/pics,Compilation error
+"Which keyword prevents field serialization?",transient,volatile,static,final
+"What happens with Files.copy()?
+Path source = Path.of(""source.txt"");
+Path target = Path.of(""target.txt"");
+Files.copy(source, target);",File copied (if source exists),Always succeeds,Compilation error,Cannot copy files
+"What is the result?
+try (BufferedReader br = new BufferedReader(new FileReader(""test.txt""))) {
+    String line = br.readLine();
+}",First line of file or null,Entire file,Single character,Compilation error
+"What is the output?
+Path path = Path.of(""a/b/c"");
+System.out.println(path.getNameCount());",3,2,1,4
+"Which class reads text from character input stream?",InputStreamReader,FileInputStream,BufferedInputStream,ByteArrayInputStream
+"What happens with serialVersionUID?
+class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
+}",Used for version control during deserialization,Required for compilation,Prevents serialization,Must be public
+"What is the result?
+Files.delete(Path.of(""test.txt""));",File deleted or NoSuchFileException,Always succeeds,Compilation error,Returns boolean
+"What is the output?
+Path path = Paths.get(""user"", ""data"", ""file.txt"");
+System.out.println(path);",user/data/file.txt (or user\data\file.txt on Windows),user,file.txt,Compilation error
+"Which method reads all lines from a file?",Files.readAllLines(path),Files.read(path),Files.getLines(path),Files.readLines(path)
+"What happens with Console password input?
+Console console = System.console();
+char[] password = console.readPassword();",Password read without echoing,Password displayed,Compilation error,Returns String
+"What is the result?
+class Parent implements Serializable {}
+class Child extends Parent {
+    int x = 10;
+}",Child is serializable,Child needs implements Serializable,Compilation error,NotSerializableException
+"What is the output?
+Path path = Path.of(""file.txt"").toAbsolutePath();",Absolute path to file.txt,file.txt,Compilation error,null
+"Which method checks if path is a directory?",Files.isDirectory(path),path.isDirectory(),Files.isFolder(path),path.isFolder()
+"What happens with try-with-resources?
+try (FileInputStream fis = new FileInputStream(""test.txt"")) {
+    // code
+}",Resource automatically closed,Must close manually,Compilation error,Resource not closed
+"What is the result?
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(""data.ser""));
+oos.writeInt(100);
+oos.close();",100 written to file,Compilation error,Can only write objects,IOException
+"What is the output?
+Path p1 = Path.of(""/a/b/c"");
+Path p2 = Path.of(""/a/b/c"");
+System.out.println(p1.equals(p2));",true,false,Compilation error,NullPointerException
+"Which class is used for reading primitive types?",DataInputStream,FileInputStream,ObjectInputStream,BufferedInputStream
+"What happens with Files.move()?
+Files.move(Path.of(""old.txt""), Path.of(""new.txt""));",File moved/renamed,Compilation error,File copied,Returns boolean
+"What is the result?
+Path path = Path.of(""docs/../file.txt"");
+System.out.println(path);",docs/../file.txt,file.txt,Compilation error,Path normalized automatically
+"What is the output?
+try (Scanner sc = new Scanner(new File(""test.txt""))) {
+    System.out.println(sc.nextLine());
+}",First line of file,Entire file,Compilation error,Single word
+"Which method creates directories?",Files.createDirectories(path),Files.createDirectory(path),Both A and B,Files.mkdir(path)
+"What happens with static fields in serialization?
+class Test implements Serializable {
+    static int count = 10;
+}",static fields not serialized,static fields are serialized,Compilation error,NotSerializableException
+"What is the result?
+Files.write(Path.of(""test.txt""), List.of(""Line1"", ""Line2""));",File contains Line1 and Line2,Compilation error,Only Line1 written,Cannot write List
+"What is the output?
+Path path = Path.of(""a/b/c/d"");
+System.out.println(path.getName(1));",b,a,c,d
+"Which method traverses directory tree?",Files.walk(path),Files.traverse(path),Files.list(path),Files.tree(path)
+"What happens with Files.list()?
+Files.list(Path.of(""docs""))
+    .forEach(System.out::println);",Prints immediate children only,Prints all descendants,Compilation error,Returns List
+"What is the result?
+Path path = Path.of(""test.txt"");
+System.out.println(Files.size(path));",Size of file in bytes,Size in kilobytes,Compilation error,Always 0
+"What is the output?
+Path path = Path.of(""docs/data/file.txt"");
+System.out.println(path.subpath(1, 3));",data/file.txt,docs/data,file.txt,Compilation error
+"Which creates a Path object in Java 11+?",Path.of(""file.txt""),Paths.get(""file.txt""),Both A and B,new Path(""file.txt"")
+"What happens with readObject()?
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream(""data.ser""));
+Object obj = ois.readObject();",Returns deserialized object,Compilation error,Always returns null,Cannot read objects
+"What is the result?
+Files.createFile(Path.of(""test.txt""));",File created or FileAlreadyExistsException,Always succeeds,Compilation error,Returns boolean

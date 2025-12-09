@@ -1,0 +1,121 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the name of the module descriptor file?",module-info.java,module.java,module-descriptor.java,info.java
+"Which keyword declares a module dependency?",requires,imports,depends,needs
+"What is the output?
+module myapp {
+    exports com.myapp.api;
+}",Package com.myapp.api is accessible to all modules,Only api is exported,Compilation error,exports is not valid
+"Which directive exports a package to all modules?",exports,public exports,export,exports public
+"What happens with this module declaration?
+module myapp {
+    requires java.sql;
+}",myapp depends on java.sql module,Compilation error,Circular dependency,java.sql depends on myapp
+"What is the result of qualified export?
+module myapp {
+    exports com.myapp.api to com.client;
+}",Only com.client can access com.myapp.api,All modules can access,Compilation error,No modules can access
+"Which keyword opens a package for reflection?",opens,reflects,allows,exposes
+"What is the output?
+module myapp {
+    requires transitive java.sql;
+}",Modules requiring myapp also require java.sql,Compilation error,Only myapp requires java.sql,transitive is invalid
+"Which directive declares a service implementation?",provides...with,implements,uses,offers
+"What happens with service consumer?
+module myapp {
+    uses com.myapp.Service;
+}",Declares that myapp uses Service,Provides Service implementation,Compilation error,Exports Service
+"What is the result?
+module myapp {
+    opens com.myapp.internal;
+}",Package opened for reflection to all modules,Package exported normally,Compilation error,Package is private
+"Which method loads services?",ServiceLoader.load(),Service.load(),Module.loadService(),ServiceLoader.get()
+"What is the output?
+module myapp {
+    exports com.myapp;
+    opens com.myapp;
+}",Package exported and opened,Compilation error (conflicting directives),Only exported,Only opened
+"Which is true about requires transitive?",Creates implied readability,Same as requires,Compilation error,Not valid in modules
+"What happens with automatic module?",Non-modular JAR on module path becomes automatic module,Compilation error,Must have module-info.java,Cannot use on module path
+"What is the result?
+module myapp {
+    provides com.myapp.Service with com.myapp.ServiceImpl;
+}",Registers ServiceImpl as Service provider,Compilation error,uses directive needed,Service must be in different module
+"Which keyword makes package accessible for reflection only?",opens,exports,reflects,public
+"What is the output?
+module myapp {}",Empty module (valid),Compilation error,Module with no packages,Invalid module
+"Which is true about unnamed module?",Code on classpath is in unnamed module,Code on module path,Has a name,Compilation error
+"What happens with qualified opens?
+module myapp {
+    opens com.myapp.internal to com.framework;
+}",Only com.framework can reflect on internal package,All modules can reflect,Compilation error,No reflection allowed
+"What is the result?
+module myapp {
+    requires java.base;
+}",Valid but redundant (java.base implicit),Compilation error,java.base not available,required keyword
+"Which command compiles a module?",javac -d out --module-source-path src,javac -module,javac -d out -m,compile --module
+"What is the output?
+ServiceLoader<MyService> loader = ServiceLoader.load(MyService.class);
+loader.forEach(System.out::println);",Prints all service implementations,Compilation error,Prints service names,Empty output always
+"Which is true about module path?",Specified with --module-path or -p,Same as classpath,Uses -cp flag,Not needed for modules
+"What happens with circular dependency?
+module A { requires B; }
+module B { requires A; }",Compilation error,Valid circular dependency,Runtime error,A requires B only
+"What is the result?
+module myapp {
+    exports com.myapp to moduleA, moduleB;
+}",Package exported to moduleA and moduleB only,Exported to all modules,Compilation error,Comma not allowed
+"Which directive is used by service consumers?",uses,requires,consumes,imports
+"What is the output?
+module myapp {
+    opens com.myapp.internal to java.base;
+}",Opens package to java.base only,Compilation error,Opens to all modules,java.base cannot be specified
+"Which is true about module declaration?",Must be in module-info.java at module root,Can be anywhere,In META-INF,In package-info.java
+"What happens with split packages?",Not allowed in modules,Valid in modules,Compilation warning,Runtime error only
+"What is the result?
+module myapp {
+    requires static java.sql;
+}",Optional dependency on java.sql,Compilation error,Same as requires,static is invalid
+"Which runs a modular application?",java --module-path mods -m myapp/com.myapp.Main,java -jar myapp.jar,java -m myapp,java --module myapp
+"What is the output?
+module myapp {
+    provides MyService with Impl1, Impl2;
+}",Provides two implementations,Compilation error (comma not allowed),Only Impl1 registered,Invalid syntax
+"Which is true about exports vs opens?",exports for normal access, opens for reflection,Same functionality,opens is stronger than exports,exports allows reflection
+"What happens with jdeps tool?",Analyzes module dependencies,Compiles modules,Runs modules,Creates modules
+"What is the result?
+module myapp {
+    requires mandated java.base;
+}",Compilation error (mandated not valid here),Valid declaration,java.base is mandated,Redundant but valid
+"Which describes a service?",Interface or abstract class,Concrete implementation only,Module name,Package name
+"What is the output?
+module myapp {
+    exports com.myapp;
+}
+package com.myapp.internal;",internal package is not exported,Compilation error,All packages exported,internal is exported
+"Which is true about module names?",Should match reverse domain name convention,Must be single word,Cannot contain dots,Case sensitive only
+"What happens with jlink?",Creates custom runtime image,Compiles modules,Analyzes dependencies,Runs application
+"What is the result?
+module myapp {
+    opens;
+}",Compilation error (package name required),Opens all packages,Valid syntax,Opens module
+"Which allows reflection on non-public members?",opens,exports,public,reflects
+"What is the output?
+module myapp {
+    requires java.sql;
+    requires transitive java.logging;
+}",Both dependencies declared,Compilation error,transitive must be first,Cannot mix requires types
+"Which is true about automatic module name?",Derived from JAR filename,Must be in MANIFEST.MF,Random generated,Always unnamed
+"What happens with --add-modules?",Adds root modules at runtime,Compiles modules,Creates modules,Lists modules
+"What is the result?
+Iterator<MyService> iterator = ServiceLoader.load(MyService.class).iterator();
+while (iterator.hasNext()) {
+    MyService service = iterator.next();
+}",Loads and iterates service providers,Compilation error,Empty iterator always,Only first service loaded
+"Which is true about java.base?",Implicitly required by all modules,Must be explicitly required,Not available in modules,Optional module
+"What is the output?
+module myapp {
+    exports com.myapp.api;
+    exports com.myapp.impl;
+}",Both packages exported,Compilation error,Only one export allowed,Second export ignored
+"Which describes module resolution?",Process of determining module dependencies,Compilation process,Runtime execution,Service loading
+"What happens with --describe-module?",Describes module contents,Compiles module,Runs module,Creates module
