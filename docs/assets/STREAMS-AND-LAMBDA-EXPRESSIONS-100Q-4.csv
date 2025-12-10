@@ -1,0 +1,392 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+int sum = list.stream().reduce(0, (a, b) -> a + b);
+System.out.println(sum);",10,0,4,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+int product = list.stream().reduce(1, (a, b) -> a * b);
+System.out.println(product);",24,1,10,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(5, 3, 8, 1);
+Optional<Integer> max = list.stream().reduce((a, b) -> a > b ? a : b);
+System.out.println(max.get());",8,1,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(5, 3, 8, 1);
+Optional<Integer> min = list.stream().reduce((a, b) -> a < b ? a : b);
+System.out.println(min.get());",1,8,5,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+String result = list.stream().reduce("""", (a, b) -> a + b);
+System.out.println(result);",abc,"a,b,c","[a, b, c]",Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList();
+int sum = list.stream().reduce(0, (a, b) -> a + b);
+System.out.println(sum);",0,NoSuchElementException,null,Error: empty stream
+"What is the output?
+List<Integer> list = Arrays.asList();
+Optional<Integer> sum = list.stream().reduce((a, b) -> a + b);
+System.out.println(sum.isPresent());",false,true,0,NoSuchElementException
+"What is the output?
+Stream<Integer> s1 = Stream.of(1, 2);
+Stream<Integer> s2 = Stream.of(3, 4);
+Stream<Integer> s3 = Stream.concat(s1, s2);
+System.out.println(s3.count());",4,2,6,Error: invalid method
+"What is the output?
+Stream<String> s1 = Stream.of(""a"", ""b"");
+Stream<String> s2 = Stream.of(""c"", ""d"");
+Stream<String> result = Stream.concat(s1, s2);
+result.forEach(System.out::println);",a b c d (each on new line),abcd,"[a, b, c, d]",Error: streams immutable
+"What is the output?
+Stream<Integer> s1 = Stream.of(1, 2);
+Stream<Integer> s2 = Stream.of(3, 4);
+Stream<Integer> s3 = Stream.of(5, 6);
+Stream<Integer> result = Stream.concat(Stream.concat(s1, s2), s3);
+System.out.println(result.count());",6,3,4,Error: invalid nesting
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"", ""apricot"", ""berry"");
+Map<Character, List<String>> map = list.stream().collect(Collectors.groupingBy(s -> s.charAt(0)));
+System.out.println(map.get('a').size());",2,3,1,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"", ""apricot"", ""berry"");
+Map<Character, List<String>> map = list.stream().collect(Collectors.groupingBy(s -> s.charAt(0)));
+System.out.println(map.size());",2,4,1,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, List<Integer>> map = list.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+System.out.println(map.get(true).size());",2,3,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, List<Integer>> map = list.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+System.out.println(map.get(false).size());",3,2,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, List<Integer>> map = list.stream().collect(Collectors.partitioningBy(n -> n > 10));
+System.out.println(map.get(true).size());",0,5,2,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"", ""apricot"");
+Map<Integer, List<String>> map = list.stream().collect(Collectors.groupingBy(String::length));
+System.out.println(map.get(6).size());",2,1,3,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""bb"", ""ccc"", ""dd"");
+Map<Integer, Long> map = list.stream().collect(Collectors.groupingBy(String::length, Collectors.counting()));
+System.out.println(map.get(2));",2,1,4,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"", ""apricot"");
+Map<Integer, String> map = list.stream().collect(Collectors.groupingBy(String::length, Collectors.joining("",""));
+System.out.println(map.get(6));","apple,banana",applebanana,"[apple, banana]",Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, Long> map = list.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0, Collectors.counting()));
+System.out.println(map.get(true));",2,3,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(10, 20, 30);
+Map<Boolean, Integer> map = list.stream().collect(Collectors.partitioningBy(n -> n > 15, Collectors.summingInt(Integer::intValue)));
+System.out.println(map.get(true));",50,60,30,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+int sum = list.stream().reduce(0, Integer::sum);
+System.out.println(sum);",15,0,5,Error: invalid method reference
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+int sum = list.stream().mapToInt(Integer::intValue).sum();
+System.out.println(sum);",15,0,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> result = list.stream().reduce(Integer::max);
+System.out.println(result.get());",5,1,15,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> result = list.stream().reduce(Integer::min);
+System.out.println(result.get());",1,5,0,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+String result = list.stream().collect(Collectors.joining());
+System.out.println(result);",abc,"a,b,c","[a, b, c]",Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+String result = list.stream().collect(Collectors.joining("",""));
+System.out.println(result);","a,b,c",abc,"[a, b, c]",Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+String result = list.stream().collect(Collectors.joining("","", ""["", ""]""));
+System.out.println(result);","[a,b,c]","a,b,c",abc,Error: invalid syntax
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+int sum = list.parallelStream().reduce(0, (a, b) -> a + b);
+System.out.println(sum);",10,0,4,Error: parallel not supported
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"", ""d"");
+String result = list.parallelStream().reduce("""", (a, b) -> a + b);
+System.out.println(result.length());",4,0,1,Error: parallel not supported
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+Map<Boolean, List<Integer>> map = list.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+System.out.println(map.size());",2,6,1,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""dog"", ""cat"", ""bird"", ""fish"");
+Map<Integer, List<String>> map = list.stream().collect(Collectors.groupingBy(String::length));
+System.out.println(map.keySet().size());",2,4,3,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3);
+List<Integer> result = list.stream().flatMap(n -> Stream.of(n, n * 2)).collect(Collectors.toList());
+System.out.println(result.size());",6,3,9,Error: invalid method
+"What is the output?
+List<List<Integer>> list = Arrays.asList(Arrays.asList(1, 2), Arrays.asList(3, 4), Arrays.asList(5));
+int sum = list.stream().flatMap(Collection::stream).reduce(0, Integer::sum);
+System.out.println(sum);",15,5,3,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""hello world"", ""java stream"");
+long count = list.stream().flatMap(s -> Arrays.stream(s.split("" ""))).count();
+System.out.println(count);",4,2,8,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+Map<String, Integer> map = list.stream().collect(Collectors.toMap(s -> s, String::length));
+System.out.println(map.get(""a""));",1,0,null,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"");
+Map<String, Integer> map = list.stream().collect(Collectors.toMap(s -> s, String::length));
+System.out.println(map.get(""banana""));",6,2,5,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""a"");
+Map<String, Integer> map = list.stream().collect(Collectors.toMap(s -> s, String::length));
+System.out.println(map);",IllegalStateException,"{a=1, b=1}","{a=1, a=1, b=1}",Error: duplicate keys allowed
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+IntSummaryStatistics stats = list.stream().collect(Collectors.summarizingInt(Integer::intValue));
+System.out.println(stats.getCount());",5,15,1,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+IntSummaryStatistics stats = list.stream().collect(Collectors.summarizingInt(Integer::intValue));
+System.out.println(stats.getSum());",15,5,3,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+IntSummaryStatistics stats = list.stream().collect(Collectors.summarizingInt(Integer::intValue));
+System.out.println(stats.getMax());",5,1,15,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+IntSummaryStatistics stats = list.stream().collect(Collectors.summarizingInt(Integer::intValue));
+System.out.println(stats.getMin());",1,5,0,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(2, 4, 6);
+IntSummaryStatistics stats = list.stream().collect(Collectors.summarizingInt(Integer::intValue));
+System.out.println(stats.getAverage());",4.0,12.0,2.0,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+List<String> result = list.stream().collect(Collectors.toList());
+System.out.println(result.size());",3,0,1,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""a"");
+Set<String> result = list.stream().collect(Collectors.toSet());
+System.out.println(result.size());",2,3,1,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3);
+int sum = list.stream().collect(Collectors.summingInt(Integer::intValue));
+System.out.println(sum);",6,0,3,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(2, 4, 6);
+double avg = list.stream().collect(Collectors.averagingInt(Integer::intValue));
+System.out.println(avg);",4.0,12.0,2.0,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> max = list.stream().collect(Collectors.maxBy(Comparator.naturalOrder()));
+System.out.println(max.get());",5,1,15,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> min = list.stream().collect(Collectors.minBy(Comparator.naturalOrder()));
+System.out.println(min.get());",1,5,0,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"", ""apricot"");
+Map<Character, Long> map = list.stream().collect(Collectors.groupingBy(s -> s.charAt(0), Collectors.counting()));
+System.out.println(map.get('a'));",2,3,1,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"", ""apricot"");
+Map<Character, Optional<String>> map = list.stream().collect(Collectors.groupingBy(s -> s.charAt(0), Collectors.maxBy(Comparator.comparing(String::length))));
+System.out.println(map.get('a').get());",apricot,apple,banana,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+Map<String, List<Integer>> map = list.stream().collect(Collectors.groupingBy(n -> n % 2 == 0 ? ""even"" : ""odd""));
+System.out.println(map.get(""even"").size());",3,2,6,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(10, 20, 30, 40);
+Map<Boolean, Integer> map = list.stream().collect(Collectors.partitioningBy(n -> n > 25, Collectors.summingInt(Integer::intValue)));
+System.out.println(map.get(false));",30,100,70,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+int product = list.stream().reduce(1, (a, b) -> a * b, (a, b) -> a * b);
+System.out.println(product);",120,15,1,Error: invalid syntax
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3);
+int sum = list.parallelStream().reduce(0, (a, b) -> a + b, (a, b) -> a + b);
+System.out.println(sum);",6,0,3,Error: combiner required
+"What is the output?
+Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5);
+List<Integer> list = stream.skip(2).limit(2).collect(Collectors.toList());
+System.out.println(list.size());",2,5,3,Error: invalid combination
+"What is the output?
+Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5);
+List<Integer> list = stream.limit(3).skip(1).collect(Collectors.toList());
+System.out.println(list.size());",2,3,4,Error: invalid combination
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+long count = list.stream().collect(Collectors.counting());
+System.out.println(count);",3,0,1,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, List<Integer>> map = list.stream().collect(Collectors.partitioningBy(n -> n > 3));
+System.out.println(map.get(true));","[4, 5]","[1, 2, 3]","[5, 4]",Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, List<Integer>> map = list.stream().collect(Collectors.partitioningBy(n -> n > 3));
+System.out.println(map.get(false));","[1, 2, 3]","[4, 5]","[]",Error: invalid method
+"What is the output?
+List<String> words = Arrays.asList(""apple"", ""banana"", ""apricot"", ""blueberry"");
+Map<Character, Integer> map = words.stream().collect(Collectors.groupingBy(s -> s.charAt(0), Collectors.summingInt(String::length)));
+System.out.println(map.get('a'));",12,3,7,Error: invalid method
+"What is the output?
+List<String> words = Arrays.asList(""apple"", ""banana"", ""apricot"", ""blueberry"");
+Map<Character, Integer> map = words.stream().collect(Collectors.groupingBy(s -> s.charAt(0), Collectors.summingInt(String::length)));
+System.out.println(map.get('b'));",15,2,9,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+boolean allEven = list.stream().allMatch(n -> n % 2 == 0);
+boolean anyEven = list.stream().anyMatch(n -> n % 2 == 0);
+System.out.println(allEven + "" "" + anyEven);",false true,true true,false false,Error: stream reused
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3);
+Stream<Integer> stream = list.stream();
+stream.forEach(System.out::println);
+long count = stream.count();",IllegalStateException,3,1 2 3 3,Error: stream is immutable
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+Optional<Integer> result = list.stream().reduce((a, b) -> a + b);
+System.out.println(result.orElse(-1));",10,-1,0,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList();
+Optional<Integer> result = list.stream().reduce((a, b) -> a + b);
+System.out.println(result.orElse(-1));",-1,0,NoSuchElementException,null
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3);
+Optional<Integer> result = list.stream().reduce((a, b) -> a * b);
+System.out.println(result.get());",6,1,3,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+Optional<String> result = list.stream().reduce((a, b) -> a + "","" + b);
+System.out.println(result.get());","a,b,c",abc,"[a, b, c]",Error: invalid method
+"What is the output?
+Stream<List<Integer>> stream = Stream.of(Arrays.asList(1, 2), Arrays.asList(3, 4));
+List<Integer> result = stream.flatMap(List::stream).collect(Collectors.toList());
+System.out.println(result.size());",4,2,8,Error: invalid method
+"What is the output?
+Stream<String> stream = Stream.of(""hello"", ""world"");
+List<String> result = stream.flatMap(s -> Stream.of(s.split(""""))).collect(Collectors.toList());
+System.out.println(result.size());",10,2,5,Error: invalid method
+"What is the output?
+Stream<Integer> s1 = Stream.of(1, 2, 3);
+Stream<Integer> s2 = Stream.of(4, 5, 6);
+long count = Stream.concat(s1, s2).filter(n -> n % 2 == 0).count();
+System.out.println(count);",3,6,2,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, Long> map = list.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0, Collectors.counting()));
+System.out.println(map.get(false));",3,2,5,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""bb"", ""ccc"", ""dd"", ""e"");
+Map<Integer, List<String>> map = list.stream().collect(Collectors.groupingBy(String::length));
+System.out.println(map.get(1).size());",2,1,5,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""bb"", ""ccc"", ""dd"", ""e"");
+Map<Integer, List<String>> map = list.stream().collect(Collectors.groupingBy(String::length));
+System.out.println(map.get(2).size());",2,1,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+int sum = list.parallelStream().filter(n -> n % 2 == 0).reduce(0, Integer::sum);
+System.out.println(sum);",12,21,6,Error: parallel not supported
+"What is the output?
+List<String> list = Arrays.asList(""apple"", ""banana"", ""apricot"", ""berry"");
+Map<Character, List<String>> map = list.parallelStream().collect(Collectors.groupingBy(s -> s.charAt(0)));
+System.out.println(map.get('b').size());",2,1,4,Error: parallel not supported
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+List<Integer> result = list.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+System.out.println(result);","[2, 4]","[1, 3, 5]","[1, 2, 3, 4, 5]",Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+List<Integer> result = list.stream().map(n -> n * n).collect(Collectors.toList());
+System.out.println(result);","[1, 4, 9, 16, 25]","[1, 2, 3, 4, 5]","[2, 4, 6, 8, 10]",Error: invalid method
+"What is the output?
+Stream<Integer> infinite = Stream.iterate(1, n -> n + 1);
+int sum = infinite.limit(5).reduce(0, Integer::sum);
+System.out.println(sum);",15,Infinite loop,5,Error: invalid method
+"What is the output?
+Stream<String> infinite = Stream.generate(() -> ""x"");
+long count = infinite.limit(10).count();
+System.out.println(count);",10,Infinite loop,1,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(5, 2, 8, 1, 9);
+Optional<Integer> result = list.stream().reduce(Integer::max);
+System.out.println(result.get());",9,1,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(5, 2, 8, 1, 9);
+Optional<Integer> result = list.stream().reduce(Integer::min);
+System.out.println(result.get());",1,9,5,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""one"", ""two"", ""three"");
+Map<Integer, String> map = list.stream().collect(Collectors.toMap(String::length, s -> s, (s1, s2) -> s1 + "","" + s2));
+System.out.println(map.get(3));","one,two",one,two,Error: duplicate keys
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+TreeSet<Integer> result = list.stream().collect(Collectors.toCollection(TreeSet::new));
+System.out.println(result.size());",5,0,1,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""c"", ""a"", ""b"");
+TreeSet<String> result = list.stream().collect(Collectors.toCollection(TreeSet::new));
+System.out.println(result.first());",a,c,b,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(3, 1, 4, 1, 5);
+LinkedHashSet<Integer> result = list.stream().collect(Collectors.toCollection(LinkedHashSet::new));
+System.out.println(result.size());",4,5,3,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+String result = list.stream().reduce((s1, s2) -> s2).orElse(""default"");
+System.out.println(result);",c,a,abc,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+String result = list.stream().reduce((s1, s2) -> s1).orElse(""default"");
+System.out.println(result);",a,c,abc,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(10, 20, 30);
+int result = list.stream().reduce(5, (a, b) -> a + b);
+System.out.println(result);",65,60,5,Error: invalid method
+"What is the output?
+List<Integer> list = Arrays.asList(10, 20, 30);
+int result = list.parallelStream().reduce(5, (a, b) -> a + b);
+System.out.println(result);",75,65,60,Error: parallel identity added multiple times
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3);
+int result = list.parallelStream().reduce(0, (a, b) -> a + b, (a, b) -> a + b);
+System.out.println(result);",6,0,3,Error: combiner not needed
+"What is the output?
+List<List<String>> list = Arrays.asList(Arrays.asList(""a"", ""b""), Arrays.asList(""c""), Arrays.asList(""d"", ""e""));
+long count = list.stream().flatMap(Collection::stream).count();
+System.out.println(count);",5,3,2,Error: invalid method
+"What is the output?
+List<String> list = Arrays.asList(""1,2,3"", ""4,5"", ""6"");
+long count = list.stream().flatMap(s -> Arrays.stream(s.split("",""))).count();
+System.out.println(count);",6,3,5,Error: invalid method
+"What is the output?
+Map<Boolean, List<Integer>> map = Stream.of(1, 2, 3, 4, 5, 6).collect(Collectors.partitioningBy(n -> n % 2 == 0));
+System.out.println(map.keySet().size());",2,6,1,Error: always returns 2 keys
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Double avg = list.stream().collect(Collectors.averagingDouble(Integer::doubleValue));
+System.out.println(avg);",3.0,15.0,2.5,Error: invalid method
+What method is used to combine two streams?,Stream.concat(),Stream.merge(),Stream.combine(),Stream.join()
+Which collector creates a Map with two keys (true and false)?,Collectors.partitioningBy(),Collectors.groupingBy(),Collectors.toMap(),Collectors.splitting()
+Which collector groups elements by a classification function?,Collectors.groupingBy(),Collectors.partitioningBy(),Collectors.toMap(),Collectors.classify()
+What is the identity value for a multiplication reduction starting from scratch?,1,0,null,Error: no identity needed
+What is the identity value for an addition reduction starting from scratch?,0,1,null,Error: no identity needed
+"What happens if you reuse a stream?
+Stream<Integer> s = Stream.of(1,2,3);
+s.count();
+s.count();",IllegalStateException,Returns same count,Returns 0,Error: streams are immutable

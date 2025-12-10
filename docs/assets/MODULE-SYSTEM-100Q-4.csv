@@ -1,0 +1,176 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What command compiles Java source files?,javac,java,compile,javacompile
+What option specifies the output directory for compiled classes?,-d,-o,-output,-dest
+"What is the command to compile a single file?
+Main.java in current directory",javac Main.java,java Main.java,compile Main.java,javac -compile Main.java
+"What is the command to compile with a specific output directory?
+Output to 'out' directory",javac -d out Main.java,javac -o out Main.java,javac --output out Main.java,javac out Main.java
+What command creates a JAR file?,jar,java,jarfile,makejar
+What option creates a new JAR archive?,--create or -c,--new or -n,--make or -m,--build or -b
+What option specifies the JAR file name?,--file or -f,--name or -n,--output or -o,--jar or -j
+"What is the command to create a JAR named app.jar from classes in out directory?",jar --create --file app.jar -C out .,jar -new -file app.jar out,jar --make app.jar out,jar -c app.jar out
+What option specifies the main class in a JAR?,--main-class,--main,--entry-point,--start-class
+"What is the command to create an executable JAR?
+Main class: com.app.Main",jar --create --file app.jar --main-class com.app.Main -C out .,jar -c -f app.jar -main com.app.Main out,jar --create app.jar --entry com.app.Main out,jar -cf app.jar -m com.app.Main out
+What command lists contents of a JAR file?,jar --list --file app.jar or jar -tf app.jar,jar --show app.jar,jar -l app.jar,jar --contents app.jar
+What command extracts a JAR file?,jar --extract --file app.jar or jar -xf app.jar,jar --unzip app.jar,jar -e app.jar,jar --decompress app.jar
+What command updates a JAR file?,jar --update --file app.jar or jar -uf app.jar,jar --modify app.jar,jar -m app.jar,jar --change app.jar
+What is the file extension for a JAR file?,.jar,.java,.class,.zip
+What command runs a JAR file with a main class?,java -jar app.jar,java app.jar,run app.jar,execute app.jar
+Where is the main class specified in a JAR?,META-INF/MANIFEST.MF,module-info.class,main.properties,jar-config.xml
+"What attribute in MANIFEST.MF specifies the main class?
+Format: AttributeName: Value",Main-Class: com.app.Main,MainClass: com.app.Main,Entry-Point: com.app.Main,Start-Class: com.app.Main
+What command compiles a modular application?,javac -d outdir --module-source-path srcdir,javac -module srcdir,javac --compile-module srcdir,compile-module srcdir
+What option specifies where to find module source files?,--module-source-path,--module-path,--source-path,--module-src
+"What is the correct directory structure for a modular application?
+Module name: com.app",src/com.app/module-info.java and src/com.app/com/app/...,src/module-info.java,src/com/app/module-info.java,module-info.java at root
+"What command compiles module com.app?
+Source: src/com.app
+Output: mods",javac -d mods --module-source-path src --module com.app,javac -d mods -module com.app,javac --module-path src --out mods com.app,compile -module com.app -output mods
+What option specifies the module to compile?,--module or -m,--compile-module,--mod,--module-name
+What option specifies where to find compiled modules?,--module-path or -p,--modules,--module-dir,--mod-path
+"What command creates a modular JAR?
+Module: com.app
+Main class: com.app.Main",jar --create --file=mods/com.app.jar --main-class=com.app.Main -C out/com.app .,jar -cf com.app.jar -module com.app,jar --module com.app --output com.app.jar,jar -create -module com.app.jar
+What command creates custom runtime images?,jlink,jimage,jruntime,jmodule
+What option specifies the module path for jlink?,--module-path or -p,--modules,--mod-path,--path
+What option specifies output directory for jlink?,--output,--out,--destination,--dir
+What option specifies modules to include in runtime image?,--add-modules,--include-modules,--modules,--with-modules
+"What command creates a runtime image with module com.app?
+Module path: mods
+Output: myimage",jlink --module-path mods --add-modules com.app --output myimage,jlink -p mods -m com.app -o myimage,jlink --modules com.app --out myimage,jimage --create com.app --output myimage
+What launcher is created in a runtime image?,bin/java (or bin/java.exe on Windows),java,launcher,start
+How do you run an application from a runtime image?,myimage/bin/java -m com.app/com.app.Main,myimage/java -m com.app,run myimage com.app,myimage/bin/launcher com.app
+What is an automatic module?,A non-modular JAR placed on the module path,A module that loads automatically,A pre-installed Java module,A module without module-info.java on classpath
+What is the unnamed module?,All classes on the classpath,A module without a name,An anonymous module,A default module
+Can automatic modules read the unnamed module?,No,Yes,Only if specified,Only in migration mode
+Can the unnamed module read automatic modules?,No,Yes,Only if specified,Only in migration mode
+Can automatic modules read all other modules?,Yes,No,Only named modules,Only other automatic modules
+Can named modules read automatic modules?,Yes (with requires),No,Automatically,Only in migration mode
+"What happens to a modular JAR on the classpath?
+JAR has module-info.class",It becomes part of the unnamed module (module-info ignored),It remains a named module,Error occurs,It becomes an automatic module
+"What happens to a non-modular JAR on the module path?
+JAR has no module-info.class",It becomes an automatic module,It becomes part of unnamed module,Error occurs,It is ignored
+"What is the automatic module name derived from?
+JAR: my-library-2.0.jar",my.library,my-library-2.0,mylibrary20,my.library.2.0
+How are hyphens converted in automatic module names?,To dots,To underscores,Removed,Kept as-is
+How are version numbers handled in automatic module names?,Removed,Converted to dots,Kept as-is,Cause error
+"What is the automatic module name?
+JAR: commons-lang3-3.12.jar",commons.lang3,commons-lang3-3.12,commons.lang.3.12,commonslang3
+Can you specify a custom automatic module name?,Yes (using Automatic-Module-Name in MANIFEST.MF),No,Only with module-info.java,Only with --module-name
+"What MANIFEST.MF attribute specifies automatic module name?
+Format: AttributeName: Value",Automatic-Module-Name: com.example,Module-Name: com.example,Auto-Module: com.example,Name: com.example
+What do automatic modules export?,All packages,No packages,Only public packages,Only specified packages
+What do automatic modules open for reflection?,All packages,No packages,Only public packages,Only specified packages
+"What is the migration strategy for legacy applications?
+Step 1:",Put all JARs on classpath initially,Create modules immediately,Rewrite all code,Use jlink
+"What is the migration strategy?
+Step 2: Move which JARs to module path first?",Bottom-up: libraries first (that don't depend on others),Top-up: application code first,Random order,All at once
+"After moving non-modular JAR to module path, how is it used?
+JAR: mylib.jar (becomes module mylib)",requires mylib; in module-info.java,import mylib; in code,--require mylib on command line,Add to classpath
+Can automatic modules have requires directives?,No (they have no module-info.java),Yes,Only for other automatic modules,Only in migration
+Do automatic modules require the unnamed module?,No,Yes,Automatically,Must be specified
+"What command compiles code that uses automatic modules?
+Automatic module: mylib on module path",javac --module-path libs -d out --module-source-path src --module com.app,javac -cp libs -d out src/com.app,javac --auto-module libs -d out src,javac -module mylib -d out src
+"What happens when two automatic modules have same derived name?
+lib-1.0.jar and lib-2.0.jar both derive 'lib'",Error or unpredictable behavior,Both are loaded,First one is used,Versions are merged
+Why should you add Automatic-Module-Name to MANIFEST.MF?,To ensure stable module name across versions,Required for automatic modules,Improves performance,Enables reflection
+"What command packages a module with dependencies using jlink?
+Module: com.app
+Dependency: java.sql
+Module path: mods:$JAVA_HOME/jmods",jlink -p mods:$JAVA_HOME/jmods --add-modules com.app --output myimage,"jlink -p mods --add-modules com.app,java.sql --output myimage",jlink --modules com.app --include java.sql -o myimage,jlink -m com.app -deps java.sql -out myimage
+What is the purpose of jdeps?,Analyze dependencies of classes and modules,Compile dependencies,Resolve dependencies,Package dependencies
+What command analyzes module dependencies?,jdeps,jlink,jmod,jdep
+"What does jdeps show?
+Command: jdeps app.jar",Dependencies of app.jar on other modules/packages,Contents of app.jar,Size of app.jar,Version of app.jar
+What option makes jdeps show module dependencies?,--module-path or -p combined with analysis,--show-modules,--modules,--deps
+"What command creates a JMOD file?
+Module compiled to out/com.app
+Create: jmods/com.app.jmod",jmod create --class-path out/com.app jmods/com.app.jmod,jmod -create -cp out/com.app jmods/com.app.jmod,jmod --make jmods/com.app.jmod -classes out/com.app,jmodule create com.app.jmod
+What is a JMOD file?,A module packaging format (used before runtime image creation),A Java module descriptor,A modular JAR,A JSON module definition
+Can JMOD files be used at runtime?,No (only during jlink),Yes,Only with --jmod flag,Only in Java 17+
+What is the file extension for JMOD files?,.jmod,.mod,.module,.jm
+Where are platform JMOD files located?,$JAVA_HOME/jmods,/jmods,$JAVA_HOME/lib/modules,$JAVA_HOME/modules
+"What jlink option reduces image size?
+Removes debug info, man pages, etc.",--strip-debug or --strip-native-commands or --compress,--minimize,--reduce,--optimize
+What jlink option compresses the runtime image?,--compress,--zip,--compact,--pack
+"What are valid compress levels for jlink?
+--compress=?",0 (none) 1 (constant strings) 2 (ZIP),0-9,1-3,low/medium/high
+What jlink option specifies launcher name?,--launcher,--start,--exec,--runner
+"What command creates runtime image with custom launcher?
+Launcher name: myapp
+Module: com.app/com.app.Main",jlink -p mods --add-modules com.app --launcher myapp=com.app/com.app.Main --output image,jlink --launcher myapp -module com.app --output image,jlink -p mods --start myapp=com.app.Main -o image,jlink --create-launcher myapp com.app/com.app.Main
+How do you run a custom launcher?,image/bin/myapp,image/launchers/myapp,image/myapp,java image/myapp
+Can you create multiple launchers in one runtime image?,Yes (multiple --launcher options),No,Only 2,Only in Java 17+
+"What is the command to compile non-modular code?
+Source: src
+Output: out
+Classpath: libs/*",javac -cp libs/* -d out src/**/*.java,javac -classpath libs/* --output out src,javac -libs libs/* -d out src,compile -cp libs/* -out out src
+"What is the command to run non-modular code?
+Main class: com.app.Main
+Classpath: out:libs/*",java -cp out:libs/* com.app.Main,java -classpath out:libs/* -m com.app.Main,java -cp out --libs libs/* com.app.Main,run -cp out:libs/* com.app.Main
+Can you mix --module-path and -cp?,Yes (supports migration),No,Only in Java 17+,Causes error
+"What happens with both module path and classpath?
+--module-path mods -cp libs",Named modules from mods; unnamed module from libs,Error: cannot mix,Classpath ignored,Module path ignored
+"How do modular applications access classpath code?
+Named module tries to use unnamed module class",Not possible directly,Use requires unnamed;,Automatic access,Use --allow-classpath
+"How do classpath applications access module path code?
+Classpath code tries to use named module",Not possible for named modules; possible for automatic modules,Automatic access,Use imports,Use --allow-modules
+What is the add-modules option for java command?,--add-modules (makes modules available at runtime),--include-modules,--with-modules,--load-modules
+"When is --add-modules needed?
+Module not directly required",To add root modules not in initial module graph,Always,Never,Only for automatic modules
+"What command runs app with additional module?
+Module: com.app
+Add: java.sql (not directly required)",java --module-path mods --add-modules java.sql -m com.app/com.app.Main,java -p mods -m com.app --include java.sql,"java --modules com.app,java.sql -m com.app",java -p mods -m com.app -require java.sql
+What does --add-exports do?,Allows access to non-exported packages (breaks encapsulation),Adds exports to module,Creates new exports,Documents exports
+"What is the syntax for --add-exports?
+Make module/package accessible to target",--add-exports module/package=targetmodule,--add-exports module.package=target,--export module/package to target,--exports module/package=target
+What does --add-opens do?,Allows reflection access to non-opened packages (breaks encapsulation),Adds opens to module,Creates new opens,Documents opens
+"What is --add-exports used for?
+Legacy library needs internal JDK API",Temporary migration solution (break encapsulation),Required for all migrations,Performance optimization,Documentation
+What does --add-reads do?,Adds module dependencies at runtime (breaks encapsulation),Improves readability,Documents dependencies,Optimizes loading
+Should you use --add-exports in production?,No (only for migration/compatibility),Yes always,Only for performance,Only in Java 17+
+"What command shows module resolution?
+Module: com.app",java --show-module-resolution --module-path mods -m com.app,java --show-modules -m com.app,java -verbose:module -m com.app,java --module-info com.app
+What command lists observable modules?,java --list-modules,java --show-modules,java -list,list-modules
+What command describes a module?,java --describe-module modulename or jar --describe-module --file=app.jar,java --show-module modulename,describe-module modulename,java -info modulename
+"What is shown by --describe-module?
+For module com.app",requires; exports; opens; provides; uses,Only requires,Only exports,Module path
+"What is in a modular JAR?
+Created from compiled module",module-info.class at root + package directories,META-INF/module.xml,module.properties,module-descriptor.json
+Where is module-info.class in a modular JAR?,At the root of the JAR,In META-INF,In module-info/,In classes/
+"What happens when module-info.class is missing?
+JAR on module path",Becomes automatic module,Error,Becomes unnamed module,Ignored
+"What happens when module-info.class is present?
+JAR on classpath",Ignored (JAR becomes part of unnamed module),Used as named module,Error,Becomes automatic module
+What tool creates modular runtime images?,jlink,jimage,jruntime,jpackage
+What is included in a jlink runtime image?,Only specified modules and dependencies,All Java modules,Only application code,Source code
+What is the benefit of jlink runtime images?,Smaller size; only necessary modules included,Faster compilation,Easier development,Better security
+Can jlink work with non-modular JARs?,No (requires modular JARs or JMODs),Yes,Only automatic modules,Only with --allow-non-modular
+"What is the size benefit of jlink?
+Full JDK: ~300MB
+Simple app image: ?",~30-50MB (much smaller),Same size,Larger,Slightly smaller
+What directory contains the java executable in runtime image?,bin/,java/,launchers/,runtime/
+What directories are in a jlink runtime image?,bin/ conf/ legal/ lib/,bin/ lib/,bin/ jre/,java/ lib/ bin/
+"What command compiles multi-module project?
+Modules: com.app, com.lib
+Source: src/com.app, src/com.lib
+Output: mods",javac -d mods --module-source-path src $(find src -name *.java),"javac -d mods -modules com.app,com.lib",javac --compile-all -d mods src,javac -module-path src -output mods
+Can jar command create a modular JAR from non-modular classes?,No (need module-info.class),Yes,Only with --make-modular,Only in Java 17+
+"What creates module-info.class?
+Source: module-info.java",javac module-info.java,jar --create-module-info,jmod create-info,No compilation needed
+"What is the bottom-up migration approach?
+For library dependencies",Start with libraries that have no dependencies; gradually move up,Start with application; move down,Convert all at once,Start with most complex
+"What is the top-down migration approach?
+For application code",Start with application; use automatic modules for libraries,Start with libraries,Convert all at once,Start with least complex
+Which migration approach is generally recommended?,Bottom-up (libraries first),Top-down,All at once,Random order
+"What is a hybrid migration strategy?
+Mix of approaches",Use module path for some; classpath for others during transition,Only module path,Only classpath,Create new project
+Can automatic modules use services?,Yes (if ServiceLoader is on module path),No,Only as consumers,Only as providers
+Can unnamed module use services?,Yes (with ServiceLoader on classpath),No,Only as consumers,Only as providers
+"What is the limitation of automatic modules?
+Regarding package exports",All packages are exported (cannot be selective),No exports,Only public packages,Must declare exports
+Why are automatic modules useful during migration?,Allow gradual migration without modifying library code,Required for migration,Improve performance,Simplify compilation
+"What should you do before migrating to modules?
+First step",Analyze dependencies with jdeps,Create module-info.java,Rewrite code,Create JMOD files
+What jdeps option shows why a dependency exists?,--verbose or -v,--show-reason,--why,--explain

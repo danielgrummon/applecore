@@ -1,0 +1,183 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What method creates a parallel stream from a collection?,parallelStream(),parallel(),asParallel(),toParallelStream()
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+list.parallelStream().forEach(System.out::print);",Output order is unpredictable,1234,4321,Compilation error
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+list.parallelStream().forEachOrdered(System.out::print);",1234,Output order is unpredictable,4321,Compilation error
+What method converts sequential stream to parallel?,parallel(),parallelStream(),toParallel(),makeParallel()
+What method converts parallel stream to sequential?,sequential(),stream(),toSequential(),makeSequential()
+"What is the result?
+Stream<Integer> stream = Stream.of(1, 2, 3, 4).parallel();
+boolean isParallel = stream.isParallel();",true,false,Error: no such method,Depends on system
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+int sum = list.parallelStream().reduce(0, (a, b) -> a + b);
+System.out.println(sum);",15,Unpredictable,0,Error: not thread-safe
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+int sum = list.parallelStream().reduce(0, Integer::sum);
+System.out.println(sum);",15,Unpredictable,0,Error: not thread-safe
+Is reduce() operation safe with parallel streams?,Yes (if associative and stateless),No,Only with identity,Only for primitive streams
+"What is the problem with this code?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+List<Integer> result = new ArrayList<>();
+list.parallelStream().forEach(result::add);",Not thread-safe (ConcurrentModificationException or incorrect results),Works correctly,Compilation error,Always throws exception
+"What is the correct way to collect in parallel?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);",list.parallelStream().collect(Collectors.toList()),list.parallelStream().forEach(result::add),list.parallelStream().toList(),list.parallelStream().addAll()
+What pool executes parallel streams by default?,ForkJoinPool.commonPool(),ThreadPoolExecutor,ExecutorService,Custom thread pool
+How many threads does common pool use by default?,Number of available processors - 1,Number of available processors,Fixed 10 threads,Unlimited threads
+Can you specify custom ForkJoinPool for parallel stream?,Yes (by submitting task to pool),No,Only in Java 17,Only with configuration
+"What is the output?
+System.out.println(Runtime.getRuntime().availableProcessors());
+// On a 4-core system",4,3,8,1
+Are parallel streams always faster than sequential?,No,Yes,Only for large datasets,Only for small datasets
+When are parallel streams beneficial?,Large datasets with CPU-intensive operations,Small datasets,I/O operations,Always
+When should you avoid parallel streams?,Small datasets or I/O-bound operations,Large datasets,CPU-intensive operations,Never
+"What is the result?
+List<Integer> list = Arrays.asList(1, 2, 3);
+list.parallelStream().map(n -> n * 2).forEach(System.out::print);",Order unpredictable: any permutation of 2 4 6,2 4 6 in order,6 4 2,Compilation error
+"What is the result?
+List<Integer> list = Arrays.asList(1, 2, 3);
+List<Integer> result = list.parallelStream().map(n -> n * 2).collect(Collectors.toList());
+// Is order preserved?",Yes (order preserved in collect),No,Only if small dataset,Only if sequential
+Does filter() preserve order in parallel streams?,Yes (when collected),No,Only if sorted,Only if small dataset
+Does map() preserve order in parallel streams?,Yes (when collected),No,Only if stateless,Only if small dataset
+Does sorted() work correctly with parallel streams?,Yes,No,Only with comparator,Only if small dataset
+"What is the output?
+List<Integer> list = Arrays.asList(3, 1, 2);
+list.parallelStream().sorted().forEachOrdered(System.out::print);",123,321,Order unpredictable,Compilation error
+What is a stateless operation?,Operation that doesn't depend on external state,Operation without return value,Operation that's immutable,Operation that's synchronized
+What is a stateful operation?,Operation that depends on or modifies state,Operation with return value,Operation that's mutable,Operation that's unsynchronized
+Are limit() and skip() stateful operations?,Yes,No,Only limit(),Only skip()
+Are filter() and map() stateless operations?,Yes (if lambdas are stateless),No,Only filter(),Only map()
+"What is the problem?
+int count = 0;
+list.parallelStream().forEach(n -> count++);",Not thread-safe (race condition),Works correctly,Compilation error (effectively final),Both B and C
+"What is the problem?
+AtomicInteger count = new AtomicInteger(0);
+list.parallelStream().forEach(n -> count.incrementAndGet());",Using side effects (not recommended),Works correctly,Compilation error,Runtime exception
+What is the recommended way to count in parallel stream?,Use count() terminal operation,Use AtomicInteger,Use synchronized block,Use volatile variable
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+String result = list.parallelStream().reduce("""", (a, b) -> a + b);
+System.out.println(result);",Unpredictable (may have duplicates like abc or aabbcc),abc,cba,Compilation error
+"Why is the previous result unpredictable?
+reduce("""", (a, b) -> a + b) with parallel stream",Identity value used multiple times in parallel,Random order,Race condition,Compilation error
+"What is the correct parallel reduction for strings?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");",list.parallelStream().collect(Collectors.joining()),"list.parallelStream().reduce("""", String::concat)",list.parallelStream().reduce(String::concat).get(),list.parallelStream().toString()
+What is the three-argument reduce for parallel streams?,"reduce(identity, accumulator, combiner)","reduce(initial, mapper, reducer)","reduce(start, function, merger)",Only two arguments needed
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+int result = list.parallelStream().reduce(1, (a, b) -> a * b, (a, b) -> a * b);
+System.out.println(result);",24,1,10,Unpredictable
+Why is combiner needed in parallel reduce?,To combine partial results from different threads,To improve performance,To handle errors,To maintain order
+"What is the requirement for combiner?
+reduce(identity, accumulator, combiner)","combiner.apply(identity, i) equals i",combiner must be synchronized,combiner must be fast,combiner must return identity
+What does findAny() return with parallel stream?,Any element (potentially different each time),First element,Last element,Random element
+What does findFirst() return with parallel stream?,First element in encounter order,Any element,Last element,Random element
+Is findAny() more efficient than findFirst() in parallel?,Yes,No,Same performance,Only for large datasets
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> result = list.parallelStream().filter(n -> n > 2).findAny();
+System.out.println(result.isPresent());",true,false,Unpredictable,Compilation error
+"What could be the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> result = list.parallelStream().filter(n -> n > 2).findAny();
+System.out.println(result.get());",3 or 4 or 5,Always 3,Always 5,Compilation error
+Does anyMatch() short-circuit with parallel streams?,Yes,No,Only if match found,Only if no match
+Does allMatch() short-circuit with parallel streams?,Yes (when any element fails),No,Only when all match,Never short-circuits
+Does noneMatch() short-circuit with parallel streams?,Yes (when any element matches),No,Only when none match,Never short-circuits
+What is the overhead of parallel streams?,Thread management and coordination,Memory allocation,CPU usage,Disk I/O
+Is peek() safe for debugging parallel streams?,Not reliable (order unpredictable),Yes,Only with forEachOrdered,Only if synchronized
+"What is the result?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+list.parallelStream().peek(System.out::println).count();",Prints numbers in unpredictable order,Prints 1 2 3 4 5,Doesn't print anything,Compilation error
+Can parallel streams cause race conditions with shared mutable state?,Yes,No,Only if unsynchronized,Only in Java 17
+What type of operations should you use in parallel streams?,Stateless and non-interfering,Stateful,Side-effecting,Synchronized
+What does non-interfering mean?,Doesn't modify stream source during execution,Doesn't use locks,Doesn't throw exceptions,Doesn't return values
+"What is the problem?
+List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+list.parallelStream().forEach(n -> { if (n % 2 == 0) list.remove(n); });",ConcurrentModificationException or incorrect behavior,Works correctly,Compilation error,Only removes some elements
+What collector is safe for parallel streams?,Any collector from Collectors class,Only toList(),Only toSet(),None are thread-safe
+Are Collectors designed for parallel streams?,Yes,No,Only some,Only in Java 17
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+Map<Boolean, List<Integer>> map = list.parallelStream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+System.out.println(map.get(true).size());",2,3,5,Compilation error
+"What is the output?
+List<String> list = Arrays.asList(""a"", ""b"", ""a"", ""c"");
+long count = list.parallelStream().distinct().count();
+System.out.println(count);",3,4,2,Compilation error
+Is distinct() operation stateful?,Yes,No,Only for objects,Only for primitives
+Does parallel stream preserve insertion order?,Yes (in terminal operations like collect),No,Only if sorted,Only if small
+"What is the output?
+IntStream.range(0, 10).parallel().forEach(System.out::print);",Numbers 0-9 in unpredictable order,0123456789,9876543210,Compilation error
+"What is the output?
+IntStream.range(0, 10).parallel().forEachOrdered(System.out::print);",0123456789,Numbers 0-9 in unpredictable order,9876543210,Compilation error
+What method processes elements in parallel without order?,forEach(),forEachOrdered(),process(),iterate()
+What method processes elements in parallel maintaining order?,forEachOrdered(),forEach(),ordered(),sequential()
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+int sum = list.parallelStream().mapToInt(Integer::intValue).sum();
+System.out.println(sum);",15,Unpredictable,0,Compilation error
+Are primitive streams (IntStream) safe for parallel operations?,Yes,No,Only sequential,Only for small datasets
+"What is the output?
+LongStream.rangeClosed(1, 100).parallel().sum();",5050,Unpredictable,0,Compilation error
+Can you use parallel streams with infinite streams?,Yes (but must use limit),No,Only sequential,Causes infinite loop
+"What is the result?
+Stream.iterate(0, n -> n + 1).parallel().limit(10).forEach(System.out::println);",Prints 0-9 in unpredictable order,Prints 0-9 in order,Infinite loop,Compilation error
+Is iterate() well-suited for parallel streams?,No (inherently sequential),Yes,Only with limit,Only for small ranges
+Is Stream.generate() well-suited for parallel streams?,Yes (if supplier is stateless),No,Only with limit,Only for small datasets
+"What is the output?
+Stream.generate(() -> ""x"").parallel().limit(5).forEach(System.out::print);",xxxxx,x,Infinite output,Compilation error
+What determines if parallel stream improves performance?,Data size; computation cost; number of cores,Only data size,Only computation cost,Always improves performance
+What is NQ model for parallel streams?,N (data size) * Q (computation cost),N (cores) * Q (quality),N (number) * Q (quantity),Not a real concept
+Should you use parallel for simple operations?,No (overhead exceeds benefit),Yes,Only for large data,Always
+Should you use parallel for I/O operations?,No (blocks threads),Yes,Only for reads,Only for writes
+"What is the result?
+List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+Set<String> set = list.parallelStream().collect(Collectors.toSet());
+// Is set thread-safe after collection?",No (regular HashSet),Yes,Only during collection,Depends on JVM
+"What is the result?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+List<Integer> result = list.parallelStream().collect(Collectors.toCollection(ArrayList::new));
+// Is result thread-safe?",No (regular ArrayList),Yes,Only during collection,Depends on JVM
+How do you get concurrent collection from parallel stream?,Use Collectors.toConcurrentMap() or similar,Use toList(),Use toSet(),Automatic with parallel
+What collector creates concurrent map?,Collectors.toConcurrentMap(),Collectors.toMap(),Collectors.concurrentMap(),Collectors.threadSafeMap()
+"What is the output?
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+boolean hasEven = list.parallelStream().anyMatch(n -> n % 2 == 0);
+System.out.println(hasEven);",true,false,Unpredictable,Compilation error
+"What is the output?
+List<Integer> list = Arrays.asList(2, 4, 6, 8);
+boolean allEven = list.parallelStream().allMatch(n -> n % 2 == 0);
+System.out.println(allEven);",true,false,Unpredictable,Compilation error
+"What is the output?
+List<Integer> list = Arrays.asList(1, 3, 5, 7);
+boolean noneEven = list.parallelStream().noneMatch(n -> n % 2 == 0);
+System.out.println(noneEven);",true,false,Unpredictable,Compilation error
+Can you safely use parallel() multiple times?,Yes (idempotent),No,Only twice,Causes error
+Can you safely use sequential() after parallel()?,Yes (last call wins),No,Causes error,Creates new stream
+"What is the result?
+Stream<Integer> s = Stream.of(1,2,3).parallel().sequential().parallel();
+s.isParallel();",true,false,Error: conflicting calls,Compilation error
+Does groupingBy() work with parallel streams?,Yes,No,Only sequential,Only with concurrent version
+What is the concurrent version of groupingBy()?,groupingByConcurrent(),groupingBy() (same),parallelGroupingBy(),concurrentGrouping()
+"What is the problem?
+List<Integer> result = Collections.synchronizedList(new ArrayList<>());
+list.parallelStream().forEach(result::add);",Synchronized list still needs external synchronization for compound operations,Works perfectly,Compilation error,Always throws exception
+"What is better than the above?
+Instead of synchronized list with forEach",Use collect(Collectors.toList()),Use CopyOnWriteArrayList,Use Vector,Use synchronized block
+What is a parallel stream spliterator?,Mechanism to split stream for parallel processing,Iterator for parallel streams,Collector for parallel streams,Filter for parallel streams
+Can you control parallelism level of parallel streams?,Not directly (uses common pool),Yes with setParallelism(),Yes with configuration,Yes with thread count parameter
+What system property affects common pool size?,java.util.concurrent.ForkJoinPool.common.parallelism,stream.parallelism,parallel.threads,forkjoin.poolsize
+What is the default chunk size for parallel streams?,Dynamically determined by spliterator,1000 elements,100 elements,All elements
+Is flatMap() safe with parallel streams?,Yes (if functions are stateless),No,Only for small streams,Only for sequential
+"What is the output?
+List<List<Integer>> list = Arrays.asList(Arrays.asList(1,2), Arrays.asList(3,4));
+long count = list.parallelStream().flatMap(List::stream).count();
+System.out.println(count);",4,2,8,Compilation error
+Should you benchmark before using parallel streams?,Yes,No,Only for production,Only for large data
+What is the easiest way to test parallel vs sequential?,Use both and measure execution time,Use profiler,Read documentation,Guess based on size

@@ -1,0 +1,303 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+int x = 5;
+int y = 2;
+System.out.println(x / y);",2,2.5,2.0,Error: incompatible types
+"What is the output?
+double d = 5 / 2;
+System.out.println(d);",2.0,2.5,2,Error: loss of precision
+"What is the output?
+double d = 5.0 / 2;
+System.out.println(d);",2.5,2.0,2,Error: incompatible types
+"What is the output?
+int x = (int) 5.9;
+System.out.println(x);",5,6,5.9,Error: incompatible types
+"What is the output?
+byte b = 127;
+b++;
+System.out.println(b);",-128,128,126,Error: overflow
+"What is the output?
+Integer i = 100;
+Integer j = 100;
+System.out.println(i == j);",true,false,null,Error: incompatible types
+"What is the output?
+Integer i = 200;
+Integer j = 200;
+System.out.println(i == j);",false,true,null,Error: incompatible types
+"What is the output?
+Integer i = null;
+int x = i;
+System.out.println(x);",NullPointerException,0,null,Error: incompatible types
+"What is the result?
+int x = 10 + 5 * 2;
+System.out.println(x);",20,30,15,Error: syntax error
+"What is the result?
+int x = (10 + 5) * 2;
+System.out.println(x);",30,20,15,Error: syntax error
+Which primitive type has the largest range?,long,double,int,float
+What is the size of an int in Java?,32 bits,64 bits,16 bits,8 bits
+What is the size of a long in Java?,64 bits,32 bits,128 bits,16 bits
+"What is the output?
+System.out.println(Math.max(10, 20));",20,10,30,Error: invalid method
+"What is the output?
+System.out.println(Math.min(10, 20));",10,20,0,Error: invalid method
+"What is the output?
+System.out.println(Math.abs(-15));",15,-15,0,Error: invalid method
+"What is the output?
+System.out.println(Math.round(4.5));",5,4,4.5,Error: incompatible types
+"What is the output?
+System.out.println(Math.round(4.4));",4,5,4.4,Error: incompatible types
+"What is the output?
+System.out.println(Math.ceil(4.1));",5.0,4.0,5,4
+"What is the output?
+System.out.println(Math.floor(4.9));",4.0,5.0,4,5
+"What is the output?
+int x = 10;
+Integer y = x;
+System.out.println(y);",10,Error: incompatible types,null,0
+"What is the output?
+Integer x = 10;
+int y = x;
+System.out.println(y);",10,Error: incompatible types,null,0
+"What is the output?
+String s = ""123"";
+int x = Integer.parseInt(s);
+System.out.println(x);",123,""123"",Error: invalid method,null
+"What is the output?
+String s = ""abc"";
+int x = Integer.parseInt(s);
+System.out.println(x);",NumberFormatException,0,null,Error: incompatible types
+"What is the output?
+int x = 10;
+String s = Integer.toString(x);
+System.out.println(s);",10,""10"",Error: invalid method,null
+"What is the output?
+System.out.println(Integer.valueOf(""10""));",10,""10"",Error: invalid method,null
+"What is the output?
+System.out.println(Integer.MAX_VALUE);",2147483647,2147483648,-2147483648,9223372036854775807
+"What is the output?
+System.out.println(Integer.MIN_VALUE);",-2147483648,2147483647,-2147483647,0
+"What is the output?
+int x = Integer.MAX_VALUE + 1;
+System.out.println(x);",-2147483648,2147483648,2147483647,Error: overflow
+"What is the output?
+byte b = 100;
+byte c = 50;
+byte d = b + c;
+System.out.println(d);",Error: incompatible types,150,-106,100
+"What is the output?
+byte b = 100;
+byte c = 50;
+int d = b + c;
+System.out.println(d);",150,Error: incompatible types,-106,100
+"What is the output?
+short s = 10;
+short t = 20;
+short u = s + t;
+System.out.println(u);",Error: incompatible types,30,10,20
+"What is the output?
+float f = 3.14;
+System.out.println(f);",Error: incompatible types,3.14,3.140000104904175,3.14f
+"What is the output?
+float f = 3.14f;
+System.out.println(f);",3.14,Error: incompatible types,3.140000104904175,3.14f
+"What is the output?
+long l = 100L;
+System.out.println(l);",100,100L,Error: incompatible types,0
+"What is the output?
+double d = 10 / 3;
+System.out.println(d);",3.0,3.3333333333333335,3,Error: incompatible types
+"What is the output?
+double d = 10.0 / 3;
+System.out.println(d);",3.3333333333333335,3.0,3,Error: incompatible types
+"What is the output?
+int x = 10 % 3;
+System.out.println(x);",1,3,0,Error: invalid operator
+"What is the output?
+int x = -10 % 3;
+System.out.println(x);",-1,1,3,Error: invalid operator
+"What is the output?
+System.out.println(10 / 0);",ArithmeticException,Infinity,0,NaN
+"What is the output?
+System.out.println(10.0 / 0);",Infinity,ArithmeticException,0.0,NaN
+"What is the output?
+System.out.println(0.0 / 0.0);",NaN,0.0,Infinity,ArithmeticException
+"What is the output?
+boolean b = true;
+Boolean B = b;
+System.out.println(B);",true,Error: incompatible types,null,false
+"What is the output?
+Boolean B = null;
+boolean b = B;
+System.out.println(b);",NullPointerException,false,null,Error: incompatible types
+"What is the output?
+char c = 'A';
+System.out.println(c + 1);",66,A1,B,Error: incompatible types
+"What is the output?
+char c = 65;
+System.out.println(c);",A,65,Error: incompatible types,B
+"What is the output?
+int x = 'A';
+System.out.println(x);",65,A,Error: incompatible types,0
+"What is the output?
+System.out.println(true && false);",false,true,Error: invalid operator,null
+"What is the output?
+System.out.println(true || false);",true,false,Error: invalid operator,null
+"What is the output?
+System.out.println(!true);",false,true,Error: invalid operator,null
+"What is the output?
+int x = 10;
+System.out.println(x++ + ++x);",22,21,20,Error: invalid expression
+"What is the output?
+int x = 10;
+System.out.println(++x + x++);",22,21,23,Error: invalid expression
+"What is the output?
+int x = 5;
+x += 3;
+System.out.println(x);",8,5,3,Error: invalid operator
+"What is the output?
+int x = 10;
+x -= 3;
+System.out.println(x);",7,10,3,Error: invalid operator
+"What is the output?
+int x = 5;
+x *= 2;
+System.out.println(x);",10,5,2,Error: invalid operator
+"What is the output?
+int x = 10;
+x /= 3;
+System.out.println(x);",3,3.3333333333333335,10,Error: invalid operator
+"What is the output?
+int x = 10;
+x %= 3;
+System.out.println(x);",1,3,0,Error: invalid operator
+"What is the output?
+System.out.println(Math.pow(2, 3));",8.0,8,6,Error: invalid method
+"What is the output?
+System.out.println(Math.sqrt(16));",4.0,4,16,Error: invalid method
+"What is the output?
+System.out.println(Math.sqrt(-1));",NaN,Error: invalid argument,-1.0,Infinity
+"What is the output?
+double d = 1.0 / 0.0;
+System.out.println(d > 100);",true,false,Error: incompatible types,NaN
+"What is the output?
+double d = 0.0 / 0.0;
+System.out.println(d == d);",false,true,Error: incompatible types,NaN
+"What is the output?
+System.out.println(Double.isNaN(0.0 / 0.0));",true,false,Error: invalid method,NaN
+"What is the output?
+System.out.println(Double.isInfinite(1.0 / 0.0));",true,false,Error: invalid method,Infinity
+"What is the output?
+long l = 100;
+int i = (int) l;
+System.out.println(i);",100,Error: incompatible types,100L,null
+"What is the output?
+double d = 100.5;
+int i = (int) d;
+System.out.println(i);",100,100.5,101,Error: incompatible types
+"What is the output?
+int i = 100;
+long l = i;
+System.out.println(l);",100,100L,Error: incompatible types,null
+"What is the output?
+int i = 100;
+double d = i;
+System.out.println(d);",100.0,100,Error: incompatible types,null
+"What is the output?
+byte b = 10;
+short s = b;
+System.out.println(s);",10,Error: incompatible types,10L,null
+"What is the output?
+short s = 1000;
+byte b = (byte) s;
+System.out.println(b);",-24,1000,24,Error: incompatible types
+"What is the output?
+int x = 5;
+System.out.println(x << 1);",10,5,2,Error: invalid operator
+"What is the output?
+int x = 8;
+System.out.println(x >> 1);",4,8,2,Error: invalid operator
+"What is the output?
+int x = -8;
+System.out.println(x >> 1);",-4,-8,4,Error: invalid operator
+"What is the output?
+int x = -8;
+System.out.println(x >>> 1);",2147483644,-4,4,Error: invalid operator
+"What is the output?
+System.out.println(5 & 3);",1,5,3,Error: invalid operator
+"What is the output?
+System.out.println(5 | 3);",7,5,3,Error: invalid operator
+"What is the output?
+System.out.println(5 ^ 3);",6,5,3,Error: invalid operator
+"What is the output?
+System.out.println(~5);",-6,5,-5,Error: invalid operator
+"What is the output?
+int x = 1_000_000;
+System.out.println(x);",1000000,1,Error: invalid literal,1_000_000
+"What is the output?
+int x = 0b1010;
+System.out.println(x);",10,1010,0,Error: invalid literal
+"What is the output?
+int x = 0x10;
+System.out.println(x);",16,10,0,Error: invalid literal
+"What is the output?
+int x = 010;
+System.out.println(x);",8,10,0,Error: invalid literal
+"What is the output?
+Boolean b = Boolean.valueOf(""true"");
+System.out.println(b);",true,""true"",false,Error: invalid method
+"What is the output?
+Boolean b = Boolean.valueOf(""yes"");
+System.out.println(b);",false,true,""yes"",Error: invalid method
+"What is the output?
+Character c = Character.valueOf('a');
+System.out.println(c);",a,'a',97,Error: invalid method
+"What is the output?
+System.out.println(Character.isDigit('5'));",true,false,5,Error: invalid method
+"What is the output?
+System.out.println(Character.isLetter('5'));",false,true,5,Error: invalid method
+"What is the output?
+System.out.println(Character.isUpperCase('A'));",true,false,65,Error: invalid method
+"What is the output?
+System.out.println(Character.toLowerCase('A'));",a,A,97,Error: invalid method
+"What is the output?
+System.out.println(Character.toUpperCase('a'));",A,a,65,Error: invalid method
+"What is the output?
+Double d = Double.valueOf(""3.14"");
+System.out.println(d);",3.14,""3.14"",Error: invalid method,null
+"What is the output?
+Float f = Float.valueOf(""3.14"");
+System.out.println(f);",3.14,""3.14"",Error: invalid method,null
+"What is the output?
+Long l = Long.parseLong(""100"");
+System.out.println(l);",100,""100"",Error: invalid method,null
+"What is the output?
+Short s = Short.parseShort(""10"");
+System.out.println(s);",10,""10"",Error: invalid method,null
+"What is the output?
+Byte b = Byte.parseByte(""5"");
+System.out.println(b);",5,""5"",Error: invalid method,null
+"What is the output?
+Integer i = Integer.valueOf(100);
+Integer j = Integer.valueOf(100);
+System.out.println(i.equals(j));",true,false,Error: invalid method,null
+"What is the output?
+Integer i = new Integer(100);
+Integer j = new Integer(100);
+System.out.println(i == j);",false,true,Error: deprecated constructor,null
+"What is the output?
+int x = 5;
+int y = 2;
+System.out.println((double) x / y);",2.5,2.0,2,Error: incompatible types
+"What is the output?
+int x = 5;
+int y = 2;
+System.out.println(x / (double) y);",2.5,2.0,2,Error: incompatible types
+"What is the output?
+System.out.println(Math.random() >= 0);",true,false,Error: invalid method,NaN
+"What is the output?
+System.out.println(Math.random() < 1.0);",true,false,Error: invalid method,NaN
+What is the default value of an int instance variable?,0,null,undefined,Error: no default value
+What is the default value of a boolean instance variable?,false,true,null,Error: no default value
+What is the default value of a double instance variable?,0.0,0,null,NaN
+What is the default value of a char instance variable?,\u0000 (null character),null,' ',Error: no default value

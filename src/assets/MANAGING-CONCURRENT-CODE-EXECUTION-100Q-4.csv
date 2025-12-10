@@ -1,0 +1,221 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+class MyRunnable implements Runnable {
+  public void run() {
+    System.out.println(""Running"");
+  }
+}
+Thread t = new Thread(new MyRunnable());
+t.start();",Running (on separate thread),Error: no main method,Running (on main thread),Compilation error
+"What is the output?
+Runnable r = () -> System.out.println(""Hello"");
+new Thread(r).start();",Hello,Error: invalid lambda,No output,Compilation error
+What method must be implemented by the Runnable interface?,run(),start(),execute(),call()
+What is the return type of the run() method in Runnable?,void,Object,String,int
+What method must be implemented by the Callable interface?,call(),run(),execute(),get()
+What is the return type of the call() method in Callable<String>?,String,void,Object,Integer
+Does the Callable.call() method throw checked exceptions?,Yes,No,Only RuntimeException,Only in Java 17
+Does the Runnable.run() method throw checked exceptions?,No,Yes,Only IOException,Only in Java 17
+"What is the output?
+Thread t = new Thread(() -> System.out.println(""Test""));
+t.run();
+System.out.println(""Main"");",Test Main (both on main thread),Test Main (Test on separate thread),Main Test,Compilation error
+"What is the output?
+Thread t = new Thread(() -> System.out.println(""Test""));
+t.start();
+System.out.println(""Main"");",Output order varies (Main or Test first),Always Test Main,Always Main Test,Compilation error
+What states can a thread be in?,NEW RUNNABLE BLOCKED WAITING TIMED_WAITING TERMINATED,NEW RUNNING STOPPED,CREATED ACTIVE SUSPENDED ENDED,READY EXECUTING PAUSED FINISHED
+What is the initial state of a newly created thread?,NEW,RUNNABLE,READY,CREATED
+What state is a thread in after start() is called?,RUNNABLE,RUNNING,ACTIVE,STARTED
+What state is a thread in after it completes execution?,TERMINATED,DEAD,FINISHED,COMPLETED
+Can you call start() twice on the same thread?,No (throws IllegalThreadStateException),Yes,Only if thread is terminated,Only in Java 17
+"What is the output?
+Thread t = new Thread(() -> System.out.println(""Hello""));
+t.start();
+t.start();",IllegalThreadStateException,Hello Hello,Hello (once),Compilation error
+What method pauses the current thread for a specified time?,Thread.sleep(millis),Thread.pause(millis),Thread.wait(millis),Thread.delay(millis)
+Does Thread.sleep() release locks?,No,Yes,Only synchronized locks,Only ReentrantLocks
+Does Object.wait() release locks?,Yes,No,Only synchronized locks,Only after timeout
+What exception does Thread.sleep() throw?,InterruptedException,SleepException,ThreadException,IllegalStateException
+"What is the output?
+Thread t = new Thread(() -> {
+  try { Thread.sleep(1000); }
+  catch (InterruptedException e) {}
+  System.out.println(""Done"");
+});
+t.start();
+System.out.println(""Started"");",Started Done (Started prints first),Done Started,Started (Done may not print),Compilation error
+What interface creates an ExecutorService?,ExecutorService (via Executors factory),Executor,ThreadExecutor,ServiceExecutor
+What method submits a Runnable to an ExecutorService?,submit() or execute(),run(),start(),perform()
+What is the difference between submit() and execute()?,submit() returns Future; execute() returns void,No difference,execute() returns Future,submit() is deprecated
+What does ExecutorService.submit(Callable) return?,Future,Thread,Result directly,void
+"What is the output?
+ExecutorService executor = Executors.newSingleThreadExecutor();
+executor.submit(() -> System.out.println(""Task""));
+executor.shutdown();",Task,No output (shutdown prevents execution),Error: shutdown() not allowed,Compilation error
+What method initiates orderly shutdown of ExecutorService?,shutdown(),close(),stop(),terminate()
+What method attempts to stop all actively executing tasks?,shutdownNow(),shutdown(),stop(),terminate()
+Does shutdown() wait for tasks to complete?,No (initiates shutdown but doesn't wait),Yes,Only for running tasks,Only if called twice
+Does shutdownNow() guarantee task termination?,No (best effort),Yes,Only for Runnable tasks,Only for Callable tasks
+What method blocks until all tasks complete after shutdown?,"awaitTermination(timeout, unit)",waitForCompletion(),join(),wait()
+"What is the result?
+ExecutorService executor = Executors.newSingleThreadExecutor();
+executor.submit(() -> System.out.println(""Task""));
+// No shutdown() called",Tasks execute but resources not released (resource leak),Error: must call shutdown(),Tasks don't execute,Compilation error
+What method gets the result from a Future?,get(),result(),getValue(),retrieve()
+Does Future.get() block?,Yes (until result is available),No,Only for Callable,Only if timeout specified
+What exception does Future.get() throw if task was cancelled?,CancellationException,InterruptedException,ExecutionException,TaskCancelledException
+What exception wraps exceptions thrown by Callable?,ExecutionException,CallableException,TaskException,RuntimeException
+"What is the output?
+ExecutorService executor = Executors.newSingleThreadExecutor();
+Future<Integer> future = executor.submit(() -> 42);
+System.out.println(future.get());
+executor.shutdown();",42,Future@hashcode,Error: get() requires timeout,Compilation error
+What method cancels a Future?,cancel(mayInterruptIfRunning),stop(),terminate(),abort()
+What method checks if a Future is cancelled?,isCancelled(),wasCancelled(),cancelled(),getCancelled()
+What method checks if a Future is done?,isDone(),isCompleted(),completed(),finished()
+"What is the output?
+Callable<String> task = () -> ""Result"";
+ExecutorService executor = Executors.newSingleThreadExecutor();
+Future<String> future = executor.submit(task);
+System.out.println(future.get());
+executor.shutdown();",Result,Callable@hashcode,Future@hashcode,Error: Callable not Runnable
+What executor creates a fixed-size thread pool?,Executors.newFixedThreadPool(n),Executors.newThreadPool(n),Executors.fixedPool(n),new ThreadPoolExecutor(n)
+What executor creates a single worker thread?,Executors.newSingleThreadExecutor(),Executors.newSingleThread(),Executors.singleExecutor(),new SingleThreadExecutor()
+What executor creates an unbounded thread pool?,Executors.newCachedThreadPool(),Executors.newUnboundedThreadPool(),Executors.cachedExecutor(),Executors.newDynamicThreadPool()
+What executor creates a scheduled thread pool?,Executors.newScheduledThreadPool(n),Executors.newTimerThreadPool(n),Executors.scheduledExecutor(n),new ScheduledExecutor(n)
+"What is the characteristic of newCachedThreadPool()?
+Thread creation strategy",Creates new threads as needed; reuses idle threads,Fixed pool size,Single thread only,Pre-creates all threads
+"What is the characteristic of newFixedThreadPool(5)?
+Thread pool size",Always 5 threads,Up to 5 threads,At least 5 threads,5 threads initially; grows as needed
+How many threads does newSingleThreadExecutor() use?,1,Variable,As many as needed,Number of CPU cores
+What interface schedules tasks for future execution?,ScheduledExecutorService,TimerService,ScheduledExecutor,FutureExecutor
+What method schedules a one-time task with delay?,"schedule(task, delay, unit)","scheduleOnce(task, delay)","delay(task, delay)","executeAfter(task, delay)"
+What method schedules a task at fixed rate?,"scheduleAtFixedRate(task, initialDelay, period, unit)","scheduleFixed(task, period)","repeatTask(task, period)","scheduleRepeat(task, period)"
+What method schedules a task with fixed delay between executions?,"scheduleWithFixedDelay(task, initialDelay, delay, unit)","scheduleDelay(task, delay)","scheduleFixed(task, delay)","scheduleInterval(task, delay)"
+"What is the difference between scheduleAtFixedRate and scheduleWithFixedDelay?
+Time measurement",Rate: from start times; Delay: between completion and next start,No difference,Rate is faster,Delay is more accurate
+"What is the output?
+ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+scheduler.schedule(() -> System.out.println(""Task""), 1, TimeUnit.SECONDS);
+Thread.sleep(2000);
+scheduler.shutdown();",Task (after ~1 second),Task (immediately),No output,Compilation error
+What keyword synchronizes a method or block?,synchronized,sync,lock,atomic
+"What is the result?
+synchronized(this) {
+  // code
+}",Code is synchronized on this object,Compilation error,Code is synchronized on class,No synchronization
+Can multiple threads execute synchronized methods on the same object simultaneously?,No,Yes,Only if different methods,Only if not static
+Can multiple threads execute synchronized methods on different objects simultaneously?,Yes,No,Only if same class,Only if different classes
+What keyword ensures visibility across threads?,volatile,sync,atomic,visible
+Does volatile guarantee atomicity for compound operations?,No,Yes,Only for primitives,Only in Java 17
+"What is the result?
+private volatile int count = 0;
+// Thread 1: count++
+// Thread 2: count++
+Final value after both threads complete?",Possibly less than 2 (race condition),Always 2,Always 1,Compilation error
+What class provides explicit locks?,ReentrantLock,Lock,SynchronizedLock,ExplicitLock
+What method acquires a lock?,lock(),acquire(),getLock(),synchronize()
+What method releases a lock?,unlock(),release(),freeLock(),unsynchronize()
+"What is the correct pattern for ReentrantLock?
+Lock lock = new ReentrantLock();",lock.lock(); try { ... } finally { lock.unlock(); },lock.lock(); ... lock.unlock();,try { lock.lock(); ... } finally { lock.unlock(); },synchronized(lock) { ... }
+Can ReentrantLock be unlocked by a different thread?,No (must be same thread that locked),Yes,Only if fair,Only in Java 17
+What method tries to acquire a lock without blocking?,tryLock(),lock(),attemptLock(),nonBlockingLock()
+What interface represents a read-write lock?,ReadWriteLock,RWLock,ReentrantReadWriteLock,ReadWriteSynchronizer
+What advantage do read-write locks provide?,Multiple readers; exclusive writer,Multiple writers,Faster than synchronized,No blocking
+What concurrent collection allows thread-safe iteration?,CopyOnWriteArrayList,SynchronizedList,ConcurrentArrayList,ThreadSafeList
+What concurrent collection provides thread-safe map operations?,ConcurrentHashMap,SynchronizedMap,ThreadSafeMap,ConcurrentMap
+What method atomically puts a value if absent?,"putIfAbsent(key, value)","put(key, value)","addIfMissing(key, value)","insertIfAbsent(key, value)"
+What concurrent collection blocks when empty?,BlockingQueue,ConcurrentQueue,ThreadSafeQueue,SynchronizedQueue
+"What method adds to a BlockingQueue, waiting if necessary?",put(element),add(element),offer(element),insert(element)
+"What method retrieves and removes from BlockingQueue, waiting if necessary?",take(),poll(),remove(),get()
+"What method retrieves but doesn't remove from BlockingQueue, waiting if necessary?",No such method (peek() doesn't wait),take(),wait(),block()
+What BlockingQueue implementation has fixed capacity?,ArrayBlockingQueue,LinkedBlockingQueue,PriorityBlockingQueue,FixedBlockingQueue
+What BlockingQueue implementation has optional capacity?,LinkedBlockingQueue,ArrayBlockingQueue,FixedBlockingQueue,BoundedBlockingQueue
+What synchronization aid counts down from initial value?,CountDownLatch,CyclicBarrier,Semaphore,CounterLatch
+What method decrements a CountDownLatch?,countDown(),decrement(),down(),decrease()
+What method waits for CountDownLatch to reach zero?,await(),wait(),waitForZero(),block()
+Can a CountDownLatch be reset?,No,Yes,Only if not at zero,Only in Java 17
+What synchronization aid allows threads to wait for each other?,CyclicBarrier,CountDownLatch,Semaphore,ThreadBarrier
+Can a CyclicBarrier be reused?,Yes,No,Only once,Only in Java 17
+What synchronization aid controls access to resources?,Semaphore,ResourceLock,AccessControl,PermitManager
+What method acquires a permit from a Semaphore?,acquire(),get(),take(),request()
+What method releases a permit to a Semaphore?,release(),put(),give(),return()
+"What is the output?
+Semaphore sem = new Semaphore(1);
+sem.acquire();
+sem.acquire();
+System.out.println(""Done"");",Blocks (never prints Done),Done,Error: already acquired,IllegalStateException
+What class represents asynchronous computation?,CompletableFuture,Future,AsyncTask,FutureTask
+What method creates a completed CompletableFuture?,completedFuture(value),of(value),completed(value),new CompletableFuture(value)
+What method runs async task and returns CompletableFuture<Void>?,runAsync(runnable),executeAsync(runnable),asyncRun(runnable),submitAsync(runnable)
+What method runs async task and returns CompletableFuture<T>?,supplyAsync(supplier),runAsync(supplier),executeAsync(supplier),asyncSupply(supplier)
+What method applies function after completion?,thenApply(function),then(function),apply(function),map(function)
+What method accepts Consumer after completion?,thenAccept(consumer),then(consumer),accept(consumer),forEach(consumer)
+What method runs Runnable after completion?,thenRun(runnable),then(runnable),run(runnable),andThen(runnable)
+What method combines two CompletableFutures?,"thenCombine(other, biFunction)",combine(other),merge(other),join(other)
+What method chooses first completed of two?,"applyToEither(other, function)",firstOf(other),raceWith(other),either(other)
+"What is the output?
+CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 5);
+CompletableFuture<Integer> result = future.thenApply(x -> x * 2);
+System.out.println(result.get());",10,5,Error: get() blocks,Compilation error
+What framework is designed for divide-and-conquer tasks?,Fork/Join Framework,Executor Framework,Parallel Framework,DivideConquer Framework
+What is the base class for Fork/Join tasks?,ForkJoinTask or RecursiveTask/RecursiveAction,ForkTask,DivideTask,ParallelTask
+What method splits a task?,fork(),split(),divide(),partition()
+What method waits for task completion and gets result?,join(),get(),wait(),result()
+What pool executes Fork/Join tasks?,ForkJoinPool,ThreadPoolExecutor,ExecutorService,CustomPool
+What is the common pool for Fork/Join?,ForkJoinPool.commonPool(),ForkJoinPool.getCommonPool(),ForkJoinPool.defaultPool(),ForkJoinPool.shared()
+What method interrupts a thread?,interrupt(),stop(),terminate(),cancel()
+What method checks if thread is interrupted?,isInterrupted(),interrupted(),wasInterrupted(),checkInterrupted()
+What static method checks and clears interrupted status?,Thread.interrupted(),Thread.isInterrupted(),Thread.checkInterrupted(),Thread.clearInterrupted()
+"What is the output?
+Thread t = new Thread(() -> {
+  while (!Thread.currentThread().isInterrupted()) {
+    System.out.println(""Running"");
+  }
+});
+t.start();
+t.interrupt();",Running (one or more times) then stops,Infinite loop,No output,InterruptedException
+What method waits for a thread to complete?,join(),wait(),await(),waitFor()
+Does join() throw InterruptedException?,Yes,No,Only if timeout,Only in Java 17
+"What is the output?
+Thread t = new Thread(() -> {
+  try { Thread.sleep(1000); }
+  catch (InterruptedException e) {}
+  System.out.println(""Done"");
+});
+t.start();
+t.join();
+System.out.println(""After"");",Done After,After Done,After (Done may not print),Compilation error
+What is the minimum thread priority?,1,0,Thread.MIN_PRIORITY,Thread.LOWEST_PRIORITY
+What is the maximum thread priority?,10,100,Thread.MAX_PRIORITY,Thread.HIGHEST_PRIORITY
+What is the default thread priority?,5,1,Thread.NORM_PRIORITY,Thread.DEFAULT_PRIORITY
+Does setting thread priority guarantee execution order?,No,Yes,Only on some systems,Only in Java 17
+What method sets thread priority?,setPriority(int),priority(int),setLevel(int),changePriority(int)
+What is a daemon thread?,Background thread that doesn't prevent JVM exit,System thread,High priority thread,Thread without run() method
+What method makes a thread a daemon?,setDaemon(true),makeDaemon(),daemon(true),setBackground(true)
+When must setDaemon() be called?,Before start(),After start(),Anytime,During run()
+Do daemon threads prevent JVM from exiting?,No,Yes,Only if active,Only if not interrupted
+"What is the output?
+ExecutorService executor = Executors.newFixedThreadPool(2);
+executor.submit(() -> System.out.println(""Task 1""));
+executor.submit(() -> System.out.println(""Task 2""));
+executor.submit(() -> System.out.println(""Task 3""));
+executor.shutdown();",Task 1 Task 2 Task 3 (order may vary),Task 1 Task 2 (Task 3 not executed),Error: too many tasks,Compilation error
+What happens if you submit task after shutdown()?,RejectedExecutionException,Task executes,Task queued,IllegalStateException
+What method checks if executor is shut down?,isShutdown(),shutdown(),wasShutdown(),checkShutdown()
+What method checks if all tasks completed after shutdown?,isTerminated(),isDone(),completed(),finished()
+"What is the result?
+List<Runnable> tasks = executor.shutdownNow();
+Purpose of returned list?",Tasks that never started,Tasks that completed,All submitted tasks,Tasks that were cancelled
+What does invokeAll() do?,Executes all tasks and returns list of Futures,Executes all tasks and waits,Executes tasks in parallel,Starts all tasks
+What does invokeAny() do?,Executes tasks and returns result of first completed,Executes any one task,Executes all tasks,Returns list of all results
+"What is the output?
+AtomicInteger count = new AtomicInteger(0);
+count.incrementAndGet();
+count.incrementAndGet();
+System.out.println(count.get());",2,1,0,Compilation error
+What method atomically increments AtomicInteger?,incrementAndGet() or getAndIncrement(),increment(),add(1),increase()
+What is the difference between incrementAndGet() and getAndIncrement()?,incrementAndGet() returns new value; getAndIncrement() returns old,No difference,incrementAndGet() is faster,getAndIncrement() is deprecated
+What class provides atomic reference operations?,AtomicReference,AtomicObject,SynchronizedReference,ConcurrentReference
+What method atomically sets value if current matches expected?,"compareAndSet(expected, new)","setIfEquals(expected, new)","atomicSet(expected, new)","conditionalSet(expected, new)"

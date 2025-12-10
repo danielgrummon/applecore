@@ -1,0 +1,318 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is the name of the file that defines a module?,module-info.java,module.java,info.java,module-descriptor.java
+"What is the output?
+// module-info.java
+module com.example {}
+
+// Main.java
+package com.example;
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(""Hello"");
+  }
+}",Hello,Error: module not exported,Error: package not found,Error: invalid module
+"Which directive makes a package available to other modules?
+module com.example {
+  ??? com.example.api;
+}",exports,requires,opens,provides
+"Which directive declares a dependency on another module?
+module com.example {
+  ??? java.sql;
+}",requires,exports,imports,depends
+"What is the result?
+module com.app {
+  requires com.lib;
+}
+// com.lib module does not exist",Error: module not found,Compiles successfully,Warning only,Runtime error
+"What keyword makes a dependency available to modules that depend on this module?
+module com.example {
+  requires ??? java.sql;
+}",transitive,public,export,cascade
+"Which directive allows reflection access to a package?
+module com.example {
+  ??? com.example.internal;
+}",opens,exports,requires,reflects
+"What directive is used to declare a service implementation?
+module com.provider {
+  ??? com.api.Service with com.provider.ServiceImpl;
+}",provides,uses,implements,services
+"What directive is used to declare a service consumer?
+module com.consumer {
+  ??? com.api.Service;
+}",uses,requires,provides,consumes
+"What is the output?
+module com.app {
+  exports com.app.api;
+}
+// Another module tries to access com.app.internal.Helper",Error: package not accessible,Compiles successfully,Runtime error,Warning only
+"What is required in module-info.java?
+module ??? {
+  requires java.base;
+}",A valid module name,imports,exports,A main class
+Is requires java.base implicit in every module?,Yes,No,Only in named modules,Only in automatic modules
+"What is the result?
+module com.app {
+  exports com.app.api;
+  exports com.app.api;
+}",Error: duplicate exports,Compiles successfully,Warning only,Runtime error
+"What is the output?
+module com.app {
+  requires java.sql;
+  requires java.sql;
+}",Error: duplicate requires,Compiles successfully,Warning only,Runtime error
+Can a module name contain hyphens?,No,Yes,Only at the start,Only at the end
+Can a module name contain underscores?,Yes,No,Only between words,Not in Java 17
+"What is the result?
+module com.app {
+  exports com.app.api to com.client;
+}
+// Module com.other tries to access com.app.api",Error: package not accessible,Compiles successfully,Runtime error,Warning only
+"What is the result?
+module com.app {
+  exports com.app.api to com.client;
+}
+// Module com.client accesses com.app.api",Compiles successfully,Error: package not accessible,Runtime error,Warning only
+"What keyword allows reflection to specific modules?
+module com.app {
+  opens com.app.internal ??? com.framework;
+}",to,for,with,by
+"What is an automatic module?",A JAR on module path without module-info.java,A module that loads automatically,A built-in Java module,A module with auto-generated exports
+What is the name of the unnamed module?,There is no name,unnamed,default,java.unnamed
+Where are automatic modules placed?,On the module path,On the classpath,In the JDK,In META-INF
+Where are unnamed modules placed?,On the classpath,On the module path,In the JDK,In module-info.java
+Can the unnamed module read all other modules?,Yes,No,Only named modules,Only automatic modules
+Can named modules read the unnamed module?,No,Yes,Only with requires,Only with special directive
+"What is the result?
+open module com.app {
+  // no opens directives
+}
+// Another module uses reflection on com.app packages",Reflection succeeds,Error: package not open,Runtime error,Warning only
+"What is the difference between 'exports' and 'opens'?",exports allows compile-time access; opens allows runtime reflection,They are the same,opens is for compilation; exports for reflection,exports is deprecated
+"What is the result?
+module com.app {
+  opens com.app.internal;
+}
+// Another module tries to import com.app.internal.Helper at compile time",Error: package not accessible,Compiles successfully,Runtime error,Warning only
+Does 'opens' allow compile-time access to a package?,No,Yes,Only for public classes,Only with requires
+Does 'exports' allow reflection by default?,No,Yes,Only for public members,Only in Java 17
+"What is the result?
+module com.app {
+  requires transitive java.sql;
+}
+module com.client {
+  requires com.app;
+}
+// com.client tries to use java.sql classes",Compiles successfully,Error: module not found,Error: package not accessible,Requires explicit requires java.sql
+"What does 'requires transitive' do?",Makes the dependency available to modules that require this module,Makes the dependency optional,Exports all packages,Opens all packages for reflection
+"What is the result?
+module com.app {
+  requires static java.compiler;
+}
+// java.compiler is not available at runtime",Compiles and runs successfully,Error: module not found at runtime,Warning at runtime,Cannot compile
+What does 'requires static' mean?,The dependency is optional at runtime,The dependency must be static,The dependency is final,The dependency cannot change
+"What is the result?
+module com.app {
+  exports com.app;
+  exports com.app.api;
+}
+// com.app.api is a subpackage of com.app",Both packages are exported,Error: overlapping exports,Only com.app is exported,Only com.app.api is exported
+Do subpackages inherit the export status of their parent package?,No,Yes,Only if explicitly stated,Only in open modules
+"What is the result?
+package com.app.api;
+public class Service {}
+
+module com.app {
+  // no exports directive
+}
+// Another module tries to access Service",Error: package not accessible,Compiles successfully,Runtime error,Warning only
+"What is the result?
+module com.app {
+  provides com.api.Service with com.app.ServiceImpl;
+}
+// com.app.ServiceImpl does not implement com.api.Service",Error: incompatible types,Compiles successfully,Runtime error,Warning only
+"What is the result?
+module com.app {
+  uses com.api.Service;
+}
+// com.api.Service is not accessible to com.app",Error: cannot find symbol,Compiles successfully,Runtime error,Warning only
+How do you load services in a module that uses them?,ServiceLoader.load(Service.class),new Service(),Service.getInstance(),Module.getService(Service.class)
+"What is required for a 'provides' directive?
+module com.app {
+  provides Service with ServiceImpl;
+}",ServiceImpl must have a public no-arg constructor,ServiceImpl must be abstract,ServiceImpl must be final,ServiceImpl must extend Service
+Can a module provide multiple implementations of a service?,Yes,No,Only in Java 17,Only with multiple provides directives
+"What is the result?
+module com.app {
+  provides com.api.Service with com.app.Impl1, com.app.Impl2;
+}",Both implementations are registered,Error: multiple implementations,Only first is used,Compilation warning
+Must a service provider module export the implementation class?,No,Yes,Only if used by other modules,Only in open modules
+Must a service provider module export the service interface?,No (if defined in another module),Yes,Always,Only for public services
+"What is the result?
+module com.app {
+  requires com.lib;
+}
+module com.lib {
+  requires com.app;
+}",Error: cyclic dependence,Compiles successfully,Runtime error,Warning only
+Can two modules have cyclic dependencies?,No,Yes,Only with requires static,Only with requires transitive
+"What is the module name derived from for an automatic module?
+JAR file: my-library-1.0.jar",my.library,my-library-1.0,my.library-1.0,mylibrary
+What is the root module in a modular application?,The module containing the main class,java.base,The first module loaded,module.root
+Is java.base required by all modules?,Yes (implicitly),No,Only named modules,Only explicit modules
+Can you require java.base explicitly?,Yes (but not necessary),No,Only in Java 17,Causes error
+"What is the result?
+module com.app {
+  exports com.app.api;
+  opens com.app.api;
+}",Both directives apply,Error: cannot both export and open,Only exports applies,Only opens applies
+Can a package be both exported and opened?,Yes,No,Only in open modules,Only in Java 17
+"What is the result?
+open module com.app {
+  opens com.app.api;
+}",Warning: redundant opens,Error: already open,Compiles without warning,Runtime error
+Are all packages in an open module accessible for reflection?,Yes,No,Only exported packages,Only opened packages
+Does an open module export all packages?,No,Yes,Only public packages,Only if specified
+"What is the result?
+module com.app {
+  requires java.sql;
+}
+// Application uses java.sql.Connection",Compiles successfully,Error: package not accessible,Error: module not found,Runtime error
+"What is the result?
+module com.app {
+  exports com.app.api to com.client1, com.client2;
+}
+// Module com.client3 tries to access com.app.api",Error: package not accessible,Compiles successfully,Runtime error,Warning only
+What is a qualified export?,Export to specific named modules,Export with conditions,Export of qualified types,Export requiring authentication
+What is a qualified opens?,Opens to specific named modules,Opens with conditions,Opens of qualified types,Opens requiring authentication
+"What is the result?
+module com.app {
+  opens com.app.internal to com.framework;
+}
+// com.framework uses reflection on com.app.internal",Reflection succeeds,Error: package not open,Runtime error,Warning only
+"What is the result?
+module com.app {
+  opens com.app.internal to com.framework;
+}
+// com.other uses reflection on com.app.internal",Error: package not open,Reflection succeeds,Runtime error,Warning only
+Can a module open a package that doesn't exist?,No,Yes,Only with warning,Only at runtime
+Can a module export a package that doesn't exist?,No,Yes,Only with warning,Only at runtime
+"What is the result?
+module com.app {
+  requires com.lib;
+  exports com.app.api;
+}
+// com.app.api uses types from com.lib",Possible error if com.lib types are in API,Always compiles,Always fails,Warning only
+When should you use 'requires transitive'?,When exported types depend on another module's types,Always,Never,Only for java modules
+"What is the result?
+module java.base {
+  // attempt to define java.base
+}",Error: java.base is a system module,Compiles successfully,Overrides system module,Runtime error
+Can you override a platform module?,No,Yes,Only with --upgrade-module-path,Only in development
+Where should module-info.java be located?,At the root of the module source,In META-INF,In any package,In the main package
+"What is the result?
+src/
+  module-info.java
+  com/app/
+    Main.java",Correct structure,Error: wrong location,module-info.java should be in com/app,module-info.java should be in META-INF
+What command compiles a module?,javac -d outdir --module-source-path srcdir,javac -module,java --compile-module,compile-module
+What command runs a modular application?,java --module-path mods -m modulename/mainclass,java -m modulename,java --run-module,run-module
+What is the short form of --module-path?,-p,-m,-mp,--mp
+What is the short form of --module?,-m,-p,-mod,--mod
+"What is the result?
+module com.app {
+  exports com.app.api;
+}
+// com.app.api package is empty",Legal but useless,Error: empty package,Warning: empty package,Runtime error
+Can a module be declared in multiple module-info.java files?,No,Yes,Only if split packages,Only in multi-module projects
+What is a split package?,Same package in multiple modules,Package divided into subpackages,Package with multiple versions,Package split across JARs
+Are split packages allowed in the module system?,No,Yes,Only on classpath,Only with automatic modules
+"What is the result?
+module com.app {
+  exports com.app.api;
+}
+module com.lib {
+  exports com.app.api;
+}",Error: split package (if both on module path),Compiles successfully,Runtime error,Warning only
+What happens when you put a modular JAR on the classpath?,It becomes part of the unnamed module,It remains a named module,Error occurs,It becomes an automatic module
+What happens when you put a non-modular JAR on the module path?,It becomes an automatic module,It becomes an unnamed module,Error occurs,It remains non-modular
+"What is the result?
+module com.app {
+  uses com.api.Service;
+}
+// No provider module is available",Compiles successfully (runtime may have no services),Error: no provider found,Warning: no provider,Cannot compile
+"What is the result?
+module com.provider {
+  provides com.api.Service with com.provider.Impl;
+}
+// com.provider.Impl is not public",Error: implementation must be public,Compiles successfully,Runtime error,Warning only
+Can an abstract class be used in a provides directive?,No,Yes,Only if it has a concrete subclass,Only with uses directive
+Can an interface be used as implementation in provides directive?,No,Yes,Only functional interfaces,Only marker interfaces
+"What is the result?
+module com.app {
+  requires transitive com.lib;
+  requires transitive com.util;
+}",Both modules are transitively required,Error: multiple transitive,Only first is transitive,Compilation warning
+How many requires transitive directives can a module have?,Unlimited,1,10,As many as exports
+"What is the result?
+module com.app {
+  exports com.app.api to;
+}",Error: expecting module name,Compiles successfully,Exports to all modules,Exports to none
+"What is the result?
+module com.app {
+  opens com.app.internal to;
+}",Error: expecting module name,Compiles successfully,Opens to all modules,Opens to none
+"What is the result?
+module com.app {
+  provides com.api.Service with;
+}",Error: expecting implementation class,Compiles successfully,No implementation registered,Runtime error
+"What is the result?
+module com.app {
+  uses;
+}",Error: expecting service interface,Compiles successfully,Warning only,Runtime error
+Can you use reflection to access non-exported packages in a module?,Not by default (unless opened),Yes always,No never,Only public classes
+Does 'exports' affect reflection in Java 17?,Yes (deep reflection still requires opens),No,Only for private members,Only in strict mode
+"What is the result?
+module com.app {
+  requires java.sql;
+}
+// Uses DriverManager without importing",Compiles if fully qualified name is used,Error: cannot find symbol,Runtime error,Warning only
+What module contains java.lang classes?,java.base,java.lang,java.core,jdk.base
+What module contains java.sql classes?,java.sql,java.base,java.database,jdk.sql
+What module contains java.xml classes?,java.xml,java.base,java.xml.api,jdk.xml
+"What is the result?
+module com.app {
+  requires java.se;
+}",java.se transitively requires many modules,Error: invalid module,java.se is empty,Runtime error
+What is java.se?,An aggregator module,The base module,The standard edition module,An automatic module
+Is java.se the same as java.base?,No,Yes,Only in Java 17,Only in modular applications
+"What is the result?
+module com.app {
+  provides com.api.Service with com.app.Impl;
+  requires com.api;
+}",Compiles successfully,Error: circular reference,Error: provides before requires,Error: wrong order
+Does the order of directives in module-info.java matter?,No,Yes,Only requires must be first,Only exports must be first
+"What is the result?
+module com.app {
+  exports com.app.api;
+  provides com.api.Service with com.app.Impl;
+  uses com.api.Service;
+}",Legal (module is both provider and consumer),Error: cannot both provide and use,Warning: unusual pattern,Runtime error
+Can a module be both a service provider and consumer?,Yes,No,Only in Java 17,Only for different services
+How do you create a modular JAR?,jar --create --file=app.jar --main-class=Main -C outdir .,jar -cf app.jar,jar --module,modular-jar app.jar
+What option specifies the module version in a JAR?,--module-version,--version,-v,--module-info
+What directory contains module-info.class in a modular JAR?,Root directory,META-INF,module-info/,classes/
+Can ServiceLoader be used in non-modular code?,Yes,No,Only on classpath,Only in Java 8+
+"What is returned by ServiceLoader.load()?
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);",An iterable of service instances,A single service instance,A list of service classes,A stream of services
+"What is the result?
+module com.app {
+  provides com.api.Service with com.app.Impl;
+}
+// com.app.Impl has no public no-arg constructor",Error or runtime exception,Compiles and runs successfully,Warning only,Impl is ignored
+Are private constructors allowed for service implementations?,No (must have public no-arg constructor),Yes,Only with factory methods,Only in Java 17
+"What is the result?
+module com.app {
+  requires static java.compiler;
+  requires transitive java.sql;
+}",Both directives are valid,Error: cannot mix static and transitive,Only one requires allowed,Compilation warning
+Can you combine static and transitive in one requires?,No (separate concepts),Yes,Only in Java 17,Only for platform modules

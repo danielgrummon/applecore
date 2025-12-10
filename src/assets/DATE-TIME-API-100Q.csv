@@ -1,0 +1,354 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date);",2023-05-15,15-05-2023,05/15/2023,Error: invalid format
+"What is the output?
+LocalTime time = LocalTime.of(14, 30);
+System.out.println(time);",14:30,2:30 PM,14:30:00,Error: invalid format
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+date.plusDays(5);
+System.out.println(date);",2023-05-15,2023-05-20,Error: null pointer,Error: immutable object
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+date = date.plusDays(5);
+System.out.println(date);",2023-05-20,2023-05-15,Error: null pointer,2023-05-10
+"What is the output?
+LocalDate date = LocalDate.of(2023, 1, 31);
+date = date.plusMonths(1);
+System.out.println(date);",2023-02-28,2023-02-31,Error: DateTimeException,2023-03-03
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+date = date.minusWeeks(2);
+System.out.println(date);",2023-05-01,2023-05-29,2023-04-15,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.getYear());",2023,23,5,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.getMonth());",MAY,5,MAYO,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.getMonthValue());",5,MAY,4,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.getDayOfMonth());",15,5,2023,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.getDayOfWeek());",MONDAY,15,5,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+date = date.withYear(2024);
+System.out.println(date);",2024-05-15,2023-05-15,Error: invalid method,Error: immutable object
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+date = date.withMonth(12);
+System.out.println(date);",2023-12-15,2023-05-12,Error: invalid method,2023-05-15
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+date = date.withDayOfMonth(1);
+System.out.println(date);",2023-05-01,2023-01-15,Error: invalid method,2023-05-15
+"What is the output?
+LocalTime time = LocalTime.of(14, 30, 45);
+System.out.println(time);",14:30:45,14:30,2:30:45 PM,Error: invalid format
+"What is the output?
+LocalTime time = LocalTime.of(14, 30);
+time = time.plusHours(3);
+System.out.println(time);",17:30,14:33,11:30,Error: invalid method
+"What is the output?
+LocalTime time = LocalTime.of(23, 30);
+time = time.plusHours(2);
+System.out.println(time);",01:30,25:30,Error: DateTimeException,23:32
+"What is the output?
+LocalTime time = LocalTime.of(14, 30);
+time = time.minusMinutes(45);
+System.out.println(time);",13:45,14:15,13:15,Error: invalid method
+"What is the output?
+LocalTime time = LocalTime.of(14, 30, 45);
+System.out.println(time.getHour());",14,2,30,Error: invalid method
+"What is the output?
+LocalTime time = LocalTime.of(14, 30, 45);
+System.out.println(time.getMinute());",30,14,45,Error: invalid method
+"What is the output?
+LocalTime time = LocalTime.of(14, 30, 45);
+System.out.println(time.getSecond());",45,30,14,Error: invalid method
+"What is the output?
+LocalDateTime dt = LocalDateTime.of(2023, 5, 15, 14, 30);
+System.out.println(dt);",2023-05-15T14:30,2023-05-15 14:30,15-05-2023T14:30,Error: invalid format
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+LocalTime time = LocalTime.of(14, 30);
+LocalDateTime dt = LocalDateTime.of(date, time);
+System.out.println(dt);",2023-05-15T14:30,2023-05-15 14:30,Error: invalid constructor,null
+"What is the output?
+LocalDateTime dt = LocalDateTime.of(2023, 5, 15, 14, 30);
+System.out.println(dt.toLocalDate());",2023-05-15,14:30,2023-05-15T14:30,Error: invalid method
+"What is the output?
+LocalDateTime dt = LocalDateTime.of(2023, 5, 15, 14, 30);
+System.out.println(dt.toLocalTime());",14:30,2023-05-15,2023-05-15T14:30,Error: invalid method
+"What is the output?
+Period p = Period.ofDays(5);
+System.out.println(p);",P5D,5 days,PT5D,Error: invalid format
+"What is the output?
+Period p = Period.ofWeeks(2);
+System.out.println(p);",P14D,P2W,2 weeks,Error: invalid format
+"What is the output?
+Period p = Period.ofMonths(3);
+System.out.println(p);",P3M,3 months,P90D,Error: invalid format
+"What is the output?
+Period p = Period.ofYears(2);
+System.out.println(p);",P2Y,2 years,P730D,Error: invalid format
+"What is the output?
+Period p = Period.of(1, 2, 3);
+System.out.println(p);",P1Y2M3D,1 year 2 months 3 days,P1Y2M3W,Error: invalid constructor
+"What is the output?
+LocalDate start = LocalDate.of(2023, 1, 1);
+LocalDate end = LocalDate.of(2023, 1, 10);
+Period p = Period.between(start, end);
+System.out.println(p.getDays());",9,10,8,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+Period p = Period.ofDays(5);
+date = date.plus(p);
+System.out.println(date);",2023-05-20,2023-05-15,Error: invalid method,2023-05-10
+"What is the output?
+Duration d = Duration.ofHours(2);
+System.out.println(d);",PT2H,2 hours,P2H,Error: invalid format
+"What is the output?
+Duration d = Duration.ofMinutes(90);
+System.out.println(d);",PT1H30M,PT90M,90 minutes,Error: invalid format
+"What is the output?
+Duration d = Duration.ofSeconds(3661);
+System.out.println(d);",PT1H1M1S,PT3661S,1:1:1,Error: invalid format
+"What is the output?
+LocalTime start = LocalTime.of(10, 0);
+LocalTime end = LocalTime.of(12, 30);
+Duration d = Duration.between(start, end);
+System.out.println(d.toHours());",2,2.5,3,Error: invalid method
+"What is the output?
+LocalTime start = LocalTime.of(10, 0);
+LocalTime end = LocalTime.of(12, 30);
+Duration d = Duration.between(start, end);
+System.out.println(d.toMinutes());",150,2,2.5,Error: invalid method
+"What is the output?
+LocalTime time = LocalTime.of(10, 0);
+Duration d = Duration.ofHours(2);
+time = time.plus(d);
+System.out.println(time);",12:00,10:02,Error: invalid method,08:00
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+Duration d = Duration.ofHours(2);
+date = date.plus(d);
+System.out.println(date);",UnsupportedTemporalTypeException,2023-05-15T02:00,Error: invalid method,2023-05-15
+"What is the output?
+LocalTime time = LocalTime.of(10, 0);
+Period p = Period.ofDays(5);
+time = time.plus(p);
+System.out.println(time);",UnsupportedTemporalTypeException,10:00,Error: invalid method,15:00
+"What is the output?
+Instant instant = Instant.ofEpochSecond(0);
+System.out.println(instant);",1970-01-01T00:00:00Z,0,Error: invalid format,null
+"What is the output?
+Instant instant = Instant.now();
+System.out.println(instant.getEpochSecond() >= 0);",true,false,Error: invalid method,NullPointerException
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+Instant instant = date.toInstant();",Error: no such method,2023-05-15T00:00:00Z,Error: NullPointerException,valid Instant
+"What is the output?
+LocalDateTime dt = LocalDateTime.of(2023, 5, 15, 14, 30);
+ZoneId zone = ZoneId.of(""America/New_York"");
+ZonedDateTime zdt = ZonedDateTime.of(dt, zone);
+System.out.println(zdt.getZone());",America/New_York,UTC,GMT,Error: invalid method
+"What is the output?
+ZoneId zone = ZoneId.systemDefault();
+System.out.println(zone != null);",true,false,Error: invalid method,NullPointerException
+"What is the output?
+LocalDate date = LocalDate.parse(""2023-05-15"");
+System.out.println(date);",2023-05-15,Error: DateTimeParseException,15-05-2023,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.parse(""05/15/2023"");
+System.out.println(date);",DateTimeParseException,2023-05-15,Error: invalid method,05/15/2023
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""MM/dd/yyyy"");
+System.out.println(date.format(formatter));",05/15/2023,2023-05-15,15-05-2023,Error: invalid method
+"What is the output?
+String str = ""05/15/2023"";
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""MM/dd/yyyy"");
+LocalDate date = LocalDate.parse(str, formatter);
+System.out.println(date);",2023-05-15,05/15/2023,Error: DateTimeParseException,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+System.out.println(date.format(formatter));",2023-05-15,05/15/2023,15-05-2023,Error: invalid formatter
+"What is the output?
+LocalTime time = LocalTime.of(14, 30);
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""hh:mm a"");
+System.out.println(time.format(formatter));",02:30 PM,14:30,2:30 PM,Error: invalid pattern
+"What is the output?
+LocalDate date = LocalDate.of(2023, 2, 29);
+System.out.println(date);",DateTimeException,2023-02-29,2023-03-01,Error: invalid constructor
+"What is the output?
+LocalDate date = LocalDate.of(2024, 2, 29);
+System.out.println(date);",2024-02-29,DateTimeException,2024-03-01,Error: invalid constructor
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.isLeapYear());",false,true,Error: invalid method,null
+"What is the output?
+LocalDate date = LocalDate.of(2024, 5, 15);
+System.out.println(date.isLeapYear());",true,false,Error: invalid method,null
+"What is the output?
+LocalDate date1 = LocalDate.of(2023, 5, 15);
+LocalDate date2 = LocalDate.of(2023, 6, 15);
+System.out.println(date1.isBefore(date2));",true,false,Error: invalid method,null
+"What is the output?
+LocalDate date1 = LocalDate.of(2023, 5, 15);
+LocalDate date2 = LocalDate.of(2023, 6, 15);
+System.out.println(date1.isAfter(date2));",false,true,Error: invalid method,null
+"What is the output?
+LocalDate date1 = LocalDate.of(2023, 5, 15);
+LocalDate date2 = LocalDate.of(2023, 5, 15);
+System.out.println(date1.isEqual(date2));",true,false,Error: invalid method,null
+"What is the output?
+LocalDate date1 = LocalDate.of(2023, 5, 15);
+LocalDate date2 = LocalDate.of(2023, 5, 15);
+System.out.println(date1 == date2);",false,true,Error: incompatible types,null
+"What is the output?
+LocalDate date1 = LocalDate.of(2023, 5, 15);
+LocalDate date2 = LocalDate.of(2023, 5, 15);
+System.out.println(date1.equals(date2));",true,false,Error: invalid method,null
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.lengthOfMonth());",31,30,5,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 2, 15);
+System.out.println(date.lengthOfMonth());",28,29,2,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2024, 2, 15);
+System.out.println(date.lengthOfMonth());",29,28,2,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+System.out.println(date.lengthOfYear());",365,366,12,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2024, 5, 15);
+System.out.println(date.lengthOfYear());",366,365,12,Error: invalid method
+"What is the output?
+LocalDate date = LocalDate.of(2023, 12, 31);
+date = date.plusDays(1);
+System.out.println(date);",2024-01-01,2023-12-32,Error: DateTimeException,2023-01-01
+"What is the output?
+LocalDate date = LocalDate.of(2023, 1, 1);
+date = date.minusDays(1);
+System.out.println(date);",2022-12-31,2023-01-00,Error: DateTimeException,2022-01-01
+"What is the output?
+LocalTime time = LocalTime.of(0, 0);
+time = time.minusMinutes(1);
+System.out.println(time);",23:59,Error: DateTimeException,00:-01,24:59
+"What is the output?
+LocalTime time = LocalTime.MIDNIGHT;
+System.out.println(time);",00:00,12:00 AM,24:00,Error: invalid constant
+"What is the output?
+LocalTime time = LocalTime.NOON;
+System.out.println(time);",12:00,00:00,12:00 PM,Error: invalid constant
+"What is the output?
+LocalTime time = LocalTime.MAX;
+System.out.println(time.getHour());",23,24,12,Error: invalid constant
+"What is the output?
+LocalDate date = LocalDate.MIN;
+System.out.println(date.getYear());","−999999999 (negative billion)",0,1970,Error: invalid constant
+"What is the output?
+LocalDate date = LocalDate.MAX;
+System.out.println(date.getYear());","+999999999 (positive billion)",9999,2999,Error: invalid constant
+"What is the output?
+Period p1 = Period.ofDays(5);
+Period p2 = Period.ofDays(3);
+Period p3 = p1.plus(p2);
+System.out.println(p3.getDays());",8,5,3,Error: invalid method
+"What is the output?
+Period p1 = Period.ofMonths(5);
+Period p2 = Period.ofMonths(9);
+Period p3 = p1.plus(p2);
+System.out.println(p3);",P14M,P1Y2M,P5M,Error: invalid calculation
+"What is the output?
+Duration d1 = Duration.ofHours(2);
+Duration d2 = Duration.ofMinutes(30);
+Duration d3 = d1.plus(d2);
+System.out.println(d3);",PT2H30M,PT2.5H,PT150M,Error: invalid method
+"What is the output?
+LocalDateTime dt = LocalDateTime.of(2023, 5, 15, 14, 30);
+dt = dt.plusDays(1).plusHours(2);
+System.out.println(dt);",2023-05-16T16:30,2023-05-15T16:30,2023-05-16T14:32,Error: invalid chaining
+"What is the output?
+ZonedDateTime zdt = ZonedDateTime.of(2023, 5, 15, 14, 30, 0, 0, ZoneId.of(""UTC""));
+System.out.println(zdt.getOffset());",Z,+00:00,UTC,Error: invalid method
+"What is the output?
+LocalDate start = LocalDate.of(2023, 1, 1);
+LocalDate end = LocalDate.of(2024, 1, 1);
+Period p = Period.between(start, end);
+System.out.println(p.getYears());",1,12,365,Error: invalid method
+"What is the output?
+LocalDate start = LocalDate.of(2023, 1, 15);
+LocalDate end = LocalDate.of(2023, 3, 10);
+Period p = Period.between(start, end);
+System.out.println(p.getMonths());",1,2,1.8,Error: invalid method
+"What is the output?
+LocalDate start = LocalDate.of(2023, 1, 15);
+LocalDate end = LocalDate.of(2023, 3, 10);
+Period p = Period.between(start, end);
+System.out.println(p.getDays());",25,54,26,Error: invalid method
+"What is the output?
+LocalDateTime dt1 = LocalDateTime.of(2023, 5, 15, 10, 0);
+LocalDateTime dt2 = LocalDateTime.of(2023, 5, 15, 14, 30);
+Duration d = Duration.between(dt1, dt2);
+System.out.println(d.toHours());",4,4.5,270,Error: invalid method
+"What is the output?
+YearMonth ym = YearMonth.of(2023, 2);
+System.out.println(ym.lengthOfMonth());",28,29,12,Error: invalid method
+"What is the output?
+YearMonth ym = YearMonth.of(2024, 2);
+System.out.println(ym.lengthOfMonth());",29,28,12,Error: invalid method
+"What is the output?
+MonthDay md = MonthDay.of(2, 29);
+System.out.println(md.isValidYear(2023));",false,true,Error: invalid method,DateTimeException
+"What is the output?
+MonthDay md = MonthDay.of(2, 29);
+System.out.println(md.isValidYear(2024));",true,false,Error: invalid method,DateTimeException
+"What is the output?
+Year y = Year.of(2023);
+System.out.println(y.isLeap());",false,true,Error: invalid method,null
+"What is the output?
+Year y = Year.of(2024);
+System.out.println(y.isLeap());",true,false,Error: invalid method,null
+"What is the output?
+LocalDate date = LocalDate.of(2023, 5, 15);
+Month month = date.getMonth();
+System.out.println(month.getValue());",5,MAY,4,Error: invalid method
+"What is the output?
+DayOfWeek dow = DayOfWeek.MONDAY;
+System.out.println(dow.getValue());",1,0,7,Error: invalid method
+"What is the output?
+DayOfWeek dow = DayOfWeek.SUNDAY;
+System.out.println(dow.getValue());",7,0,1,Error: invalid method
+"What is the output?
+LocalTime time = LocalTime.of(14, 30, 45, 123456789);
+System.out.println(time.getNano());",123456789,123,123456,Error: invalid method
+"What is the output?
+Duration d = Duration.ofDays(1);
+System.out.println(d.toHours());",24,1,86400,Error: invalid method
+"What is the output?
+Duration d = Duration.ofDays(1);
+System.out.println(d.toDays());",1,24,86400,Error: invalid method
+"What is the output?
+Period p = Period.ofWeeks(4);
+System.out.println(p.getDays());",28,4,0,Error: invalid method
+"What is the output?
+Period p = Period.ofMonths(13);
+System.out.println(p);",P13M,P1Y1M,13 months,Error: invalid format
+"What is the output?
+LocalDateTime dt = LocalDateTime.of(2023, 5, 15, 14, 30);
+Instant instant = dt.toInstant(ZoneOffset.UTC);
+System.out.println(instant != null);",true,false,Error: invalid method,NullPointerException
+What class represents a date without time?,LocalDate,LocalDateTime,Date,Instant
+What class represents a time without date?,LocalTime,LocalDateTime,Time,Instant
+What class represents both date and time without timezone?,LocalDateTime,LocalDate,ZonedDateTime,Instant
+What class represents a point in time on the timeline?,Instant,LocalDateTime,ZonedDateTime,Timestamp

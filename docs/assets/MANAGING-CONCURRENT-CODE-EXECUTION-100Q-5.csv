@@ -1,0 +1,193 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result?
+class Counter {
+  private int count = 0;
+  public void increment() { count++; }
+  public int get() { return count; }
+}
+// Two threads both call increment() 1000 times",Likely less than 2000 (race condition),Always 2000,Always 1000,Compilation error
+"What is the result?
+class Counter {
+  private int count = 0;
+  public synchronized void increment() { count++; }
+  public synchronized int get() { return count; }
+}
+// Two threads both call increment() 1000 times",Always 2000,Likely less than 2000,Always 1000,Compilation error
+What keyword makes a method thread-safe through mutual exclusion?,synchronized,atomic,volatile,threadsafe
+"What lock is acquired in a synchronized instance method?
+public synchronized void method() { }",The object instance (this),The class object,No lock,A new lock object
+"What lock is acquired in a synchronized static method?
+public static synchronized void method() { }",The class object (ClassName.class),The object instance,No lock,A static lock object
+"What is the result?
+synchronized(this) {
+  synchronized(this) {
+    System.out.println(""Nested"");
+  }
+}",Nested (synchronized is reentrant),Deadlock,Error: already locked,Compilation error
+Is synchronized reentrant?,Yes,No,Only for static methods,Only in Java 17
+"What is the result?
+Object lock1 = new Object();
+Object lock2 = new Object();
+// Thread 1: synchronized(lock1) { synchronized(lock2) { } }
+// Thread 2: synchronized(lock2) { synchronized(lock1) { } }",Potential deadlock,Always works,Compilation error,Runtime exception
+What is a deadlock?,Two or more threads waiting for each other's locks,A thread that won't start,A lock that can't be acquired,A terminated thread
+How can you prevent deadlock?,Acquire locks in consistent order,Use more threads,Avoid synchronization,Use volatile
+"What is the result?
+class Resource {
+  private volatile int value = 0;
+  public void increment() { value++; }
+}
+// Two threads both call increment() 1000 times",Likely less than 2000 (volatile doesn't guarantee atomicity),Always 2000,Always 1000,Compilation error
+Does volatile guarantee atomicity?,No (only visibility),Yes,Only for primitives,Only in Java 17
+Does volatile guarantee visibility?,Yes,No,Only for primitives,Only for objects
+What does volatile prevent?,Compiler optimizations that cache values,All race conditions,Deadlocks,Thread creation
+When is volatile sufficient for thread safety?,Single writer with multiple readers for flag variables,Multiple writers,Complex operations,Always
+What class provides atomic integer operations?,AtomicInteger,SynchronizedInteger,ThreadSafeInteger,VolatileInteger
+"What is the output?
+AtomicInteger count = new AtomicInteger(10);
+count.incrementAndGet();
+System.out.println(count.get());",11,10,12,Error: not thread-safe
+"What is the output?
+AtomicInteger count = new AtomicInteger(10);
+count.getAndIncrement();
+System.out.println(count.get());",11,10,12,Error: not thread-safe
+"What is the output?
+AtomicInteger count = new AtomicInteger(10);
+int result = count.getAndIncrement();
+System.out.println(result);",10,11,0,Error: invalid method
+"What is the output?
+AtomicInteger count = new AtomicInteger(10);
+int result = count.incrementAndGet();
+System.out.println(result);",11,10,12,Error: invalid method
+What method atomically updates if value matches expected?,"compareAndSet(expected, update)","setIfEquals(expected, update)","update(expected, new)","conditionalSet(expected, update)"
+"What is the output?
+AtomicInteger count = new AtomicInteger(5);
+boolean result = count.compareAndSet(5, 10);
+System.out.println(count.get() + "" "" + result);",10 true,5 false,10 false,5 true
+"What is the output?
+AtomicInteger count = new AtomicInteger(5);
+boolean result = count.compareAndSet(3, 10);
+System.out.println(count.get() + "" "" + result);",5 false,10 true,10 false,5 true
+What class provides atomic reference operations?,AtomicReference,AtomicObject,SynchronizedReference,ThreadSafeReference
+What class provides atomic long operations?,AtomicLong,AtomicInteger,SynchronizedLong,ThreadSafeLong
+What class provides atomic boolean operations?,AtomicBoolean,AtomicInteger,SynchronizedBoolean,ThreadSafeBoolean
+What package contains Lock interfaces?,java.util.concurrent.locks,java.util.concurrent,java.util.locks,java.concurrent.locks
+What is the main Lock implementation?,ReentrantLock,SynchronizedLock,ThreadLock,MutexLock
+What method acquires a ReentrantLock?,lock(),acquire(),getLock(),synchronize()
+What method releases a ReentrantLock?,unlock(),release(),releaseLock(),unsynchronize()
+"What is the correct pattern for using ReentrantLock?
+Lock lock = new ReentrantLock();",lock.lock(); try { /* critical */ } finally { lock.unlock(); },lock.lock(); /* critical */ lock.unlock();,try { lock.lock(); /* critical */ } finally { lock.unlock(); },synchronized(lock) { /* critical */ }
+What happens if unlock() is not called on a ReentrantLock?,Lock remains held (potential deadlock),Automatic release,Exception thrown,Lock is released anyway
+What method tries to acquire lock without blocking?,tryLock(),lock(),attemptLock(),nonBlockingLock()
+"What is the output?
+ReentrantLock lock = new ReentrantLock();
+boolean result = lock.tryLock();
+System.out.println(result);
+lock.unlock();",true,false,Error: not locked,NullPointerException
+"What does tryLock(timeout, unit) do?",Tries to acquire lock within timeout,Holds lock for timeout duration,Releases lock after timeout,Blocks for timeout
+Can ReentrantLock be locked multiple times by same thread?,Yes (reentrant),No,Only twice,Only in Java 17
+What method returns the hold count?,getHoldCount(),getLockCount(),getCount(),holdCount()
+"What is the output?
+ReentrantLock lock = new ReentrantLock();
+lock.lock();
+lock.lock();
+System.out.println(lock.getHoldCount());
+lock.unlock();
+lock.unlock();",2,1,0,Error: already locked
+Can different threads unlock a ReentrantLock?,No (only locking thread),Yes,Only if fair,Only in Java 17
+What constructor creates a fair ReentrantLock?,new ReentrantLock(true),new ReentrantLock(FAIR),ReentrantLock.fair(),new FairReentrantLock()
+What does a fair lock do?,Grants access in request order (FIFO),Treats all threads equally,Improves performance,Prevents deadlock
+Is the default ReentrantLock fair?,No,Yes,Depends on system,Only in Java 17
+What interface provides separate read and write locks?,ReadWriteLock,RWLock,SplitLock,DualLock
+What implementation of ReadWriteLock is commonly used?,ReentrantReadWriteLock,ReadWriteLockImpl,SplitLock,DualLock
+How many readers can hold a read lock simultaneously?,Multiple (unlimited),One,None,Two
+How many writers can hold a write lock simultaneously?,One (exclusive),Multiple,None,Two
+Can read and write locks be held simultaneously?,No,Yes,Only by same thread,Only if fair
+"What is the correct usage pattern?
+ReadWriteLock rwLock = new ReentrantReadWriteLock();",rwLock.readLock().lock() and rwLock.writeLock().lock(),rwLock.lockRead() and rwLock.lockWrite(),rwLock.read() and rwLock.write(),synchronized(rwLock.read()) and synchronized(rwLock.write())
+When should you use ReadWriteLock?,Many readers; few writers,Many writers; few readers,Equal reads and writes,Single threaded access
+What class provides optimistic read locking?,StampedLock,OptimisticLock,ReadLock,VersionLock
+What are the three modes of StampedLock?,Read; Write; Optimistic Read,Shared; Exclusive; Try,Read; Write; Update,Lock; Unlock; TryLock
+What does tryOptimisticRead() return?,A stamp (long value),boolean,Lock object,void
+How do you validate an optimistic read?,validate(stamp),check(stamp),isValid(stamp),confirm(stamp)
+What concurrent map implementation is commonly used?,ConcurrentHashMap,SynchronizedHashMap,ThreadSafeHashMap,ConcurrentMap
+Does ConcurrentHashMap allow null keys?,No,Yes,Only as single key,Only in Java 17
+Does ConcurrentHashMap allow null values?,No,Yes,Only if key exists,Only in Java 17
+What method atomically adds if key absent in ConcurrentHashMap?,"putIfAbsent(key, value)","put(key, value)","addIfMissing(key, value)","insertIfAbsent(key, value)"
+"What is the output?
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+map.put(""a"", 1);
+Integer result = map.putIfAbsent(""a"", 2);
+System.out.println(map.get(""a"") + "" "" + result);",1 1,2 1,2 2,1 null
+"What is the output?
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+Integer result = map.putIfAbsent(""a"", 1);
+System.out.println(map.get(""a"") + "" "" + result);",1 null,1 1,null null,Error: key not found
+What method atomically replaces value if key exists?,"replace(key, value)","put(key, value)","update(key, value)","set(key, value)"
+What method atomically replaces value if current matches expected?,"replace(key, oldValue, newValue)","replaceIf(key, old, new)","conditionalReplace(key, old, new)","compareAndReplace(key, old, new)"
+What method atomically removes entry if value matches?,"remove(key, value)","delete(key, value)","removeIf(key, value)","conditionalRemove(key, value)"
+"What is the output?
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+map.put(""a"", 1);
+boolean result = map.remove(""a"", 2);
+System.out.println(map.containsKey(""a"") + "" "" + result);",true false,false true,false false,true true
+What method computes value if absent?,"computeIfAbsent(key, function)","getOrCreate(key, function)","putIfAbsent(key, supplier)","createIfMissing(key, function)"
+What method computes value if present?,"computeIfPresent(key, biFunction)","updateIfExists(key, function)","replaceIfPresent(key, function)","modifyIfPresent(key, function)"
+What method computes new value?,"compute(key, biFunction)","calculate(key, function)","update(key, function)","set(key, function)"
+What method merges values?,"merge(key, value, biFunction)","combine(key, value, function)","join(key, value, function)","concat(key, value, function)"
+What list implementation is thread-safe for iteration?,CopyOnWriteArrayList,SynchronizedList,ConcurrentArrayList,ThreadSafeList
+When is CopyOnWriteArrayList most efficient?,Many reads; few writes,Many writes; few reads,Equal reads and writes,Single threaded
+What happens when you modify CopyOnWriteArrayList?,Entire array is copied,Only modified element is copied,Lock is acquired,Exception if iterating
+Can you get ConcurrentModificationException from CopyOnWriteArrayList?,No,Yes,Only during iteration,Only during modification
+What set implementation is thread-safe for iteration?,CopyOnWriteArraySet,SynchronizedSet,ConcurrentHashSet,ThreadSafeSet
+What queue implementation is thread-safe and non-blocking?,ConcurrentLinkedQueue,SynchronizedQueue,ThreadSafeQueue,BlockingQueue
+What queue blocks when full or empty?,BlockingQueue,ConcurrentQueue,WaitingQueue,SynchronizedQueue
+What BlockingQueue implementation has fixed capacity?,ArrayBlockingQueue,LinkedBlockingQueue,PriorityBlockingQueue,FixedBlockingQueue
+What BlockingQueue implementation has optional capacity?,LinkedBlockingQueue,ArrayBlockingQueue,SynchronizedBlockingQueue,ConcurrentBlockingQueue
+What BlockingQueue orders elements by priority?,PriorityBlockingQueue,OrderedBlockingQueue,SortedBlockingQueue,RankedBlockingQueue
+What BlockingQueue has zero capacity?,SynchronousQueue,ZeroBlockingQueue,DirectQueue,HandoffQueue
+"What method adds to BlockingQueue, blocking if full?",put(element),add(element),offer(element),insert(element)
+"What method removes from BlockingQueue, blocking if empty?",take(),poll(),remove(),get()
+"What method adds to BlockingQueue, returning false if full?",offer(element),add(element),put(element),tryAdd(element)
+"What method removes from BlockingQueue, returning null if empty?",poll(),take(),remove(),tryRemove()
+"What does offer(element, timeout, unit) do?",Waits up to timeout to add element,Holds element for timeout,Returns after timeout,Blocks indefinitely
+"What does poll(timeout, unit) do?",Waits up to timeout to remove element,Holds lock for timeout,Returns null after timeout,Blocks indefinitely
+What synchronizer counts down from initial count?,CountDownLatch,CyclicBarrier,Semaphore,Countdown
+What method decrements CountDownLatch?,countDown(),decrement(),decrease(),down()
+What method waits for CountDownLatch to reach zero?,await(),wait(),block(),waitForZero()
+Can CountDownLatch be reset?,No,Yes,Only if at zero,Only in Java 17
+What synchronizer allows threads to wait at barrier?,CyclicBarrier,CountDownLatch,Barrier,WaitPoint
+Can CyclicBarrier be reused?,Yes,No,Only once,Only if reset
+What method waits at CyclicBarrier?,await(),wait(),block(),waitAtBarrier()
+What happens when all threads reach CyclicBarrier?,Barrier opens and optional action runs,First thread continues,Last thread continues,Deadlock
+What synchronizer limits concurrent access?,Semaphore,Permit,AccessControl,ResourceLock
+What method acquires permit from Semaphore?,acquire(),get(),take(),request()
+What method releases permit to Semaphore?,release(),put(),give(),return()
+"What is the output?
+Semaphore sem = new Semaphore(2);
+sem.acquire();
+sem.acquire();
+System.out.println(sem.availablePermits());",0,2,1,Error: no permits
+Can you release more permits than acquired?,Yes (increases available permits),No,Only to initial count,Error thrown
+What is Phaser used for?,Advanced barrier synchronization with dynamic parties,Simple barriers,Semaphore operations,Latch operations
+What Collection method wraps collection in synchronized wrapper?,Collections.synchronizedList(list),Collections.threadSafe(list),Collections.concurrent(list),Collections.lock(list)
+Are synchronized collections thread-safe for iteration?,No (need external synchronization),Yes,Only if locked,Only in Java 17
+"What is needed for safe iteration of synchronized collection?
+List<String> list = Collections.synchronizedList(new ArrayList<>());",synchronized(list) { for(String s : list) {...} },Normal iteration is safe,list.lock() before iteration,No special handling needed
+What is thread confinement?,Ensuring object accessed by only one thread,Locking objects,Synchronizing methods,Using volatile
+What is an example of thread confinement?,ThreadLocal,synchronized,volatile,AtomicInteger
+What does ThreadLocal provide?,Separate value for each thread,Shared value across threads,Locked value,Synchronized value
+"What is the output?
+ThreadLocal<Integer> tl = ThreadLocal.withInitial(() -> 0);
+tl.set(5);
+System.out.println(tl.get());",5,0,null,Error: no initial value
+How do you set ThreadLocal value?,set(value),put(value),setValue(value),store(value)
+How do you get ThreadLocal value?,get(),getValue(),retrieve(),read()
+How do you remove ThreadLocal value?,remove(),delete(),clear(),unset()
+What happens if ThreadLocal not removed?,Potential memory leak,Automatic cleanup,Nothing,Error on exit
+What is immutability's effect on thread safety?,Immutable objects are inherently thread-safe,No effect,Makes objects slower,Requires synchronization
+Are String objects thread-safe?,Yes (immutable),No,Only if synchronized,Only for reading
+What keyword makes field immutable?,final,immutable,const,readonly
+Does final guarantee thread safety for mutable objects?,No (only reference is final),Yes,Only for primitives,Only in Java 17
+What is the happens-before relationship?,Guarantees visibility of changes across threads,Order of execution,Lock acquisition order,Thread priority
+What establishes happens-before?,synchronized; volatile; thread start/join; etc.,Only synchronized,Only volatile,Only locks
