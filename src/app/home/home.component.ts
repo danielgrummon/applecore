@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
       title: 'Flash Owls - Interactive Quiz and Learning Platform',
       description: 'Test your knowledge with Flash Owls - an interactive quiz and flashcard platform. Practice questions across multiple categories and improve your skills through gamified learning.',
       keywords: 'quiz, flashcards, learning, education, practice questions, test preparation',
-      url: 'https://yourdomain.com/'
+      url: 'https://flashowls.com/'
     });
   }
 

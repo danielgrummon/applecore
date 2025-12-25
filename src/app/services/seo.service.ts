@@ -21,9 +21,9 @@ export class SeoService {
     const {
       title,
       description,
-      image = 'https://yourdomain.com/assets/og-image.png',
-      url = 'https://yourdomain.com',
-      keywords = 'quiz, flashcards, learning, education',
+      image = 'https://flashowls.com/assets/og-image.png',
+      url = 'https://flashowls.com',
+      keywords = 'quiz, flashcards, learning, education, java 17 certification, exam preparation',
       type = 'website'
     } = config;
 
