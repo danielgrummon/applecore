@@ -1,0 +1,113 @@
+<div class="home-container">
+    @if (!gameStarted()) {
+    <button class="back-button" (click)="backToArcade.emit()">← BACK TO ARCADE</button>
+    <div class="home-screen">
+        <h1 class="game-title">FLASH CARDS</h1>
+        <div class="menu">
+            <!-- File Upload Section -->
+            <div class="upload-section">
+                <h2 class="upload-title">Upload Your Questions</h2>
+                <div class="upload-box">
+                    <input type="file" id="csv-upload" accept=".csv" (change)="onFileSelected($event)"
+                        class="file-input">
+                    <label for="csv-upload" class="upload-label">
+                        <span class="upload-icon">📁</span>
+                        <span class="upload-text">Choose CSV File</span>
+                    </label>
+
+                    <div class="divider">
+                        <span class="divider-text">OR</span>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <label for="csv-select" class="select-label">Select from Available Question Sets:</label>
+                        <select id="csv-select" class="csv-select" (change)="onCSVFileSelected($event)">
+                            <option value="">-- Choose a Question Set --</option>
+                            @for (file of availableCSVFiles; track file) {
+                                <option [value]="file">{{ file.replace('.csv', '').replace(/-/g, ' ') }}</option>
+                            }
+                        </select>
+                    </div>
+
+                    @if (fileName()) {
+                    <div class="file-info success">
+                        <span class="check-icon">✓</span>
+                        <span>{{ fileName() }}</span>
+                        <span class="question-count">({{ questionCount() }} cards)</span>
+                    </div>
+                    }
+                    @if (uploadError()) {
+                    <div class="file-info error">
+                        <span class="error-icon">✗</span>
+                        <span>{{ uploadError() }}</span>
+                    </div>
+                    }
+                    <button (click)="downloadSampleCSV()" class="download-sample">
+                        ⬇ Download Sample CSV File
+                    </button>
+                </div>
+            </div>
+
+            <!-- Start Button -->
+            <button class="start-button" [disabled]="!questionsLoaded()" [class.ready]="questionsLoaded()"
+                (click)="startFlashCards()">
+                START FLASH CARDS
+            </button>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <h2>HOW FLASH CARDS WORK</h2>
+                <p><strong>Learning Process:</strong></p>
+                <ul class="format-list">
+                    <li>Read each question carefully</li>
+                    <li>Think about your answer</li>
+                    <li>Click "Reveal Answer" to see the correct answer</li>
+                    <li>Honestly self-assess: "I Knew It" or "I Didn't Know It"</li>
+                    <li>Cards you didn't know will loop back for review</li>
+                    <li>Continue until all cards are mastered!</li>
+                </ul>
+                <p><strong>Spaced Repetition:</strong></p>
+                <ul class="format-list">
+                    <li>Cards marked "I Knew It" are removed from rotation</li>
+                    <li>Cards marked "I Didn't Know It" will appear again</li>
+                    <li>Each loop shows only the cards you haven't mastered yet</li>
+                    <li>Visual indicator shows how many times you've seen each card</li>
+                    <li>Session ends when you've mastered all cards</li>
+                </ul>
+                <p><strong>Navigation:</strong></p>
+                <ul class="format-list">
+                    <li>Use "Previous" button to review the card before</li>
+                    <li>Track your progress with Loop number and Remaining count</li>
+                    <li>Return to menu anytime using "Back to Menu"</li>
+                </ul>
+            </div>
+
+            <!-- CSV Format Instructions -->
+            <div class="instructions">
+                <h2>CSV FILE FORMAT</h2>
+                <div class="format-example">
+                    <p class="format-header">Your CSV file should have this format:</p>
+                    <div class="format-box">
+                        <code>Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3</code>
+                    </div>
+                    <p class="format-note"><strong>Important:</strong></p>
+                    <ul class="format-list">
+                        <li><strong>Column 1:</strong> The question text</li>
+                        <li><strong>Column 2:</strong> The correct answer (shown when revealed)</li>
+                        <li><strong>Columns 3-5:</strong> Three wrong answers (not used in flash cards)</li>
+                    </ul>
+                    <p class="format-example-text"><strong>Example:</strong></p>
+                    <div class="format-box example">
+                        <code>What is the capital of France?,Paris,London,Berlin,Madrid</code><br>
+                        <code>What is 2 + 2?,4,3,5,6</code><br>
+                        <code>Who painted the Mona Lisa?,Da Vinci,Picasso,Van Gogh,Monet</code>
+                    </div>
+                    <p class="format-note">Note: Flash cards only display the question and correct answer. You can use the same CSV files as Question Challenge.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    } @else {
+    <app-flash-card [questions]="questions" (backToHome)="backToHome()" (backToArcade)="backToMenuFromGame()"></app-flash-card>
+    }
+</div>

@@ -1,0 +1,121 @@
+<div class="flash-card-container" [attr.data-theme]="cardTheme()">
+
+  <!-- Header with Progress Stats -->
+  <div class="flash-card-header">
+    <div class="header-stat">
+      <div class="stat-label">LOOP</div>
+      <div class="stat-value">{{ currentLoop() }}</div>
+    </div>
+
+    <div class="header-stat">
+      <div class="stat-label">MASTERED</div>
+      <div class="stat-value">{{ masteredCards() }}/{{ totalCards() }}</div>
+    </div>
+
+    <div class="header-stat">
+      <div class="stat-label">REMAINING</div>
+      <div class="stat-value">{{ remainingCards() }}</div>
+    </div>
+  </div>
+
+  @if (currentCard() && !sessionComplete()) {
+    <div class="card-wrapper">
+      <!-- Attempt counter badge -->
+      @if (currentCard().attemptCount > 0) {
+        <div class="attempt-badge">
+          <span class="attempt-icon">👁</span>
+          <span class="attempt-count">×{{ currentCard().attemptCount }}</span>
+        </div>
+      }
+
+      <!-- Flip card with 3D transform -->
+      <div class="flash-card" [class.flipped]="isRevealed()">
+        <!-- Front: Question -->
+        <div class="card-face card-face-front">
+          <div class="card-label">QUESTION</div>
+          <div class="card-content">
+            {{ currentCard().question.question }}
+          </div>
+          <button
+            class="reveal-button"
+            (click)="revealAnswer()"
+            [disabled]="isRevealed()">
+            REVEAL ANSWER
+          </button>
+        </div>
+
+        <!-- Back: Answer + Self-Assessment -->
+        <div class="card-face card-face-back">
+          <div class="card-label">CORRECT ANSWER</div>
+          <div class="card-content answer">
+            {{ currentCard().question.answers[currentCard().question.correct] }}
+          </div>
+
+          <div class="assessment-buttons">
+            <button class="assessment-button knew-it" (click)="handleKnewIt()">
+              <span class="button-icon">✓</span>
+              I KNEW IT
+            </button>
+            <button class="assessment-button didnt-know" (click)="handleDidntKnowIt()">
+              <span class="button-icon">✗</span>
+              I DIDN'T KNOW IT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="card-navigation">
+      <button
+        class="nav-button prev"
+        (click)="goToPreviousCard()"
+        [disabled]="currentIndex() === 0">
+        ← PREVIOUS
+      </button>
+
+      <div class="progress-indicator">
+        {{ currentIndex() + 1 }} / {{ currentLoopSize() }}
+      </div>
+
+      <button class="nav-button back" (click)="backToArcade.emit()">
+        BACK TO MENU
+      </button>
+    </div>
+  }
+
+  <!-- Completion Overlay -->
+  @if (sessionComplete()) {
+    <div class="completion-overlay">
+      <div class="completion-card">
+        <div class="sparkles">✨ 🦉 ✨</div>
+        <h2 class="completion-title">ALL CARDS MASTERED!</h2>
+
+        <div class="completion-stats">
+          <div class="stat-item">
+            <div class="stat-number">{{ totalCards() }}</div>
+            <div class="stat-desc">Cards Mastered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ currentLoop() }}</div>
+            <div class="stat-desc">Review Loops</div>
+          </div>
+        </div>
+
+        <div class="completion-message">
+          You've successfully mastered all flash cards!
+          Great job on your learning journey!
+        </div>
+
+        <div class="completion-actions">
+          <button class="completion-button restart" (click)="resetSession()">
+            START OVER
+          </button>
+          <button class="completion-button menu" (click)="backToArcade.emit()">
+            BACK TO MENU
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

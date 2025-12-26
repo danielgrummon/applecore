@@ -1,11 +1,12 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestionChallengeHomeComponent } from '../question-challenge-home/question-challenge-home.component';
+import { FlashCardHomeComponent } from '../flash-card-home/flash-card-home.component';
 import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, QuestionChallengeHomeComponent],
+  imports: [CommonModule, QuestionChallengeHomeComponent, FlashCardHomeComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

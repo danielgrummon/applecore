@@ -12,6 +12,10 @@
                 <span class="game-icon">🎯</span>
                 <span class="game-name">Question Challenge</span>
             </button>
+            <button class="game-button" (click)="selectGame('flash-cards')">
+                <span class="game-icon">🎴</span>
+                <span class="game-name">Flash Cards</span>
+            </button>
         </div>
         <div class="footer">
             <p>▶ SELECT A GAME TO START ◀</p>
@@ -22,5 +26,7 @@
     </div>
     } @else if (selectedGame() === 'question-challenge') {
     <app-question-challenge-home (backToArcade)="backToMenu()"></app-question-challenge-home>
+    } @else if (selectedGame() === 'flash-cards') {
+    <app-flash-card-home (backToArcade)="backToMenu()"></app-flash-card-home>
     }
 </div>
