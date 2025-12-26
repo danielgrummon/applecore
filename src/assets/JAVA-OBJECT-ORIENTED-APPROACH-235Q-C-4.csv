@@ -1,0 +1,236 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+class Animal {
+    void sound() { System.out.println(""Animal""); }
+}
+class Dog extends Animal {
+    void sound() { System.out.println(""Bark""); }
+}
+Animal a = new Dog();
+a.sound();",Bark,Animal,Compilation error,AnimalBark
+"Which is true about abstract classes?",Can have both abstract and concrete methods,Must have only abstract methods,Cannot have constructors,Cannot have fields
+"What is the result?
+abstract class Shape {
+    abstract void draw();
+}
+Shape s = new Shape();",Compilation error (cannot instantiate abstract class),Valid code,Runtime error,NullPointerException
+"Which is valid sealed class syntax?","sealed class Shape permits Circle, Square {}","sealed class Shape allows Circle, Square {}","sealed class Shape extends Circle, Square {}","sealed class Shape implements Circle, Square {}"
+"What happens with method overriding?
+class Parent {
+    void display() { System.out.println(""Parent""); }
+}
+class Child extends Parent {
+    void display() { System.out.println(""Child""); }
+}
+Parent p = new Child();
+p.display();",Child,Parent,Compilation error,ParentChild
+"Which statement about instanceof is correct?",Returns true if object is instance of specified type,Returns the type of object,Casts the object,Throws exception if false
+"What is the output?
+Object obj = ""Hello"";
+if (obj instanceof String s) {
+    System.out.println(s.length());
+}",5,Hello,Compilation error,ClassCastException
+"What is the result?
+class A {}
+class B extends A {}
+A a = new B();
+B b = (B) a;
+System.out.println(""Success"");",Success,ClassCastException,Compilation error,NullPointerException
+"Which modifier is required for a method to be overridden?",No special modifier required,final,static,private
+"What happens with Object class methods?
+class Person {
+    String name;
+    public boolean equals(Object obj) {
+        return this.name.equals(((Person)obj).name);
+    }
+}",Overrides Object.equals(),Does not override equals(),Compilation error,Runtime error
+"What is the output?
+class Animal {}
+class Dog extends Animal {}
+Animal a = new Dog();
+System.out.println(a instanceof Dog);",true,false,Compilation error,ClassCastException
+"Which is true about sealed classes?","Permitted subclasses must be final, sealed, or non-sealed",All subclasses are implicitly final,Cannot have any subclasses,Must be abstract
+"What is the result?
+class Parent {
+    private void method() {}
+}
+class Child extends Parent {
+    void method() {}
+}",Not overriding (private methods not inherited),Overrides parent method,Compilation error,Runtime error
+"What happens with polymorphism?
+class Shape {
+    void draw() { System.out.println(""Shape""); }
+}
+class Circle extends Shape {
+    void draw() { System.out.println(""Circle""); }
+}
+Shape s = new Circle();
+s.draw();",Circle,Shape,Compilation error,Both printed
+"Which Object method returns string representation?",toString(),getString(),print(),display()
+"What is the output?
+Object obj = Integer.valueOf(10);
+if (obj instanceof Integer i) {
+    System.out.println(i * 2);
+}",20,10,Compilation error,ClassCastException
+"What is the result?
+class A {
+    void method() {}
+}
+class B extends A {
+    int method() { return 0; }
+}",Compilation error (incompatible return type),Valid override,Runtime error,Returns 0
+"Which is true about reference type vs object type?
+Animal a = new Dog();","Reference type is Animal, object type is Dog",Both are Animal,Both are Dog,"Reference type is Dog, object type is Animal"
+"What happens with downcasting?
+Object obj = ""Test"";
+String s = (String) obj;
+System.out.println(s);",Test,ClassCastException,Compilation error,null
+"What is the output?
+abstract class Animal {
+    abstract void sound();
+}
+class Dog extends Animal {
+    void sound() { System.out.println(""Bark""); }
+}
+Animal a = new Dog();
+a.sound();",Bark,Compilation error,Animal,Runtime error
+"Which is valid for sealed class subclass?
+sealed class Shape permits Circle {}",final class Circle extends Shape {},class Circle extends Shape {},abstract class Circle extends Shape {},interface Circle extends Shape {}
+"What is the result?
+class Parent {
+    static void method() { System.out.println(""Parent""); }
+}
+class Child extends Parent {
+    static void method() { System.out.println(""Child""); }
+}
+Parent p = new Child();
+p.method();","Parent (method hiding, not overriding)",Child,Compilation error,Runtime error
+"What happens with covariant return types?
+class Animal {
+    Animal getAnimal() { return new Animal(); }
+}
+class Dog extends Animal {
+    Dog getAnimal() { return new Dog(); }
+}",Valid override with covariant return,Compilation error,Runtime error,Invalid override
+"What is the output?
+Object obj = null;
+System.out.println(obj instanceof String);",false,true,NullPointerException,Compilation error
+"Which statement about hashCode() is correct?","If equals() is overridden, hashCode() should be too",hashCode() cannot be overridden,equals() and hashCode() are unrelated,hashCode() is final in Object
+"What is the result?
+sealed class Vehicle permits Car, Truck {}
+class Car extends Vehicle {}
+class Truck extends Vehicle {}
+class Motorcycle extends Vehicle {}",Compilation error (Motorcycle not permitted),Valid code,Runtime error,Motorcycle allowed
+"What happens with upcasting?
+class Dog extends Animal {}
+Dog d = new Dog();
+Animal a = d;",Valid implicit upcasting,Requires explicit cast,Compilation error,ClassCastException
+"What is the output?
+class A {
+    void display() { System.out.println(""A""); }
+}
+class B extends A {
+    void display() { System.out.println(""B""); }
+}
+A[] arr = {new A(), new B()};
+arr[1].display();",B,A,Compilation error,AB
+"Which is true about abstract methods?",Must be overridden in concrete subclass,Can have method body,Can be private,Can be final
+"What is the result?
+Object obj = ""Java"";
+String s = obj;",Compilation error (requires explicit cast),Valid assignment,Runtime error,s = ""Java""
+"What happens with pattern matching instanceof?
+Object obj = ""Hello"";
+if (obj instanceof String s && s.length() > 3) {
+    System.out.println(s);
+}",Hello,Compilation error,ClassCastException,false
+"What is the output?
+class Parent {
+    void method() throws IOException {}
+}
+class Child extends Parent {
+    void method() throws Exception {}
+}",Compilation error (broader exception),Valid override,Runtime error,IOException thrown
+"Which is true about non-sealed classes?",Allows unlimited subclassing,Cannot be extended,Must be final,Is same as sealed
+"What is the result?
+Animal a = new Dog();
+Dog d = a;",Compilation error (requires cast),Valid assignment,ClassCastException,d references Dog
+"What happens with equals() override?
+class Point {
+    int x, y;
+    public boolean equals(Point p) {
+        return x == p.x && y == p.y;
+    }
+}",Overloads (not overrides) Object.equals(),Correctly overrides equals(),Compilation error,Runtime error
+"What is the output?
+Object obj = 100;
+if (obj instanceof Integer i) {
+    System.out.println(i + 50);
+}",150,100,Compilation error,ClassCastException
+"Which modifier prevents method overriding?",final,static,private,abstract
+"What is the result?
+sealed class Shape permits Circle {}
+final class Circle extends Shape {}
+class ColoredCircle extends Circle {}",Compilation error (cannot extend final class),Valid code,Runtime error,ColoredCircle allowed
+"What happens with type casting?
+Object obj = new Integer(10);
+Double d = (Double) obj;",ClassCastException,Valid cast,Compilation error,d = 10.0
+"What is the output?
+class A {
+    public String toString() { return ""ClassA""; }
+}
+System.out.println(new A());",ClassA,Object reference,Compilation error,null
+"Which is true about polymorphism?",Method called determined at runtime,Method called determined at compile time,Only works with interfaces,Requires casting
+"What is the result?
+abstract class Animal {
+    Animal() { System.out.println(""Animal""); }
+}
+class Dog extends Animal {
+    Dog() { System.out.println(""Dog""); }
+}
+new Dog();",Animal Dog,Dog Animal,Compilation error,Animal
+"What happens with instanceof and null?
+String s = null;
+if (s instanceof String) {
+    System.out.println(""String"");
+} else {
+    System.out.println(""Not String"");
+}",Not String,String,NullPointerException,Compilation error
+"What is the output?
+class Parent {
+    void method(int x) { System.out.println(""Parent""); }
+}
+class Child extends Parent {
+    void method(double x) { System.out.println(""Child""); }
+}
+new Child().method(5);","Parent (overloading, not overriding)",Child,Compilation error,ParentChild
+"Which is required for sealed class?",permits clause or subclasses in same file,extends clause,implements clause,abstract modifier
+"What is the result?
+Object obj = ""Test"";
+if (obj instanceof String s) {
+    s = s.toUpperCase();
+    System.out.println(s);
+}",TEST,Test,Compilation error,Cannot modify s
+"What happens with super keyword?
+class Parent {
+    void display() { System.out.println(""Parent""); }
+}
+class Child extends Parent {
+    void display() {
+        super.display();
+        System.out.println(""Child"");
+    }
+}
+new Child().display();",Parent Child,Child Parent,Parent,Child
+"What is the output?
+Number n = Integer.valueOf(10);
+if (n instanceof Integer i) {
+    System.out.println(i.getClass().getSimpleName());
+}",Integer,Number,Compilation error,ClassCastException
+"Which is true about abstract class constructors?",Can have constructors,Cannot have constructors,Constructors must be abstract,Constructors must be private
+"What is the result?
+class A {}
+class B extends A {}
+class C extends B {}
+A a = new C();
+B b = (B) a;
+System.out.println(""Success"");",Success,ClassCastException,Compilation error,Invalid cast

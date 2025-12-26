@@ -1,0 +1,148 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+Locale locale = new Locale(""fr"", ""FR"");
+System.out.println(locale.getLanguage());",fr,FR,fr_FR,French
+"Which creates a Locale for US English?",Locale.US,"new Locale(""EN"", ""US"")",Locale.ENGLISH,"new Locale(""US"")"
+"What is the result?
+ResourceBundle bundle = ResourceBundle.getBundle(""messages"", Locale.US);
+System.out.println(bundle.getString(""greeting""));",Value of greeting key from messages.properties,Compilation error,MissingResourceException always,null
+"What happens with date formatting?
+DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+LocalDate date = LocalDate.of(2024, 1, 15);
+System.out.println(formatter.format(date));",Locale-specific short date format,2024-01-15,15/01/2024,Compilation error
+"Which method gets default Locale?",Locale.getDefault(),Locale.getSystem(),Locale.getCurrent(),Locale.get()
+"What is the output?
+NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+System.out.println(nf.format(1234.56));","$1,234.56",1234.56,$1234.56,Compilation error
+"What is the result?
+Locale locale = new Locale(""en"", ""GB"");
+System.out.println(locale.getCountry());",GB,en,en_GB,UK
+"What happens with resource bundle fallback?
+ResourceBundle bundle = ResourceBundle.getBundle(""messages"", new Locale(""fr"", ""CA""));",Falls back to messages_fr.properties if messages_fr_CA.properties not found,Throws exception,Uses default locale only,Returns empty bundle
+"What is the output?
+NumberFormat nf = NumberFormat.getPercentInstance();
+System.out.println(nf.format(0.75));",75%,0.75,0.75%,Compilation error
+"Which creates a Locale with language only?","new Locale(""fr"")","new Locale(""fr"", """")",Locale.forLanguage(""fr""),"new Locale(""FR"")"
+"What is the result?
+Locale.setDefault(new Locale(""es"", ""ES""));
+System.out.println(Locale.getDefault().getLanguage());",es,ES,es_ES,Spanish
+"What happens with MessageFormat?
+String pattern = ""Hello {0}, you have {1} messages"";
+MessageFormat mf = new MessageFormat(pattern);
+System.out.println(mf.format(new Object[]{""John"", 5}));","Hello John, you have 5 messages",Compilation error,"Hello {0}, you have {1} messages",Hello John you have 5
+"What is the output?
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""dd-MM-yyyy"");
+LocalDate date = LocalDate.of(2024, 3, 15);
+System.out.println(formatter.format(date));",15-03-2024,2024-03-15,03-15-2024,Compilation error
+"Which method formats a number with locale?","NumberFormat.getInstance(locale).format(number)","NumberFormat.format(number, locale)",locale.formatNumber(number),Number.format(number)
+"What is the result?
+ResourceBundle bundle = ResourceBundle.getBundle(""messages"");
+bundle.getString(""nonexistent"");",MissingResourceException,null,Compilation error,Empty string
+"What is the output?
+NumberFormat nf = NumberFormat.getNumberInstance(Locale.FRANCE);
+System.out.println(nf.format(1234.56));","1 234,56","1,234.56",1234.56,Compilation error
+"What happens with Locale.Builder?
+Locale locale = new Locale.Builder()
+    .setLanguage(""en"")
+    .setRegion(""US"")
+    .build();
+System.out.println(locale);",en_US,en,US,Compilation error
+"What is the result?
+DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+LocalDateTime dt = LocalDateTime.of(2024, 1, 15, 10, 30);",Locale-specific medium date-time format,Compilation error,2024-01-15T10:30,ISO format always
+"What is the output?
+NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.JAPAN);
+System.out.println(nf.format(1000));","¥1,000 or JPY1,000",1000円,$1000,Compilation error
+"Which properties file has highest priority for Locale(""fr"", ""CA"")?",messages_fr_CA.properties,messages_fr.properties,messages.properties,messages_en.properties
+"What is the result?
+Locale locale = Locale.forLanguageTag(""en-US"");
+System.out.println(locale.getCountry());",US,en,en-US,Compilation error
+"What happens with NumberFormat.parse()?
+NumberFormat nf = NumberFormat.getInstance(Locale.US);
+Number num = nf.parse(""1,234.56"");
+System.out.println(num);",1234.56,Compilation error,ParseException,"1,234.56"
+"What is the output?
+Locale locale = new Locale(""de"", ""DE"");
+NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+System.out.println(nf.format(100));","100,00 € or similar",€100,100 EUR,Compilation error
+"Which method returns available locales?",Locale.getAvailableLocales(),Locale.getAll(),Locale.list(),Locale.getLocales()
+"What is the result?
+String pattern = ""At {0,time} on {0,date}, there was {1}"";
+MessageFormat mf = new MessageFormat(pattern);
+Object[] args = {new Date(), ""an event""};",Formatted message with time and date,Compilation error,Pattern unchanged,ParseException
+"What is the output?
+ResourceBundle bundle = ResourceBundle.getBundle(""messages"", Locale.FRENCH);
+Set<String> keys = bundle.keySet();",Set of all keys in bundle,Compilation error,Empty set,Single key
+"What happens with ListResourceBundle?
+class MyResources extends ListResourceBundle {
+    protected Object[][] getContents() {
+        return new Object[][] {{""key"", ""value""}};
+    }
+}",Valid resource bundle implementation,Compilation error,Must use .properties file,Cannot extend ListResourceBundle
+"What is the result?
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""MMMM dd, yyyy"");
+LocalDate date = LocalDate.of(2024, 12, 25);
+System.out.println(formatter.format(date));","December 25, 2024",25-12-2024,12/25/2024,Compilation error
+"What is the output?
+NumberFormat nf = NumberFormat.getPercentInstance(Locale.US);
+nf.setMinimumFractionDigits(2);
+System.out.println(nf.format(0.5));",50.00%,50%,0.50,Compilation error
+"Which class formats messages with placeholders?",MessageFormat,ResourceBundle,Formatter,String.format()
+"What is the result?
+Locale locale = new Locale(""en"", ""US"", ""POSIX"");
+System.out.println(locale.getVariant());",POSIX,US,en,Compilation error
+"What happens with CompactNumberFormat?
+NumberFormat nf = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
+System.out.println(nf.format(1500));",1.5K or 2K,1500,"1,500",Compilation error
+"What is the output?
+Locale locale = Locale.CHINA;
+System.out.println(locale.getDisplayLanguage(Locale.ENGLISH));",Chinese,zh,中文,China
+"What is the result?
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""hh:mm a"");
+LocalTime time = LocalTime.of(14, 30);
+System.out.println(formatter.format(time));",02:30 PM,14:30,14:30 PM,Compilation error
+"What happens with PropertyResourceBundle?
+PropertyResourceBundle bundle = new PropertyResourceBundle(new FileInputStream(""messages.properties""));
+bundle.getString(""key"");",Reads from properties file,Compilation error,Must use ResourceBundle.getBundle(),Cannot use FileInputStream
+"What is the output?
+NumberFormat nf = NumberFormat.getIntegerInstance();
+System.out.println(nf.format(1234.56));","1,235 (rounded)",1234,1234.56,Compilation error
+"Which method gets display name of locale?",getDisplayName(),getName(),toString(),getLocaleName()
+"What is the result?
+Locale locale = new Locale(""it"", ""IT"");
+DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale);",Locale-specific full date format,Compilation error,ISO format,US format
+"What is the output?
+MessageFormat mf = new MessageFormat(""You have {0,number,currency}"");
+System.out.println(mf.format(new Object[]{100}));",Currency formatted 100,100,$100.00,Compilation error
+"What happens with resource bundle encoding?
+ResourceBundle bundle = ResourceBundle.getBundle(""messages"", Locale.US, new PropertyResourceBundle.Control());",Uses UTF-8 encoding (Java 9+),Uses ISO-8859-1 only,Compilation error,Encoding not configurable
+"What is the result?
+Locale.setDefault(Locale.Category.FORMAT, Locale.FRANCE);
+Locale.setDefault(Locale.Category.DISPLAY, Locale.US);",Different locales for format and display,Compilation error,Both must be same,Only one default allowed
+"What is the output?
+NumberFormat nf = NumberFormat.getCurrencyInstance();
+nf.setMaximumFractionDigits(0);
+System.out.println(nf.format(99.99));",Currency formatted without decimals,99.99,$99,$100
+"Which creates a Locale for simplified Chinese in China?","Locale.SIMPLIFIED_CHINESE or new Locale(""zh"", ""CN"")","new Locale(""cn"", ""ZH"")",Locale.CHINESE,"new Locale(""zh"")"
+"What is the result?
+DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+LocalDateTime dt = LocalDateTime.of(2024, 1, 15, 10, 30);
+System.out.println(formatter.format(dt));",2024-01-15T10:30:00,01/15/2024 10:30,Compilation error,15-01-2024 10:30
+"What happens with Locale.getISOCountries()?
+String[] countries = Locale.getISOCountries();",Returns array of ISO country codes,Returns country names,Compilation error,Returns empty array
+"What is the output?
+NumberFormat nf = NumberFormat.getInstance();
+nf.setGroupingUsed(false);
+System.out.println(nf.format(1234567));",1234567,"1,234,567",Compilation error,1234.567
+"What is the result?
+ResourceBundle bundle = ResourceBundle.getBundle(""messages"", Locale.GERMAN);
+boolean hasKey = bundle.containsKey(""greeting"");",true or false depending on key existence,Always true,Always false,Compilation error
+"What is the output?
+Locale locale = new Locale(""ar"", ""SA"");
+NumberFormat nf = NumberFormat.getNumberInstance(locale);
+System.out.println(nf.format(123));",Arabic numeral format,123,Compilation error,١٢٣
+"Which method parses a date string?
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""dd/MM/yyyy"");","LocalDate.parse(""15/01/2024"", formatter)",formatter.parse(""15/01/2024""),Both A and B,DateTimeFormatter.parse(""15/01/2024"")
+"What is the result?
+MessageFormat mf = new MessageFormat(""There {0,choice,0#are no files|1#is one file|1<are {0,number,integer} files}"");
+System.out.println(mf.format(new Object[]{0}));",there are no files,There are 0 files,Compilation error,there is one file

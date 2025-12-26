@@ -1,0 +1,298 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+int x = 5;
+if (x > 3)
+    System.out.println(""A"");
+else
+    System.out.println(""B"");",A,B,AB,Compilation error
+"What is the result?
+int day = 3;
+switch (day) {
+    case 1: System.out.println(""Mon"");
+    case 2: System.out.println(""Tue"");
+    case 3: System.out.println(""Wed"");
+    default: System.out.println(""Other"");
+}",Wed Other,Wed,Other,Mon Tue Wed Other
+"What is the output?
+for (int i = 0; i < 3; i++) {
+    System.out.print(i + "" "");
+}",0 1 2 ,1 2 3 ,0 1 2 3 ,Compilation error
+"What happens with this code?
+int x = 10;
+while (x < 5) {
+    System.out.println(x);
+    x++;
+}",Nothing is printed,10 is printed,Infinite loop,Compilation error
+"What is the output?
+int i = 0;
+do {
+    System.out.print(i + "" "");
+    i++;
+} while (i < 3);",0 1 2 ,1 2 3 ,0 1 2 3 ,Nothing is printed
+"Which statement about switch expressions is correct?",They must be exhaustive,They require default in all cases,They cannot use yield,They must have break statements
+"What is the result?
+for (int i = 0; i < 5; i++) {
+    if (i == 3)
+        break;
+    System.out.print(i + "" "");
+}",0 1 2 ,0 1 2 3 ,0 1 2 3 4 ,Compilation error
+"What is the output?
+for (int i = 0; i < 5; i++) {
+    if (i == 2)
+        continue;
+    System.out.print(i + "" "");
+}",0 1 3 4 ,0 1 2 3 4 ,0 1 4 ,1 3 4
+"What is the result?
+int x = 5;
+if (x > 10)
+    System.out.println(""A"");
+else if (x > 3)
+    System.out.println(""B"");
+else
+    System.out.println(""C"");",B,A,C,ABC
+"What happens with nested if-else?
+int x = 5, y = 10;
+if (x < y)
+    if (x > 0)
+        System.out.println(""Yes"");
+    else
+        System.out.println(""No"");",Yes,No,YesNo,Compilation error
+"What is the output?
+String day = ""MON"";
+switch (day) {
+    case ""MON"", ""TUE"", ""WED"" -> System.out.println(""Weekday"");
+    case ""SAT"", ""SUN"" -> System.out.println(""Weekend"");
+}",Weekday,Weekend,Mon,Compilation error
+"What is the result?
+int count = 0;
+while (count < 3) {
+    System.out.print(count + "" "");
+    count++;
+}",0 1 2 ,1 2 3 ,0 1 2 3 ,Infinite loop
+"What happens with this for loop?
+for (int i = 5; i > 0; i--) {
+    System.out.print(i + "" "");
+}",5 4 3 2 1 ,0 1 2 3 4 5 ,1 2 3 4 5 ,Compilation error
+"What is the output?
+int x = 10;
+switch (x) {
+    case 5:
+        System.out.println(""Five"");
+        break;
+    case 10:
+        System.out.println(""Ten"");
+        break;
+    default:
+        System.out.println(""Other"");
+}",Ten,Five,Other,FiveTen
+"Which is valid in a switch expression?",yield keyword to return values,return keyword to return values,break keyword to return values,continue keyword to return values
+"What is the result?
+for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 2; j++) {
+        System.out.print(i + j + "" "");
+    }
+}",0 1 1 2 ,0 0 1 1 ,0 1 2 3 ,Compilation error
+"What is the output?
+int x = 5;
+if (x > 3 && x++ < 10)
+    System.out.println(x);",6,5,7,Compilation error
+"What happens with labeled break?
+outer: for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        if (j == 1)
+            break outer;
+        System.out.print(i + """" + j + "" "");
+    }
+}",00 ,00 10 20 ,00 01 02 ,Compilation error
+"What is the result?
+int x = 3;
+switch (x) {
+    case 1, 2, 3 -> System.out.println(""Low"");
+    case 4, 5, 6 -> System.out.println(""Mid"");
+    default -> System.out.println(""High"");
+}",Low,Mid,High,Compilation error
+"What is the output?
+for (int i = 0; i < 10; i += 2) {
+    System.out.print(i + "" "");
+}",0 2 4 6 8 ,0 1 2 3 4 5 6 7 8 9 ,2 4 6 8 10 ,Compilation error
+"What happens with this code?
+int i = 0;
+while (true) {
+    if (i == 3)
+        break;
+    System.out.print(i + "" "");
+    i++;
+}",0 1 2 ,Infinite loop,0 1 2 3 ,Compilation error
+"What is the result?
+String grade = ""A"";
+String result = switch (grade) {
+    case ""A"" -> ""Excellent"";
+    case ""B"" -> ""Good"";
+    default -> ""Pass"";
+};
+System.out.println(result);",Excellent,Good,Pass,Compilation error
+"What is the output?
+outer: for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 2; j++) {
+        if (j == 1)
+            continue outer;
+        System.out.print(i + """" + j + "" "");
+    }
+}",00 10 ,00 01 10 11 ,00 10 20 ,Compilation error
+"What happens with empty if body?
+int x = 5;
+if (x > 3);
+    System.out.println(""Hello"");",Hello is always printed,Hello is printed only if x > 3,Compilation error,Runtime error
+"What is the result?
+int x = 2;
+if (x > 0)
+    if (x < 5)
+        System.out.println(""A"");
+else
+    System.out.println(""B"");",A,B,AB,Compilation error
+"What is the output?
+for (int i = 0; i < 3; i++) {
+    if (i == 1)
+        continue;
+    if (i == 2)
+        break;
+    System.out.print(i + "" "");
+}",0 ,0 1 ,0 2 ,Nothing is printed
+"Which switch statement requires a default case?",Switch expression with non-enum type,Traditional switch statement,Switch statement with String,Switch statement with int
+"What is the result?
+int count = 5;
+do {
+    System.out.print(count + "" "");
+    count--;
+} while (count > 5);",5 ,5 4 3 2 1 ,Nothing is printed,Infinite loop
+"What happens with this for-each loop?
+int[] arr = {1, 2, 3};
+for (int num : arr) {
+    System.out.print(num + "" "");
+}",1 2 3 ,0 1 2 ,Compilation error,ArrayIndexOutOfBoundsException
+"What is the output?
+int x = 0;
+while (x++ < 3) {
+    System.out.print(x + "" "");
+}",1 2 3 ,0 1 2 ,0 1 2 3 ,Infinite loop
+"What is the result?
+int day = 1;
+switch (day) {
+    case 1:
+    case 2:
+    case 3:
+        System.out.println(""Early"");
+        break;
+    default:
+        System.out.println(""Late"");
+}",Early,Late,Compilation error,Nothing is printed
+"What happens with break in switch expression?",Compilation error,Exits the switch,Returns a value,Valid syntax
+"What is the output?
+for (int i = 0, j = 0; i < 3 && j < 2; i++, j++) {
+    System.out.print(i + """" + j + "" "");
+}",00 11 ,00 11 22 ,00 10 20 ,Compilation error
+"What is the result?
+int x = 5;
+while (--x > 0) {
+    System.out.print(x + "" "");
+}",4 3 2 1 ,5 4 3 2 1 ,5 4 3 2 ,3 2 1
+"Which is true about enhanced for loop?",Cannot modify loop variable to affect iteration,Can modify array elements during iteration,Requires index variable,Can iterate backwards
+"What is the output?
+int i = 0;
+do {
+    if (i == 2)
+        break;
+    System.out.print(i + "" "");
+    i++;
+} while (i < 5);",0 1 ,0 1 2 ,0 1 2 3 4 ,Compilation error
+"What happens with this switch?
+Integer x = 5;
+switch (x) {
+    case 5 -> System.out.println(""Five"");
+    case null -> System.out.println(""Null"");
+}",Compilation error (null case not allowed in Java 17),Five,Null,NullPointerException
+"What is the result?
+for (int i = 0; i < 5; ) {
+    System.out.print(i + "" "");
+    i += 2;
+}",0 2 4 ,0 1 2 3 4 ,Compilation error,Infinite loop
+"What is the output?
+int x = 3;
+String result = switch (x) {
+    case 1, 2 -> { yield ""Low""; }
+    case 3, 4 -> { yield ""Mid""; }
+    default -> { yield ""High""; }
+};
+System.out.println(result);",Mid,Low,High,Compilation error
+"What happens with continue in outer loop?
+for (int i = 0; i < 3; i++) {
+    if (i == 1)
+        continue;
+    System.out.print(i + "" "");
+}",0 2 ,0 1 2 ,1 2 ,Compilation error
+"What is the result?
+boolean flag = true;
+if (flag = false)
+    System.out.println(""True"");
+else
+    System.out.println(""False"");",False,True,Compilation error,Runtime error
+"What is the output?
+int[] arr = {1, 2, 3, 4, 5};
+for (int i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 == 0)
+        continue;
+    System.out.print(arr[i] + "" "");
+}",1 3 5 ,2 4 ,1 2 3 4 5 ,Compilation error
+"What happens with nested loops and break?
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        if (j == 1)
+            break;
+        System.out.print(i + """" + j + "" "");
+    }
+}",00 10 20 ,00 ,00 01 02 ,Compilation error
+"What is the result?
+int x = 10;
+if (x > 5 && x++ < 15)
+    System.out.println(x);
+else
+    System.out.println(""No"");",11,10,15,No
+"What is the output?
+String color = ""RED"";
+switch (color) {
+    case ""RED"":
+        System.out.print(""R"");
+    case ""GREEN"":
+        System.out.print(""G"");
+        break;
+    case ""BLUE"":
+        System.out.print(""B"");
+}",RG,R,RGB,G
+"What happens with this while loop?
+int i = 5;
+while (i > 0)
+    System.out.println(i);",Infinite loop printing 5,Prints 5 4 3 2 1,Nothing is printed,Compilation error
+"What is the result?
+for (int i = 10; i > 0; i /= 2) {
+    System.out.print(i + "" "");
+}",10 5 2 1 ,10 5 2 ,10 5 2 1 0 ,Compilation error
+"What is the output?
+int x = 0;
+if (x == 0 || x++ > 0)
+    System.out.println(x);",0,1,Compilation error,Runtime error
+"What happens with labeled continue?
+outer: for (int i = 0; i < 2; i++) {
+    inner: for (int j = 0; j < 3; j++) {
+        if (j == 1)
+            continue outer;
+        System.out.print(i + """" + j + "" "");
+    }
+}",00 10 ,00 01 02 10 11 12 ,00 02 10 12 ,Compilation error
+"What is the result?
+int count = 0;
+for (;;) {
+    if (count == 3)
+        break;
+    System.out.print(count + "" "");
+    count++;
+}",0 1 2 ,Infinite loop,Compilation error,0 1 2 3

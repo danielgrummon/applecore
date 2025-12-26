@@ -1,0 +1,182 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+int[] arr = new int[3];
+System.out.println(arr[0]);",0,null,Compilation error,Undefined
+"What is the result?
+int[] arr = {1, 2, 3, 4, 5};
+System.out.println(arr.length);",5,4,Compilation error,IndexOutOfBoundsException
+"What happens with this code?
+List<String> list = new ArrayList<>();
+list.add(""Java"");
+list.add(""Python"");
+System.out.println(list.get(0));",Java,Python,Compilation error,0
+"Which creates an empty Set?",Set<String> set = new HashSet<>();,Set<String> set = new Set<>();,Set<String> set = Set<>();,Set<String> set = HashSet<>();
+"What is the output?
+Map<String, Integer> map = new HashMap<>();
+map.put(""A"", 1);
+map.put(""B"", 2);
+System.out.println(map.get(""A""));",1,2,A,null
+"What is the result?
+int[][] arr = {{1, 2}, {3, 4}};
+System.out.println(arr[1][0]);",3,1,2,4
+"What happens with Deque?
+Deque<String> deque = new ArrayDeque<>();
+deque.addFirst(""A"");
+deque.addLast(""B"");
+System.out.println(deque.getFirst());",A,B,AB,Compilation error
+"Which statement about arrays is true?",Arrays have fixed size,Arrays can grow dynamically,Arrays can shrink,Array size can be changed
+"What is the output?
+List<Integer> list = new ArrayList<>();
+list.add(10);
+list.add(20);
+list.remove(0);
+System.out.println(list.get(0));",20,10,Compilation error,IndexOutOfBoundsException
+"What is the result?
+Set<String> set = new HashSet<>();
+set.add(""Java"");
+set.add(""Java"");
+System.out.println(set.size());",1,2,0,Compilation error
+"What happens with this code?
+String[] arr = new String[2];
+arr[0] = ""Hello"";
+System.out.println(arr[1]);",null,Hello,Compilation error,""
+"Which is true about TreeSet?",Maintains sorted order,Maintains insertion order,Allows duplicates,Allows null values (in Java 17)
+"What is the output?
+List<String> list = List.of(""A"", ""B"", ""C"");
+list.add(""D"");",UnsupportedOperationException,List has 4 elements,Compilation error,D added successfully
+"What is the result?
+Map<String, Integer> map = new HashMap<>();
+map.put(""X"", 10);
+map.put(""X"", 20);
+System.out.println(map.size());",1,2,0,Compilation error
+"What happens with array initialization?
+int[] arr = {1, 2, 3};
+arr = {4, 5, 6};",Compilation error,"arr = [4, 5, 6]",Valid reassignment,Runtime error
+"Which method adds element at end of List?",add(),append(),push(),insert()
+"What is the output?
+Deque<Integer> deque = new ArrayDeque<>();
+deque.push(1);
+deque.push(2);
+System.out.println(deque.pop());",2,1,Compilation error,12
+"What is the result?
+int[] arr = new int[3];
+arr[3] = 10;",ArrayIndexOutOfBoundsException,10,Compilation error,Array expands
+"What happens with LinkedHashSet?
+Set<String> set = new LinkedHashSet<>();
+set.add(""C"");
+set.add(""A"");
+set.add(""B"");
+System.out.println(set);","[C, A, B]","[A, B, C]","[B, A, C]",Compilation error
+"Which is true about HashMap?",Keys must be unique,Values must be unique,Maintains sorted order,Cannot have null key
+"What is the output?
+List<Integer> list = new ArrayList<>(List.of(3, 1, 2));
+Collections.sort(list);
+System.out.println(list);","[1, 2, 3]","[3, 1, 2]","[2, 1, 3]",Compilation error
+"What is the result?
+String[] arr = new String[0];
+System.out.println(arr.length);",0,null,Compilation error,1
+"What happens with this code?
+Map<String, String> map = new TreeMap<>();
+map.put(""B"", ""Two"");
+map.put(""A"", ""One"");
+System.out.println(map.keySet());","[A, B]","[B, A]","{A, B}",Compilation error
+"Which method removes element from List by index?",remove(int index),delete(int index),removeAt(int index),erase(int index)
+"What is the output?
+int[] arr1 = {1, 2, 3};
+int[] arr2 = arr1;
+arr2[0] = 10;
+System.out.println(arr1[0]);",10,1,Compilation error,ArrayStoreException
+"What is the result?
+Set<Integer> set = new TreeSet<>();
+set.add(3);
+set.add(1);
+set.add(2);
+System.out.println(set);","[1, 2, 3]","[3, 1, 2]","[1, 3, 2]",Compilation error
+"What happens with Deque as stack?
+Deque<String> stack = new ArrayDeque<>();
+stack.push(""A"");
+stack.push(""B"");
+System.out.println(stack.peek());",B,A,AB,Compilation error
+"Which creates a fixed-size list?","List.of(1, 2, 3)","new ArrayList<>(1, 2, 3)",Arrays.asList() with add,"List.create(1, 2, 3)"
+"What is the output?
+Map<Integer, String> map = new HashMap<>();
+map.put(1, ""One"");
+System.out.println(map.get(2));",null,One,Compilation error,NoSuchElementException
+"What is the result?
+List<String> list = new ArrayList<>();
+list.add(""A"");
+list.add(1, ""B"");
+System.out.println(list);","[A, B]","[B, A]",IndexOutOfBoundsException,Compilation error
+"What happens with array cloning?
+int[] arr1 = {1, 2, 3};
+int[] arr2 = arr1.clone();
+arr2[0] = 10;
+System.out.println(arr1[0]);",1,10,Compilation error,3
+"Which is true about LinkedList?",Implements both List and Deque,Only implements List,Only implements Deque,Implements Set
+"What is the output?
+Set<String> set = new HashSet<>();
+set.add(null);
+set.add(null);
+System.out.println(set.size());",1,2,NullPointerException,0
+"What is the result?
+Deque<Integer> deque = new ArrayDeque<>();
+deque.offer(1);
+deque.offer(2);
+System.out.println(deque.poll());",1,2,null,Compilation error
+"What happens with this code?
+List<Integer> list = Arrays.asList(1, 2, 3);
+list.set(0, 10);
+System.out.println(list.get(0));",10,1,UnsupportedOperationException,Compilation error
+"Which method checks if Map contains key?",containsKey(),hasKey(),keyExists(),contains()
+"What is the output?
+int[] arr = {5, 2, 8, 1};
+Arrays.sort(arr);
+System.out.println(arr[0]);",1,5,2,8
+"What is the result?
+Map<String, Integer> map = new HashMap<>();
+map.put(""A"", 1);
+map.replace(""A"", 2);
+System.out.println(map.get(""A""));",2,1,null,Compilation error
+"What happens with remove from Set?
+Set<String> set = new HashSet<>(Set.of(""A"", ""B"", ""C""));
+set.remove(""B"");
+System.out.println(set.size());",2,3,1,Compilation error
+"Which creates multidimensional array?","int[][] arr = new int[3][4];","int[3][4] arr = new int;","int arr[][] = [3][4];","int[][] arr = {3, 4};"
+"What is the output?
+List<String> list = new ArrayList<>();
+list.add(""X"");
+list.add(""Y"");
+list.clear();
+System.out.println(list.size());",0,2,1,Compilation error
+"What is the result?
+Deque<String> deque = new LinkedList<>();
+deque.addFirst(""A"");
+deque.addFirst(""B"");
+System.out.println(deque.getLast());",A,B,AB,Compilation error
+"What happens with Map.putIfAbsent()?
+Map<String, Integer> map = new HashMap<>();
+map.put(""A"", 1);
+map.putIfAbsent(""A"", 2);
+System.out.println(map.get(""A""));",1,2,Compilation error,null
+"Which is true about ArrayList?",Resizable array implementation,Fixed size,Always sorted,No duplicates allowed
+"What is the output?
+String[] arr = {""C"", ""A"", ""B""};
+Arrays.sort(arr);
+System.out.println(arr[1]);",B,A,C,Compilation error
+"What is the result?
+Set<String> set = Set.of(""A"", ""B"");
+set.clear();",UnsupportedOperationException,Set is empty,Compilation error,Set size is 0
+"What happens with List.remove()?
+List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 2));
+list.remove(Integer.valueOf(2));
+System.out.println(list);","[1, 3, 2]","[1, 2, 3]","[1, 3]",Compilation error
+"Which method returns all values from Map?",values(),getValues(),valueSet(),allValues()
+"What is the output?
+Map<String, Integer> map = new LinkedHashMap<>();
+map.put(""C"", 3);
+map.put(""A"", 1);
+map.put(""B"", 2);
+System.out.println(map.keySet());","[C, A, B]","[A, B, C]","[B, A, C]",Compilation error
+"What is the result?
+int[] arr = new int[]{1, 2, 3};
+System.out.println(arr instanceof Object);",true,false,Compilation error,ClassCastException

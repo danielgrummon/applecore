@@ -1,0 +1,125 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result of the following code?
+int x = 5;
+int y = 2;
+System.out.println(x / y);",2,2.5,3,2.0
+"What is the output?
+double d = 10.5;
+int i = (int) d;
+System.out.println(i);",10,10.5,11,Compilation error
+"Which wrapper class method converts a String to an int?",Integer.parseInt(),Integer.valueOf(),Integer.toInt(),Integer.convert()
+"What is the result?
+System.out.println(10 + 5 * 2);",20,30,100,15
+"What happens when you divide an int by zero?",ArithmeticException is thrown,Returns 0,Returns NaN,Returns Infinity
+"What is the output?
+boolean a = true;
+boolean b = false;
+System.out.println(a && b || a);",true,false,Compilation error,Runtime error
+"What does Math.ceil(4.3) return?",5.0,4.0,4.3,5
+"What is the result of type promotion in this code?
+byte b = 10;
+short s = 20;
+System.out.println(b + s);",30 (int type),30 (byte type),30 (short type),Compilation error
+"Which method returns the absolute value of a number?",Math.abs(),Math.absolute(),Math.positive(),Math.value()
+"What is the output?
+int x = 5;
+System.out.println(++x);",6,5,7,Compilation error
+"What does Integer.valueOf(""123"") return?",Integer object with value 123,int primitive with value 123,String ""123"",Compilation error
+"What is the result?
+System.out.println(5 > 3 && 10 < 5);",false,true,Compilation error,Runtime error
+"What happens with this code?
+String s = ""Hello"";
+s.concat("" World"");
+System.out.println(s);",Hello,Hello World,Compilation error,NullPointerException
+"What is the output?
+StringBuilder sb = new StringBuilder(""Java"");
+sb.append("" 17"");
+System.out.println(sb);",Java 17,Java,17,Compilation error
+"What does Math.round(4.5) return?",5,4,4.5,5.0
+"What is the result?
+double d1 = 10.0 / 3.0;
+System.out.println(d1);",3.333... (repeating),3,3.0,Compilation error
+"Which statement about String is correct?",String objects are immutable,String objects are mutable,String uses == for content comparison,StringBuilder is immutable
+"What is the output?
+String s1 = ""Java"";
+String s2 = ""Java"";
+System.out.println(s1 == s2);",true,false,Compilation error,NullPointerException
+"What does this code print?
+String text = """"""
+Line 1
+Line 2
+Line 3
+"""""";
+System.out.println(text.lines().count());",3,1,4,Compilation error
+"What is the result?
+int a = 5;
+int b = 10;
+System.out.println(a++ + ++b);",16,15,17,Compilation error
+"Which method checks if a String starts with a specific prefix?",startsWith(),beginsWith(),prefixOf(),starts()
+"What is the output?
+LocalDate date = LocalDate.of(2024, 1, 15);
+System.out.println(date.getDayOfWeek());",MONDAY,15,1,January
+"What does Period.ofDays(7) represent?",A period of 7 days,A duration of 7 days,A date 7 days from now,7 milliseconds
+"What is the result?
+LocalDateTime dt = LocalDateTime.of(2024, 1, 1, 10, 30);
+System.out.println(dt.getHour());",10,30,1,2024
+"Which class represents a point on the timeline?",Instant,LocalDateTime,ZonedDateTime,Period
+"What happens with this code?
+LocalDate date = LocalDate.now();
+date.plusDays(5);
+System.out.println(date);",Prints today's date,Prints date 5 days from now,Compilation error,NullPointerException
+"What is the output?
+Duration d = Duration.ofHours(25);
+System.out.println(d.toDays());",1,25,0,Compilation error
+"Which method creates a ZonedDateTime?",ZonedDateTime.of(),ZonedDateTime.parse(),ZonedDateTime.now(),All of the above
+"What does ChronoUnit.DAYS.between(date1, date2) return?",Number of days between dates,A Period object,A Duration object,A LocalDate object
+"What is the result?
+String s = ""Java SE 17"";
+System.out.println(s.substring(5, 7));",SE,Java,17,Java SE
+"What does Math.pow(2, 3) return?",8.0,6,6.0,9.0
+"What is the output?
+StringBuilder sb = new StringBuilder(""Hello"");
+sb.insert(5, "" World"");
+System.out.println(sb);",Hello World,HelloWorld, World Hello,Compilation error
+"Which wrapper class method auto-unboxes correctly?
+Integer i = 100;
+int x = ?",i,i.intValue(),Integer.parseInt(i),Both A and B
+"What is the result?
+System.out.println(true | false & false);",true,false,Compilation error,Runtime error
+"What does LocalTime.of(14, 30) create?",A time of 2:30 PM,A time of 14:30:00.000,Both A and B,A date-time object
+"What is the output?
+String s = ""Hello"";
+System.out.println(s.replace('l', 'L'));",HeLLo,Hello,HELLO,Compilation error
+"Which DateTimeFormatter pattern represents year-month-day?",yyyy-MM-dd,YYYY-MM-DD,yy-mm-dd,dd-MM-yyyy
+"What is the result?
+byte b = 127;
+b++;
+System.out.println(b);","Compilation error (requires cast)",-128,128,127
+"What does Math.max(10, 20) return?",20,10,30,Compilation error
+"What is the output?
+String s = ""   Java   "";
+System.out.println(s.trim());",Java,   Java   ,Java   ,   Java
+"Which statement about StringBuilder is true?",StringBuilder is mutable,StringBuilder is thread-safe,StringBuilder is immutable,StringBuilder is slower than StringBuffer
+"What is the result?
+LocalDate d1 = LocalDate.of(2024, 1, 1);
+LocalDate d2 = d1.withMonth(12);
+System.out.println(d2.getMonth());",DECEMBER,JANUARY,12,1
+"What does Duration.between(time1, time2) measure?",Time-based amount (hours/minutes/seconds),Date-based amount (years/months/days),Both time and date,Number of milliseconds
+"What is the output?
+int x = 10;
+double y = 3.5;
+System.out.println(x + y);",13.5,13,14,Compilation error
+"Which method checks if a String contains a substring?",contains(),includes(),has(),indexOf() >= 0
+"What is the result?
+Boolean b = null;
+boolean result = b;
+System.out.println(result);",NullPointerException,false,true,Compilation error
+"What does ZoneId.systemDefault() return?",The system's default time zone,UTC time zone,GMT time zone,Compilation error
+"What is the output?
+String s1 = new String(""Java"");
+String s2 = new String(""Java"");
+System.out.println(s1.equals(s2));",true,false,Compilation error,NullPointerException
+"What is the result?
+System.out.println(Math.floor(4.9));",4.0,4,5.0,5
+"Which expression evaluates to true?
+int x = 5;",x > 3 && x < 10,x > 10 || x < 3,x == 10,!(x > 0)
