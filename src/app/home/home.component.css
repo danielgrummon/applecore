@@ -325,6 +325,12 @@
     animation: owlFloat 6s ease-in-out infinite;
 }
 
+.owl-decor img {
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
 .owl-decor.top-left {
     top: 50px;
     left: 50px;
