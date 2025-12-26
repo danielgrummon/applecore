@@ -30,17 +30,17 @@ Must inner class have outer instance?,Yes (to instantiate),No,Sometimes,Only pub
 How do you create static nested class instance?,Outer.Nested obj = new Outer.Nested();,new Outer.new Nested(),new Nested(),Outer.new Nested()
 How do you create inner class instance?,Outer outer = new Outer(); Outer.Inner inner = outer.new Inner();,new Outer.Inner(),Outer.Inner obj = new Outer.Inner(),new Inner()
 What is a local class?,Class defined inside method,Static nested class,Inner class,Anonymous class
-Where can local class be defined?,Inside methods, constructors, or blocks,Only methods,Only constructors,Anywhere
+Where can local class be defined?,"Inside methods,  constructors,  or blocks",Only methods,Only constructors,Anywhere
 Can local class access method local variables?,Yes (if effectively final),No,All variables,Only final
 What does effectively final mean?,Not modified after initialization,Declared final,Final keyword,Cannot be used
 Can local class be static?,No,Yes,Only in static methods,Only in Java 17
 What is an anonymous class?,Class without name defined inline,Local class,Named class,Abstract class
-Where are anonymous classes commonly used?,Interface implementation, subclassing,Only interfaces,Only abstract classes,Anywhere
+Where are anonymous classes commonly used?,"Interface implementation,  subclassing",Only interfaces,Only abstract classes,Anywhere
 Can anonymous class have constructor?,No (can have initializer),Yes,Only default,Only parameterized
 Can anonymous class extend class and implement interface?,No (only one),Yes,Sometimes,Only in Java 17
 How do you refer to outer instance in inner class?,OuterClass.this,this,super,outer
 Can static nested class use OuterClass.this?,No,Yes,Sometimes,Only public
-What is object lifecycle?,Creation, use, garbage collection,Only creation,Only destruction,Creation and destruction
+What is object lifecycle?,"Creation,  use,  garbage collection",Only creation,Only destruction,Creation and destruction
 When is object created?,When new is executed,When declared,When assigned,When used
 When is object eligible for garbage collection?,When no reachable references,When null assigned,When out of scope,When program ends
 Can you force garbage collection?,No (only suggest with System.gc()),Yes (System.gc()),Yes (gc()),Yes (Runtime.gc())
@@ -68,13 +68,13 @@ Where are objects stored?,Heap,Stack,Method area,Permanent generation
 Where are local variables stored?,Stack,Heap,Method area,Permanent generation
 Where are static variables stored?,Method area (metaspace),Stack,Heap,Permanent generation
 What is the new operator's return type?,Reference to created object,Object itself,void,Constructor
-Can you create object without new?,Yes (literals, cloning, deserialization),No,Only strings,Only primitives
+Can you create object without new?,"Yes (literals,  cloning,  deserialization)",No,Only strings,Only primitives
 What are object creation alternatives?,"String literals, clone(), deserialization, reflection",Only new,Only constructors,new and literals
 Can constructor throw exceptions?,Yes,No,Only unchecked,Only checked
 What happens if constructor throws exception?,Object not created,Object partially created,Object created,Compilation error
 Can you overload constructors?,Yes,No,Only two,Only different types
 Can you override constructors?,No,Yes,Only in subclass,Only public
-What is constructor visibility?,Can be public, private, protected, package-private,Only public,Only private,Only protected
+What is constructor visibility?,"Can be public,  private,  protected,  package-private",Only public,Only private,Only protected
 What is singleton pattern use of constructor?,Private constructor,Public constructor,Protected constructor,No constructor
 Can abstract class have constructor?,Yes,No,Only protected,Only private
 Can interface have constructor?,No,Yes,Only default,Only static

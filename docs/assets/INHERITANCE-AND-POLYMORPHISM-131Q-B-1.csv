@@ -10,7 +10,7 @@ What is derived class?,Class that extends another,Base class,Interface,Unrelated
 What does subclass inherit?,All non-private members,Only public,Only protected,Only methods
 Does subclass inherit private members?,No (but they exist in object),Yes,Only methods,Only fields
 Does subclass inherit constructors?,No,Yes,Only default,Only public
-Does subclass inherit static members?,Yes (class members, not overridden),No,Only methods,Only fields
+Does subclass inherit static members?,"Yes (class members,  not overridden)",No,Only methods,Only fields
 Can subclass access private parent members?,No (indirectly via public/protected methods),Yes,Only same package,Only if inherited
 What is protected access?,Accessible in subclass and same package,Only subclass,Only package,Public access
 Can subclass in different package access protected?,Yes (only through inheritance),No,Only same package,Only public
@@ -22,19 +22,19 @@ Is super() implicit?,Yes (if not specified),No,Only with parameters,Only Object
 What does super.method() do?,Calls parent version of method,Calls constructor,Creates parent,Overrides method
 Can you use super in static method?,No,Yes,Only fields,Only methods
 What is method overriding?,Subclass provides specific implementation,Method overloading,Method hiding,New method
-What is required for overriding?,Same signature (name, parameters),Same name only,Different signature,Same return type only
+What is required for overriding?,"Same signature (name,  parameters)",Same name only,Different signature,Same return type only
 Can you change return type when overriding?,Yes (covariant return),No,Only to Object,Only primitives
 What is covariant return type?,Return subtype of original,Return supertype,Same return type,Any return type
 Can you change parameter types when overriding?,No (different signature = overloading),Yes,Only widening,Only narrowing
 Can you widen access when overriding?,Yes,No,Only to public,Only protected
 Can you narrow access when overriding?,No,Yes,Only to private,Only protected
 Can private method be overridden?,No (not inherited),Yes,Only in subclass,Only public
-Can static method be overridden?,No (method hiding, not overriding),Yes,Only in subclass,Only public
+Can static method be overridden?,"No (method hiding,  not overriding)",Yes,Only in subclass,Only public
 Can final method be overridden?,No,Yes,Only in final class,Only private
 What is method hiding?,Static method in subclass with same signature,Method overriding,Private method,Method overloading
 What determines hidden method call?,Reference type (compile-time),Object type,Runtime,Always parent
 What determines overridden method call?,Object type (runtime),Reference type,Compile-time,Always child
-What is polymorphism?,One interface, multiple implementations,Multiple interfaces,Inheritance,Encapsulation
+What is polymorphism?,"One interface,  multiple implementations",Multiple interfaces,Inheritance,Encapsulation
 What are types of polymorphism?,Compile-time (overloading) and runtime (overriding),Only runtime,Only compile-time,Dynamic only
 What is compile-time polymorphism?,Method overloading,Method overriding,Runtime binding,Late binding
 What is runtime polymorphism?,Method overriding,Method overloading,Early binding,Compile-time
@@ -67,7 +67,7 @@ Should you override toString()?,Yes (for meaningful representation),No,Only if n
 What is equals()?,Checks logical equality,Reference equality,Same as ==,Comparison
 What is default equals()?,Reference equality (==),Logical equality,True,False
 Should you override equals()?,Yes (if objects can be logically equal),No,Only collections,Required
-What is contract for equals()?,Reflexive, symmetric, transitive, consistent, null-false,No contract,Only symmetric,Any implementation
+What is contract for equals()?,"Reflexive,  symmetric,  transitive,  consistent,  null-false",No contract,Only symmetric,Any implementation
 What is hashCode()?,Returns hash code integer,Returns hash map,Calculates hash,Returns id
 What is hashCode contract?,Equal objects must have equal hash codes,Unequal objects different hash,Any number,No contract
 Must you override hashCode() if override equals()?,Yes,No,Optional,Only for HashMap
@@ -125,8 +125,8 @@ When are static blocks executed?,Class loading (parent before child),Object crea
 When are instance initializers executed?,Object creation (parent before child),Class loading,Method call,Constructor only
 When are constructors executed?,Object creation (parent before child),Class loading,Method call,Field initialization
 What is fragile base class problem?,Changes to parent break subclass,Broken subclass,Strong parent,No problem
-How to avoid fragile base class?,Careful design, composition, final,Make everything public,Always abstract,No solution
-What is open-closed principle?,Open for extension, closed for modification,Always open,Always closed,No principle
+How to avoid fragile base class?,"Careful design,  composition,  final",Make everything public,Always abstract,No solution
+What is open-closed principle?,"Open for extension,  closed for modification",Always open,Always closed,No principle
 How does inheritance support open-closed?,Extend via subclassing,Modify parent,Close inheritance,Open everything
 What is interface vs implementation inheritance?,Interface defines contract; implementation provides code,Same thing,Only interface,Only implementation
-Can you inherit implementation from interface?,Yes (default methods, Java 8+),No,Only abstract,Only static
+Can you inherit implementation from interface?,"Yes (default methods,  Java 8+)",No,Only abstract,Only static

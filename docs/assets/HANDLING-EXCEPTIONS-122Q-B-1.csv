@@ -11,7 +11,7 @@ Which keyword declares exceptions?,throws,throw,catch,declare
 Which keyword throws an exception?,throw,throws,raise,error
 Can a method declare multiple exceptions?,Yes,No,Only two,Only same type
 Can a catch block catch multiple exception types?,Yes (multi-catch),No,Only in Java 17,Only same hierarchy
-What is the multi-catch syntax?,catch (Ex1 | Ex2 e),catch (Ex1, Ex2 e),catch (Ex1 || Ex2 e),catch (Ex1 & Ex2 e)
+What is the multi-catch syntax?,"catch (Ex1 | Ex2 e), catch (Ex1", Ex2 e),catch (Ex1 || Ex2 e),catch (Ex1 & Ex2 e)
 Are multi-catch exceptions related by inheritance?,No (must not be),Yes,Can be,Should be
 Can you modify multi-catch exception variable?,No (effectively final),Yes,Only reassign,Only fields
 Which block always executes?,finally,catch,try,all blocks
@@ -36,8 +36,8 @@ Can you use effectively final variable in try-with-resources?,Yes (Java 9+),No,O
 Must resource be declared in try parentheses?,No (can be effectively final in Java 9+),Yes,Only Java 7,Always required
 Can you access resource after try block?,No (out of scope),Yes,Only if no exception,Only effectively final
 What is the order of execution?,try → catch → finally,try → finally → catch,catch → try → finally,finally → try → catch
-If catch throws exception, does finally execute?,Yes,No,Sometimes,Only unchecked
-If finally throws exception, what happens?,Suppresses catch exception,Both thrown,Catch exception thrown,Compilation error
+If catch throws exception," does finally execute?, Yes",No,Sometimes,Only unchecked
+If finally throws exception," what happens?, Suppresses catch exception",Both thrown,Catch exception thrown,Compilation error
 Can you have multiple catch blocks?,Yes,No,Only two,Only same type
 What is the order of catch blocks?,Most specific to most general,Most general to most specific,Any order,Alphabetical
 Can you catch parent before child?,No (unreachable code),Yes,Only in Java 17,Sometimes
@@ -102,8 +102,8 @@ Can you throw String?,No,Yes,Only Exception,Only Error
 Must catch parameter be used?,No,Yes,Only in Java 17,Only for logging
 Can catch block be empty?,Yes (but bad practice),No,Only with finally,Only unchecked
 What is try-catch-finally execution order?,try → catch (if exception) → finally,try → finally → catch,catch → try → finally,All execute always
-If no exception thrown, does catch execute?,No,Yes,Sometimes,Depends on finally
-If exception thrown but not caught, does finally execute?,Yes,No,Sometimes,Only for checked
+If no exception thrown," does catch execute?, No",Yes,Sometimes,Depends on finally
+If exception thrown but not caught," does finally execute?, Yes",No,Sometimes,Only for checked
 Can finally throw exception?,Yes,No,Only unchecked,Only if catch throws
 What happens if both catch and finally throw?,Finally exception propagates,Catch exception propagates,Both thrown,Compilation error
 Can you have return in try?,Yes,No,Only void,Only with finally

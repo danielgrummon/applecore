@@ -14,16 +14,16 @@ Are array indices zero-based?,Yes,No,One-based,Configurable
 Can you have negative array size?,No (NegativeArraySizeException),Yes,Only -1,Zero is negative
 What is the maximum array length?,Integer.MAX_VALUE (approximately),No limit,1000000,Long.MAX_VALUE
 Can you create generic array?,No (due to type erasure),Yes,Only unbounded,Only bounded
-How do you create multidimensional array?,Type[][] name = new Type[rows][cols],Type[rows, cols],Array<Array<Type>>,Nested arrays only
+How do you create multidimensional array?,"Type[][] name = new Type[rows][cols], Type[rows", cols],Array<Array<Type>>,Nested arrays only
 What is a jagged array?,Array with rows of different lengths,Square array,3D array,Symmetric array
 Can array hold multiple types?,No (except Object[] for objects),Yes,Only primitives,Only wrappers
 What does Arrays.toString() do?,Returns string representation of array,Converts to String[],Returns first element,Returns length
 What does Arrays.equals() do?,Compares arrays for equality,Compares references,Compares lengths,Sorts arrays
 What does Arrays.sort() do?,Sorts array in natural order,Returns sorted copy,Reverses array,Shuffles array
 What is the time complexity of Arrays.sort()?,O(n log n),O(n),O(n²),O(log n)
-What algorithm does Arrays.sort() use?,Dual-Pivot Quicksort (primitives), Timsort (objects),Merge sort,Bubble sort,Selection sort
+What algorithm does Arrays.sort() use?,"Dual-Pivot Quicksort (primitives),  Timsort (objects)",Merge sort,Bubble sort,Selection sort
 What does Arrays.binarySearch() require?,Sorted array,Any array,Unique elements,Primitive array
-What does Arrays.binarySearch() return?,Index if found, negative insertion point - 1 if not,Index or -1,-1 if not found,Index or null
+What does Arrays.binarySearch() return?,"Index if found,  negative insertion point - 1 if not",Index or -1,-1 if not found,Index or null
 What does Arrays.fill() do?,Fills array with specified value,Creates new array,Resizes array,Sorts array
 What does Arrays.copyOf() do?,Creates copy with specified length,Creates shallow copy,Creates deep copy,References same array
 What does Arrays.copyOfRange() do?,Copies specified range to new array,Modifies original,Returns view,Sorts range
@@ -31,16 +31,16 @@ What is Arrays.asList()?,Returns fixed-size list backed by array,Returns ArrayLi
 Can you add to list from Arrays.asList()?,No (UnsupportedOperationException),Yes,Only append,Only if space
 Can you modify list from Arrays.asList()?,Yes (modifies underlying array),No,Only read,Creates copy
 What is the collection hierarchy root?,Collection interface,List,Object,Iterable
-What extends Collection?,List, Set, Queue,Map,Array,Stream
+What extends Collection?,"List,  Set,  Queue",Map,Array,Stream
 Does Map extend Collection?,No,Yes,Only HashMap,Only sorted maps
 What is List?,Ordered collection allowing duplicates,Unordered unique collection,Sorted collection,Key-value pairs
-What are List implementations?,ArrayList, LinkedList, Vector,HashSet, TreeSet,HashMap,ArrayDeque
+What are List implementations?,"ArrayList,  LinkedList,  Vector, HashSet", TreeSet,HashMap,ArrayDeque
 What is ArrayList backed by?,Dynamic array,Linked nodes,Hash table,Tree
 What is the default ArrayList capacity?,10,0,16,100
 What happens when ArrayList is full?,Grows by 50%,Doubles,Fixed size,Exception thrown
 What is ArrayList best for?,Random access,Frequent insertion/deletion at middle,Thread safety,Sorted data
 What is LinkedList backed by?,Doubly-linked nodes,Array,Singly-linked nodes,Hash table
-What interfaces does LinkedList implement?,List, Deque,Only List,List, Set,List, Map
+What interfaces does LinkedList implement?,"List,  Deque, Only List, List", Set,List, Map
 What is LinkedList best for?,Frequent insertion/deletion,Random access,Sorted data,Thread safety
 What is Vector?,Synchronized ArrayList,Modern collection,Unsynchronized list,Immutable list
 Is Vector thread-safe?,Yes (synchronized methods),No,Only reads,Only writes
@@ -49,7 +49,7 @@ How to make ArrayList thread-safe?,Collections.synchronizedList(),Make it final,
 What does List.of() create?,Unmodifiable list,ArrayList,Modifiable list,Linked list
 Can you add null to List.of()?,No (NullPointerException),Yes,Only one,Only at end
 What is Set?,Collection of unique elements,Ordered collection,Allows duplicates,Key-value pairs
-What are Set implementations?,HashSet, LinkedHashSet, TreeSet,ArrayList, HashMap,Vector,Array
+What are Set implementations?,"HashSet,  LinkedHashSet,  TreeSet, ArrayList", HashMap,Vector,Array
 What is HashSet backed by?,HashMap,Hash table,Array,Tree
 What is HashSet time complexity?,O(1) average for add/remove/contains,O(n),O(log n),O(n²)
 Does HashSet maintain order?,No,Yes,Insertion order,Sorted order
@@ -60,19 +60,19 @@ What is TreeSet time complexity?,O(log n),O(1),O(n),O(n log n)
 What does TreeSet require?,Elements implement Comparable or provide Comparator,Only Comparable,Only Comparator,Nothing
 Can TreeSet contain null?,No (Java 7+),Yes,Only one,Only with comparator
 What is Queue?,Collection for holding elements before processing,Random access collection,Sorted collection,Duplicate-free collection
-What are Queue methods?,offer(), poll(), peek(),put(), get(), remove(),add(), delete(), find(),insert(), extract()
-What does offer() do?,Adds element, returns false if fails,Throws exception,Returns null,Removes element
-What does poll() do?,Retrieves and removes head, null if empty,Throws exception,Only retrieves,Adds element
-What does peek() do?,Retrieves head without removal, null if empty,Removes head,Throws exception,Adds element
-What is difference between offer() and add()?,offer() returns false, add() throws exception,No difference,offer() is faster,add() is deprecated
-What are Queue implementations?,LinkedList, PriorityQueue, ArrayDeque,ArrayList, HashSet,TreeMap,Vector
+What are Queue methods?,"offer(),  poll(),  peek(), put(),  get(),  remove(), add(),  delete()", find(),insert(), extract()
+What does offer() do?,"Adds element,  returns false if fails",Throws exception,Returns null,Removes element
+What does poll() do?,"Retrieves and removes head,  null if empty",Throws exception,Only retrieves,Adds element
+What does peek() do?,"Retrieves head without removal,  null if empty",Removes head,Throws exception,Adds element
+What is difference between offer() and add()?,"offer() returns false,  add() throws exception",No difference,offer() is faster,add() is deprecated
+What are Queue implementations?,"LinkedList,  PriorityQueue,  ArrayDeque, ArrayList", HashSet,TreeMap,Vector
 What is PriorityQueue?,Queue ordered by natural order or comparator,FIFO queue,LIFO queue,Random access queue
 What is PriorityQueue backed by?,Binary heap,Linked nodes,Array,Hash table
 What is PriorityQueue time complexity?,O(log n) for offer/poll,O(1),O(n),O(n log n)
 Can PriorityQueue contain null?,No,Yes,Only one,Only with comparator
 What is Deque?,Double-ended queue,Single-ended queue,Stack,List
-What are Deque implementations?,ArrayDeque, LinkedList,ArrayList,PriorityQueue,HashSet
-What can Deque be used as?,Queue, Stack, both,Only queue,Only stack,Neither
+What are Deque implementations?,"ArrayDeque,  LinkedList",ArrayList,PriorityQueue,HashSet
+What can Deque be used as?,"Queue,  Stack,  both",Only queue,Only stack,Neither
 What does Deque.addFirst() do?,Adds element at front,Adds at end,Removes from front,Returns first
 What does Deque.addLast() do?,Adds element at end,Adds at front,Removes from end,Returns last
 What is ArrayDeque?,Resizable array deque,Fixed-size deque,Linked deque,Thread-safe deque
@@ -80,7 +80,7 @@ Is ArrayDeque thread-safe?,No,Yes,Only reads,Only writes
 Can ArrayDeque contain null?,No,Yes,Only one,Only at ends
 What is Map?,Collection of key-value pairs,Ordered collection,Set of values,List of keys
 Does Map extend Collection?,No,Yes,Only sorted maps,Only hash maps
-What are Map implementations?,HashMap, LinkedHashMap, TreeMap, Hashtable,ArrayList, HashSet,Vector,PriorityQueue
+What are Map implementations?,"HashMap,  LinkedHashMap,  TreeMap,  Hashtable, ArrayList", HashSet,Vector,PriorityQueue
 What is HashMap backed by?,Hash table (array of buckets),Tree,Array,Linked list
 What is HashMap time complexity?,O(1) average,O(n),O(log n),O(n log n)
 Can HashMap have null key?,Yes (one null key),No,Multiple nulls,Only with values
@@ -118,24 +118,24 @@ What does map.entrySet() return?,Set view of entries,List of entries,Map of entr
 Can you modify map through keySet()?,Yes (removes reflect in map),No,Only add,Only clear
 What is Iterator?,Object to traverse collection,Collection type,Index,Stream
 How do you get Iterator?,collection.iterator(),new Iterator(),Iterator.of(),collection.getIterator()
-What are Iterator methods?,hasNext(), next(), remove(),has(), get(), delete(),more(), current(),peek(), poll()
+What are Iterator methods?,"hasNext(),  next(),  remove(), has(),  get(),  delete(), more()", current(),peek(), poll()
 Can you modify collection during iteration?,No (use Iterator.remove()),Yes,Only add,Only remove
 What exception for concurrent modification?,ConcurrentModificationException,IllegalStateException,UnsupportedOperationException,RuntimeException
 What is fail-fast iterator?,Throws ConcurrentModificationException if modified,Never fails,Allows modification,Copies collection
-What is fail-safe iterator?,Works on copy, allows modification,Throws exception,Prevents modification,Fastest iterator
+What is fail-safe iterator?,"Works on copy,  allows modification",Throws exception,Prevents modification,Fastest iterator
 Which collections have fail-safe iterators?,Concurrent collections,All collections,None,Only List
 What is ListIterator?,Bidirectional iterator for List,Forward-only iterator,Set iterator,Map iterator
-What extra methods does ListIterator have?,previous(), hasPrevious(), add(), set(),Nothing extra,Only remove(),Only reverse()
+What extra methods does ListIterator have?,"previous(),  hasPrevious(),  add(),  set()",Nothing extra,Only remove(),Only reverse()
 Can ListIterator add elements?,Yes,No,Only at end,Only at start
 What is forEach()?,Method to iterate with lambda,For loop,Iterator,Stream operation
 What is Comparable interface?,Defines natural ordering via compareTo(),Compares two objects,Comparison operator,Optional comparison
 What is Comparator interface?,Defines custom ordering via compare(),Natural ordering,Comparison result,Comparable implementation
-What does compareTo() return?,Negative, zero, or positive int,Boolean,Object,Void
+What does compareTo() return?,"Negative,  zero,  or positive int",Boolean,Object,Void
 What does compare() take?,Two objects to compare,One object,Comparator,Nothing
 Can you have multiple Comparators?,Yes,No,Only two,Only one per class
 What is Collections.sort()?,Sorts list in place,Returns sorted copy,Sorts array,Creates sorted list
-What is Comparable vs Comparator use?,Comparable for natural, Comparator for custom,Same thing,Comparator deprecated,Comparable is custom
-What is difference between Comparable and Comparator?,Comparable in class, Comparator external,No difference,Comparable is newer,Comparator is faster
+What is Comparable vs Comparator use?,"Comparable for natural,  Comparator for custom",Same thing,Comparator deprecated,Comparable is custom
+What is difference between Comparable and Comparator?,"Comparable in class,  Comparator external",No difference,Comparable is newer,Comparator is faster
 What is Collections.reverse()?,Reverses list order,Returns reversed copy,Reverses array,Sorts descending
 What is Collections.shuffle()?,Randomly permutes list,Sorts list,Reverses list,Removes duplicates
 What is Collections.frequency()?,Counts occurrences of element,Returns most frequent,Returns index,Calculates probability
@@ -143,8 +143,8 @@ What is Collections.max()?,Returns maximum element,Returns index of max,Sorts co
 What is Collections.min()?,Returns minimum element,Returns index of min,Sorts collection,Returns first element
 What is Collections.disjoint()?,Checks if no common elements,Checks if same,Returns difference,Returns union
 What is Collections.addAll()?,Adds all elements to collection,Creates new collection,Merges collections,Returns combined
-What is Arrays vs Collections?,Arrays for arrays, Collections for collections,Same thing,Arrays deprecated,Collections for arrays
+What is Arrays vs Collections?,"Arrays for arrays,  Collections for collections",Same thing,Arrays deprecated,Collections for arrays
 Can you convert array to list?,Yes (Arrays.asList()),No,Only primitive arrays,Only object arrays
 Can you convert list to array?,Yes (list.toArray()),No,Only ArrayList,Only LinkedList
 What does list.toArray() return?,Object[] or typed array if argument provided,ArrayList,List,Array copy
-What is difference between Collection and Collections?,Collection is interface, Collections is utility class,Same thing,Collections deprecated,Collection is class
+What is difference between Collection and Collections?,"Collection is interface,  Collections is utility class",Same thing,Collections deprecated,Collection is class

@@ -1,13 +1,13 @@
 Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
 What is a lambda expression?,Anonymous function implementation,Named function,Class,Interface
-What is the lambda syntax?,"(parameters) -> expression or block",parameters => expression,function(parameters),lambda parameters: expression
+What is the lambda syntax?,(parameters) -> expression or block,parameters => expression,function(parameters),lambda parameters: expression
 Can lambda expressions have zero parameters?,Yes (use empty parentheses),No,Only one required,At least two
 Can lambda expressions have one parameter?,Yes (parentheses optional),No,Parentheses required,Not allowed
 "For single parameter, are parentheses required?",No (optional),Yes (required),Only for types,Only for blocks
 When are braces required in lambda?,For multiple statements,Always,Never,Only with return
 When is return keyword required?,With braces and non-void return,Always,Never,Only for objects
-"What does () -> 42 represent?",Lambda with no parameters returning 42,Invalid syntax,Lambda with 42 parameters,Method reference
-"What does x -> x * 2 represent?",Lambda taking x and returning x * 2,Invalid syntax,Method call,Variable assignment
+What does () -> 42 represent?,Lambda with no parameters returning 42,Invalid syntax,Lambda with 42 parameters,Method reference
+What does x -> x * 2 represent?,Lambda taking x and returning x * 2,Invalid syntax,Method call,Variable assignment
 "What does (x, y) -> x + y represent?",Lambda taking two parameters and returning sum,Invalid syntax,Method with two arguments,Addition operation
 What is a functional interface?,Interface with exactly one abstract method,Interface with multiple methods,Abstract class,Concrete class
 Can functional interfaces have default methods?,Yes,No,Only one,Only private
@@ -26,15 +26,15 @@ What does BiConsumer do?,Accepts two parameters,Accepts one parameter,Returns tw
 What does Predicate interface do?,Tests condition (returns boolean),Transforms value,Consumes value,Supplies value
 What method does Predicate have?,test(),check(),evaluate(),validate()
 What does Predicate<T> return?,boolean,T,void,Optional<Boolean>
-Can Predicate have default methods?,Yes (and(), or(), negate()),No,Only one,Only custom
+Can Predicate have default methods?,"Yes (and(),  or(),  negate())",No,Only one,Only custom
 What does Function interface do?,Transforms input to output,Tests condition,Consumes value,Supplies value
 What method does Function have?,apply(),execute(),transform(),map()
-What does Function<T, R> accept and return?,Accepts T, returns R,Accepts R, returns T,Only accepts T,Only returns R
-What does BiFunction do?,Accepts two parameters, returns one,Accepts one, returns two,Tests two values,Consumes two values
+What does Function<T," R> accept and return?, Accepts T,  returns R, Accepts R", returns T,Only accepts T,Only returns R
+What does BiFunction do?,"Accepts two parameters,  returns one, Accepts one", returns two,Tests two values,Consumes two values
 What does UnaryOperator do?,Accepts and returns same type,Different input/output types,No parameters,No return value
-What interface does UnaryOperator extend?,Function<T, T>,Operator,Function,Consumer
-What does BinaryOperator do?,Accepts two parameters of same type, returns same type,Different types,Three parameters,No return
-What interface does BinaryOperator extend?,BiFunction<T, T, T>,Operator,Function,BiFunction
+What interface does UnaryOperator extend?,"Function<T,  T>",Operator,Function,Consumer
+What does BinaryOperator do?,"Accepts two parameters of same type,  returns same type",Different types,Three parameters,No return
+What interface does BinaryOperator extend?,"BiFunction<T,  T,  T>",Operator,Function,BiFunction
 What does filter() require?,Predicate,Function,Consumer,Supplier
 What does map() require?,Function,Predicate,Consumer,Supplier
 What does forEach() require?,Consumer,Function,Predicate,Supplier
@@ -44,20 +44,20 @@ What does reduce() accumulator require?,BinaryOperator,UnaryOperator,Function,Co
 What does sorted() with parameter require?,Comparator,Comparable,Function,Predicate
 Can you use lambda where functional interface expected?,Yes,No,Only for Predicate,Only for Function
 What is method reference?,Shorthand for lambda,Method call,Lambda expression,Anonymous class
-"What does String::length represent?",Method reference to length method,Lambda expression,Method call,Static method
-"What does System.out::println represent?",Method reference to println,Lambda expression,Static method reference,Constructor reference
-"What does ArrayList::new represent?",Constructor reference,Method reference,Lambda expression,Object creation
-What are the types of method references?,Static, instance, arbitrary object, constructor,Only static,Only instance,Only constructor
-"What does Math::max represent?",Static method reference,Instance method reference,Constructor reference,Lambda
-"What does list::add represent?",Instance method reference on specific object,Static method reference,Constructor reference,Lambda
-"What does String::compareTo represent?",Instance method reference on arbitrary object,Static method reference,Constructor reference,Lambda
+What does String::length represent?,Method reference to length method,Lambda expression,Method call,Static method
+What does System.out::println represent?,Method reference to println,Lambda expression,Static method reference,Constructor reference
+What does ArrayList::new represent?,Constructor reference,Method reference,Lambda expression,Object creation
+What are the types of method references?,"Static,  instance,  arbitrary object,  constructor",Only static,Only instance,Only constructor
+What does Math::max represent?,Static method reference,Instance method reference,Constructor reference,Lambda
+What does list::add represent?,Instance method reference on specific object,Static method reference,Constructor reference,Lambda
+What does String::compareTo represent?,Instance method reference on arbitrary object,Static method reference,Constructor reference,Lambda
 Can method reference replace lambda?,Yes (when lambda calls single method),No,Always,Never
 What does IntStream represent?,Stream of primitive int values,Stream of Integer objects,Integer array,Collection of ints
 What does DoubleStream represent?,Stream of primitive double values,Stream of Double objects,Double array,Collection of doubles
 What does LongStream represent?,Stream of primitive long values,Stream of Long objects,Long array,Collection of longs
 Why use primitive streams?,Avoid boxing/unboxing overhead,No advantage,Required for primitives,Simpler syntax
-What does IntStream.range(1, 10) produce?,Ints from 1 to 9,Ints from 1 to 10,Ints from 0 to 9,Ints from 0 to 10
-What does IntStream.rangeClosed(1, 10) produce?,Ints from 1 to 10,Ints from 1 to 9,Ints from 0 to 10,Ints from 2 to 10
+What does IntStream.range(1," 10) produce?, Ints from 1 to 9",Ints from 1 to 10,Ints from 0 to 9,Ints from 0 to 10
+What does IntStream.rangeClosed(1," 10) produce?, Ints from 1 to 10",Ints from 1 to 9,Ints from 0 to 10,Ints from 2 to 10
 Does range() include end value?,No,Yes,Sometimes,Depends on parameters
 Does rangeClosed() include end value?,Yes,No,Sometimes,Depends on parameters
 What does IntStream.sum() return?,int,Integer,long,OptionalInt

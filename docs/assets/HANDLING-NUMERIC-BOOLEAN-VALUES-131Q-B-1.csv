@@ -22,24 +22,24 @@ What does Integer.valueOf() do?,Converts to Integer wrapper,Converts to int,Gets
 What does Integer.parseInt() return?,int primitive,Integer wrapper,String,long
 Can parseInt() throw exception?,Yes (NumberFormatException),No,Only for invalid,Only for null
 What is the cache range for Integer?,−128 to 127,0 to 255,−256 to 255,All values
-"What does Integer.valueOf(100) == Integer.valueOf(100) return?",true (cached),false,Compilation error,NullPointerException
-"What does Integer.valueOf(200) == Integer.valueOf(200) return?",false (not cached),true,Compilation error,NullPointerException
+What does Integer.valueOf(100) == Integer.valueOf(100) return?,true (cached),false,Compilation error,NullPointerException
+What does Integer.valueOf(200) == Integer.valueOf(200) return?,false (not cached),true,Compilation error,NullPointerException
 What does Math.abs() return?,Absolute value,Rounded value,Ceiling value,Floor value
 What does Math.ceil() return?,Smallest integer >= argument,Largest integer <= argument,Rounded value,Absolute value
 What does Math.floor() return?,Largest integer <= argument,Smallest integer >= argument,Rounded value,Absolute value
 What does Math.round() return?,Nearest integer,Ceiling value,Floor value,Absolute value
 What type does Math.round(float) return?,int,long,float,double
 What type does Math.round(double) return?,long,int,double,float
-What does Math.max(a, b) return?,Larger value,Smaller value,Sum,Average
-What does Math.min(a, b) return?,Smaller value,Larger value,Difference,Average
-What does Math.pow(a, b) return?,a raised to power b,a * b,a + b,a / b
+What does Math.max(a," b) return?, Larger value",Smaller value,Sum,Average
+What does Math.min(a," b) return?, Smaller value",Larger value,Difference,Average
+What does Math.pow(a," b) return?, a raised to power b",a * b,a + b,a / b
 What does Math.sqrt() return?,Square root,Cube root,Absolute value,Power of 2
 What does Math.random() return?,Double between 0.0 (inclusive) and 1.0 (exclusive),Int between 0 and 100,Random int,Boolean
 What is the return type of Math.random()?,double,int,float,Double
 What does Math.PI represent?,The value of pi,180 degrees,Euler's number,Golden ratio
 What does Math.E represent?,Euler's number,Pi,100,Golden ratio
 What operator has highest precedence?,Parentheses (),Multiplication *,Addition +,Assignment =
-What is the order of arithmetic operations?,Parentheses, Exponents, Multiplication/Division, Addition/Subtraction,Left to right,Addition first,Equal precedence
+What is the order of arithmetic operations?,"Parentheses,  Exponents,  Multiplication/Division,  Addition/Subtraction",Left to right,Addition first,Equal precedence
 Do multiplication and division have same precedence?,Yes (left to right),No,Multiplication higher,Division higher
 Do addition and subtraction have same precedence?,Yes (left to right),No,Addition higher,Subtraction higher
 What is 2 + 3 * 4?,14,20,24,11
@@ -72,9 +72,9 @@ What is -5 % 2?,-1,1,2,-2
 What does ++ do?,Increments by 1,Decrements by 1,Multiplies by 2,Adds 2
 What does −− do?,Decrements by 1,Increments by 1,Divides by 2,Subtracts 2
 What is the difference between ++i and i++?,++i increments then returns; i++ returns then increments,No difference,i++ is faster,++i is invalid
-What does int x = 5; y = ++x; result in?,x=6, y=6,x=5, y=5,x=6, y=5,x=5, y=6
-What does int x = 5; y = x++; result in?,x=6, y=5,x=5, y=5,x=6, y=6,x=5, y=6
-What are the logical operators?,&&, ||, !,&, |, ^,AND, OR, NOT,and, or, not
+What does int x = 5; y = ++x; result in?,"x=6,  y=6, x=5,  y=5, x=6", y=5,x=5, y=6
+What does int x = 5; y = x++; result in?,"x=6,  y=5, x=5,  y=5, x=6", y=6,x=5, y=6
+What are the logical operators?,"&&,  ||,  !, &,  |,  ^, AND,  OR,  NOT",and, or, not
 What does && do?,Logical AND,Bitwise AND,Logical OR,Concatenation
 What does || do?,Logical OR,Bitwise OR,Logical AND,Division
 What does ! do?,Logical NOT,Factorial,Not equal,Negation
@@ -84,7 +84,7 @@ What does true && false evaluate to?,false,true,Error,null
 What does true || false evaluate to?,true,false,Error,null
 What does !true evaluate to?,false,true,Error,null
 What does false && (expensive call) do?,Returns false without calling,Calls then returns false,Always calls,Error
-What are the bitwise operators?,"&, |, ^, ~",&&, ||, !,AND, OR, NOT,+, -, *
+What are the bitwise operators?,"&, |, ^, ~, &&,  ||,  !, AND,  OR,  NOT",+, -, *
 What does & do?,Bitwise AND,Logical AND,Bitwise OR,Concatenation
 What does | do?,Bitwise OR,Logical OR,Bitwise AND,Division
 What does ^ do?,Bitwise XOR,Power,Bitwise AND,Logical XOR
@@ -92,7 +92,7 @@ What does ~ do?,Bitwise NOT,Approximate,Not equal,Negation
 What is 5 & 3?,1,5,3,8
 What is 5 | 3?,7,5,3,2
 What is 5 ^ 3?,6,5,3,2
-What are the comparison operators?,"==, !=, <, >, <=, >=",AND, OR, NOT,+, -, *,is, equals
+What are the comparison operators?,"==, !=, <, >, <=, >=, AND,  OR,  NOT, +,  -", *,is, equals
 What does == check?,Value equality,Reference equality,Type equality,Both value and type
 What does != do?,Checks inequality,Assignment,Logical NOT,Factorial
 Can you use == with primitives?,Yes,No,Only int,Only boolean
@@ -101,11 +101,11 @@ What does < do?,Less than comparison,Less than or equal,Greater than,Assignment
 What does >= do?,Greater than or equal,Greater than,Less than or equal,Assignment
 What is the result type of comparison?,boolean,int,same as operands,Object
 What does 5 > 3 evaluate to?,true,false,1,5
-What is the ternary operator?,"condition ? true_expr : false_expr",if-else,switch,for loop
+What is the ternary operator?,condition ? true_expr : false_expr,if-else,switch,for loop
 What type must ternary condition be?,boolean,int,any type,Object
 Can ternary operator return different types?,Yes (with type promotion),No,Only same,Compilation error
 What does true ? 1 : 2.0 return?,1.0 (double),1 (int),2.0,Error
-What is compound assignment?,+=, -=, *=, /=, %=,=, ==, !=,++, --,+, -
+What is compound assignment?,"+=,  -=,  *=,  /=,  %=, =,  ==,  !=, ++", --,+, -
 What does x += 5 do?,x = x + 5,x = 5,x + 5,5 += x
 Does compound assignment include cast?,Yes (implicit),No,Sometimes,Only for int
 What does byte b = 10; b += 300; do?,Compiles with overflow,Compilation error,b becomes 310,Error
@@ -127,6 +127,6 @@ What is NaN?,Not a Number,Null,Zero,Infinity
 How do you check for NaN?,Double.isNaN(),== NaN,value == NaN,NaN.check()
 Does NaN == NaN?,false,true,Error,NullPointerException
 What does Boolean.parseBoolean() return?,boolean primitive,Boolean wrapper,String,int
-What does Boolean.parseBoolean("true") return?,true,false,"true",Error
-What does Boolean.parseBoolean("false") return?,false,true,"false",Error
-What does Boolean.parseBoolean("anything else") return?,false,true,Error,null
+"What does Boolean.parseBoolean(""true"") return?",true,false,true,Error
+"What does Boolean.parseBoolean(""false"") return?",false,true,false,Error
+"What does Boolean.parseBoolean(""anything else"") return?",false,true,Error,null

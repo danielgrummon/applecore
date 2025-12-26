@@ -8,10 +8,10 @@ Can Runnable throw checked exceptions?,No,Yes,Only IOException,Only in Java 17
 Can Callable throw checked exceptions?,Yes,No,Only RuntimeException,Only in call()
 Does Runnable return a value?,No,Yes,Only with Future,Only with submit()
 Does Callable return a value?,Yes,No,Only with get(),Only with Future
-"How do you create a thread with Runnable?",new Thread(runnable).start(),new Thread().start(),runnable.start(),Thread.execute(runnable)
+How do you create a thread with Runnable?,new Thread(runnable).start(),new Thread().start(),runnable.start(),Thread.execute(runnable)
 Can you use lambda for Runnable?,Yes (functional interface),No,Only in Java 17,Only named classes
 Can you use lambda for Callable?,Yes (functional interface),No,Only in Java 17,Only named classes
-What are the thread lifecycle states?,NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED,Only NEW and TERMINATED,Only RUNNING and STOPPED,NEW, RUNNING, TERMINATED
+What are the thread lifecycle states?,"NEW,  RUNNABLE,  BLOCKED,  WAITING,  TIMED_WAITING,  TERMINATED, Only NEW and TERMINATED, Only RUNNING and STOPPED",NEW, RUNNING, TERMINATED
 What is the initial state of a thread?,NEW,RUNNABLE,READY,INITIALIZED
 What state is a thread in after start()?,RUNNABLE,RUNNING,STARTED,ACTIVE
 What state is a thread waiting for a lock?,BLOCKED,WAITING,RUNNABLE,LOCKED
@@ -37,7 +37,7 @@ What does execute() return?,void,Future<?>,Boolean,Result
 What does submit(Runnable) return?,Future<?>,void,Future<Void>,null
 What does submit(Callable<T>) return?,Future<T>,T,void,Result<T>
 "Can you use submit(Runnable, T)?",Yes (returns Future<T>),No,Only Callable,Only with result
-What does the second parameter in submit(Runnable, T) do?,Result to return on completion,Initial value,Thread name,Priority
+What does the second parameter in submit(Runnable," T) do?, Result to return on completion",Initial value,Thread name,Priority
 Which method submits tasks and waits for all?,invokeAll(),submitAll(),executeAll(),waitForAll()
 Which method submits tasks and returns first result?,invokeAny(),submitAny(),executeAny(),firstResult()
 What does invokeAll() return?,List<Future<T>>,List<T>,Future<List<T>>,Collection<Future<T>>
@@ -55,7 +55,7 @@ Does ScheduledExecutorService extend ExecutorService?,Yes,No,Only in Java 17,Sep
 What does schedule() return?,ScheduledFuture,Future,void,Task
 Can you cancel scheduled task?,Yes (with Future.cancel()),No,Only before execution,Only after execution
 Which class is the base implementation of ExecutorService?,ThreadPoolExecutor,ExecutorServiceImpl,BaseExecutor,StandardExecutor
-What are ThreadPoolExecutor core parameters?,corePoolSize, maximumPoolSize, keepAliveTime,Only thread count,Only timeout,Size and queue only
+What are ThreadPoolExecutor core parameters?,"corePoolSize,  maximumPoolSize,  keepAliveTime",Only thread count,Only timeout,Size and queue only
 What is corePoolSize?,Minimum threads to keep alive,Maximum threads,Initial threads,Default is 1
 What is maximumPoolSize?,Maximum threads allowed,Minimum threads,Queue size,Default is 10
 What happens when core threads are busy and new task arrives?,Queued,Create new thread,Rejected,Blocks
@@ -63,7 +63,7 @@ When are threads created beyond core size?,When queue is full,Immediately,Never,
 What is keepAliveTime?,Time idle threads wait before termination,Thread lifetime,Task timeout,Schedule interval
 Which queue is commonly used in ThreadPoolExecutor?,LinkedBlockingQueue,ArrayBlockingQueue,PriorityQueue,SynchronousQueue
 What is RejectedExecutionHandler?,Handles rejected tasks,Handles exceptions,Handles timeouts,Handles shutdown
-What are rejection policies?,ABORT, DISCARD, DISCARD_OLDEST, CALLER_RUNS,ABORT only,THROW only,ERROR only
+What are rejection policies?,"ABORT,  DISCARD,  DISCARD_OLDEST,  CALLER_RUNS",ABORT only,THROW only,ERROR only
 What does AbortPolicy do?,Throws RejectedExecutionException,Silently discards,Runs in caller,Discards oldest
 What does DiscardPolicy do?,Silently discards task,Throws exception,Runs in caller,Queues forever
 What does DiscardOldestPolicy do?,Discards oldest queued task,Discards new task,Throws exception,Runs in caller
@@ -104,7 +104,7 @@ Is ThreadGroup commonly used?,No (mostly legacy),Yes (recommended),Required,Only
 Which method handles uncaught exceptions?,setUncaughtExceptionHandler(),setCatchHandler(),setExceptionHandler(),onException()
 Can you set default exception handler?,Yes (static method),No,Only per thread,Only in Java 17
 What interface is UncaughtExceptionHandler?,Thread.UncaughtExceptionHandler,ExceptionHandler,UncaughtHandler,ThreadExceptionHandler
-What method does UncaughtExceptionHandler require?,uncaughtException(Thread, Throwable),handle(Exception),catch(Throwable),onException(Throwable)
+What method does UncaughtExceptionHandler require?,"uncaughtException(Thread,  Throwable)",handle(Exception),catch(Throwable),onException(Throwable)
 Are daemon thread exceptions handled differently?,JVM may exit before handler runs,Same as non-daemon,Always handled,Never handled
 Which thread always exists?,main thread,daemon thread,worker thread,executor thread
 Is main thread a daemon?,No,Yes,Configurable,Depends on OS
@@ -112,6 +112,6 @@ Can you make main thread daemon?,No (throws IllegalThreadStateException),Yes,Aft
 What happens if exception in Runnable?,Task terminates,Thread pool terminates,JVM exits,Exception ignored
 What happens if exception in Callable?,Wrapped in ExecutionException,Task terminates silently,Thread terminates,JVM exits
 How do you get Callable exception?,Catch ExecutionException from get(),Try-catch in call(),Automatically propagated,Exception handler
-Does Future.get() throw exceptions?,Yes (ExecutionException, InterruptedException),No,Only ExecutionException,Only InterruptedException
+Does Future.get() throw exceptions?,"Yes (ExecutionException,  InterruptedException)",No,Only ExecutionException,Only InterruptedException
 What wraps the original exception in Future?,ExecutionException,RuntimeException,Exception,Throwable
 Which method gets cause from ExecutionException?,getCause(),getOriginal(),getException(),getRoot()

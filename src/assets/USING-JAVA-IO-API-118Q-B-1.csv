@@ -16,7 +16,7 @@ Which method reads a single byte from InputStream?,read(),readByte(),get(),next(
 What does InputStream.read() return when end of stream?,−1,0,null,EOFException
 What is the return type of InputStream.read()?,int,byte,char,short
 Which method reads bytes into an array?,read(byte[]),readBytes(),readArray(),getBytes()
-"What does read(byte[] b) return?",Number of bytes read,byte[],void,boolean
+What does read(byte[] b) return?,Number of bytes read,byte[],void,boolean
 Which class is the parent of all byte input streams?,InputStream,ByteStream,Stream,Input
 Which class is the parent of all byte output streams?,OutputStream,ByteStream,Stream,Output
 Which class is the parent of all character input streams?,Reader,CharStream,Stream,Input
@@ -54,7 +54,7 @@ Does FileNotFoundException extend IOException?,Yes,No,Only in Java 17,They're un
 Which class allows formatted output?,PrintStream,PrintWriter,Both A and B,FormattedWriter
 Which method formats output like printf?,printf(),format(),Both A and B,print()
 Does PrintStream auto-flush?,No (except println),Yes (always),Never,Configurable only
-Which PrintWriter constructor enables auto-flush?,PrintWriter(OutputStream, boolean),PrintWriter(boolean),All constructors,None
+Which PrintWriter constructor enables auto-flush?,"PrintWriter(OutputStream,  boolean)",PrintWriter(boolean),All constructors,None
 What does print() do vs println()?,println() adds newline,print() adds newline,No difference,println() flushes
 Which class allows character counting?,LineNumberReader,CharCounter,CountingReader,NumberReader
 Which method gets current line number?,getLineNumber(),lineNumber(),getLine(),currentLine()
@@ -66,7 +66,7 @@ Does mark/reset work on all streams?,No,Yes,Only buffered,Only file streams
 Which method checks if mark is supported?,markSupported(),supportsmark(),canMark(),isMarkable()
 How many bytes can InputStream.read(byte[]) read at once?,Up to array length,Exactly array length,Only one,Unlimited
 What happens if file already exists with FileOutputStream?,Overwritten,Appends,Exception,Prompts user
-How do you append to a file with FileOutputStream?,FileOutputStream(file, true),FileOutputStream(file).append(),FileOutputStream.append(file),Cannot append
+How do you append to a file with FileOutputStream?,"FileOutputStream(file,  true)",FileOutputStream(file).append(),FileOutputStream.append(file),Cannot append
 Which constructor parameter enables append mode?,boolean append,OpenOption,WriteMode,AppendMode
 Which stream can read from standard input easily?,Scanner,BufferedReader,Both A and B,InputStreamReader
 Which Scanner method reads next int?,nextInt(),readInt(),getInt(),nextInteger()
@@ -84,7 +84,7 @@ Which bits are written from int in write(int)?,Lower 8 bits,All 32 bits,Upper 8 
 Which Writer method writes a string?,write(String),writeString(String),print(String),output(String)
 Which Writer method writes a character array?,write(char[]),writeChars(char[]),print(char[]),output(char[])
 Can you write part of an array?,Yes,No,Only byte arrays,Only char arrays
-"Which method writes portion of array? write(arr, offset, length)",write(char[], int, int),write(char[], int),writeRange(char[], int, int),Cannot write portion
+"Which method writes portion of array? write(arr, offset, length)","write(char[],  int,  int), write(char[],  int), writeRange(char[]", int, int),Cannot write portion
 What must you do after writing to ensure data is saved?,flush() and close(),Only close(),Only flush(),Neither
 What happens if you don't flush?,Data may be lost,Compilation error,Runtime exception,Nothing
 Does close() call flush()?,Yes,No,Sometimes,Only buffered

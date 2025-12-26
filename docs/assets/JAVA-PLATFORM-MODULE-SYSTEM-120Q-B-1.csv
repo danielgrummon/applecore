@@ -19,7 +19,7 @@ Can you combine requires static transitive?,Yes,No,Only static,Only transitive
 What does exports do?,Makes package accessible to other modules,Opens for reflection,Requires dependency,Provides service
 Does exports allow reflection?,No (only public access),Yes,Sometimes,Only with opens
 Can you export to specific modules?,Yes (qualified exports),No,Only one module,All or nothing
-"What is the syntax for qualified exports?",exports pkg to module1, module2,exports pkg for module1,exports pkg : module1,exports pkg (module1)
+What is the syntax for qualified exports?,"exports pkg to module1,  module2",exports pkg for module1,exports pkg : module1,exports pkg (module1)
 What does opens do?,Allows deep reflection at runtime,Exports package,Requires dependency,Provides service
 Does opens grant compile-time access?,No,Yes,Sometimes,Only public
 Can you open to specific modules?,Yes (qualified opens),No,Only one module,All or nothing
@@ -63,7 +63,7 @@ What option specifies module path?,--module-path or -p,--modulepath,-mp,--module
 Can you mix module path and classpath?,Yes,No,Only in Java 17,Only for automatic
 Which takes precedence: module path or classpath?,Module path,Classpath,Equal,Depends on order
 What does -m or --module specify?,Main module and class,Module path,Module name only,Main class only
-"What is the format for -m?",module/main.class,module.main.class,module:main.class,module-main.class
+What is the format for -m?,module/main.class,module.main.class,module:main.class,module-main.class
 What does jdeps do?,Analyzes dependencies,Compiles modules,Runs modules,Creates modules
 What does jdeps --generate-module-info do?,Generates module descriptors,Analyzes dependencies,Lists modules,Compiles modules
 What does jmod do?,Creates JMOD files,Creates modules,Analyzes dependencies,Compiles Java

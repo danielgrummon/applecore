@@ -11,9 +11,9 @@ Can interface extend interface?,Yes (multiple),No,Only one,Only same package
 Can interface extend multiple interfaces?,Yes,No,Only two,Only related
 Can class implement multiple interfaces?,Yes,No,Only two,Only related
 What keyword implements interface?,implements,extends,uses,interface
-Can class extend and implement?,Yes (extends first, then implements),No,Only implement,Only extend
+Can class extend and implement?,"Yes (extends first,  then implements)",No,Only implement,Only extend
 What must implementing class do?,Provide implementations for all abstract methods or be abstract,Nothing,Only some methods,Only public methods
-Can interface method be private?,Yes (Java 9+, for helper methods),No,Only default,Only static
+Can interface method be private?,"Yes (Java 9+,  for helper methods)",No,Only default,Only static
 Can interface method be protected?,No,Yes,Only abstract,Only default
 Can interface method be package-private?,No,Yes,Only default,Only static
 What is default method?,Method with implementation in interface (Java 8+),Default constructor,First method,Required method
@@ -28,10 +28,10 @@ What if class inherits conflicting defaults?,Must override and resolve,Compilati
 What is static method in interface?,Method belonging to interface (Java 8+),Instance method,Default method,Abstract method
 Can static interface method be inherited?,No,Yes,Only public,Only default
 How do you call static interface method?,InterfaceName.methodName(),instance.methodName(),Inherited,Any way
-Can implementing class override static method?,No (method hiding, not overriding),Yes,Must override,Inherits
+Can implementing class override static method?,"No (method hiding,  not overriding)",Yes,Must override,Inherits
 What is abstract method in interface?,Method without implementation,Method with implementation,Default method,Static method
 Must abstract method have abstract keyword?,No (implicit in interface),Yes,Only before Java 8,Only after Java 8
-Can interface have final methods?,No (for default/static yes, but not useful),Yes,Only default,Only static
+Can interface have final methods?,"No (for default/static yes,  but not useful)",Yes,Only default,Only static
 Can interface be final?,No,Yes,Only marker,Only functional
 Can interface be abstract?,Redundant (implicitly abstract),No,Required,Only with abstract methods
 What is marker interface?,Interface with no methods,Tagged interface,Empty interface,Default interface
@@ -87,7 +87,7 @@ Can annotation extend interface?,No (annotation extends Annotation),Yes,Only mar
 What is sealed interface?,Interface restricting permitted implementations (Java 17),Final interface,Abstract interface,Closed interface
 Can interface be nested?,Yes,No,Only static,Only in class
 Can nested interface be non-static?,Implicitly static,No,Yes,Only in class
-What is access modifier for nested interface?,Can be public, protected, private, package-private,Only public,Only private,Only protected
+What is access modifier for nested interface?,"Can be public,  protected,  private,  package-private",Only public,Only private,Only protected
 Can local class implement interface?,Yes,No,Only anonymous,Only named
 Can anonymous class implement interface?,Yes,No,Only local,Only nested
 Can lambda implement interface with multiple methods?,No (only functional),Yes,Only default methods,Only static methods
@@ -128,4 +128,4 @@ Can overriding narrow exception?,Yes,No,Only unchecked,Only checked
 Can interface method throw exceptions?,Yes (abstract and default can),No,Only unchecked,Only default
 Can implementing method throw fewer exceptions?,Yes,No,Must throw same,Must throw more
 Can implementing method throw more checked exceptions?,No,Yes,Only if declared,Only unchecked
-What is marker vs functional interface difference?,Marker has zero, functional has one abstract method,Same thing,Marker deprecated,Functional is new
+What is marker vs functional interface difference?,"Marker has zero,  functional has one abstract method",Same thing,Marker deprecated,Functional is new

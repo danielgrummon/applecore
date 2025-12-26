@@ -34,8 +34,8 @@ Is findFirst() deterministic in parallel streams?,Yes,No,Only for ordered stream
 Which is faster in parallel streams: findAny or findFirst?,findAny,findFirst,Same speed,Depends on data
 Does skip() work well with parallel streams?,No (poor performance),Yes (excellent),Better than sequential,Same as sequential
 Does limit() work well with parallel streams?,No (limits parallelism),Yes (excellent),Better than sequential,Same performance
-Which reduce operation is safe in parallel?,reduce(identity, accumulator, combiner),reduce(accumulator),Both,Neither
-How many parameters does parallel reduce need?,3 (identity, accumulator, combiner),1,2,4
+Which reduce operation is safe in parallel?,"reduce(identity,  accumulator,  combiner)",reduce(accumulator),Both,Neither
+How many parameters does parallel reduce need?,"3 (identity,  accumulator,  combiner)",1,2,4
 What is the combiner in reduce()?,Combines partial results,Accumulates elements,Provides identity,Filters elements
 Is two-parameter reduce safe for parallel?,No,Yes,Sometimes,Only with commutative operations
 What property should reduce accumulator have?,Associative,Commutative,Both A and B,Neither
@@ -95,7 +95,7 @@ Can you use non-thread-safe collections in parallel streams?,Not recommended,Yes
 Should you synchronize parallel stream operations?,No (defeats purpose),Yes (required),Sometimes,Only terminal operations
 Are lambdas in parallel streams executed concurrently?,Yes,No,Only map(),Only filter()
 Can race conditions occur in parallel streams?,Yes (with shared state),No,Only with reduce(),Only with collect()
-What causes race conditions in parallel streams?,Shared mutable state,Immutable objects,Pure functions,Stateless operations,
+What causes race conditions in parallel streams?,"Shared mutable state, Immutable objects",Pure functions,Stateless operations,
 Should you modify external variables in parallel streams?,No,Yes,Only atomic,Only synchronized
 Are local variables safe in parallel stream operations?,Yes,No,Only final,Only primitive
 Can you use AtomicInteger in parallel streams?,Yes (but not recommended),No,Required,Best practice

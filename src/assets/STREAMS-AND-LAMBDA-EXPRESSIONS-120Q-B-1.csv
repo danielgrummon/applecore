@@ -9,8 +9,8 @@ Which method concatenates two streams?,Stream.concat(),merge(),combine(),join()
 What does reduce() do?,Combines elements to single result,Filters elements,Maps values,Creates stream
 Which collector groups elements?,Collectors.groupingBy(),Collectors.toMap(),Collectors.toList(),Collectors.reducing()
 Which collector partitions elements?,Collectors.partitioningBy(),Collectors.groupingBy(),Collectors.splitting(),Collectors.dividing()
-What does partitioningBy() return?,Map<Boolean, List<T>>,Map<String, List<T>>,List<List<T>>,Set<List<T>>
-What does groupingBy() return?,Map<K, List<V>>,List<V>,Set<V>,Map<K, V>
+What does partitioningBy() return?,"Map<Boolean,  List<T>>, Map<String", List<T>>,List<List<T>>,Set<List<T>>
+What does groupingBy() return?,"Map<K,  List<V>>, List<V>",Set<V>,Map<K, V>
 How many groups does partitioningBy() create?,Exactly 2 (true and false),Variable,1,3
 Is map() an intermediate or terminal operation?,Intermediate,Terminal,Both,Neither
 Is collect() an intermediate or terminal operation?,Terminal,Intermediate,Both,Neither
@@ -53,7 +53,7 @@ What does reduce() require?,BinaryOperator,UnaryOperator,Predicate,Function
 What is the identity value in reduce()?,Starting value that doesn't change result,First element,Last element,Zero
 What does reduce with identity return?,T (not Optional),Optional<T>,Stream<T>,void
 What does reduce without identity return?,Optional<T>,T,Stream<T>,void
-How many parameters can reduce() have?,1, 2, or 3,Only 1,Only 2,Only 3
+How many parameters can reduce() have?,"1,  2,  or 3",Only 1,Only 2,Only 3
 What is the combiner in reduce()?,Combines partial results in parallel,Same as accumulator,Filters elements,Initial value
 Is combiner used in sequential streams?,No,Yes,Sometimes,Always
 When is combiner called?,In parallel streams,In sequential streams,Never,Always
@@ -95,7 +95,7 @@ How many intermediate operations can a stream have?,0 or more,Exactly 1,At least
 When are intermediate operations executed?,When terminal operation is called,Immediately,Never,At creation
 What is lazy evaluation?,Execution delayed until terminal operation,Immediate execution,No execution,Slow execution
 What does short-circuiting mean?,Stops processing when result known,Processes all elements,Only for parallel,Only for sequential
-Which operations are short-circuiting?,anyMatch(), findFirst(), limit(),map(), filter(), sorted(),collect(), reduce(), forEach(),All operations
+Which operations are short-circuiting?,"anyMatch(),  findFirst(),  limit(), map(),  filter(),  sorted(), collect()", reduce(), forEach(),All operations
 Does limit() short-circuit?,Yes,No,Only parallel,Only sequential
 Does allMatch() short-circuit?,Yes,No,Only when false,Only when true
 What does mapToInt() return?,IntStream,Stream<Integer>,Stream<int>,Integer
@@ -105,8 +105,8 @@ What does flatMapToInt() return?,IntStream,Stream<Integer>,Stream<int>,Integer
 What is the benefit of primitive streams?,Better performance (no boxing),No benefit,Easier syntax,More methods
 Which method sums IntStream?,sum(),reduce(),collect(),total()
 Which method averages IntStream?,average(),avg(),mean(),reduce()
-What does IntStream.range(1, 5) create?,Stream of 1, 2, 3, 4,Stream of 1, 2, 3, 4, 5,Stream of 5 elements,Empty stream
-What does IntStream.rangeClosed(1, 5) create?,Stream of 1, 2, 3, 4, 5,Stream of 1, 2, 3, 4,Stream of 6 elements,Empty stream
+What does IntStream.range(1," 5) create?, Stream of 1,  2,  3,  4, Stream of 1,  2,  3,  4", 5,Stream of 5 elements,Empty stream
+What does IntStream.rangeClosed(1," 5) create?, Stream of 1,  2,  3,  4,  5, Stream of 1,  2,  3", 4,Stream of 6 elements,Empty stream
 What does boxed() do on IntStream?,Converts to Stream<Integer>,Wraps in box,Converts to array,Converts to List
 What does partitioningBy() accept?,Predicate,Function,Comparator,Consumer
 Can partitioningBy() have downstream collector?,Yes,No,Only groupingBy,Only counting

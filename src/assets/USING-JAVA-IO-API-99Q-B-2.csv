@@ -18,8 +18,8 @@ Which keyword prevents a field from being serialized?,transient,volatile,tempora
 Are transient fields serialized?,No,Yes,Only primitives,Only objects
 Are static fields serialized?,No,Yes,Only final,Only public
 What is the default value of transient fields after deserialization?,Default value for the type,null,0,Unchanged
-"What is the value of a transient int field after deserialization?",0,null,Unchanged,Error
-"What is the value of a transient String field after deserialization?",null,Empty string,Unchanged,Error
+What is the value of a transient int field after deserialization?,0,null,Unchanged,Error
+What is the value of a transient String field after deserialization?,null,Empty string,Unchanged,Error
 What is serialVersionUID?,Version identifier for serialization,Serial number,Object ID,Version number
 What is the type of serialVersionUID?,long,int,String,UUID
 Should serialVersionUID be static?,Yes,No,Optional,Doesn't matter

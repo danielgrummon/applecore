@@ -10,7 +10,7 @@ Which method interns a String?,intern(),pool(),store(),cache()
 "What does new String(""abc"").equals(""abc"") return?",true (same content),false,Compilation error,NullPointerException
 Which method checks String equality?,equals(),==,compareTo(),compare()
 Which method compares String lexicographically?,compareTo(),equals(),==,compare()
-What does compareTo() return?,Negative, zero, or positive int,boolean,String,void
+What does compareTo() return?,"Negative,  zero,  or positive int",boolean,String,void
 "What does ""abc"".compareTo(""abc"") return?",0,true,false,1
 "What does ""abc"".compareTo(""def"") return?",Negative number,Positive number,0,Equal
 Which method ignores case in comparison?,equalsIgnoreCase(),equals(),compareToIgnoreCase(),Both A and C
@@ -21,7 +21,7 @@ What does length() return?,Number of characters,Size in bytes,Array length,Strin
 Is String length() zero-based?,No (returns count),Yes,Depends,Index-based
 What does substring() return?,New String,Modified original,char[],StringBuilder
 What does substring(beginIndex) return?,String from beginIndex to end,Single character,Error,Full string
-What does substring(beginIndex, endIndex) include?,beginIndex inclusive, endIndex exclusive,Both inclusive,Both exclusive,beginIndex exclusive
+What does substring(beginIndex," endIndex) include?, beginIndex inclusive,  endIndex exclusive",Both inclusive,Both exclusive,beginIndex exclusive
 "What does ""hello"".substring(1, 4) return?",ell,hell,ello,hel
 Does substring() modify original?,No (immutable),Yes,Sometimes,With assignment
 What does indexOf() return?,Index of first occurrence or -1,Always index,Character,boolean
@@ -34,7 +34,7 @@ What does startsWith() return?,boolean,int,String,char
 What does endsWith() return?,boolean,int,String,char
 Can startsWith() have offset?,Yes,No,Only endsWith,Only indexOf
 What does replace() do?,Returns new String with replacements,Modifies original,Returns void,Deletes characters
-What does replace(char, char) replace?,All occurrences,First occurrence,Last occurrence,None
+What does replace(char," char) replace?, All occurrences",First occurrence,Last occurrence,None
 What does replaceFirst() replace?,First occurrence,All occurrences,Last occurrence,Nothing
 What does replaceAll() use?,Regular expression,Plain text,Character only,Index-based
 Is replaceAll() regex-based?,Yes,No,Sometimes,Only in Java 17
@@ -65,9 +65,9 @@ What does indent() do?,Adjusts indentation,Removes spaces,Adds tabs,Error
 What does transform() do?,Applies function to string,Modifies original,Converts type,Error
 When were indent() and transform() added?,Java 12,Java 11,Java 13,Java 17
 What are text blocks?,Multi-line string literals,Text arrays,StringBuilder,String blocks
-What delimiters do text blocks use?,Triple quotes ("""),Double quotes (""),Single quotes ('),Backticks (`)
-When were text blocks introduced?,Java 13 (preview), Java 15 (standard),Java 11,Java 8,Java 17
-"What does text block preserve?",Line breaks and indentation,Only text,Nothing special,Quotes
+What delimiters do text blocks use?,"Triple quotes ("""""")","Double quotes ("""")",Single quotes ('),Backticks (`)
+When were text blocks introduced?,"Java 13 (preview),  Java 15 (standard)",Java 11,Java 8,Java 17
+What does text block preserve?,Line breaks and indentation,Only text,Nothing special,Quotes
 Do text blocks allow embedded quotes?,Yes (no escaping needed),No,Only single quotes,Only with backslash
 What happens to incidental whitespace?,Removed automatically,Preserved,Added,Error
 What is incidental indentation?,Common leading whitespace,All indentation,Trailing spaces,Tab characters
@@ -99,14 +99,14 @@ What does StringBuilder.length() return?,Number of characters,Capacity,Size in b
 Can StringBuilder length exceed capacity?,No (capacity grows),Yes,Error,Only temporarily
 What happens when capacity is exceeded?,Capacity automatically increases,Error,Truncation,Fixed size
 What does String.format() do?,Formats string with placeholders,Formats numbers,Converts type,Error
-What is format specifier syntax?,%d, %s, %f, etc.,${}, {}, [],<>
+What is format specifier syntax?,"%d,  %s,  %f,  etc., ${}", {}, [],<>
 What does %s represent?,String,Separator,Space,Special
 What does %d represent?,Decimal integer,Double,Date,Digit
 What does %f represent?,Floating-point,Format,Function,Fixed
 What does %n represent?,Platform-specific newline,Number,Null,Name
 Can you use printf() with String?,No (System.out.printf()),Yes,Only StringBuilder,Error
 What does String.valueOf() do?,Converts to String,Validates string,Gets value,Error
-Can valueOf() convert null?,Yes (returns "null"),No,Error,Returns empty
+Can valueOf() convert null?,"Yes (returns ""null"")",No,Error,Returns empty
 What does chars() return?,IntStream of char codes,char[],Stream<Character>,String
 What does codePoints() return?,IntStream of Unicode code points,int[],Stream<Integer>,String
 Are chars() and codePoints() same?,No (different for surrogate pairs),Yes,Sometimes,Only ASCII
@@ -117,11 +117,11 @@ What is CharSequence?,Interface for character sequences,Class,String parent,char
 Which classes implement CharSequence?,"String, StringBuilder, StringBuffer",Only String,Only StringBuilder,All text classes
 Can you compare String with ==?,Not recommended (use equals()),Yes (recommended),Always works,Required
 What is string literal optimization?,Compiler combines literals,Runtime optimization,JVM feature,No optimization
-"What does ""a"" + ""b"" compile to?",Single literal "ab",Concatenation operation,StringBuilder,Error
+"What does ""a"" + ""b"" compile to?","Single literal ""ab""",Concatenation operation,StringBuilder,Error
 Does + operator use StringBuilder?,Yes (in loops/complex expressions),No,Always,Never
 When should you use StringBuilder?,Loops and multiple modifications,Single concatenation,Never,Always
 When is String + acceptable?,Simple one-time concatenation,Never,Always,Loops
 What does String.copyValueOf() do?,Creates String from char[],Copies string,Gets value,Returns char[]
 Is String final?,Yes,No,Only methods,Only in Java 17
 Can you extend String?,No,Yes,Only private,Only abstract
-Why is String immutable?,Security, caching, thread-safety,Performance only,No reason,Legacy
+Why is String immutable?,"Security,  caching,  thread-safety",Performance only,No reason,Legacy

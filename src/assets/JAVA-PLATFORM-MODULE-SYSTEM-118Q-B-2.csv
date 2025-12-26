@@ -5,7 +5,7 @@ What does -d specify in javac?,Output directory for class files,Source directory
 What option specifies module path in javac?,--module-path or -p,--modules,-mp,--module-dir
 What option specifies classpath in javac?,--class-path or -cp,--classpath-dir,-c,--path
 Can you use both classpath and module path?,Yes,No,Only in Java 17,Only for automatic modules
-"How do you compile a module?",javac -d out --module-source-path src -m module.name,javac -d out src/*.java,javac --module src,javac -m module.name
+How do you compile a module?,javac -d out --module-source-path src -m module.name,javac -d out src/*.java,javac --module src,javac -m module.name
 What is --module-source-path?,Root directory containing module source directories,Module path,Source files,Output directory
 Can you compile multiple modules at once?,Yes,No,Only two,Only with separate commands
 What does -m specify in javac?,Module name to compile,Main class,Module path,Module version
@@ -31,7 +31,7 @@ Can non-modular JAR be on module path?,Yes (becomes automatic module),No,Only wi
 What is an automatic module?,Non-modular JAR on module path,JAR with automatic exports,Self-describing JAR,Module without dependencies
 How is automatic module name determined?,Automatic-Module-Name in manifest or filename,Filename only,Manifest only,Package name
 What manifest attribute specifies module name?,Automatic-Module-Name,Module-Name,Name,Automatic-Name
-How is module name derived from filename?,Remove version and extension, replace non-alphanumeric,Use full filename,Use first part,Random name
+How is module name derived from filename?,"Remove version and extension,  replace non-alphanumeric",Use full filename,Use first part,Random name
 Which characters are replaced in automatic module names?,Non-alphanumeric to dots,All to underscores,Dots to dashes,No replacement
 "For JAR ""my-lib-1.0.jar"", what is automatic module name?",my.lib,my-lib,my.lib.1.0,mylib10
 Should you use Automatic-Module-Name?,Yes (more stable),No,Optional,Only for libraries

@@ -9,8 +9,8 @@ How do you declare instance field?,Without static keyword,With static keyword,In
 How do you declare static field?,With static keyword,Without static keyword,In method,With instance keyword
 Can instance field be accessed without object?,No,Yes,Only public,Only in same class
 Can static field be accessed without object?,Yes,No,Only private,Only in same class
-What is default value of instance field?,Type-dependent (0, false, null),undefined,No default,Must initialize
-What is default value of static field?,Type-dependent (0, false, null),undefined,No default,Must initialize
+What is default value of instance field?,"Type-dependent (0,  false,  null)",undefined,No default,Must initialize
+What is default value of static field?,"Type-dependent (0,  false,  null)",undefined,No default,Must initialize
 Must fields be initialized?,No (have defaults),Yes,Only static,Only instance
 Can field be final?,Yes,No,Only static,Only instance
 What does final field mean?,Cannot be reassigned,Cannot be accessed,Cannot be null,Cannot be static
@@ -28,7 +28,7 @@ Can static method call instance methods?,No (without object reference),Yes,Only 
 Can instance method call static methods?,Yes,No,Only public,Only in same class
 What does this refer to?,Current instance,Current class,Parent class,Static context
 Can this be used in static method?,No,Yes,Only for fields,Only for methods
-Can you overload methods?,Yes (same name, different parameters),No,Only in subclass,Only static
+Can you overload methods?,"Yes (same name,  different parameters)",No,Only in subclass,Only static
 Can you overload based on return type only?,No,Yes,Sometimes,Only primitives
 What is method signature?,Method name and parameter types,Name and return type,Name only,All components
 Can constructors be overloaded?,Yes,No,Only one,Only with this()
@@ -47,7 +47,7 @@ Can you have multiple instance initializers?,Yes,No,Only two,Only with construct
 In what order do multiple static blocks execute?,Declaration order,Reverse order,Random,Alphabetical
 In what order do multiple instance initializers execute?,Declaration order,Reverse order,Random,Alphabetical
 What is a record?,Immutable data carrier class,Mutable class,Interface,Enum
-When were records introduced?,Java 14 (preview), Java 16 (standard),Java 8,Java 11,Java 17
+When were records introduced?,"Java 14 (preview),  Java 16 (standard)",Java 8,Java 11,Java 17
 What keyword declares a record?,record,class,data,struct
 Are record fields final by default?,Yes,No,Optional,Only private
 Are records immutable?,Yes,No,Only fields,Only methods
@@ -81,7 +81,7 @@ Can you serialize records?,Yes,No,Only with Serializable,Only custom
 What is var in field declaration?,Cannot use var for fields,Can use var,Only local variables,Only final
 Can you use var for method parameters?,No (Java 17),Yes,Only lambdas,Only local
 What is method hiding?,Static method in subclass with same signature,Instance method override,Method overload,Constructor override
-Can static method be overridden?,No (hidden, not overridden),Yes,Only public,Only in subclass
+Can static method be overridden?,"No (hidden,  not overridden)",Yes,Only public,Only in subclass
 What does @Override annotation do?,Checks method actually overrides,Forces override,Creates override,Documents override
 Can you use @Override on static method?,No,Yes,Only if hiding,Only public
 What is shadowing?,Local variable hiding field,Method hiding,Class hiding,Package hiding
@@ -123,11 +123,11 @@ Can static method access super?,No,Yes,Only fields,Only methods
 What is static import?,Import static members,Import classes,Import packages,Import modules
 How do you static import?,import static package.Class.member,import package.Class.member,static import member,import Class.member
 Can you instantiate class with only private constructor?,No (from outside),Yes,Only subclass,Only same package
-Why make constructor private?,Singleton pattern, utility class,No reason,Performance,Required
+Why make constructor private?,"Singleton pattern,  utility class",No reason,Performance,Required
 Can utility class have instance methods?,Not typical (usually static),Yes,Required,Recommended
 What is main method signature?,public static void main(String[] args),public void main(),static void main(),main()
 Must main method be public?,Yes,No,Only static,Only void
 Must main method be static?,Yes,No,Only public,Only void
 Must main method be void?,Yes,No,Only public,Only static
 Can main method throw exception?,Yes,No,Only checked,Only unchecked
-Can class have multiple main methods?,Yes (overloaded, but only one valid entry point),No,Only two,Only same signature
+Can class have multiple main methods?,"Yes (overloaded,  but only one valid entry point)",No,Only two,Only same signature

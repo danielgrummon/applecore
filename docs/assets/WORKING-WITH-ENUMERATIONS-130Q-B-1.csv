@@ -45,7 +45,7 @@ Should you depend on ordinal()?,No (can change if constants reordered),Yes,Alway
 What is name()?,Returns constant name,Returns ordinal,Returns value,Returns toString()
 Is name() final?,Yes,No,Can override,Same as toString()
 Can you override name()?,No (final),Yes,Only in constants,Required
-What is difference between name() and toString()?,name() is final, toString() can be overridden,Same thing,name() returns ordinal,toString() is final
+What is difference between name() and toString()?,"name() is final,  toString() can be overridden",Same thing,name() returns ordinal,toString() is final
 What does valueOf() do?,Returns enum constant for string name,Returns ordinal,Creates new constant,Returns all constants
 What happens if valueOf() given invalid name?,IllegalArgumentException,Returns null,Compilation error,Creates constant
 Is valueOf() case-sensitive?,Yes,No,Configurable,Only lowercase
@@ -90,7 +90,7 @@ Can enum implement multiple interfaces?,Yes,No,Only one,Only functional
 Can enum have private methods?,Yes,No,Only public,Only protected
 Can enum have package-private methods?,Yes,No,Only public,Only private
 What is purpose of enum?,Type-safe constants,Performance,Syntax sugar,Replace integers
-What is advantage of enum over constants?,Type safety, methods, fields,Performance,Memory,Shorter code
+What is advantage of enum over constants?,"Type safety,  methods,  fields",Performance,Memory,Shorter code
 Can enum have main method?,Yes,No,Only static,Only nested
 Can you subclass enum constant?,No (constants are final),Yes,Only with body,Only abstract methods
 What is constant-specific class body?,Anonymous class for each constant,Regular class,Static class,Inner class
@@ -105,13 +105,13 @@ When is enum class initialized?,First reference to any constant or static member
 Are all enum constants initialized together?,Yes (when enum class is loaded),No,One at a time,On demand
 Can enum constant be lazy-initialized?,No (all initialized at class load),Yes,Only with fields,Only methods
 What is singleton pattern with enum?,Single-constant enum,Multi-constant enum,No pattern,Deprecated pattern
-Why use enum for singleton?,Simple, thread-safe, serialization-safe,Only tradition,Performance,No reason
+Why use enum for singleton?,"Simple,  thread-safe,  serialization-safe",Only tradition,Performance,No reason
 Can enum prevent reflection attacks?,Yes,No,Only with security manager,Only private constructor
 Can enum prevent serialization attacks?,Yes (special handling),No,Only with Serializable,Only readResolve()
 What is strategy pattern with enum?,Enum constants as strategies,No pattern,Only methods,Only fields
 Can enum implement command pattern?,Yes (constants as commands),No,Only with methods,Only interfaces
 Can enum have companion object pattern?,No (no companion objects in Java),Yes,Only static,Only nested
-What is valueOf() vs name()?,valueOf() takes String, name() returns String,Same thing,valueOf() returns ordinal,name() takes String
+What is valueOf() vs name()?,"valueOf() takes String,  name() returns String",Same thing,valueOf() returns ordinal,name() takes String
 Can you create enum at runtime?,No (fixed at compile time),Yes,With reflection,With factory
 Can you add enum constants at runtime?,No,Yes,With reflection,With annotation processor
 What is purpose of ordinal()?,Internal use (array index in EnumSet/Map),Public API,Required,Comparison

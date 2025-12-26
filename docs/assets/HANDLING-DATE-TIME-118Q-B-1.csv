@@ -10,7 +10,7 @@ Which class represents time-based duration?,Duration,Period,Interval,TimeDuratio
 Which class represents date-based period?,Period,Duration,Interval,DatePeriod
 Are Date-Time API classes mutable?,No (immutable),Yes,Some are,Only LocalDate
 Which method creates current LocalDate?,LocalDate.now(),new LocalDate(),LocalDate.current(),LocalDate.today()
-Which method creates specific LocalDate?,LocalDate.of(year, month, day),new LocalDate(y, m, d),LocalDate.create(),LocalDate.from()
+Which method creates specific LocalDate?,"LocalDate.of(year,  month,  day), new LocalDate(y,  m", d),LocalDate.create(),LocalDate.from()
 Can you modify LocalDate after creation?,No (returns new instance),Yes,With setter,With modifier
 What does LocalDate.plusDays() return?,New LocalDate,void,Modified original,LocalDateTime
 What does LocalDate.minusMonths() return?,New LocalDate,void,Modified original,Period
@@ -22,7 +22,7 @@ Which method gets day of month?,getDayOfMonth(),getDay(),day(),dayOfMonth()
 Which method gets day of week?,getDayOfWeek(),getDay(),dayOfWeek(),weekDay()
 What does getDayOfWeek() return?,DayOfWeek enum,int,String,Integer
 Which method creates current LocalTime?,LocalTime.now(),new LocalTime(),LocalTime.current(),LocalTime.create()
-Which method creates specific LocalTime?,LocalTime.of(hour, minute),new LocalTime(h, m),LocalTime.create(),LocalTime.from()
+Which method creates specific LocalTime?,"LocalTime.of(hour,  minute), new LocalTime(h", m),LocalTime.create(),LocalTime.from()
 Can LocalTime represent nanoseconds?,Yes,No,Only milliseconds,Only seconds
 What is the range for hour in LocalTime?,0-23,1-24,0-24,1-23
 What does LocalTime.plusHours() return?,New LocalTime,void,Modified original,Duration
@@ -31,16 +31,16 @@ Which method gets minute from LocalTime?,getMinute(),minute(),getMinuteValue(),m
 Which method gets second from LocalTime?,getSecond(),second(),getSecondValue(),secondValue()
 Which method gets nanosecond from LocalTime?,getNano(),nanosecond(),getNanosecond(),nanoValue()
 Which method creates current LocalDateTime?,LocalDateTime.now(),new LocalDateTime(),LocalDateTime.current(),LocalDateTime.create()
-Which method creates specific LocalDateTime?,LocalDateTime.of(date, time) or LocalDateTime.of(y, m, d, h, min),new LocalDateTime(),LocalDateTime.create(),LocalDateTime.from()
+Which method creates specific LocalDateTime?,"LocalDateTime.of(date,  time) or LocalDateTime.of(y,  m,  d,  h,  min)",new LocalDateTime(),LocalDateTime.create(),LocalDateTime.from()
 Can you create LocalDateTime from LocalDate?,Yes (with atTime()),No,Only parse,Only convert
 Can you create LocalDateTime from LocalTime?,Yes (with atDate()),No,Only parse,Only convert
 What does LocalDate.atTime() return?,LocalDateTime,LocalTime,ZonedDateTime,void
 What does LocalTime.atDate() return?,LocalDateTime,LocalDate,ZonedDateTime,void
 Which method creates current ZonedDateTime?,ZonedDateTime.now(),new ZonedDateTime(),ZonedDateTime.current(),ZonedDateTime.create()
-What does ZonedDateTime include?,Date, time, and timezone,Only date and time,Only timezone,Date and timezone
+What does ZonedDateTime include?,"Date,  time,  and timezone",Only date and time,Only timezone,Date and timezone
 Which method adds timezone to LocalDateTime?,atZone(ZoneId),withZone(),addZone(),setZone()
 What does ZoneId.of() accept?,Zone ID string,TimeZone,int,Zone object
-"What is an example of zone ID?",America/New_York or Europe/London,EST,GMT,UTC+5
+What is an example of zone ID?,America/New_York or Europe/London,EST,GMT,UTC+5
 Can you use short IDs like EST?,Not recommended (prefer full IDs),Yes (preferred),Only for US,Required
 Which method creates Instant?,Instant.now(),new Instant(),Instant.current(),Instant.create()
 What does Instant represent?,Point on timeline in UTC,Local time,Date only,Timezone
@@ -51,8 +51,8 @@ What does Duration.between() require?,Two temporal objects,Two numbers,Start and
 Can Duration be used with dates?,No (use Period),Yes,Only LocalDate,Only ZonedDateTime
 What does Period.between() require?,Two LocalDate objects,Two numbers,Two temporal objects,Two periods
 Can Period be used with times?,No (use Duration),Yes,Only LocalTime,Only LocalDateTime
-What does Duration measure?,Time-based amount (hours, minutes, seconds),Date-based amount,Both,Days only
-What does Period measure?,Date-based amount (years, months, days),Time-based amount,Both,Hours only
+What does Duration measure?,"Time-based amount (hours,  minutes,  seconds)",Date-based amount,Both,Days only
+What does Period measure?,"Date-based amount (years,  months,  days)",Time-based amount,Both,Hours only
 What does Duration.ofDays() return?,Duration,Period,long,Days
 What does Period.ofDays() return?,Period,Duration,int,Days
 Can you add Duration to LocalDate?,No (incompatible),Yes,With conversion,Only days

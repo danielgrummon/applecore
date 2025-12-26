@@ -14,11 +14,11 @@ What is @Deprecated?,Marks element as discouraged,Removes element,Makes element 
 What happens when using @deprecated element?,Compiler warning,Compilation error,Runtime error,Nothing
 Can you still use @Deprecated elements?,Yes,No,Only if no alternative,Throws exception
 What is @SuppressWarnings?,Suppresses compiler warnings,Suppresses errors,Suppresses deprecation,Removes warnings
-What is syntax for @SuppressWarnings?,@SuppressWarnings("warningType") or @SuppressWarnings({"type1", "type2"}),No parameters,Only one warning,Automatic
+What is syntax for @SuppressWarnings?,"@SuppressWarnings(""warningType"") or @SuppressWarnings({""type1"", ""type2""})",No parameters,Only one warning,Automatic
 What warnings can be suppressed?,"unchecked, deprecation, rawtypes, etc.",All warnings,No warnings,Only deprecation
 Should you overuse @SuppressWarnings?,No (hides real issues),Yes,Always,Required
 What is @SafeVarargs?,Suppresses warnings for varargs with generics,Makes varargs safe,Checks varargs,Prevents errors
-Where can @SafeVarargs be used?,Final, static, or private methods and constructors,Any method,Only varargs,All parameters
+Where can @SafeVarargs be used?,"Final,  static,  or private methods and constructors",Any method,Only varargs,All parameters
 What is @FunctionalInterface?,Marks interface as functional (single abstract method),Creates lambda,Forces one method,Makes interface final
 What does @FunctionalInterface check?,Interface has exactly one abstract method,Interface is public,Interface has methods,Interface implemented
 Is @FunctionalInterface required?,No (but recommended),Yes,Only for lambdas,Only Java 8+
@@ -34,7 +34,7 @@ What does RetentionPolicy.RUNTIME mean?,Available at runtime via reflection,In s
 What is default retention policy?,CLASS,SOURCE,RUNTIME,None
 What is @Target?,Specifies where annotation can be used,Targets element,Finds target,Sets target
 What are element types?,"TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE, etc.",Only TYPE,Only METHOD,Only FIELD
-What does ElementType.TYPE mean?,Class, interface, enum, annotation,Only class,Only interface,Only enum
+What does ElementType.TYPE mean?,"Class,  interface,  enum,  annotation",Only class,Only interface,Only enum
 What does ElementType.FIELD mean?,Field (including enum constants),Only instance fields,Only static fields,Only final fields
 What does ElementType.METHOD mean?,Method,Only public methods,Only abstract methods,Only static methods
 What does ElementType.PARAMETER mean?,Method or constructor parameter,Only method parameters,Only constructor parameters,Only formal parameters
@@ -67,14 +67,14 @@ Can annotation element be null?,No,Yes,Only with default,Only optional
 What is default value in annotation?,Value if not specified,First value,Required value,Fallback value
 How do you specify default?,element() default value,element() = value,element(): value,default element()
 What is value() element convention?,Single element named value,Primary value,First element,Required element
-How do you use single-value annotation?,@Anno(value) or @Anno("value"),@Anno=value,@Anno:value,Only @Anno("value")
+How do you use single-value annotation?,"@Anno(value) or @Anno(""value"")",@Anno=value,@Anno:value,"Only @Anno(""value"")"
 Can you omit value= for value()?,Yes,No,Only for String,Only for single-value
 "For @Anno(value=""x""), can you write @Anno(""x"")?",Yes,No,Only markers,Only runtime
 Can annotation element return array?,Yes,No,Only String[],Only primitives[]
-How do you specify array in annotation?,@Anno({val1, val2}) or @Anno(val1) for single,@Anno[val1, val2],@Anno(val1; val2),Only multiple
+How do you specify array in annotation?,"@Anno({val1,  val2}) or @Anno(val1) for single, @Anno[val1", val2],@Anno(val1; val2),Only multiple
 Can you use empty array?,Yes ({}),No,Only null,Compilation error
-What is marker annotation example?,@Override,@Deprecated("reason"),@SuppressWarnings("all"),@Test("name")
-What is single-value annotation example?,@SuppressWarnings("unchecked"),@Override,@Deprecated,@Test
+What is marker annotation example?,@Override,"@Deprecated(""reason"")","@SuppressWarnings(""all"")","@Test(""name"")"
+What is single-value annotation example?,"@SuppressWarnings(""unchecked"")",@Override,@Deprecated,@Test
 What is full annotation example?,"@Target({TYPE, METHOD})",@Override,@Deprecated,@Test
 How do you retrieve annotations at runtime?,Reflection,Annotation.get(),Class.getAnnotations(),Automatic
 What method gets annotations?,getAnnotations() or getDeclaredAnnotations(),getAnnotation(),findAnnotations(),annotations()
@@ -88,7 +88,7 @@ Can you get RUNTIME retention at runtime?,Yes,No,Only reflection,Only sometimes
 What is annotation processing?,Compile-time processing of annotations,Runtime processing,Source processing,Documentation generation
 What is annotation processor?,Tool that processes annotations at compile time,Runtime handler,Reflection tool,Parser
 When does annotation processor run?,During compilation,At runtime,Before compilation,After compilation
-What can annotation processor do?,Generate code, validate, create resources,Modify existing code,Delete code,Execute code
+What can annotation processor do?,"Generate code,  validate,  create resources",Modify existing code,Delete code,Execute code
 What is javax.annotation.processing?,Package for annotation processing,Runtime annotations,Reflection API,Documentation tool
 What is Processor interface?,Interface for annotation processors,Annotation type,Meta-annotation,Reflection class
 What is AbstractProcessor?,Abstract class for annotation processors,Concrete processor,Interface,Annotation
@@ -104,7 +104,7 @@ What does getAnnotationsByType() do?,Gets all instances of repeatable annotation
 Can annotation be applied to lambda?,No (use target type),Yes,Only functional,Only Java 11+
 Can annotation be applied to type?,Yes (with TYPE_USE),No,Only TYPE,Only classes
 What is type annotation?,Annotation on type use (Java 8+),Annotation defining type,Type of annotation,Typed element
-What is use of type annotations?,Frameworks, null checking, validation,Required by compiler,Performance,Documentation
+What is use of type annotations?,"Frameworks,  null checking,  validation",Required by compiler,Performance,Documentation
 What is @NonNull example?,Type annotation for null checking,Built-in annotation,Required annotation,Compiler annotation
 What is @Nullable example?,Type annotation allowing null,Built-in annotation,Default annotation,Runtime annotation
 Can annotation have circular dependency?,No,Yes,Only container,Only repeatable

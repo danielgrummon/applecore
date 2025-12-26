@@ -28,7 +28,7 @@ Can case values be variables?,No (must be compile-time constants),Yes,Only final
 Can case values be null?,No (except in patterns),Yes,Only String,Only in expressions
 Can case values duplicate?,No,Yes,Only in different switches,Only in Java 17
 What is a switch expression?,Switch that returns a value,Traditional switch,Switch statement,Loop construct
-When were switch expressions introduced?,Java 12 (preview), Java 14 (standard),Java 8,Java 11,Java 17
+When were switch expressions introduced?,"Java 12 (preview),  Java 14 (standard)",Java 8,Java 11,Java 17
 What operator do switch expressions use?,-> (arrow),: (colon),= (equals),=> (fat arrow)
 Do switch expressions require break?,No,Yes,Only with colon,Only traditional syntax
 Must switch expressions be exhaustive?,Yes,No,Only with return,Only in Java 17
@@ -44,7 +44,7 @@ What is a for loop?,Counter-controlled loop,Condition loop,Infinite loop,Switch 
 What are the three parts of for loop?,Initialization; condition; update,Condition; update; initialization,Only condition,Start; end; step
 Can for loop parts be empty?,Yes (all can be empty),No,Only condition,Only initialization
 What does empty for loop do?,Infinite loop,Compilation error,Nothing,One iteration
-"What does for(;;) represent?",Infinite loop,Syntax error,Empty loop,One iteration
+What does for(;;) represent?,Infinite loop,Syntax error,Empty loop,One iteration
 Can you declare multiple variables in for initialization?,Yes (same type),No,Only two,Any types
 Can you have multiple expressions in for update?,Yes (comma-separated),No,Only two,With semicolon
 What is enhanced for loop?,for-each loop,Traditional for,Infinite loop,Switch loop
@@ -93,8 +93,8 @@ Can switch expression use patterns?,Yes (Java 17+),No,Only statements,Only with 
 Can switch use null case?,Yes (Java 17+ with patterns),No,Only default,Only String
 Can switch use sealed types?,Yes (Java 17+),No,Only enum,Only with patterns
 What is pattern matching in switch?,Type patterns with instanceof,String matching,Regex,Variable patterns
-Can switch have multiple labels per case?,Yes (case 1, 2, 3),No,Only expressions,Only in Java 17
-"What is the syntax for multiple case labels?",case 1, 2, 3 -> ...,case 1 | 2 | 3 -> ...,case 1: case 2: case 3:,case 1 || 2 || 3 ->
+Can switch have multiple labels per case?,"Yes (case 1,  2,  3)",No,Only expressions,Only in Java 17
+What is the syntax for multiple case labels?,"case 1,  2,  3 -> ...",case 1 | 2 | 3 -> ...,case 1: case 2: case 3:,case 1 || 2 || 3 ->
 Can traditional switch have comma-separated labels?,No,Yes,Only in Java 17,Only expressions
 Can you return from switch expression case?,No (use yield or arrow),Yes,Only with arrow,Only in Java 17
 What is the scope of case variable?,Entire switch (traditional) or case block (expression),Only case,Entire method,Global

@@ -2,18 +2,18 @@ Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
 Which class is used to create and manipulate file paths?,Path,File,FilePath,PathBuilder
 Which class provides static methods for file operations?,Files,FileUtils,FileOperations,IOUtils
 How do you create a Path object from a string?,Paths.get() or Path.of(),new Path(),Path.create(),PathFactory.get()
-"What is the method to create a Path in Java 11+?",Path.of(),Paths.get(),new Path(),Path.create()
-Which method creates a Path from multiple string segments?,Paths.get(String, String...),Path.of(String, String...),Both A and B,Neither A nor B
+What is the method to create a Path in Java 11+?,Path.of(),Paths.get(),new Path(),Path.create()
+Which method creates a Path from multiple string segments?,"Paths.get(String,  String...), Path.of(String", String...),Both A and B,Neither A nor B
 Is Path an interface or a class?,Interface,Class,Abstract class,Enum
 Which package contains the Path interface?,java.nio.file,java.io,java.nio,java.file
 Which package contains the Files class?,java.nio.file,java.io,java.nio,java.file
-"What does Path.getFileName() return?",The name element farthest from root,The full path,The file extension,The parent directory
-"What does Path.getParent() return?",The parent path or null,The root,The file name,Empty string
-"What does Path.getRoot() return?",The root component or null,The parent,The file name,The drive letter
-"What does Path.getNameCount() return?",Number of name elements,Number of characters,File size,Directory depth
-"What does Path.getName(index) return?",Name element at index,Character at index,File at position,Directory at level
-"Is the root included in the name count?",No,Yes,Sometimes,Depends on OS
-"What index does getName() use for the first element?",0,1,-1,Starts from root
+What does Path.getFileName() return?,The name element farthest from root,The full path,The file extension,The parent directory
+What does Path.getParent() return?,The parent path or null,The root,The file name,Empty string
+What does Path.getRoot() return?,The root component or null,The parent,The file name,The drive letter
+What does Path.getNameCount() return?,Number of name elements,Number of characters,File size,Directory depth
+What does Path.getName(index) return?,Name element at index,Character at index,File at position,Directory at level
+Is the root included in the name count?,No,Yes,Sometimes,Depends on OS
+What index does getName() use for the first element?,0,1,-1,Starts from root
 Which method returns an absolute path?,toAbsolutePath(),absolute(),makeAbsolute(),getAbsolute()
 Which method resolves a path against another?,resolve(),combine(),append(),join()
 Which method creates a relative path between two paths?,relativize(),relative(),makeRelative(),getRelative()
@@ -21,7 +21,7 @@ Which method removes redundancies from a path?,normalize(),simplify(),reduce(),c
 Which method converts Path to URI?,toUri(),asUri(),getUri(),toURL()
 Which method converts Path to File?,toFile(),asFile(),getFile(),File.from()
 "What does normalize() do to ""./folder/../file.txt""?",Simplifies to file.txt,No change,Throws exception,Deletes the file
-"What does path1.resolve(path2) return if path2 is absolute?",path2,path1/path2,Exception,path1
+What does path1.resolve(path2) return if path2 is absolute?,path2,path1/path2,Exception,path1
 "What does ""a/b"".resolve(""c/d"") return?",a/b/c/d,c/d,a/c/d,b/c/d
 Can you use resolve() with a String?,Yes,No,Only with Path,Only absolute paths
 "What does ""a/b/c"".relativize(""a/b/d"") return?",../d,d,a/b/d,c/d
@@ -82,7 +82,7 @@ Which class represents POSIX permissions?,PosixFilePermission,FilePermission,Per
 Which method walks a file tree?,Files.walk(),Files.traverse(),Files.tree(),Files.walkFileTree()
 What does Files.walk() return?,Stream<Path>,List<Path>,Iterator<Path>,Collection<Path>
 What is the default max depth for Files.walk()?,Integer.MAX_VALUE,1,10,Unlimited
-How do you limit depth in Files.walk()?,Files.walk(path, maxDepth),Files.walk(path).limit(),Files.walkDepth(path, max),Cannot limit
+How do you limit depth in Files.walk()?,"Files.walk(path,  maxDepth), Files.walk(path).limit()",Files.walkDepth(path, max),Cannot limit
 Which method walks tree with visitor pattern?,Files.walkFileTree(),Files.walk(),Files.traverse(),Files.visit()
 Which interface is used with walkFileTree()?,FileVisitor,TreeVisitor,PathVisitor,DirectoryVisitor()
 Which FileVisitor method is called before entering directory?,preVisitDirectory(),beforeDirectory(),enterDirectory(),visitDirectory()

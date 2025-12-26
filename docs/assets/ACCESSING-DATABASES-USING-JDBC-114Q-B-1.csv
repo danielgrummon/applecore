@@ -1,7 +1,7 @@
 Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
 Which interface is the root of the JDBC API for database connections?,Connection,Database,Session,JDBC
 What class is commonly used to create a database connection?,DriverManager,ConnectionManager,DatabaseManager,JDBCManager
-"What method of DriverManager returns a Connection object?",getConnection(),connect(),openConnection(),createConnection()
+What method of DriverManager returns a Connection object?,getConnection(),connect(),openConnection(),createConnection()
 Which interface represents a SQL statement?,Statement,Query,SQL,Command
 Which interface is used for precompiled SQL statements?,PreparedStatement,CompiledStatement,PreStatement,CachedStatement
 Which interface is used to execute stored procedures?,CallableStatement,StoredProcedure,ProcedureStatement,FunctionStatement
@@ -21,21 +21,21 @@ How do you retrieve a String column from a ResultSet?,getString(),fetchString(),
 How do you retrieve an int column from a ResultSet?,getInt(),fetchInt(),readInt(),getInteger()
 Can you retrieve a column by index in ResultSet?,Yes,No,Only for String columns,Only with PreparedStatement
 Can you retrieve a column by name in ResultSet?,Yes,No,Only by index,Only with Statement
-"What is the first column index in ResultSet?",1,0,-1,2
+What is the first column index in ResultSet?,1,0,-1,2
 Which method closes a Connection?,close(),disconnect(),terminate(),end()
 Which method closes a Statement?,close(),end(),terminate(),dispose()
 Which method closes a ResultSet?,close(),end(),dispose(),terminate()
 Should you close database resources?,Yes,No,Only Connection,Only Statement
 What happens if you don't close a Connection?,Resource leak,Compilation error,Runtime exception,Automatic cleanup
-Which try-with-resources compatible interfaces auto-close?,Connection, Statement, ResultSet,Only Connection,Only Statement,None
+Which try-with-resources compatible interfaces auto-close?,"Connection,  Statement,  ResultSet",Only Connection,Only Statement,None
 Is Connection AutoCloseable?,Yes,No,Only in Java 17,Only with DriverManager
 Is Statement AutoCloseable?,Yes,No,Only PreparedStatement,Only CallableStatement
 Is ResultSet AutoCloseable?,Yes,No,Only forward-only,Only scrollable
-"What is the correct order to close JDBC resources?",ResultSet, Statement, Connection,Connection, Statement, ResultSet,Statement, ResultSet, Connection,Any order
+What is the correct order to close JDBC resources?,"ResultSet,  Statement,  Connection, Connection,  Statement,  ResultSet, Statement", ResultSet, Connection,Any order
 Can you reuse a closed Connection?,No,Yes,Only for queries,Only with try-with-resources
-"What symbol is used for placeholders in PreparedStatement?",?,#,$,:
-"How do you set the first parameter in PreparedStatement?",setInt(1, value),setInt(0, value),setParameter(1, value),setParam(1, value)
-"What is the parameter index for the first ? in PreparedStatement?",1,0,2,-1
+What symbol is used for placeholders in PreparedStatement?,?,#,$,:
+How do you set the first parameter in PreparedStatement?,"setInt(1,  value), setInt(0,  value), setParameter(1", value),setParam(1, value)
+What is the parameter index for the first ? in PreparedStatement?,1,0,2,-1
 Which method sets a String parameter in PreparedStatement?,setString(),setParameter(),setValue(),putString()
 Which method sets an int parameter in PreparedStatement?,setInt(),setInteger(),setParameter(),setValue()
 Which method sets a Date parameter in PreparedStatement?,setDate(),setTimestamp(),setValue(),setParameter()
@@ -48,7 +48,7 @@ Which SQLException method returns vendor-specific error code?,getErrorCode(),get
 Can SQLException be chained?,Yes,No,Only in Java 17,Only for batch updates
 How do you iterate through chained SQLExceptions?,getNextException(),getNext(),getCause(),getChainedException()
 What interface do you use to call a stored procedure?,CallableStatement,StoredProcedure,ProcedureCall,FunctionStatement
-"How do you prepare a callable statement? connection.prepareCall(...)","{call procedureName(?)}",call procedureName(?),procedureName(?),CALL procedureName(?)
+How do you prepare a callable statement? connection.prepareCall(...),{call procedureName(?)},call procedureName(?),procedureName(?),CALL procedureName(?)
 How do you register an OUT parameter in CallableStatement?,registerOutParameter(),setOutParameter(),declareOutParameter(),addOutParameter()
 How do you retrieve an OUT parameter value?,getInt(index) after execution,Before execution,setInt(index),During execution
 Can CallableStatement have both IN and OUT parameters?,Yes,No,Only IN,Only OUT
@@ -75,7 +75,7 @@ What is the lowest isolation level?,TRANSACTION_READ_UNCOMMITTED,TRANSACTION_REA
 What is the highest isolation level?,TRANSACTION_SERIALIZABLE,TRANSACTION_REPEATABLE_READ,TRANSACTION_READ_COMMITTED,TRANSACTION_READ_UNCOMMITTED
 Which isolation level prevents dirty reads?,TRANSACTION_READ_COMMITTED,TRANSACTION_READ_UNCOMMITTED,TRANSACTION_NONE,All of them
 Which isolation level prevents phantom reads?,TRANSACTION_SERIALIZABLE,TRANSACTION_READ_COMMITTED,TRANSACTION_READ_UNCOMMITTED,TRANSACTION_REPEATABLE_READ
-"What does TRANSACTION_REPEATABLE_READ prevent?",Dirty and non-repeatable reads,Only dirty reads,All anomalies,Nothing
+What does TRANSACTION_REPEATABLE_READ prevent?,Dirty and non-repeatable reads,Only dirty reads,All anomalies,Nothing
 Can you change isolation level during a transaction?,No (typically),Yes,Always,Never
 Which method adds a batch command to Statement?,addBatch(),addCommand(),batch(),queueCommand()
 Which method executes a batch?,executeBatch(),runBatch(),processBatch(),doBatch()
@@ -101,7 +101,7 @@ Which method checks if cursor is on first row?,isFirst(),onFirst(),atFirst(),che
 Which method checks if cursor is on last row?,isLast(),onLast(),atLast(),checkLast()
 Which concurrency mode allows updates through ResultSet?,CONCUR_UPDATABLE,CONCUR_READ_ONLY,CONCUR_EDITABLE,CONCUR_MODIFIABLE
 Which concurrency mode is read-only?,CONCUR_READ_ONLY,CONCUR_UPDATABLE,CONCUR_LOCKED,CONCUR_FIXED
-How do you update a String column in updatable ResultSet?,updateString(column, value),setString(column, value),changeString(column, value),modifyString(column, value)
+How do you update a String column in updatable ResultSet?,"updateString(column,  value), setString(column,  value), changeString(column", value),modifyString(column, value)
 Which method applies row updates in ResultSet?,updateRow(),saveRow(),commitRow(),applyRow()
 Which method cancels row updates in ResultSet?,cancelRowUpdates(),undoRow(),revertRow(),discardRow()
 Which method deletes current row in ResultSet?,deleteRow(),removeRow(),eraseRow(),dropRow()
