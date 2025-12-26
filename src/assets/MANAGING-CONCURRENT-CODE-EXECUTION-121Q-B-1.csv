@@ -1,0 +1,122 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which interface must be implemented to create a thread?,Runnable,Thread,Executable,ThreadInterface
+What method does Runnable require?,run(),start(),execute(),call()
+Which class do you extend to create a thread?,Thread,Runnable,Executor,ThreadClass
+Which method starts a new thread?,start(),run(),execute(),begin()
+What happens if you call run() directly instead of start()?,Executes in current thread,Creates new thread,Compilation error,Runtime exception
+Can you call start() twice on same Thread?,No (throws IllegalThreadStateException),Yes,Only if run() finished,Only on daemon threads
+Which method waits for thread to complete?,join(),wait(),sleep(),yield()
+Which method pauses current thread?,Thread.sleep(),Thread.wait(),Thread.pause(),Thread.stop()
+Which method suggests thread yield CPU?,Thread.yield(),Thread.sleep(),Thread.wait(),Thread.pause()
+Is yield() guaranteed to work?,No,Yes,Only on multicore,Only in Java 17
+Which method interrupts a thread?,interrupt(),stop(),terminate(),kill()
+How do you check if thread is interrupted?,isInterrupted(),interrupted(),checkInterrupted(),getInterrupted()
+What does Thread.interrupted() do?,Checks and clears flag,Only checks flag,Only clears flag,Nothing
+Which exception indicates thread interruption?,InterruptedException,ThreadException,InterruptException,StopException
+Should you catch and ignore InterruptedException?,No,Yes,Always,Sometimes
+What is a daemon thread?,Background thread that doesn't prevent JVM exit,High priority thread,System thread,Main thread
+Which method sets daemon status?,setDaemon(),makeDaemon(),setBackground(),daemon()
+When must setDaemon() be called?,Before start(),After start(),Anytime,During run()
+What happens when all non-daemon threads finish?,JVM exits,Waits for daemon threads,Exception thrown,Nothing
+Which keyword synchronizes code?,synchronized,sync,lock,atomic
+Can synchronized be applied to methods?,Yes,No,Only static,Only instance
+Can synchronized be applied to blocks?,Yes,No,Only methods,Only classes
+What does synchronized method lock?,this (for instance) or Class (for static),Method,Nothing,Parameters
+What object does synchronized block require?,Any object (monitor),Only this,Only class,Only Lock
+Can multiple threads execute synchronized method on same object?,No,Yes,Only reads,Only different methods
+Can multiple threads execute synchronized method on different objects?,Yes,No,Only reads,Only writes
+What is a race condition?,Multiple threads accessing shared data unsafely,Thread crash,Deadlock,Priority inversion
+What is deadlock?,Threads waiting for each other's locks,Thread crash,Race condition,Starvation
+How can you prevent deadlock?,Lock ordering,More threads,More locks,synchronized everywhere
+What is thread starvation?,Thread never gets CPU time,Deadlock,Race condition,Thread crash
+What is livelock?,Threads responding to each other without progress,Deadlock,Starvation,Race condition
+Which keyword ensures visibility across threads?,volatile,synchronized,atomic,final
+Does volatile guarantee atomicity?,No,Yes,Only for primitives,Only for objects
+Is volatile sufficient for counter increment?,No,Yes,Only int,Only long
+Can volatile be used with methods?,No,Yes,Only static,Only synchronized
+Which package contains Lock interface?,java.util.concurrent.locks,java.util.concurrent,java.lang,java.util
+Which Lock implementation is most common?,ReentrantLock,ReadWriteLock,StampedLock,FairLock
+Which method acquires a lock?,lock(),acquire(),get(),obtain()
+Which method releases a lock?,unlock(),release(),free(),put()
+Must unlock() be in finally block?,Yes (recommended),No,Optional,Only for ReentrantLock
+Which method tries to acquire lock without waiting?,tryLock(),lock(),acquire(),attempt()
+Can tryLock() have a timeout?,Yes,No,Only milliseconds,Only seconds
+Which method acquires lock interruptibly?,lockInterruptibly(),lock(),tryLock(),interruptibleLock()
+What is a reentrant lock?,Lock that can be acquired multiple times by same thread,Lock that cannot be reacquired,Fair lock,Read lock
+Is synchronized reentrant?,Yes,No,Only methods,Only blocks
+Can ReentrantLock be fair?,Yes,No,Always fair,Never fair
+What does fair lock do?,Honors waiting order,Random selection,Priority-based,LIFO order
+Is fair lock faster than unfair?,No,Yes,Same speed,Only for reads
+Which interface provides read/write locks?,ReadWriteLock,Lock,ReentrantLock,RWLock
+What does ReadWriteLock provide?,Separate read and write locks,Single lock,Three locks,No locks
+Can multiple threads hold read lock?,Yes,No,Only two,Only if no writers
+Can multiple threads hold write lock?,No,Yes,Only two,Only if readers
+Which implementation of ReadWriteLock is common?,ReentrantReadWriteLock,ReadWriteLockImpl,StandardReadWriteLock,RWLock
+Is read lock exclusive?,No,Yes,Only without writers,Only in Java 17
+Is write lock exclusive?,Yes,No,Only without readers,Only for ReentrantReadWriteLock
+Which package contains atomic classes?,java.util.concurrent.atomic,java.util.concurrent,java.util,java.lang
+Which atomic class handles integers?,AtomicInteger,AtomicInt,IntAtomic,ConcurrentInteger
+Which method atomically increments?,incrementAndGet() or getAndIncrement(),increment(),add(1),plusOne()
+What's the difference between incrementAndGet() and getAndIncrement()?,Return value timing,Thread safety,Speed,Nothing
+Which method atomically adds a value?,addAndGet() or getAndAdd(),add(),increment(),plus()
+Which method atomically sets value?,set(),setValue(),put(),write()
+Which method atomically compares and sets?,compareAndSet(),compareAndSwap(),setIfEqual(),conditionalSet()
+What does compareAndSet() return?,boolean,void,old value,new value
+Are atomic operations thread-safe?,Yes,No,Only reads,Only writes
+Do atomic classes use locks?,No (CAS operations),Yes,Sometimes,Only for writes
+Which package contains ExecutorService?,java.util.concurrent,java.util.concurrent.executors,java.lang,java.util
+Which interface manages thread execution?,ExecutorService,Executor,ThreadPool,TaskExecutor
+Which method creates fixed thread pool?,Executors.newFixedThreadPool(n),Executors.newThreadPool(n),new ThreadPool(n),ExecutorService.create(n)
+Which method creates cached thread pool?,Executors.newCachedThreadPool(),Executors.newThreadPool(),Executors.newDynamicThreadPool(),Executors.newPool()
+Which method creates single thread executor?,Executors.newSingleThreadExecutor(),Executors.newThreadPool(1),Executors.newSingleThread(),Executors.single()
+Which method creates scheduled executor?,Executors.newScheduledThreadPool(n),Executors.newTimedThreadPool(n),Executors.newScheduledExecutor(n),Executors.schedule(n)
+Which method submits Runnable to executor?,submit() or execute(),run(),start(),perform()
+What does execute() return?,void,Future,Boolean,Result
+What does submit() return?,Future,void,Boolean,Result
+Which interface represents result of async computation?,Future,Result,AsyncResult,Computation
+Which method gets result from Future?,get(),getResult(),await(),result()
+Does Future.get() block?,Yes,No,Only with timeout,Only for Runnable
+Can Future.get() have timeout?,Yes,No,Only milliseconds,Only seconds
+Which method cancels a Future?,cancel(),stop(),terminate(),abort()
+Which method checks if Future is done?,isDone(),isComplete(),finished(),done()
+Which method checks if Future is cancelled?,isCancelled(),cancelled(),isAborted(),stopped()
+Which interface can return a result?,Callable,Runnable,Future,Thread
+What method does Callable require?,call(),run(),execute(),get()
+What exception can call() throw?,Exception,Nothing,RuntimeException only,IOException only
+Can Runnable return a result?,No,Yes,Only with Future,Only with submit()
+Which method shuts down executor?,shutdown(),stop(),close(),terminate()
+Which method shuts down immediately?,shutdownNow(),shutdown(),stop(),kill()
+Does shutdown() wait for tasks to complete?,Yes,No,Optional,Only running tasks
+Does shutdownNow() wait for tasks?,No,Yes,Only running,Only queued
+Which method checks if executor is shut down?,isShutdown(),shutdown(),isStopped(),isClosed()
+Which method checks if executor is terminated?,isTerminated(),isDone(),isComplete(),isStopped()
+Which method waits for termination?,awaitTermination(),waitForTermination(),join(),wait()
+Which class provides countdown synchronization?,CountDownLatch,Latch,CountDown,Barrier
+Which method decrements CountDownLatch?,countDown(),decrement(),decrease(),down()
+Which method waits on CountDownLatch?,await(),wait(),waitFor(),block()
+Can CountDownLatch be reused?,No,Yes,Only after reset,Only in Java 17
+Which class provides reusable barrier?,CyclicBarrier,Barrier,CountDownLatch,ReusableBarrier
+Which method waits at CyclicBarrier?,await(),wait(),waitFor(),block()
+Can CyclicBarrier be reused?,Yes,No,Only manually,Only in Java 17
+Which method resets CyclicBarrier?,reset(),clear(),restart(),renew()
+Which class controls access permits?,Semaphore,Permit,AccessControl,Lock
+Which method acquires permit?,acquire(),get(),take(),request()
+Which method releases permit?,release(),put(),give(),free()
+Can Semaphore have multiple permits?,Yes,No,Only binary,Only fair
+What is binary semaphore?,Semaphore with 1 permit,Semaphore with 2 permits,Semaphore with 0 permits,ReentrantLock
+Which method tries to acquire permit?,tryAcquire(),acquire(),attempt(),try()
+Which class provides phased synchronization?,Phaser,Phase,CyclicBarrier,CountDownLatch
+Can Phaser parties change dynamically?,Yes,No,Only increase,Only decrease
+Which method advances Phaser?,arriveAndAwaitAdvance(),await(),advance(),next()
+Which method registers party with Phaser?,register(),add(),join(),enroll()
+Which method deregisters from Phaser?,arriveAndDeregister(),unregister(),leave(),exit()
+Which class completes asynchronously?,CompletableFuture,Future,AsyncFuture,CompleteFuture
+Which method creates completed future?,completedFuture(),complete(),of(),create()
+Which method runs async task?,runAsync(),run(),execute(),async()
+Which method supplies async result?,supplyAsync(),supply(),get(),async()
+Can you chain CompletableFuture operations?,Yes,No,Only two,Only in Java 17
+Which method chains on completion?,thenApply(),then(),apply(),chain()
+Which method handles exceptions?,exceptionally(),catch(),handle(),onError()
+Which method combines two futures?,thenCombine(),combine(),merge(),join()
+Which method waits for first of multiple futures?,anyOf(),any(),first(),race()
+Which method waits for all futures?,allOf(),all(),waitAll(),join()

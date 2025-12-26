@@ -1,0 +1,121 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is a lambda expression?,Anonymous function implementation,Named function,Class,Interface
+What is the lambda syntax?,"(parameters) -> expression or block",parameters => expression,function(parameters),lambda parameters: expression
+Can lambda expressions have zero parameters?,Yes (use empty parentheses),No,Only one required,At least two
+Can lambda expressions have one parameter?,Yes (parentheses optional),No,Parentheses required,Not allowed
+"For single parameter, are parentheses required?",No (optional),Yes (required),Only for types,Only for blocks
+When are braces required in lambda?,For multiple statements,Always,Never,Only with return
+When is return keyword required?,With braces and non-void return,Always,Never,Only for objects
+"What does () -> 42 represent?",Lambda with no parameters returning 42,Invalid syntax,Lambda with 42 parameters,Method reference
+"What does x -> x * 2 represent?",Lambda taking x and returning x * 2,Invalid syntax,Method call,Variable assignment
+"What does (x, y) -> x + y represent?",Lambda taking two parameters and returning sum,Invalid syntax,Method with two arguments,Addition operation
+What is a functional interface?,Interface with exactly one abstract method,Interface with multiple methods,Abstract class,Concrete class
+Can functional interfaces have default methods?,Yes,No,Only one,Only private
+Can functional interfaces have static methods?,Yes,No,Only one,Only default
+What annotation marks functional interfaces?,@FunctionalInterface,@Lambda,@Functional,@Interface
+Is @FunctionalInterface required?,No (but recommended),Yes (required),Only for custom interfaces,Only in Java 17
+What does Supplier interface provide?,Provides value (no parameters),Consumes value,Accepts and returns value,Tests condition
+What method does Supplier have?,get(),supply(),provide(),execute()
+What does Supplier<T> return?,T,void,boolean,Optional<T>
+Does Supplier take parameters?,No,Yes (one),Yes (two),Yes (varargs)
+What does Consumer interface do?,Accepts value (returns nothing),Returns value,Tests condition,Transforms value
+What method does Consumer have?,accept(),consume(),take(),process()
+What does Consumer<T> return?,void,T,boolean,Optional<T>
+How many parameters does Consumer take?,One,Zero,Two,Variable
+What does BiConsumer do?,Accepts two parameters,Accepts one parameter,Returns two values,Tests two values
+What does Predicate interface do?,Tests condition (returns boolean),Transforms value,Consumes value,Supplies value
+What method does Predicate have?,test(),check(),evaluate(),validate()
+What does Predicate<T> return?,boolean,T,void,Optional<Boolean>
+Can Predicate have default methods?,Yes (and(), or(), negate()),No,Only one,Only custom
+What does Function interface do?,Transforms input to output,Tests condition,Consumes value,Supplies value
+What method does Function have?,apply(),execute(),transform(),map()
+What does Function<T, R> accept and return?,Accepts T, returns R,Accepts R, returns T,Only accepts T,Only returns R
+What does BiFunction do?,Accepts two parameters, returns one,Accepts one, returns two,Tests two values,Consumes two values
+What does UnaryOperator do?,Accepts and returns same type,Different input/output types,No parameters,No return value
+What interface does UnaryOperator extend?,Function<T, T>,Operator,Function,Consumer
+What does BinaryOperator do?,Accepts two parameters of same type, returns same type,Different types,Three parameters,No return
+What interface does BinaryOperator extend?,BiFunction<T, T, T>,Operator,Function,BiFunction
+What does filter() require?,Predicate,Function,Consumer,Supplier
+What does map() require?,Function,Predicate,Consumer,Supplier
+What does forEach() require?,Consumer,Function,Predicate,Supplier
+What does Stream.generate() require?,Supplier,Function,Consumer,Predicate
+What does Stream.iterate() require?,Seed and UnaryOperator,Only seed,Only function,Supplier
+What does reduce() accumulator require?,BinaryOperator,UnaryOperator,Function,Consumer
+What does sorted() with parameter require?,Comparator,Comparable,Function,Predicate
+Can you use lambda where functional interface expected?,Yes,No,Only for Predicate,Only for Function
+What is method reference?,Shorthand for lambda,Method call,Lambda expression,Anonymous class
+"What does String::length represent?",Method reference to length method,Lambda expression,Method call,Static method
+"What does System.out::println represent?",Method reference to println,Lambda expression,Static method reference,Constructor reference
+"What does ArrayList::new represent?",Constructor reference,Method reference,Lambda expression,Object creation
+What are the types of method references?,Static, instance, arbitrary object, constructor,Only static,Only instance,Only constructor
+"What does Math::max represent?",Static method reference,Instance method reference,Constructor reference,Lambda
+"What does list::add represent?",Instance method reference on specific object,Static method reference,Constructor reference,Lambda
+"What does String::compareTo represent?",Instance method reference on arbitrary object,Static method reference,Constructor reference,Lambda
+Can method reference replace lambda?,Yes (when lambda calls single method),No,Always,Never
+What does IntStream represent?,Stream of primitive int values,Stream of Integer objects,Integer array,Collection of ints
+What does DoubleStream represent?,Stream of primitive double values,Stream of Double objects,Double array,Collection of doubles
+What does LongStream represent?,Stream of primitive long values,Stream of Long objects,Long array,Collection of longs
+Why use primitive streams?,Avoid boxing/unboxing overhead,No advantage,Required for primitives,Simpler syntax
+What does IntStream.range(1, 10) produce?,Ints from 1 to 9,Ints from 1 to 10,Ints from 0 to 9,Ints from 0 to 10
+What does IntStream.rangeClosed(1, 10) produce?,Ints from 1 to 10,Ints from 1 to 9,Ints from 0 to 10,Ints from 2 to 10
+Does range() include end value?,No,Yes,Sometimes,Depends on parameters
+Does rangeClosed() include end value?,Yes,No,Sometimes,Depends on parameters
+What does IntStream.sum() return?,int,Integer,long,OptionalInt
+What does IntStream.average() return?,OptionalDouble,double,Double,int
+What does IntStream.max() return?,OptionalInt,int,Integer,int value
+What does IntStream.min() return?,OptionalInt,int,Integer,int value
+Why does average() return Optional?,Stream might be empty,Always has value,For consistency,Error handling
+How do you convert Stream<Integer> to IntStream?,mapToInt(),toIntStream(),asIntStream(),convertToInt()
+How do you convert IntStream to Stream<Integer>?,boxed(),toStream(),asStream(),wrap()
+What does mapToInt() require?,ToIntFunction,Function,IntFunction,Mapper
+What does mapToDouble() require?,ToDoubleFunction,Function,DoubleFunction,Mapper
+What does mapToLong() require?,ToLongFunction,Function,LongFunction,Mapper
+What is ToIntFunction?,Functional interface producing int,Same as Function,Primitive function,Integer function
+What does IntFunction represent?,Function accepting int and producing object,Function returning int,Integer function,Primitive function
+What does IntUnaryOperator represent?,Function accepting and returning int,Function returning int,Integer operator,Unary function
+What does IntBinaryOperator represent?,Function accepting two ints and returning int,Binary function,Integer operator,Two operators
+What does IntPredicate represent?,Predicate testing int value,Integer predicate,Primitive predicate,Test function
+What does IntConsumer represent?,Consumer accepting int value,Integer consumer,Primitive consumer,Accept function
+What does IntSupplier represent?,Supplier providing int value,Integer supplier,Primitive supplier,Get function
+Can primitive streams use boxed collectors?,No (must box first),Yes,Sometimes,Only IntStream
+What does flatMapToInt() do?,Flattens to IntStream,Maps to Integer stream,Flat map only,Filters ints
+What does filter() on IntStream require?,IntPredicate,Predicate<Integer>,Function,IntFunction
+What does map() on IntStream require?,IntUnaryOperator,Function,IntFunction,UnaryOperator
+Can you sort primitive streams?,Yes,No,Only IntStream,Only with comparator
+What does sorted() on IntStream do?,Sorts in natural order,Requires comparator,Cannot sort primitives,Sorts descending
+What does distinct() do on primitive stream?,Removes duplicate values,Sorts values,Filters values,Maps values
+What does limit() do?,Returns first n elements,Returns last n elements,Filters n elements,Skips n elements
+What does skip() do?,Skips first n elements,Returns first n elements,Removes last n elements,Filters elements
+Can you chain stream operations?,Yes,No,Only two,Only intermediate
+What is the evaluation order?,Lazy evaluation until terminal operation,Immediate evaluation,Random order,Reverse order
+Are intermediate operations executed immediately?,No (lazy),Yes (eager),Sometimes,Depends on operation
+Are terminal operations executed immediately?,Yes,No,Sometimes,Depends on operation
+What triggers stream execution?,Terminal operation,Creating stream,Intermediate operation,Any operation
+Can you access elements after terminal operation?,No (stream is consumed),Yes,Only once more,With reset
+What does peek() allow?,Viewing elements without consuming,Consuming elements,Modifying stream,Terminal operation
+Is peek() intermediate or terminal?,Intermediate,Terminal,Both,Neither
+When is peek() useful?,Debugging,Production code,Performance,Always use
+What does takeWhile() do?,Takes elements while predicate true,Takes n elements,Takes until false,Filters elements
+What does dropWhile() do?,Drops elements while predicate true,Drops n elements,Drops until false,Filters elements
+Were takeWhile() and dropWhile() added in Java 9?,Yes,No,Java 8,Java 11
+What does Comparator.naturalOrder() do?,Sorts in natural ascending order,Sorts descending,Custom sort,No sorting
+What does Comparator.reverseOrder() do?,Sorts in reverse order,Sorts ascending,Custom sort,No sorting
+What does Comparator.comparing() do?,Creates comparator from key extractor,Compares two values,Natural order,Reverse order
+Can you chain Comparator methods?,Yes (thenComparing),No,Only two,Only custom
+What does thenComparing() do?,Adds secondary sort criteria,Primary sort,Reverses sort,Natural sort
+What does reversed() do on Comparator?,Reverses the comparison order,Natural order,Custom order,No change
+Can lambda capture local variables?,Yes (effectively final),No,Only final,Only static
+What does effectively final mean?,Variable not modified after initialization,Declared final,Cannot be used,Must be primitive
+Can lambda modify captured variables?,No,Yes,Only primitives,Only objects
+Can lambda access instance variables?,Yes,No,Only final,Only static
+Can lambda access static variables?,Yes,No,Only instance,Only final
+What is variable capture?,Lambda accessing variables from enclosing scope,Creating variables,Modifying variables,Declaring variables
+What does Optional.map() require?,Function,Predicate,Consumer,Supplier
+What does Optional.filter() require?,Predicate,Function,Consumer,Supplier
+What does Optional.flatMap() require?,Function returning Optional,Function,Predicate,Mapper
+What is the difference between map() and flatMap() on Optional?,flatMap unwraps nested Optional,No difference,map is faster,map unwraps
+Can you use lambda with Collections.sort()?,Yes,No,Only method references,Only anonymous classes
+Can you use lambda with Runnable?,Yes,No,Only Thread,Only Executor
+Can you use lambda with Comparator?,Yes,No,Only Collections,Only Arrays
+What makes interface suitable for lambda?,Single abstract method,Multiple methods,No methods,Default methods
+How many abstract methods can functional interface have?,Exactly one,Zero,Multiple,At least one

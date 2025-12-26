@@ -1,0 +1,119 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which class represents the standard input stream?,System.in,Console.in,StandardInput,Input.stream
+Which class represents the standard output stream?,System.out,Console.out,StandardOutput,Output.stream
+Which class represents the standard error stream?,System.err,Console.err,StandardError,Error.stream
+What type is System.in?,InputStream,Reader,BufferedReader,Scanner
+What type is System.out?,PrintStream,OutputStream,Writer,PrintWriter
+What type is System.err?,PrintStream,OutputStream,Writer,PrintWriter
+Which class provides methods for reading console input?,Console,System,Scanner,BufferedReader
+How do you obtain a Console object?,System.console(),Console.getInstance(),new Console(),Console.getConsole()
+Can System.console() return null?,Yes,No,Only in IDE,Only on Windows
+Which Console method reads a line?,readLine(),read(),nextLine(),getLine()
+Which Console method reads a password without echoing?,readPassword(),readLine(),readSecret(),getPassword()
+What does Console.readPassword() return?,char[],String,byte[],Password
+Why does readPassword() return char[] instead of String?,Security (can clear array),Performance,Tradition,No difference
+Which method reads a single byte from InputStream?,read(),readByte(),get(),next()
+What does InputStream.read() return when end of stream?,−1,0,null,EOFException
+What is the return type of InputStream.read()?,int,byte,char,short
+Which method reads bytes into an array?,read(byte[]),readBytes(),readArray(),getBytes()
+"What does read(byte[] b) return?",Number of bytes read,byte[],void,boolean
+Which class is the parent of all byte input streams?,InputStream,ByteStream,Stream,Input
+Which class is the parent of all byte output streams?,OutputStream,ByteStream,Stream,Output
+Which class is the parent of all character input streams?,Reader,CharStream,Stream,Input
+Which class is the parent of all character output streams?,Writer,CharStream,Stream,Output
+Which stream reads bytes from a file?,FileInputStream,FileReader,InputStreamReader,ByteReader
+Which stream writes bytes to a file?,FileOutputStream,FileWriter,OutputStreamWriter,ByteWriter
+Which stream reads characters from a file?,FileReader,FileInputStream,CharReader,InputStreamReader
+Which stream writes characters to a file?,FileWriter,FileOutputStream,CharWriter,OutputStreamWriter
+Is FileInputStream a byte stream or character stream?,Byte stream,Character stream,Both,Neither
+Is FileReader a byte stream or character stream?,Character stream,Byte stream,Both,Neither
+Which class bridges byte streams to character streams for input?,InputStreamReader,StreamReader,ByteToCharReader,ReaderStream
+Which class bridges byte streams to character streams for output?,OutputStreamWriter,StreamWriter,CharToByteWriter,WriterStream
+Which stream buffers byte input?,BufferedInputStream,InputBuffer,ByteBuffer,BufferedStream
+Which stream buffers byte output?,BufferedOutputStream,OutputBuffer,ByteBuffer,BufferedStream
+Which stream buffers character input?,BufferedReader,ReaderBuffer,CharBuffer,BufferedStream
+Which stream buffers character output?,BufferedWriter,WriterBuffer,CharBuffer,BufferedStream
+Why use buffered streams?,Better performance,Required by API,Security,Compression
+Which BufferedReader method reads a line?,readLine(),read(),nextLine(),getLine()
+What does BufferedReader.readLine() return at end of stream?,null,Empty string,-1,EOFException
+Does readLine() include the newline character?,No,Yes,Sometimes,Configurable
+Which method writes a line with line separator?,println(),writeLine(),write(),print()
+Which class can read primitive data types?,DataInputStream,PrimitiveInputStream,TypedInputStream,ObjectInputStream
+Which class can write primitive data types?,DataOutputStream,PrimitiveOutputStream,TypedOutputStream,ObjectOutputStream
+Which DataInputStream method reads an int?,readInt(),read(),readInteger(),getInt()
+Which DataInputStream method reads a double?,readDouble(),read(),getDouble(),readFloat()
+Which DataInputStream method reads a UTF string?,readUTF(),readString(),read(),getString()
+Which method must you call to ensure data is written?,flush(),write(),commit(),save()
+Which method releases stream resources?,close(),dispose(),release(),free()
+Is it necessary to close streams?,Yes,No,Only file streams,Only buffered streams
+Which interface allows auto-closing?,AutoCloseable,Closeable,Both A and B,Resource
+Can you use try-with-resources with streams?,Yes,No,Only in Java 17,Only buffered streams
+Which exception is commonly thrown by I/O operations?,IOException,StreamException,IOError,ReadWriteException
+Which exception is thrown when file is not found?,FileNotFoundException,IOException,NoSuchFileException,FileException
+Does FileNotFoundException extend IOException?,Yes,No,Only in Java 17,They're unrelated
+Which class allows formatted output?,PrintStream,PrintWriter,Both A and B,FormattedWriter
+Which method formats output like printf?,printf(),format(),Both A and B,print()
+Does PrintStream auto-flush?,No (except println),Yes (always),Never,Configurable only
+Which PrintWriter constructor enables auto-flush?,PrintWriter(OutputStream, boolean),PrintWriter(boolean),All constructors,None
+What does print() do vs println()?,println() adds newline,print() adds newline,No difference,println() flushes
+Which class allows character counting?,LineNumberReader,CharCounter,CountingReader,NumberReader
+Which method gets current line number?,getLineNumber(),lineNumber(),getLine(),currentLine()
+Which stream is best for large files?,Buffered streams,Non-buffered streams,Any stream,File streams only
+Can you read and write simultaneously from same stream?,No,Yes,Only buffered,Only with mark/reset
+Which method marks current position?,mark(),markPosition(),setMark(),position()
+Which method returns to marked position?,reset(),rewind(),goToMark(),restore()
+Does mark/reset work on all streams?,No,Yes,Only buffered,Only file streams
+Which method checks if mark is supported?,markSupported(),supportsmark(),canMark(),isMarkable()
+How many bytes can InputStream.read(byte[]) read at once?,Up to array length,Exactly array length,Only one,Unlimited
+What happens if file already exists with FileOutputStream?,Overwritten,Appends,Exception,Prompts user
+How do you append to a file with FileOutputStream?,FileOutputStream(file, true),FileOutputStream(file).append(),FileOutputStream.append(file),Cannot append
+Which constructor parameter enables append mode?,boolean append,OpenOption,WriteMode,AppendMode
+Which stream can read from standard input easily?,Scanner,BufferedReader,Both A and B,InputStreamReader
+Which Scanner method reads next int?,nextInt(),readInt(),getInt(),nextInteger()
+Which Scanner method reads next line?,nextLine(),readLine(),getLine(),next()
+Which Scanner method reads next word?,next(),nextWord(),readWord(),getWord()
+What does Scanner.next() use as delimiter?,Whitespace,Newline,Comma,Tab only
+Can you change Scanner delimiter?,Yes,No,Only at construction,Only for files
+Which method checks if more input exists?,hasNext(),hasMore(),available(),ready()
+Which Reader method checks if ready to read?,ready(),available(),hasNext(),canRead()
+Which InputStream method returns available bytes?,available(),ready(),hasBytes(),count()
+Is available() guaranteed to be accurate?,No,Yes,Only for files,Only buffered
+Which method writes a single byte?,write(int),writeByte(int),put(int),output(int)
+Why does write() take an int for a byte?,Historical reasons,Performance,Type safety,All of above
+Which bits are written from int in write(int)?,Lower 8 bits,All 32 bits,Upper 8 bits,Lower 16 bits
+Which Writer method writes a string?,write(String),writeString(String),print(String),output(String)
+Which Writer method writes a character array?,write(char[]),writeChars(char[]),print(char[]),output(char[])
+Can you write part of an array?,Yes,No,Only byte arrays,Only char arrays
+"Which method writes portion of array? write(arr, offset, length)",write(char[], int, int),write(char[], int),writeRange(char[], int, int),Cannot write portion
+What must you do after writing to ensure data is saved?,flush() and close(),Only close(),Only flush(),Neither
+What happens if you don't flush?,Data may be lost,Compilation error,Runtime exception,Nothing
+Does close() call flush()?,Yes,No,Sometimes,Only buffered
+Which exception might close() throw?,IOException,CloseException,None,AlreadyClosedException
+Can you close a stream twice?,Yes (but not recommended),No (throws exception),Only buffered,Only file streams
+Which stream automatically closes?,Try-with-resources streams,All streams,None,Only buffered
+What order should you close nested streams?,Outer to inner,Inner to outer,Any order,Don't close nested
+Does closing outer stream close inner stream?,Yes,No,Sometimes,Only buffered
+Which class can read keyboard input easily?,Scanner,BufferedReader,Both A and B,Console
+Which is more efficient for reading lines?,BufferedReader,Scanner,Same,FileReader
+Which provides more parsing features?,Scanner,BufferedReader,Same,Console
+Which method skips bytes?,skip(),skipBytes(),advance(),forward()
+What does skip(n) return?,Number of bytes actually skipped,void,boolean,Always n
+Can skip() skip fewer bytes than requested?,Yes,No,Only at end,Only for files
+Which stream can read/write both bytes and characters?,None (must use bridge),InputStreamReader,OutputStreamWriter,Both B and C
+What encoding does InputStreamReader use by default?,Platform default,UTF-8,ASCII,ISO-8859-1
+Can you specify encoding for InputStreamReader?,Yes,No,Only UTF-8,Only in Java 17
+Which class is better: FileReader or InputStreamReader?,InputStreamReader (more control),FileReader,Same,Depends on file
+Why is InputStreamReader preferred?,Explicit encoding control,Faster,Simpler,Required
+Which stream writes to byte array in memory?,ByteArrayOutputStream,MemoryOutputStream,ArrayOutputStream,BufferOutputStream
+Which stream reads from byte array in memory?,ByteArrayInputStream,MemoryInputStream,ArrayInputStream,BufferInputStream
+Which stream writes characters to memory?,StringWriter,CharArrayWriter,Both A and B,MemoryWriter
+Which stream reads from a string?,StringReader,CharArrayReader,StringInputStream,TextReader
+What does StringWriter.toString() return?,Written content as String,Stream state,null,Exception
+Can you reuse streams after closing?,No,Yes,Only memory streams,Only file streams
+Which class allows piped communication between threads?,PipedInputStream/PipedOutputStream,ThreadStream,PipeStream,CommunicationStream
+Must piped streams be connected?,Yes,No,Optional,Only for reading
+Which method connects piped streams?,connect(),pipe(),link(),attach()
+Which class sequences multiple input streams?,SequenceInputStream,MultiInputStream,CombinedStream,ChainedInputStream
+Which stream filters another stream?,FilterInputStream/FilterOutputStream,Both A and B,ProcessStream,WrapperStream
+Is BufferedInputStream a FilterInputStream?,Yes,No,Sometimes,Unrelated
+Is DataInputStream a FilterInputStream?,Yes,No,Sometimes,Unrelated

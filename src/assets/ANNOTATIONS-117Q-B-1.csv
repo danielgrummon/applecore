@@ -1,0 +1,118 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is an annotation?,Metadata about code,Code comment,Documentation,Method modifier
+When were annotations introduced?,Java 5,Java 1,Java 8,Java 11
+What symbol denotes annotation?,@,#,%,!
+What is syntax for annotation?,@AnnotationName,#AnnotationName,%AnnotationName,annotation Name
+Can annotations have parameters?,Yes,No,Only one,Only String
+What is marker annotation?,Annotation with no elements,Annotation with marker,Tagged annotation,Empty annotation
+What is single-value annotation?,Annotation with one element named value,Annotation with one parameter,Primary annotation,Simple annotation
+What is full annotation?,Annotation with multiple elements,Complex annotation,All parameters,Complete annotation
+What is @Override?,Indicates method overrides superclass method,Forces override,Creates override,Documents override
+What does @Override check?,Method actually overrides,Method is public,Method is final,Method exists
+Where can @Override be used?,Methods only,Classes,Fields,Any element
+What is @Deprecated?,Marks element as discouraged,Removes element,Makes element old,Deletes element
+What happens when using @deprecated element?,Compiler warning,Compilation error,Runtime error,Nothing
+Can you still use @Deprecated elements?,Yes,No,Only if no alternative,Throws exception
+What is @SuppressWarnings?,Suppresses compiler warnings,Suppresses errors,Suppresses deprecation,Removes warnings
+What is syntax for @SuppressWarnings?,@SuppressWarnings("warningType") or @SuppressWarnings({"type1", "type2"}),No parameters,Only one warning,Automatic
+What warnings can be suppressed?,"unchecked, deprecation, rawtypes, etc.",All warnings,No warnings,Only deprecation
+Should you overuse @SuppressWarnings?,No (hides real issues),Yes,Always,Required
+What is @SafeVarargs?,Suppresses warnings for varargs with generics,Makes varargs safe,Checks varargs,Prevents errors
+Where can @SafeVarargs be used?,Final, static, or private methods and constructors,Any method,Only varargs,All parameters
+What is @FunctionalInterface?,Marks interface as functional (single abstract method),Creates lambda,Forces one method,Makes interface final
+What does @FunctionalInterface check?,Interface has exactly one abstract method,Interface is public,Interface has methods,Interface implemented
+Is @FunctionalInterface required?,No (but recommended),Yes,Only for lambdas,Only Java 8+
+What is built-in annotation?,Annotations provided by Java,Custom annotation,User annotation,Library annotation
+What are common built-in annotations?,"@Override, @Deprecated, @SuppressWarnings, @FunctionalInterface",Only @Override,Only @Deprecated,None
+What is meta-annotation?,Annotation for annotations,Metadata annotation,Multiple annotations,Super annotation
+What are meta-annotations?,"@Retention, @Target, @Documented, @Inherited, @Repeatable",Regular annotations,Custom annotations,None
+What is @Retention?,Specifies how long annotation is retained,Retains values,Keeps annotation,Stores annotation
+What are retention policies?,"SOURCE, CLASS, RUNTIME",Only RUNTIME,Only CLASS,Only SOURCE
+What does RetentionPolicy.SOURCE mean?,Discarded by compiler,Available at runtime,In class file,In source only
+What does RetentionPolicy.CLASS mean?,In class file but not at runtime,In source only,At runtime,Never retained
+What does RetentionPolicy.RUNTIME mean?,Available at runtime via reflection,In source only,In class file only,Never retained
+What is default retention policy?,CLASS,SOURCE,RUNTIME,None
+What is @Target?,Specifies where annotation can be used,Targets element,Finds target,Sets target
+What are element types?,"TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE, etc.",Only TYPE,Only METHOD,Only FIELD
+What does ElementType.TYPE mean?,Class, interface, enum, annotation,Only class,Only interface,Only enum
+What does ElementType.FIELD mean?,Field (including enum constants),Only instance fields,Only static fields,Only final fields
+What does ElementType.METHOD mean?,Method,Only public methods,Only abstract methods,Only static methods
+What does ElementType.PARAMETER mean?,Method or constructor parameter,Only method parameters,Only constructor parameters,Only formal parameters
+What does ElementType.CONSTRUCTOR mean?,Constructor,Only public constructors,Only default constructor,Only parameterized
+What does ElementType.LOCAL_VARIABLE mean?,Local variable,Only final locals,Only method variables,Only loop variables
+What does ElementType.ANNOTATION_TYPE mean?,Annotation type,Only meta-annotations,Only custom,Only built-in
+What does ElementType.PACKAGE mean?,Package (in package-info.java),Only default package,Only named packages,All packages
+What does ElementType.TYPE_PARAMETER mean?,Type parameter (Java 8+),Only generics,Only bounded,Only unbounded
+What does ElementType.TYPE_USE mean?,Any use of type (Java 8+),Only type declarations,Only casts,Only instanceof
+Can @Target have multiple types?,Yes,No,Only two,Only related types
+What is default @Target?,All element types,None,Only TYPE,Only METHOD
+What is @Documented?,Annotation appears in Javadoc,Documents code,Creates documentation,Generates docs
+Without @Documented,Annotation not in Javadoc,Annotation hidden,Compilation error,Runtime error
+What is @Inherited?,Annotation inherited by subclasses,Inherits from parent,Forces inheritance,Prevents inheritance
+Does @Inherited work on interfaces?,No (only classes),Yes,Only functional interfaces,Only marker interfaces
+Does @Inherited work on methods?,No (only class declarations),Yes,Only overridden,Only public methods
+What is @Repeatable?,Allows annotation to be used multiple times,Repeats code,Duplicates annotation,Loops annotation
+When was @Repeatable introduced?,Java 8,Java 5,Java 7,Java 11
+What is required for @Repeatable?,Container annotation,Nothing,Only retention,Only target
+What is container annotation?,Annotation holding array of repeatable annotations,Wrapper annotation,Parent annotation,List annotation
+How do you create custom annotation?,@interface AnnotationName,interface AnnotationName,class AnnotationName,@annotation Name
+What keyword creates annotation?,@interface,annotation,@annotation,interface
+Can annotation extend interface?,No (implicitly extends Annotation),Yes,Only marker,Only functional
+What can annotation contain?,Elements (abstract methods),Fields,Concrete methods,Constructors
+What is annotation element?,Abstract method in annotation,Parameter,Field,Value
+What types can annotation elements be?,"Primitives, String, Class, enum, annotation, or arrays",Any type,Only String,Only primitives
+Can annotation element be Object?,No,Yes,Only boxed,Only with default
+Can annotation element be generic?,No,Yes,Only bounded,Only collections
+Can annotation element be null?,No,Yes,Only with default,Only optional
+What is default value in annotation?,Value if not specified,First value,Required value,Fallback value
+How do you specify default?,element() default value,element() = value,element(): value,default element()
+What is value() element convention?,Single element named value,Primary value,First element,Required element
+How do you use single-value annotation?,@Anno(value) or @Anno("value"),@Anno=value,@Anno:value,Only @Anno("value")
+Can you omit value= for value()?,Yes,No,Only for String,Only for single-value
+"For @Anno(value=""x""), can you write @Anno(""x"")?",Yes,No,Only markers,Only runtime
+Can annotation element return array?,Yes,No,Only String[],Only primitives[]
+How do you specify array in annotation?,@Anno({val1, val2}) or @Anno(val1) for single,@Anno[val1, val2],@Anno(val1; val2),Only multiple
+Can you use empty array?,Yes ({}),No,Only null,Compilation error
+What is marker annotation example?,@Override,@Deprecated("reason"),@SuppressWarnings("all"),@Test("name")
+What is single-value annotation example?,@SuppressWarnings("unchecked"),@Override,@Deprecated,@Test
+What is full annotation example?,"@Target({TYPE, METHOD})",@Override,@Deprecated,@Test
+How do you retrieve annotations at runtime?,Reflection,Annotation.get(),Class.getAnnotations(),Automatic
+What method gets annotations?,getAnnotations() or getDeclaredAnnotations(),getAnnotation(),findAnnotations(),annotations()
+What does getAnnotations() return?,All annotations including inherited,Only direct annotations,Only runtime,Only documented
+What does getDeclaredAnnotations() return?,Only directly present annotations,All annotations,Only inherited,Only public
+What does getAnnotation(Class) do?,Gets specific annotation,Gets all annotations,Gets annotation value,Creates annotation
+What does isAnnotationPresent() return?,true if annotation present,Annotation instance,Annotation name,Nothing
+Can you get SOURCE retention at runtime?,No,Yes,Only with reflection,Only special cases
+Can you get CLASS retention at runtime?,No (without special tools),Yes,Only bytecode,Only reflection
+Can you get RUNTIME retention at runtime?,Yes,No,Only reflection,Only sometimes
+What is annotation processing?,Compile-time processing of annotations,Runtime processing,Source processing,Documentation generation
+What is annotation processor?,Tool that processes annotations at compile time,Runtime handler,Reflection tool,Parser
+When does annotation processor run?,During compilation,At runtime,Before compilation,After compilation
+What can annotation processor do?,Generate code, validate, create resources,Modify existing code,Delete code,Execute code
+What is javax.annotation.processing?,Package for annotation processing,Runtime annotations,Reflection API,Documentation tool
+What is Processor interface?,Interface for annotation processors,Annotation type,Meta-annotation,Reflection class
+What is AbstractProcessor?,Abstract class for annotation processors,Concrete processor,Interface,Annotation
+What method processes annotations?,process(),handle(),execute(),run()
+What is RoundEnvironment?,Environment for annotation processing round,Runtime environment,Class environment,Reflection context
+What is ProcessingEnvironment?,Facilities for annotation processor,Runtime environment,Compilation environment,Execution context
+What can processor create?,New source files,Modify existing files,Delete files,Execute code
+Should processor modify existing code?,No,Yes,Only generated,Only annotations
+What is @Generated?,Marks generated code,Generates code,Creates class,Compiles code
+When was @Generated introduced?,Java 9 (javax.annotation.processing.Generated),Java 5,Java 8,Java 11
+What is repeating annotation retrieval?,Use getAnnotationsByType() for repeatable,Use getAnnotations(),Use container,Cannot retrieve
+What does getAnnotationsByType() do?,Gets all instances of repeatable annotation,Gets single annotation,Gets annotation type,Creates annotations
+Can annotation be applied to lambda?,No (use target type),Yes,Only functional,Only Java 11+
+Can annotation be applied to type?,Yes (with TYPE_USE),No,Only TYPE,Only classes
+What is type annotation?,Annotation on type use (Java 8+),Annotation defining type,Type of annotation,Typed element
+What is use of type annotations?,Frameworks, null checking, validation,Required by compiler,Performance,Documentation
+What is @NonNull example?,Type annotation for null checking,Built-in annotation,Required annotation,Compiler annotation
+What is @Nullable example?,Type annotation allowing null,Built-in annotation,Default annotation,Runtime annotation
+Can annotation have circular dependency?,No,Yes,Only container,Only repeatable
+Can annotation be generic?,No,Yes,Only TYPE_PARAMETER,Only bounded
+What is annotation attribute?,Element of annotation,Annotation metadata,Annotation type,Annotation value
+Can annotation be private?,No (implicitly public),Yes,Only elements,Only custom
+Can annotation be final?,No (not applicable),Yes,Only elements,Only built-in
+Can annotation be abstract?,Yes (implicitly),No,Only elements,Only custom
+Can annotation be instantiated?,No,Yes,Only at runtime,Only with new
+What creates annotation instance?,Java runtime (for proxies) or annotation processor,new keyword,Constructor,Factory
+What does annotation.annotationType() return?,Class object for annotation,Annotation name,Annotation value,Nothing

@@ -1,0 +1,115 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which interface is the root of the JDBC API for database connections?,Connection,Database,Session,JDBC
+What class is commonly used to create a database connection?,DriverManager,ConnectionManager,DatabaseManager,JDBCManager
+"What method of DriverManager returns a Connection object?",getConnection(),connect(),openConnection(),createConnection()
+Which interface represents a SQL statement?,Statement,Query,SQL,Command
+Which interface is used for precompiled SQL statements?,PreparedStatement,CompiledStatement,PreStatement,CachedStatement
+Which interface is used to execute stored procedures?,CallableStatement,StoredProcedure,ProcedureStatement,FunctionStatement
+Which interface represents the result of a query?,ResultSet,QueryResult,DataSet,RecordSet
+"What does the following code do? DriverManager.getConnection(url, user, pwd)",Creates a database connection,Registers a driver,Opens a file,Creates a statement
+Which method executes a SQL SELECT query?,executeQuery(),execute(),executeUpdate(),query()
+Which method executes a SQL INSERT statement?,executeUpdate(),executeQuery(),execute(),insert()
+Which method can execute any SQL statement?,execute(),executeQuery(),executeUpdate(),run()
+What does executeUpdate() return?,Number of rows affected,ResultSet,Boolean,Connection
+What does executeQuery() return?,ResultSet,Integer,Boolean,Connection
+What does execute() return?,Boolean indicating if ResultSet is available,ResultSet,Integer,Connection
+"After calling execute(), which method retrieves the ResultSet?",getResultSet(),getResults(),fetchResults(),retrieveResultSet()
+"After calling execute(), which method retrieves the update count?",getUpdateCount(),getCount(),getRowsAffected(),getUpdates()
+Which method moves the ResultSet cursor to the next row?,next(),moveNext(),advance(),nextRow()
+What does ResultSet.next() return?,Boolean indicating if row exists,The next row,An integer,A String
+How do you retrieve a String column from a ResultSet?,getString(),fetchString(),getColumn(),readString()
+How do you retrieve an int column from a ResultSet?,getInt(),fetchInt(),readInt(),getInteger()
+Can you retrieve a column by index in ResultSet?,Yes,No,Only for String columns,Only with PreparedStatement
+Can you retrieve a column by name in ResultSet?,Yes,No,Only by index,Only with Statement
+"What is the first column index in ResultSet?",1,0,-1,2
+Which method closes a Connection?,close(),disconnect(),terminate(),end()
+Which method closes a Statement?,close(),end(),terminate(),dispose()
+Which method closes a ResultSet?,close(),end(),dispose(),terminate()
+Should you close database resources?,Yes,No,Only Connection,Only Statement
+What happens if you don't close a Connection?,Resource leak,Compilation error,Runtime exception,Automatic cleanup
+Which try-with-resources compatible interfaces auto-close?,Connection, Statement, ResultSet,Only Connection,Only Statement,None
+Is Connection AutoCloseable?,Yes,No,Only in Java 17,Only with DriverManager
+Is Statement AutoCloseable?,Yes,No,Only PreparedStatement,Only CallableStatement
+Is ResultSet AutoCloseable?,Yes,No,Only forward-only,Only scrollable
+"What is the correct order to close JDBC resources?",ResultSet, Statement, Connection,Connection, Statement, ResultSet,Statement, ResultSet, Connection,Any order
+Can you reuse a closed Connection?,No,Yes,Only for queries,Only with try-with-resources
+"What symbol is used for placeholders in PreparedStatement?",?,#,$,:
+"How do you set the first parameter in PreparedStatement?",setInt(1, value),setInt(0, value),setParameter(1, value),setParam(1, value)
+"What is the parameter index for the first ? in PreparedStatement?",1,0,2,-1
+Which method sets a String parameter in PreparedStatement?,setString(),setParameter(),setValue(),putString()
+Which method sets an int parameter in PreparedStatement?,setInt(),setInteger(),setParameter(),setValue()
+Which method sets a Date parameter in PreparedStatement?,setDate(),setTimestamp(),setValue(),setParameter()
+Can PreparedStatement prevent SQL injection?,Yes,No,Only for SELECT,Only for INSERT
+Is PreparedStatement precompiled on the database?,Yes (typically),No,Always,Never
+Can you reuse a PreparedStatement with different parameters?,Yes,No,Only once,Only for queries
+"What does setNull(index, type) do in PreparedStatement?",Sets parameter to SQL NULL,Sets parameter to Java null,Throws exception,Removes parameter
+Which SQLException method returns the SQL state?,getSQLState(),getState(),getSQLCode(),getErrorCode()
+Which SQLException method returns vendor-specific error code?,getErrorCode(),getVendorCode(),getCode(),getSQLCode()
+Can SQLException be chained?,Yes,No,Only in Java 17,Only for batch updates
+How do you iterate through chained SQLExceptions?,getNextException(),getNext(),getCause(),getChainedException()
+What interface do you use to call a stored procedure?,CallableStatement,StoredProcedure,ProcedureCall,FunctionStatement
+"How do you prepare a callable statement? connection.prepareCall(...)","{call procedureName(?)}",call procedureName(?),procedureName(?),CALL procedureName(?)
+How do you register an OUT parameter in CallableStatement?,registerOutParameter(),setOutParameter(),declareOutParameter(),addOutParameter()
+How do you retrieve an OUT parameter value?,getInt(index) after execution,Before execution,setInt(index),During execution
+Can CallableStatement have both IN and OUT parameters?,Yes,No,Only IN,Only OUT
+What are IN/OUT parameters called in CallableStatement?,INOUT parameters,BIDIRECTIONAL parameters,DUAL parameters,BOTH parameters
+Which method retrieves metadata about ResultSet columns?,getMetaData(),getColumnMetadata(),getResultSetMetadata(),getColumns()
+What does ResultSetMetaData provide?,Information about columns,Row data,Table schema,Database version
+Which method returns column count in ResultSetMetaData?,getColumnCount(),getColumns(),getSize(),getLength()
+Which method returns column name in ResultSetMetaData?,getColumnName(),getName(),getColumn(),getColumnLabel()
+Which method returns column type in ResultSetMetaData?,getColumnType(),getType(),getSQLType(),getDataType()
+What does getColumnLabel() return?,Column alias or name,Column name only,Column index,Column type
+Is auto-commit enabled by default?,Yes,No,Depends on driver,Depends on database
+Which method disables auto-commit?,setAutoCommit(false),disableAutoCommit(),autoCommit(false),setCommit(false)
+Which method commits a transaction?,commit(),save(),persist(),flush()
+Which method rolls back a transaction?,rollback(),undo(),revert(),cancel()
+Can you commit if auto-commit is enabled?,No (it's automatic),Yes,Only for SELECT,Only for UPDATE
+What happens if you close a Connection without committing?,Changes are rolled back,Changes are committed,SQLException,Depends on driver
+Which method creates a savepoint?,setSavepoint(),createSavepoint(),addSavepoint(),makeSavepoint()
+How do you rollback to a savepoint?,rollback(savepoint),rollbackTo(savepoint),revert(savepoint),undoTo(savepoint)
+Can you have multiple savepoints?,Yes,No,Only two,Only in transactions
+Which method releases a savepoint?,releaseSavepoint(),removeSavepoint(),deleteSavepoint(),freeSavepoint()
+What is the default transaction isolation level?,Database-dependent,READ_UNCOMMITTED,SERIALIZABLE,REPEATABLE_READ
+Which method sets transaction isolation level?,setTransactionIsolation(),setIsolation(),setIsolationLevel(),setTransactionLevel()
+What is the lowest isolation level?,TRANSACTION_READ_UNCOMMITTED,TRANSACTION_READ_COMMITTED,TRANSACTION_REPEATABLE_READ,TRANSACTION_SERIALIZABLE
+What is the highest isolation level?,TRANSACTION_SERIALIZABLE,TRANSACTION_REPEATABLE_READ,TRANSACTION_READ_COMMITTED,TRANSACTION_READ_UNCOMMITTED
+Which isolation level prevents dirty reads?,TRANSACTION_READ_COMMITTED,TRANSACTION_READ_UNCOMMITTED,TRANSACTION_NONE,All of them
+Which isolation level prevents phantom reads?,TRANSACTION_SERIALIZABLE,TRANSACTION_READ_COMMITTED,TRANSACTION_READ_UNCOMMITTED,TRANSACTION_REPEATABLE_READ
+"What does TRANSACTION_REPEATABLE_READ prevent?",Dirty and non-repeatable reads,Only dirty reads,All anomalies,Nothing
+Can you change isolation level during a transaction?,No (typically),Yes,Always,Never
+Which method adds a batch command to Statement?,addBatch(),addCommand(),batch(),queueCommand()
+Which method executes a batch?,executeBatch(),runBatch(),processBatch(),doBatch()
+What does executeBatch() return?,int[] of update counts,ResultSet,Boolean,void
+Can you batch SELECT statements?,No,Yes,Only with Statement,Only with PreparedStatement
+Can you use addBatch() with PreparedStatement?,Yes,No,Only for INSERT,Only for UPDATE
+What happens if one statement in a batch fails?,BatchUpdateException,SQLException,All rollback,Continues processing
+Which exception is thrown for batch failures?,BatchUpdateException,SQLException,BatchException,UpdateException()
+Can you mix different SQL statements in a batch?,Yes with Statement,No,Only with PreparedStatement,Only INSERT/UPDATE
+Which ResultSet type allows forward-only cursor?,TYPE_FORWARD_ONLY,TYPE_SCROLL_INSENSITIVE,TYPE_SCROLL_SENSITIVE,TYPE_BIDIRECTIONAL
+Which ResultSet type allows scrolling?,TYPE_SCROLL_INSENSITIVE,TYPE_FORWARD_ONLY,TYPE_UNIDIRECTIONAL,TYPE_SEQUENTIAL
+Can TYPE_FORWARD_ONLY call previous()?,No,Yes,Only once,Only at end
+Which method moves cursor to previous row?,previous(),back(),movePrevious(),prior()
+Which method moves cursor to first row?,first(),moveFirst(),toFirst(),gotoFirst()
+Which method moves cursor to last row?,last(),moveLast(),toLast(),gotoLast()
+Which method moves cursor before first row?,beforeFirst(),moveBeforeFirst(),toStart(),reset()
+Which method moves cursor after last row?,afterLast(),moveAfterLast(),toEnd(),finish()
+Which method moves cursor to absolute position?,absolute(row),moveTo(row),goto(row),position(row)
+Which method moves cursor relatively?,relative(rows),move(rows),shift(rows),offset(rows)
+Which method checks if cursor is before first row?,isBeforeFirst(),beforeFirst(),atStart(),checkBeforeFirst()
+Which method checks if cursor is after last row?,isAfterLast(),afterLast(),atEnd(),checkAfterLast()
+Which method checks if cursor is on first row?,isFirst(),onFirst(),atFirst(),checkFirst()
+Which method checks if cursor is on last row?,isLast(),onLast(),atLast(),checkLast()
+Which concurrency mode allows updates through ResultSet?,CONCUR_UPDATABLE,CONCUR_READ_ONLY,CONCUR_EDITABLE,CONCUR_MODIFIABLE
+Which concurrency mode is read-only?,CONCUR_READ_ONLY,CONCUR_UPDATABLE,CONCUR_LOCKED,CONCUR_FIXED
+How do you update a String column in updatable ResultSet?,updateString(column, value),setString(column, value),changeString(column, value),modifyString(column, value)
+Which method applies row updates in ResultSet?,updateRow(),saveRow(),commitRow(),applyRow()
+Which method cancels row updates in ResultSet?,cancelRowUpdates(),undoRow(),revertRow(),discardRow()
+Which method deletes current row in ResultSet?,deleteRow(),removeRow(),eraseRow(),dropRow()
+Which method inserts a new row in ResultSet?,insertRow(),addRow(),createRow(),newRow()
+Which method moves to insert row position?,moveToInsertRow(),gotoInsertRow(),toInsertRow(),insertPosition()
+Which method returns to current row from insert row?,moveToCurrentRow(),returnToCurrentRow(),backToCurrentRow(),exitInsertRow()
+Can you update primary key columns in ResultSet?,Usually no,Yes,Always,Never
+"What does Class.forName(""driver.class.name"") do?",Loads JDBC driver class,Creates connection,Registers driver,Opens database
+Is Class.forName() required in JDBC 4.0+?,No (auto-loading),Yes,Always,Sometimes
+Which method checks if Connection is closed?,isClosed(),closed(),checkClosed(),isOpen()
+Which method checks if Connection is valid?,isValid(timeout),checkValid(),validate(),ping()

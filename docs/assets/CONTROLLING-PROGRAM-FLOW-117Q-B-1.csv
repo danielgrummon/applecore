@@ -1,0 +1,118 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is the condition type in if statement?,boolean,int,String,Any type
+Can if statement have empty body?,Yes (with semicolon),No,Only with braces,Only in Java 17
+Are braces required for single statement if?,No (but recommended),Yes,Only in Java 17,Only for else
+What is the ternary operator syntax?,condition ? expr1 : expr2,condition ? expr1 expr2,if condition then expr1 else expr2,condition : expr1 ? expr2
+What does ternary operator return?,A value,void,boolean,Statement
+Can ternary operator be used as statement?,No (must be used in expression),Yes,Only with semicolon,Only in Java 17
+What happens if if condition is not boolean?,Compilation error,Runtime error,False assumed,True assumed
+Can you assign in if condition?,Yes (if result is boolean),No,Only primitives,Only objects
+What is else-if?,Chained conditional,Separate statement,Loop construct,Switch alternative
+Must else-if come before else?,Yes,No,Optional,Same level
+Can you have multiple else blocks?,No,Yes,Only two,Only in Java 17
+Can you have else without if?,No,Yes,Only in Java 17,With braces
+What is a switch statement?,Multi-way branch statement,Loop,Conditional,Function
+What types can switch use in Java 17?,"byte, short, int, char, String, enum",Only int,Only String,Any type
+Can switch use long?,No,Yes,Only in Java 17,Only primitive long
+Can switch use boolean?,No,Yes,Only in Java 17,Only as String
+Can switch use float?,No,Yes,Only in Java 17,Only as String
+Can switch use double?,No,Yes,Only in Java 17,Only as String
+What keyword marks switch cases?,case,when,if,match
+What is default case?,Case when no match found,First case,Last case,Error case
+Is default case required?,No,Yes,Only in expressions,Only without break
+Can default be anywhere in switch?,Yes,No,Only first,Only last
+What happens without break in switch?,Fall-through to next case,Exit switch,Compilation error,Runtime error
+What is fall-through?,Execution continues to next case,Exit switch,Go to default,Error
+Is fall-through intentional?,Can be (but often a bug),Always intentional,Never intentional,Always error
+Can case values be variables?,No (must be compile-time constants),Yes,Only final,Only static
+Can case values be null?,No (except in patterns),Yes,Only String,Only in expressions
+Can case values duplicate?,No,Yes,Only in different switches,Only in Java 17
+What is a switch expression?,Switch that returns a value,Traditional switch,Switch statement,Loop construct
+When were switch expressions introduced?,Java 12 (preview), Java 14 (standard),Java 8,Java 11,Java 17
+What operator do switch expressions use?,-> (arrow),: (colon),= (equals),=> (fat arrow)
+Do switch expressions require break?,No,Yes,Only with colon,Only traditional syntax
+Must switch expressions be exhaustive?,Yes,No,Only with return,Only in Java 17
+What does exhaustive mean?,All possible values covered,Has default,Has break,Complete
+Can switch expression use colon syntax?,Yes (with yield),No,Only arrow,Only in Java 17
+What keyword returns value in colon-style case?,yield,return,break,give
+When was yield introduced?,Java 13,Java 12,Java 14,Java 17
+Can yield be used in switch statement?,Yes,No,Only expressions,Only Java 17
+Can you mix arrow and colon syntax?,No,Yes,Only in Java 17,With yield
+What does switch expression return if no match and no default?,Compilation error,null,Exception,undefined
+Can switch expression return void?,No,Yes,Only with arrow,Only with yield
+What is a for loop?,Counter-controlled loop,Condition loop,Infinite loop,Switch loop
+What are the three parts of for loop?,Initialization; condition; update,Condition; update; initialization,Only condition,Start; end; step
+Can for loop parts be empty?,Yes (all can be empty),No,Only condition,Only initialization
+What does empty for loop do?,Infinite loop,Compilation error,Nothing,One iteration
+"What does for(;;) represent?",Infinite loop,Syntax error,Empty loop,One iteration
+Can you declare multiple variables in for initialization?,Yes (same type),No,Only two,Any types
+Can you have multiple expressions in for update?,Yes (comma-separated),No,Only two,With semicolon
+What is enhanced for loop?,for-each loop,Traditional for,Infinite loop,Switch loop
+What is enhanced for syntax?,for(Type var : collection),for(var in collection),for(var : Type collection),foreach(Type var in collection)
+Can enhanced for modify collection?,No (not safely),Yes,Only add,Only remove
+Can enhanced for access index?,No,Yes,With counter,With method
+What types work with enhanced for?,Arrays and Iterables,Only arrays,Only collections,Any type
+Can you use break in enhanced for?,Yes,No,Only traditional for,Only in Java 17
+What is a while loop?,Pre-test loop,Post-test loop,Counter loop,Infinite loop
+When is while condition checked?,Before each iteration,After each iteration,Once,Never
+Can while loop never execute?,Yes,No,At least once,Only if false
+What is do-while loop?,Post-test loop,Pre-test loop,Counter loop,For loop
+When is do-while condition checked?,After each iteration,Before each iteration,Never,Once
+Does do-while execute at least once?,Yes,No,Only if true,Only if false
+What is the do-while syntax?,do { } while(condition);,while(condition) do { },do while(condition) { },while { } do(condition)
+Is semicolon required after do-while?,Yes,No,Optional,Only without braces
+Can while loop be infinite?,Yes,No,Only for,Only with true
+What makes while loop infinite?,Condition always true,No condition,No body,break statement
+What does break do?,Exits loop or switch,Continues loop,Exits method,Skips iteration
+Can break be used outside loop/switch?,No,Yes,Only in if,Only in method
+What does unlabeled break do?,Exits innermost loop/switch,Exits all loops,Exits method,Continues loop
+What does labeled break do?,Exits to labeled statement,Exits method,Same as break,Syntax error
+What is a label?,Identifier followed by colon,Variable,Method name,Loop name
+Where can labels be placed?,Before statements,After statements,Inside loops,Anywhere
+Can labels be used with if?,Yes,No,Only loops,Only switch
+What does continue do?,Skips to next iteration,Exits loop,Exits method,Same as break
+Can continue be used in switch?,No,Yes,Only with yield,Only in expressions
+Can continue be used outside loop?,No,Yes,Only in if,Only in method
+What does unlabeled continue do?,Skips to next iteration of innermost loop,Exits loop,Skips to end,Exits all loops
+What does labeled continue do?,Skips to next iteration of labeled loop,Exits loop,Same as continue,Syntax error
+Can you have nested loops?,Yes,No,Only two levels,Only same type
+What does break do in nested loop?,Exits only innermost loop,Exits all loops,Continues outer,Exits method
+What does continue do in nested loop?,Continues innermost loop,Continues all loops,Exits inner,Continues outer
+Can labels have same name?,No (in same scope),Yes,Only different types,Only in Java 17
+Can you jump forward with labels?,Yes,No,Only backward,Only loops
+Can you jump backward with labels?,No,Yes,Only forward,Only to start
+What is unreachable code?,Code that can never execute,Dead code,Code after return,All of above
+Is unreachable code allowed?,No (compilation error),Yes,Only in methods,Only after break
+What makes code unreachable?,Code after return/break/continue/throw,Code in loop,Code in if,Any code
+Can you have statement after break?,No (unreachable),Yes,Only in braces,Only in Java 17
+Can you have statement after continue?,No (unreachable),Yes,Only in braces,Only in Java 17
+Can you have code after infinite loop?,No (unreachable),Yes,Only if break,Only with return
+Does while(true) make code unreachable?,Yes,No,Only without break,Only in Java 17
+Does if(true) make else unreachable?,Yes,No,Only constant,Depends
+Can switch expression use patterns?,Yes (Java 17+),No,Only statements,Only with yield
+Can switch use null case?,Yes (Java 17+ with patterns),No,Only default,Only String
+Can switch use sealed types?,Yes (Java 17+),No,Only enum,Only with patterns
+What is pattern matching in switch?,Type patterns with instanceof,String matching,Regex,Variable patterns
+Can switch have multiple labels per case?,Yes (case 1, 2, 3),No,Only expressions,Only in Java 17
+"What is the syntax for multiple case labels?",case 1, 2, 3 -> ...,case 1 | 2 | 3 -> ...,case 1: case 2: case 3:,case 1 || 2 || 3 ->
+Can traditional switch have comma-separated labels?,No,Yes,Only in Java 17,Only expressions
+Can you return from switch expression case?,No (use yield or arrow),Yes,Only with arrow,Only in Java 17
+What is the scope of case variable?,Entire switch (traditional) or case block (expression),Only case,Entire method,Global
+Can you declare variable in traditional case?,Yes (but scope issues),No,Only final,Only in braces
+Must case blocks have braces in expression?,Yes (if multiple statements),No,Always,Never
+Can for loop have no body?,Yes (empty statement),No,Only while,Compilation error
+What does for(int i=0; i<10; i++); do?,Nothing (empty loop),Prints numbers,Infinite loop,Compilation error
+Where is for loop variable scoped?,Inside for block,Entire method,After loop,Global
+Can you access loop variable after for?,No (out of scope),Yes,Only if declared outside,Only in Java 17
+Can for update be missing?,Yes,No,Only condition,Compilation error
+Can while condition be missing?,No,Yes,Only if true,Infinite loop
+Is while(true) valid?,Yes (infinite loop),No,Compilation warning,Runtime error
+Is do { } while(false) valid?,Yes (executes once),No,Compilation error,Infinite loop
+Can do-while have break?,Yes,No,Only while,Only for
+Can you nest different loop types?,Yes,No,Only same type,Only two levels
+What is the maximum nesting level?,No limit (practical limits exist),10,5,2
+Can switch be nested?,Yes,No,Only in loops,Only two levels
+Can you use goto in Java?,No,Yes,Only with labels,Only in loops
+Are labels like goto?,No (more limited),Yes (same),Only for loops,Only forward
+Can finally block have break?,No (compilation error),Yes,Only in try,Only with catch
+Can finally block have continue?,No (compilation error),Yes,Only in try,Only with catch

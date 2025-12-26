@@ -1,0 +1,132 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is inheritance?,Mechanism where class acquires properties from parent,Interface implementation,Composition,Encapsulation
+What keyword indicates inheritance?,extends,implements,inherits,derives
+Can class extend multiple classes?,No (single inheritance),Yes,Only two,Only interfaces
+Can class extend one and implement many?,Yes,No,Only extend,Only implement
+What is superclass?,Parent class being extended,Subclass,Interface,Super keyword
+What is subclass?,Child class extending parent,Superclass,Implementation,Base class
+What is base class?,Root of hierarchy,Subclass,Interface,Derived class
+What is derived class?,Class that extends another,Base class,Interface,Unrelated class
+What does subclass inherit?,All non-private members,Only public,Only protected,Only methods
+Does subclass inherit private members?,No (but they exist in object),Yes,Only methods,Only fields
+Does subclass inherit constructors?,No,Yes,Only default,Only public
+Does subclass inherit static members?,Yes (class members, not overridden),No,Only methods,Only fields
+Can subclass access private parent members?,No (indirectly via public/protected methods),Yes,Only same package,Only if inherited
+What is protected access?,Accessible in subclass and same package,Only subclass,Only package,Public access
+Can subclass in different package access protected?,Yes (only through inheritance),No,Only same package,Only public
+Can other class in same package access protected?,Yes,No,Only subclass,Only public
+What is super keyword?,Reference to parent class,Superclass name,Super method,Inheritance
+What does super() do?,Calls parent constructor,Calls parent method,Creates parent,Returns parent
+Where must super() appear?,First statement in constructor,Anywhere,Last statement,No requirement
+Is super() implicit?,Yes (if not specified),No,Only with parameters,Only Object
+What does super.method() do?,Calls parent version of method,Calls constructor,Creates parent,Overrides method
+Can you use super in static method?,No,Yes,Only fields,Only methods
+What is method overriding?,Subclass provides specific implementation,Method overloading,Method hiding,New method
+What is required for overriding?,Same signature (name, parameters),Same name only,Different signature,Same return type only
+Can you change return type when overriding?,Yes (covariant return),No,Only to Object,Only primitives
+What is covariant return type?,Return subtype of original,Return supertype,Same return type,Any return type
+Can you change parameter types when overriding?,No (different signature = overloading),Yes,Only widening,Only narrowing
+Can you widen access when overriding?,Yes,No,Only to public,Only protected
+Can you narrow access when overriding?,No,Yes,Only to private,Only protected
+Can private method be overridden?,No (not inherited),Yes,Only in subclass,Only public
+Can static method be overridden?,No (method hiding, not overriding),Yes,Only in subclass,Only public
+Can final method be overridden?,No,Yes,Only in final class,Only private
+What is method hiding?,Static method in subclass with same signature,Method overriding,Private method,Method overloading
+What determines hidden method call?,Reference type (compile-time),Object type,Runtime,Always parent
+What determines overridden method call?,Object type (runtime),Reference type,Compile-time,Always child
+What is polymorphism?,One interface, multiple implementations,Multiple interfaces,Inheritance,Encapsulation
+What are types of polymorphism?,Compile-time (overloading) and runtime (overriding),Only runtime,Only compile-time,Dynamic only
+What is compile-time polymorphism?,Method overloading,Method overriding,Runtime binding,Late binding
+What is runtime polymorphism?,Method overriding,Method overloading,Early binding,Compile-time
+What is dynamic method dispatch?,Runtime determination of overridden method,Compile-time method,Static dispatch,Method hiding
+What is late binding?,Method determined at runtime,Method at compile-time,Early binding,Static binding
+What is early binding?,Method determined at compile-time,Method at runtime,Late binding,Dynamic binding
+Are overridden methods late binding?,Yes,No,Only virtual,Only public
+Are overloaded methods early binding?,Yes,No,Only static,Only private
+What is upcasting?,Casting subclass to superclass (implicit),Casting to subclass,Explicit cast,Downcasting
+What is downcasting?,Casting superclass to subclass (explicit),Casting to superclass,Implicit cast,Upcasting
+Is upcasting safe?,Yes (always allowed),No,Only same package,Only public classes
+Is downcasting safe?,No (may throw ClassCastException),Yes,Always,Only with check
+How do you check before downcast?,instanceof,ClassCastException,cast,typeCheck()
+What does instanceof do?,Checks if object is instance of type,Creates instance,Casts object,Returns type
+Can null instanceof Type?,false,true,NullPointerException,Compilation error
+What is ClassCastException?,Runtime exception for invalid cast,Compile error,Checked exception,Downcasting exception
+When is ClassCastException thrown?,Invalid downcast,Any cast,Upcast,Never
+Can you cast unrelated classes?,No (compilation error),Yes,Only interfaces,Only Object
+Can you cast to interface?,Yes (if not final class),No,Only implementing classes,Only functional
+What is Object class?,Root of class hierarchy,Base class,Superclass,Any class
+Does every class extend Object?,Yes (implicitly if no extends),No,Only explicitly,Only reference types
+What methods does Object provide?,"equals, hashCode, toString, clone, finalize, etc.",Only toString,Only equals,None
+Can you override Object methods?,Yes (except final ones),No,Only toString,Only equals
+Which Object methods are final?,"getClass, notify, notifyAll, wait",equals,toString,hashCode
+What does getClass() return?,Class object representing runtime type,Class name,Superclass,Object type
+Can getClass() be overridden?,No (final),Yes,Only in subclass,Only Object
+What is toString()?,Returns string representation,Converts to string,Prints object,Returns name
+What is default toString()?,ClassName@hashCodeInHex,ClassName,Object,Empty string
+Should you override toString()?,Yes (for meaningful representation),No,Only if needed,Required
+What is equals()?,Checks logical equality,Reference equality,Same as ==,Comparison
+What is default equals()?,Reference equality (==),Logical equality,True,False
+Should you override equals()?,Yes (if objects can be logically equal),No,Only collections,Required
+What is contract for equals()?,Reflexive, symmetric, transitive, consistent, null-false,No contract,Only symmetric,Any implementation
+What is hashCode()?,Returns hash code integer,Returns hash map,Calculates hash,Returns id
+What is hashCode contract?,Equal objects must have equal hash codes,Unequal objects different hash,Any number,No contract
+Must you override hashCode() if override equals()?,Yes,No,Optional,Only for HashMap
+What happens if equals overridden but not hashCode()?,Incorrect behavior in hash-based collections,Nothing,Compilation error,Better performance
+What is clone()?,Creates copy of object,Deletes object,Compares objects,Returns same object
+What must class do to clone?,Implement Cloneable,Nothing,Override clone(),Call super.clone()
+What is Cloneable?,Marker interface for cloning,Clone method,Clone class,Functional interface
+What does clone() return?,Object (usually cast),Same object,New instance,void
+Is clone() deep or shallow?,Shallow (by default),Deep,Both,Neither
+What is shallow copy?,Copies object but not referenced objects,Copies everything,Deep copy,No copy
+What is deep copy?,Copies object and all referenced objects,Shallow copy,Only primitives,Reference copy
+What is finalize()?,Called before garbage collection (deprecated),Finalizes object,Constructor,Required method
+Is finalize() deprecated?,Yes (Java 9+),No,Only Java 17,Removed
+Should you use finalize()?,No (use try-with-resources or Cleaner),Yes,Always,Required
+What is is-a relationship?,Inheritance relationship,Composition,Aggregation,Association
+What is has-a relationship?,Composition/aggregation,Inheritance,Is-a,Association
+When to use inheritance?,Is-a relationship,Has-a,Always,Code reuse
+When to use composition?,Has-a relationship,Is-a,Never,Always
+What is favor composition over inheritance?,Prefer has-a over is-a for flexibility,Always inherit,Never compose,Equal preference
+What is Liskov Substitution Principle?,Subclass should be substitutable for superclass,Any substitution,No substitution,Only interfaces
+What is substitutability?,Subclass can replace superclass,Override ability,Inheritance,Polymorphism
+Can subclass weaken preconditions?,Yes,No,Only public,Only protected
+Can subclass strengthen postconditions?,Yes,No,Only return,Only exceptions
+Can overriding method throw more checked exceptions?,No,Yes,Only if declared,Only Runtime
+Can overriding method throw fewer exceptions?,Yes,No,Same only,More only
+Can overriding method throw different unchecked exceptions?,Yes (unchecked not part of contract),No,Only if declared,Never
+What is exception covariance?,Subclass can throw subtype exceptions,Throw more,Throw any,No exceptions
+What is the rule for overriding exceptions?,Cannot throw new or broader checked exceptions,Can throw anything,No exceptions allowed,Only unchecked
+What is abstract method overriding?,Providing implementation in subclass,Creating abstract,Removing implementation,Hiding method
+Must you override abstract methods?,Yes (unless subclass is abstract),No,Optional,Only public
+Can you make concrete method abstract in subclass?,No,Yes,Only if abstract class,Only protected
+Can you make abstract method concrete in subclass?,Yes (implementation),No,Only if concrete,Required
+What is @Override annotation?,Indicates intent to override,Forces override,Creates override,Required for override
+Is @Override required?,No (but recommended),Yes,Only Java 8+,Only public
+What does @Override check?,Method actually overrides,Method is public,Method exists,Method is final
+What error does @Override prevent?,Accidentally overloading instead of overriding,Runtime error,Logic error,Performance issue
+Can you @Override interface method?,Yes,No,Only default,Only abstract
+Can you @Override abstract method?,Yes,No,Only concrete,Only in abstract class
+What is multiple inheritance problem?,Diamond problem and ambiguity,No problem,Single inheritance,Interface issue
+Does Java allow multiple class inheritance?,No,Yes,Only abstract,Only interfaces
+Why not multiple class inheritance?,Complexity and diamond problem,Performance,Not needed,Too powerful
+What is alternative to multiple inheritance?,Interfaces and composition,Abstract classes,Single inheritance,No alternative
+Can interface provide partial multiple inheritance?,Yes (of type and behavior via default),No,Only type,Only behavior
+What is constructor chaining?,Constructors calling other constructors,Multiple constructors,Inheritance,Constructor overloading
+What is this() in constructor?,Calls another constructor in same class,Calls parent constructor,Current instance,Creates object
+What is super() in constructor?,Calls parent constructor,Calls same class constructor,Superclass reference,Creates parent
+Can you call both this() and super()?,No (only one),Yes,Only if needed,Only in order
+Which must be first: this() or super()?,Whichever is used (only one allowed),super(),this(),Neither
+What if no explicit super()?,Implicit super() added,Compilation error,No parent call,Runtime error
+What if parent has no no-arg constructor?,Must explicitly call parameterized super(),Compilation error,Uses default,Creates one
+Can you access instance variables before super()?,No,Yes,Only final,Only static
+Can you call instance methods before super()?,No,Yes,Only final,Only static
+What is initialization order?,Static (parent→child) → Instance (parent→child) → Constructor (parent→child),Constructor first,Child first,Random
+When are static blocks executed?,Class loading (parent before child),Object creation,Method call,Never
+When are instance initializers executed?,Object creation (parent before child),Class loading,Method call,Constructor only
+When are constructors executed?,Object creation (parent before child),Class loading,Method call,Field initialization
+What is fragile base class problem?,Changes to parent break subclass,Broken subclass,Strong parent,No problem
+How to avoid fragile base class?,Careful design, composition, final,Make everything public,Always abstract,No solution
+What is open-closed principle?,Open for extension, closed for modification,Always open,Always closed,No principle
+How does inheritance support open-closed?,Extend via subclassing,Modify parent,Close inheritance,Open everything
+What is interface vs implementation inheritance?,Interface defines contract; implementation provides code,Same thing,Only interface,Only implementation
+Can you inherit implementation from interface?,Yes (default methods, Java 8+),No,Only abstract,Only static

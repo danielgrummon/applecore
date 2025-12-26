@@ -1,0 +1,119 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which package contains the Date-Time API?,java.time,java.util,java.date,java.datetime
+Which class represents a date without time?,LocalDate,LocalDateTime,Date,Calendar
+Which class represents a time without date?,LocalTime,LocalDateTime,Time,Calendar
+Which class represents both date and time without timezone?,LocalDateTime,ZonedDateTime,Date,Timestamp
+Which class represents date-time with timezone?,ZonedDateTime,LocalDateTime,OffsetDateTime,TimeZone
+Which class represents instant in time?,Instant,ZonedDateTime,LocalDateTime,Timestamp
+Which class represents a time zone?,ZoneId,TimeZone,ZonedDateTime,Zone
+Which class represents time-based duration?,Duration,Period,Interval,TimeDuration
+Which class represents date-based period?,Period,Duration,Interval,DatePeriod
+Are Date-Time API classes mutable?,No (immutable),Yes,Some are,Only LocalDate
+Which method creates current LocalDate?,LocalDate.now(),new LocalDate(),LocalDate.current(),LocalDate.today()
+Which method creates specific LocalDate?,LocalDate.of(year, month, day),new LocalDate(y, m, d),LocalDate.create(),LocalDate.from()
+Can you modify LocalDate after creation?,No (returns new instance),Yes,With setter,With modifier
+What does LocalDate.plusDays() return?,New LocalDate,void,Modified original,LocalDateTime
+What does LocalDate.minusMonths() return?,New LocalDate,void,Modified original,Period
+Which method gets year from LocalDate?,getYear(),year(),getYearValue(),yearValue()
+Which method gets month from LocalDate?,getMonth() or getMonthValue(),month(),monthValue(),getMonthNumber()
+What does getMonth() return?,Month enum,int,String,MonthValue
+What does getMonthValue() return?,int (1-12),Month enum,String,int (0-11)
+Which method gets day of month?,getDayOfMonth(),getDay(),day(),dayOfMonth()
+Which method gets day of week?,getDayOfWeek(),getDay(),dayOfWeek(),weekDay()
+What does getDayOfWeek() return?,DayOfWeek enum,int,String,Integer
+Which method creates current LocalTime?,LocalTime.now(),new LocalTime(),LocalTime.current(),LocalTime.create()
+Which method creates specific LocalTime?,LocalTime.of(hour, minute),new LocalTime(h, m),LocalTime.create(),LocalTime.from()
+Can LocalTime represent nanoseconds?,Yes,No,Only milliseconds,Only seconds
+What is the range for hour in LocalTime?,0-23,1-24,0-24,1-23
+What does LocalTime.plusHours() return?,New LocalTime,void,Modified original,Duration
+Which method gets hour from LocalTime?,getHour(),hour(),getHourValue(),hourValue()
+Which method gets minute from LocalTime?,getMinute(),minute(),getMinuteValue(),minuteValue()
+Which method gets second from LocalTime?,getSecond(),second(),getSecondValue(),secondValue()
+Which method gets nanosecond from LocalTime?,getNano(),nanosecond(),getNanosecond(),nanoValue()
+Which method creates current LocalDateTime?,LocalDateTime.now(),new LocalDateTime(),LocalDateTime.current(),LocalDateTime.create()
+Which method creates specific LocalDateTime?,LocalDateTime.of(date, time) or LocalDateTime.of(y, m, d, h, min),new LocalDateTime(),LocalDateTime.create(),LocalDateTime.from()
+Can you create LocalDateTime from LocalDate?,Yes (with atTime()),No,Only parse,Only convert
+Can you create LocalDateTime from LocalTime?,Yes (with atDate()),No,Only parse,Only convert
+What does LocalDate.atTime() return?,LocalDateTime,LocalTime,ZonedDateTime,void
+What does LocalTime.atDate() return?,LocalDateTime,LocalDate,ZonedDateTime,void
+Which method creates current ZonedDateTime?,ZonedDateTime.now(),new ZonedDateTime(),ZonedDateTime.current(),ZonedDateTime.create()
+What does ZonedDateTime include?,Date, time, and timezone,Only date and time,Only timezone,Date and timezone
+Which method adds timezone to LocalDateTime?,atZone(ZoneId),withZone(),addZone(),setZone()
+What does ZoneId.of() accept?,Zone ID string,TimeZone,int,Zone object
+"What is an example of zone ID?",America/New_York or Europe/London,EST,GMT,UTC+5
+Can you use short IDs like EST?,Not recommended (prefer full IDs),Yes (preferred),Only for US,Required
+Which method creates Instant?,Instant.now(),new Instant(),Instant.current(),Instant.create()
+What does Instant represent?,Point on timeline in UTC,Local time,Date only,Timezone
+Can Instant have timezone?,No (always UTC),Yes,Optional,Must have
+Which method converts Instant to ZonedDateTime?,atZone(ZoneId),toZonedDateTime(),withZone(),convert()
+Which method converts ZonedDateTime to Instant?,toInstant(),toUTC(),convert(),getInstant()
+What does Duration.between() require?,Two temporal objects,Two numbers,Start and end dates,Two durations
+Can Duration be used with dates?,No (use Period),Yes,Only LocalDate,Only ZonedDateTime
+What does Period.between() require?,Two LocalDate objects,Two numbers,Two temporal objects,Two periods
+Can Period be used with times?,No (use Duration),Yes,Only LocalTime,Only LocalDateTime
+What does Duration measure?,Time-based amount (hours, minutes, seconds),Date-based amount,Both,Days only
+What does Period measure?,Date-based amount (years, months, days),Time-based amount,Both,Hours only
+What does Duration.ofDays() return?,Duration,Period,long,Days
+What does Period.ofDays() return?,Period,Duration,int,Days
+Can you add Duration to LocalDate?,No (incompatible),Yes,With conversion,Only days
+Can you add Period to LocalDate?,Yes,No,Only months,Only years
+Can you add Duration to LocalTime?,Yes,No,Only minutes,Only hours
+Can you add Period to LocalTime?,No (incompatible),Yes,Only days,With conversion
+Which method adds Period to LocalDate?,plus(Period),add(Period),plusPeriod(),addPeriod()
+Which method adds Duration to LocalTime?,plus(Duration),add(Duration),plusDuration(),addDuration()
+What does Duration.ofHours(2) create?,Duration of 2 hours,Period of 2 hours,2 hours as int,TimeUnit
+What does Period.ofMonths(3) create?,Period of 3 months,Duration of 3 months,3 months as int,MonthUnit
+Can you chain plus/minus methods?,Yes,No,Only two,Only same type
+What does LocalDate.with() do?,Modifies field and returns new instance,Modifies original,Returns void,Throws exception
+Which interface provides with method?,TemporalAdjuster,Adjuster,Modifier,Temporal
+What does TemporalAdjusters provide?,Common adjusters,Temporal objects,Dates only,Times only
+What does TemporalAdjusters.firstDayOfMonth() do?,Returns first day of month,Sets to first day,Returns 1,Modifies month
+What does TemporalAdjusters.lastDayOfMonth() do?,Returns last day of month,Sets to last day,Returns 31,Modifies month
+What does TemporalAdjusters.next(DayOfWeek) do?,Returns next occurrence of day,Modifies day,Returns number,Sets day
+Can you create custom TemporalAdjuster?,Yes,No,Only extend,Only in Java 17
+Which class formats date-time?,DateTimeFormatter,SimpleDateFormat,Formatter,DateFormat
+Which method creates formatter?,DateTimeFormatter.ofPattern(),new DateTimeFormatter(),DateTimeFormatter.create(),Formatter.of()
+What does format() return?,String,LocalDate,void,Formatter
+What does parse() return?,Temporal object,String,void,Formatter
+Can DateTimeFormatter be reused?,Yes (thread-safe),No,Only once,Must recreate
+Is SimpleDateFormat thread-safe?,No,Yes,In Java 17,With synchronization
+Which predefined formatter exists?,ISO_LOCAL_DATE,DATE_FORMAT,STANDARD_DATE,DEFAULT_DATE
+"What pattern represents ""yyyy-MM-dd""?",ISO_LOCAL_DATE or custom pattern,ISO_DATE,STANDARD_DATE,DATE_PATTERN
+What does 'y' represent in pattern?,Year,Month,Day,Yesterday
+What does 'M' represent in pattern?,Month (number),Month (name),Minute,Monday
+What does 'd' represent in pattern?,Day of month,Day of week,Day of year,Date
+What does 'H' represent in pattern?,Hour (0-23),Hour (1-12),Hour (24),Hundred
+What does 'h' represent in pattern?,Hour (1-12),Hour (0-23),Hour (24),Half
+What does 'm' represent in pattern?,Minute,Month,Millisecond,Monday
+What does 's' represent in pattern?,Second,Saturday,Sunday,String
+What does 'a' represent in pattern?,AM/PM marker,Afternoon,Any,All
+What does 'E' represent in pattern?,Day of week name,Error,Empty,End
+What does 'MMMM' represent in pattern?,Full month name,Four months,Month number,Milliseconds
+What does 'MMM' represent in pattern?,Abbreviated month name,Three months,Month number,Minutes
+What does 'MM' represent in pattern?,Month number (01-12),Month name,Two months,Minutes
+Does LocalDate have time zone?,No,Yes,Optional,Inherited
+Does LocalTime have time zone?,No,Yes,Optional,Inherited
+Does LocalDateTime have time zone?,No,Yes,Optional,Inherited
+Does ZonedDateTime have time zone?,Yes,No,Optional,Inherited
+Does Instant have time zone?,No (implicitly UTC),Yes,Optional,Multiple
+Can you compare LocalDate objects?,Yes,No,Only equals,Only sort
+Which method compares dates?,compareTo() or isBefore()/isAfter(),compare(),compareDate(),check()
+What does isBefore() return?,boolean,int,LocalDate,Comparison
+What does isAfter() return?,boolean,int,LocalDate,Comparison
+What does isEqual() do?,Checks equality without time zone,Same as equals(),Checks reference,Type check
+Can you use == for date-time objects?,No (use equals()),Yes,Only primitives,Only immutable
+Which method checks if year is leap?,Year.isLeap() or LocalDate.isLeapYear(),isLeap(),checkLeap(),leapYear()
+What is the epoch?,1970-01-01T00:00:00Z,2000-01-01,1900-01-01,Start of time
+Which method gets seconds since epoch?,Instant.getEpochSecond(),getSeconds(),epochSeconds(),secondsSinceEpoch()
+What does toEpochMilli() return?,Milliseconds since epoch,Epoch time,Instant,long milliseconds
+Can Period have negative values?,Yes,No,Only days,Only months
+Can Duration have negative values?,Yes,No,Only hours,Only minutes
+What does Period.ofYears(1).plusMonths(2) create?,Period of 1 year and 2 months,Period of 14 months,Duration,Invalid
+What does negated() do?,Returns negative period/duration,Modifies original,Returns positive,Throws exception
+Can you multiply Period?,Yes (multipliedBy()),No,Only by 2,Only years
+Can you multiply Duration?,Yes (multipliedBy()),No,Only by 2,Only hours
+What does ChronoUnit provide?,Time units,Chronology,Units,Time calculations
+Which method calculates difference?,ChronoUnit.DAYS.between(),calculateDifference(),getDifference(),timeBetween()
+What does until() calculate?,Amount until another date,Days remaining,Period,Duration
+Which method truncates time?,truncatedTo(ChronoUnit),truncate(),round(),floor()
+Can you truncate to hours?,Yes,No,Only minutes,Only days

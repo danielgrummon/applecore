@@ -1,0 +1,121 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is the module descriptor file name?,module-info.java,module.java,module-descriptor.java,ModuleInfo.java
+Where is module-info.java located?,Root of module source,src folder,Any package,META-INF
+What keyword declares a module?,module,package,namespace,declare
+Can a module name contain dashes?,No (only dots),Yes,Only underscores,Both dashes and dots
+What is the recommended module naming convention?,Reverse domain name,Package name,Class name,Any name
+Which directive declares a dependency?,requires,imports,depends,needs
+Which directive exports a package?,exports,exposes,publishes,shares
+Which directive opens a package for reflection?,opens,exposes,reflects,accessible
+Which directive declares service usage?,uses,requires,consumes,imports
+Which directive provides service implementation?,provides...with,implements,offers,supplies
+Can module-info.java be in a package?,No,Yes,Only default,Only java package
+Is module-info.java compiled?,Yes,No,Only in Java 17,Optional
+What does requires do?,Declares dependency on another module,Imports classes,Exports package,Opens package
+Can you require multiple modules?,Yes,No,Only two,Only with requires static
+What does requires transitive do?,Makes dependency available to dependents,Normal dependency,Static dependency,Optional dependency
+What does requires static do?,Compile-time only dependency,Runtime only,Transitive dependency,Strong dependency
+Can you combine requires static transitive?,Yes,No,Only static,Only transitive
+What does exports do?,Makes package accessible to other modules,Opens for reflection,Requires dependency,Provides service
+Does exports allow reflection?,No (only public access),Yes,Sometimes,Only with opens
+Can you export to specific modules?,Yes (qualified exports),No,Only one module,All or nothing
+"What is the syntax for qualified exports?",exports pkg to module1, module2,exports pkg for module1,exports pkg : module1,exports pkg (module1)
+What does opens do?,Allows deep reflection at runtime,Exports package,Requires dependency,Provides service
+Does opens grant compile-time access?,No,Yes,Sometimes,Only public
+Can you open to specific modules?,Yes (qualified opens),No,Only one module,All or nothing
+What does open module do?,Opens all packages for reflection,Exports all packages,Normal module,Requires all modules
+Can an open module use exports?,No (all packages are open),Yes,Only qualified,Only transitive
+What does uses do?,Declares service consumption,Provides service,Requires module,Exports service
+What does provides...with do?,Provides service implementation,Consumes service,Exports service,Requires service
+How many implementations can provides have?,One or more,Only one,Exactly two,Unlimited
+Must service interface be accessible?,Yes,No,Only public,Only in same module
+Must provider class be public?,No (only accessible to module system),Yes,Sometimes,Only if exported
+Must provider have no-arg constructor?,Yes,No,Only public,Only protected
+Can services be in non-exported packages?,Yes,No,Only if opened,Only if public
+What module is implicitly required?,java.base,java.lang,java.util,No implicit requires
+Can you explicitly require java.base?,Yes (but redundant),No,Required,Causes error
+Which module contains String class?,java.base,java.lang,java.util,java.core
+Which module contains SQL types?,java.sql,java.base,java.database,java.jdbc
+Which module contains XML APIs?,java.xml,java.base,java.util,java.lang
+Is java.base a platform module?,Yes,No,Only in JDK,Only in JRE
+What is an automatic module?,JAR on module path without module-info,Module with automatic exports,Generated module,System module
+How is automatic module name determined?,MANIFEST or JAR filename,Package name,Random,Not determined
+Do automatic modules export all packages?,Yes,No,Only public,Only named
+Do automatic modules require all modules?,Yes (implicitly),No,Only specified,Only java.base
+Are automatic modules strongly encapsulated?,No,Yes,Partially,Only exports
+What is the unnamed module?,Classpath content,Module without name,Default module,Anonymous module
+Can unnamed module read all modules?,Yes,No,Only named,Only automatic
+Can named modules read unnamed module?,No,Yes,With special directive,Only automatic modules
+What is a split package?,Same package in multiple modules,Package divided into subpackages,Large package,Renamed package
+Are split packages allowed?,No (between named modules),Yes,Only automatic,Only unnamed
+What happens with split packages?,Module resolution fails,Warning only,Compilation error,Runtime error
+Can you access non-exported package from another module?,No,Yes,With reflection,With opens
+What is strong encapsulation?,Non-exported packages are inaccessible,All packages private,Exported packages only,Module isolation
+Does strong encapsulation apply to classpath?,No,Yes,Only Java 17,Partially
+Which option breaks encapsulation?,"--add-opens, --add-exports",--open-module,--expose,--break-seal
+What does --add-exports do?,Exports package at runtime,Opens package,Adds module,Requires module
+What does --add-opens do?,Opens package for reflection,Exports package,Adds module,Requires module
+What does --add-reads do?,Adds module dependency,Reads file,Opens package,Exports package
+What does --add-modules do?,Resolves additional modules,Adds dependency,Creates module,Exports module
+When would you use --add-modules?,For service providers or indirect dependencies,Always,Never,Only automatic modules
+What is module path?,Location of modules,Same as classpath,JAR directory,Source directory
+What option specifies module path?,--module-path or -p,--modulepath,-mp,--modules
+Can you mix module path and classpath?,Yes,No,Only in Java 17,Only for automatic
+Which takes precedence: module path or classpath?,Module path,Classpath,Equal,Depends on order
+What does -m or --module specify?,Main module and class,Module path,Module name only,Main class only
+"What is the format for -m?",module/main.class,module.main.class,module:main.class,module-main.class
+What does jdeps do?,Analyzes dependencies,Compiles modules,Runs modules,Creates modules
+What does jdeps --generate-module-info do?,Generates module descriptors,Analyzes dependencies,Lists modules,Compiles modules
+What does jmod do?,Creates JMOD files,Creates modules,Analyzes dependencies,Compiles Java
+What is a JMOD file?,Module format for JDK,JAR file,Module descriptor,Compiled module
+Can JMOD files be used at runtime?,No (only for linking),Yes,Only with jlink,Only in JDK
+What does jlink do?,Creates custom runtime images,Links modules,Creates JMODs,Compiles modules
+Can modules have cyclic dependencies?,No,Yes,Only with transitive,Only automatic
+What is the module graph?,Dependency graph of modules,Module hierarchy,Package structure,Class diagram
+Which tool shows module graph?,java --show-module-resolution,jdeps --module-graph,javac --graph,jmod --graph
+What happens if required module is missing?,Module resolution error,Compilation warning,Runtime error,Loads anyway
+Can you export the same package to multiple modules?,Yes (list all modules),No,Only two,Only with exports all
+Can you export subpackages?,No (must export each explicitly),Yes (automatic),Only public,With wildcard
+Does exporting package export subpackages?,No,Yes,Only public,Automatically
+What visibility is needed for exported classes?,public,Any,protected,package-private
+Can you access package-private from another module?,No,Yes,If exported,If opened
+Can reflection access private fields in exported package?,No (unless opened),Yes,Always,If public
+Can reflection access private fields in opened package?,Yes,No,Only public,Only protected
+What does opens...to do?,Opens package to specific modules,Opens to all,Exports package,Requires module
+Can a module be both open and have exports?,No (open modules cannot export),Yes,Only qualified exports,Only in Java 17
+Must service provider implement service interface?,Yes,No,Only extend,Only public
+Can service interface be a class?,Yes (but typically interface),No,Only abstract,Only final
+Can provides use inner class?,Yes,No,Only static inner,Only public
+What package must be accessible for uses?,The service interface package,Implementation package,Both,Neither
+What package must be accessible for provides?,Implementation can be encapsulated,Must be exported,Must be opened,Must be public
+How do you load services?,ServiceLoader.load(),Service.load(),Module.loadService(),Class.forName()
+What does ServiceLoader.load() return?,ServiceLoader<S> (Iterable),List<S>,Set<S>,S instance
+Is ServiceLoader lazy?,Yes,No,Only in Java 17,Only for automatic modules
+Can you have multiple providers for same service?,Yes,No,Only two,Only in same module
+Can service be in java.base?,Yes,No,Only platform services,Only custom services
+What happens if no provider for uses?,No error (ServiceLoader is empty),Compile error,Runtime error,Module resolution error
+What happens if provides without uses?,Valid (other modules may use),Compile error,Runtime error,Warning
+Can automatic module use services?,Yes,No,Only provides,Only uses
+Can unnamed module use services?,Yes,No,Only ServiceLoader,Only if exported
+Are services loaded automatically?,No (must use ServiceLoader),Yes,Only with uses,Only with provides
+What method iterates ServiceLoader?,iterator() or forEach(),load(),get(),stream()
+Can ServiceLoader be reloaded?,Yes (with reload()),No,Only once,Automatic
+What does ServiceLoader.stream() return?,Stream<Provider<S>>,Stream<S>,List<S>,ServiceLoader<S>
+When was stream() added to ServiceLoader?,Java 9,Java 8,Java 11,Java 17
+What is a service provider method?,Static provider() method,Constructor,Factory method,Instance method
+Can provider method return subtype?,Yes,No,Only exact type,Only interface
+What must provider method be?,public static,public,static,Any visibility
+Does provider method need no-arg constructor?,No (alternative to constructor),Yes,Sometimes,Only if no provider method
+What is the benefit of services?,Loose coupling and extensibility,Performance,Security,Simplicity
+Can you override service at runtime?,Yes (module path order),No,Only with flag,Only classpath
+What determines service priority?,Module path order or custom logic,Alphabetical,Random,First found
+Can modules in different JARs have same name?,No (module name must be unique),Yes,Only different versions,Only automatic
+What is module version?,Optional metadata,Required,Automatic,From JAR
+Where is module version specified?,In module descriptor or MANIFEST,Only MANIFEST,Only module-info,Automatic
+Does JPMS enforce version constraints?,No,Yes,Only major versions,Only in Java 17
+What is --limit-modules?,Limits observable modules,Limits module size,Limits dependencies,Limits exports
+What does --patch-module do?,Replaces module content,Updates module,Patches JAR,Fixes errors
+When would you use --patch-module?,Testing or overriding module content,Always,Never,Only automatic
+Can you patch java.base?,Yes,No,Only in development,Only with flag
+What is a service consumer?,Module with uses directive,Service implementation,Module providing service,Service interface
+What is a service provider?,Module with provides directive,Module using service,Service interface,Service consumer

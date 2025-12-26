@@ -1,0 +1,133 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What keyword defines a class?,class,Class,define,type
+Can a class be declared public?,Yes,No,Only inner classes,Only if main method
+Can a Java file have multiple public classes?,No,Yes,Only if same package,Only two
+Must public class name match filename?,Yes,No,Optional,Only recommended
+What is an instance field?,Non-static variable in class,Static variable,Method variable,Parameter
+What is a static field?,Class-level variable shared by all instances,Instance variable,Local variable,Method parameter
+How do you declare instance field?,Without static keyword,With static keyword,In method,In constructor
+How do you declare static field?,With static keyword,Without static keyword,In method,With instance keyword
+Can instance field be accessed without object?,No,Yes,Only public,Only in same class
+Can static field be accessed without object?,Yes,No,Only private,Only in same class
+What is default value of instance field?,Type-dependent (0, false, null),undefined,No default,Must initialize
+What is default value of static field?,Type-dependent (0, false, null),undefined,No default,Must initialize
+Must fields be initialized?,No (have defaults),Yes,Only static,Only instance
+Can field be final?,Yes,No,Only static,Only instance
+What does final field mean?,Cannot be reassigned,Cannot be accessed,Cannot be null,Cannot be static
+When must final instance field be initialized?,By constructor end,At declaration,Never,In method
+When must final static field be initialized?,At declaration or static block,In constructor,In method,Never
+Can field be both static and final?,Yes,No,Only public,Only private
+What is a constant convention?,static final with UPPER_CASE,final only,static only,lowercase
+What is an instance method?,Non-static method,Static method,Constructor,Initializer
+What is a static method?,Method belonging to class not instance,Instance method,Constructor,Initializer
+Can instance method access instance fields?,Yes,No,Only public,Only in subclass
+Can instance method access static fields?,Yes,No,Only public,Only in same package
+Can static method access instance fields?,No (without object reference),Yes,Only public,Only final
+Can static method access static fields?,Yes,No,Only public,Only final
+Can static method call instance methods?,No (without object reference),Yes,Only public,Only in same class
+Can instance method call static methods?,Yes,No,Only public,Only in same class
+What does this refer to?,Current instance,Current class,Parent class,Static context
+Can this be used in static method?,No,Yes,Only for fields,Only for methods
+Can you overload methods?,Yes (same name, different parameters),No,Only in subclass,Only static
+Can you overload based on return type only?,No,Yes,Sometimes,Only primitives
+What is method signature?,Method name and parameter types,Name and return type,Name only,All components
+Can constructors be overloaded?,Yes,No,Only one,Only with this()
+What is a static initializer?,Block executed when class loaded,Instance initializer,Constructor,Method
+What is an instance initializer?,Block executed when instance created,Static initializer,Constructor,Method
+What is static block syntax?,static { },init { },static() { },class { }
+What is instance initializer syntax?,{ } (just braces),instance { },init { },this { }
+When is static block executed?,When class first loaded,Every instantiation,Never,At program start
+When is instance initializer executed?,Every instantiation,Once at class load,Never,Only first instance
+What is initialization order?,Static blocks → instance initializers → constructor,Constructor first,Random,Reverse order
+Can static block access instance fields?,No,Yes,Only public,Only final
+Can instance initializer access instance fields?,Yes,No,Only public,Only this
+Can instance initializer access static fields?,Yes,No,Only public,Only final
+Can you have multiple static blocks?,Yes,No,Only two,Only in different classes
+Can you have multiple instance initializers?,Yes,No,Only two,Only with constructors
+In what order do multiple static blocks execute?,Declaration order,Reverse order,Random,Alphabetical
+In what order do multiple instance initializers execute?,Declaration order,Reverse order,Random,Alphabetical
+What is a record?,Immutable data carrier class,Mutable class,Interface,Enum
+When were records introduced?,Java 14 (preview), Java 16 (standard),Java 8,Java 11,Java 17
+What keyword declares a record?,record,class,data,struct
+Are record fields final by default?,Yes,No,Optional,Only private
+Are records immutable?,Yes,No,Only fields,Only methods
+Can you add instance fields to record?,No (beyond components),Yes,Only private,Only final
+Can you add static fields to record?,Yes,No,Only final,Only public
+Can you add instance methods to record?,Yes,No,Only getters,Only private
+Can you add static methods to record?,Yes,No,Only final,Only public
+Does record provide constructor?,Yes (canonical constructor),No,Must define,Only default
+Does record provide getters?,Yes (for components),No,Must define,Only public
+Does record provide equals()?,Yes,No,Must override,Only if requested
+Does record provide hashCode()?,Yes,No,Must override,Only if requested
+Does record provide toString()?,Yes,No,Must override,Only if requested
+Can record extend class?,No (implicitly extends Record),Yes,Only Object,Only abstract
+Can record implement interface?,Yes,No,Only one,Only functional
+Can record be abstract?,No,Yes,Only methods,Only if interface
+Can record be final?,Implicitly yes,No,Explicitly only,Optional
+What is canonical constructor?,Constructor with all components,Default constructor,Custom constructor,No-arg constructor
+Can you customize canonical constructor?,Yes (compact or explicit form),No,Only compact,Only explicit
+What is compact constructor?,Constructor without parameter list in record,Normal constructor,Short constructor,Minimal constructor
+Can compact constructor assign fields?,No (automatic),Yes,Must assign,Optional
+Can you add validation in compact constructor?,Yes,No,Only in explicit,Only throws
+Can record have private constructor?,Yes,No,Only public,Only canonical
+What access level are record components?,private final,public,protected,package-private
+What access level are record getters?,public,private,protected,package-private
+Do record getters have get prefix?,No (just field name),Yes,Optional,Only for beans
+Can you override record methods?,Yes,No,Only toString(),Only equals()
+Can record be generic?,Yes,No,Only bounded,Only unbounded
+Can record be nested?,Yes,No,Only static,Only inner
+Can record be local?,Yes,No,Only in methods,Only in classes
+Can you serialize records?,Yes,No,Only with Serializable,Only custom
+What is var in field declaration?,Cannot use var for fields,Can use var,Only local variables,Only final
+Can you use var for method parameters?,No (Java 17),Yes,Only lambdas,Only local
+What is method hiding?,Static method in subclass with same signature,Instance method override,Method overload,Constructor override
+Can static method be overridden?,No (hidden, not overridden),Yes,Only public,Only in subclass
+What does @Override annotation do?,Checks method actually overrides,Forces override,Creates override,Documents override
+Can you use @Override on static method?,No,Yes,Only if hiding,Only public
+What is shadowing?,Local variable hiding field,Method hiding,Class hiding,Package hiding
+How do you access shadowed field?,this.fieldName,super.fieldName,fieldName,Cannot access
+How do you access static field?,ClassName.fieldName or this.fieldName,Only this.fieldName,Only ClassName.fieldName,Cannot access
+Can instance initializer throw checked exception?,Yes (if constructor declares),No,Only unchecked,Always
+Can static initializer throw checked exception?,No (must catch),Yes,Only unchecked,Only Error
+What happens if static initializer throws unchecked exception?,ExceptionInInitializerError,Class not loaded,Compilation error,Runtime error
+What is initialization block order?,Static → instance → constructor,Constructor → instance → static,Instance → constructor → static,All together
+Can constructor call instance method?,Yes,No,Only after super(),Only private
+Can constructor call static method?,Yes,No,Only before super(),Only public
+What does super() do in constructor?,Calls parent constructor,Calls this constructor,Calls parent method,Nothing
+Where must super() appear?,First statement (if used),Anywhere,Last statement,Middle
+Is super() implicit if not specified?,Yes,No,Only if no constructor,Only for Object
+Can constructor be final?,No,Yes,Only private,Only public
+Can constructor be static?,No,Yes,Only public,Only private
+Can constructor be abstract?,No,Yes,Only in abstract class,Only protected
+Can field and method have same name?,Yes (but confusing),No,Only static,Only private
+What is method local variable?,Variable declared in method,Field,Parameter,Static variable
+What is variable scope?,Where variable is accessible,Variable type,Variable name,Variable value
+Can local variable shadow field?,Yes,No,Only in constructor,Only static
+Must local variable be initialized?,Yes (before use),No,Only primitives,Only objects
+Do local variables have default values?,No,Yes,Only primitives,Only objects
+Can method parameter be final?,Yes,No,Only primitives,Only objects
+What does final parameter mean?,Cannot be reassigned,Cannot be null,Cannot be accessed,Cannot be primitive
+Can you have variable number of parameters?,Yes (varargs),No,Only arrays,Only Object
+What is varargs syntax?,Type... name,Type[] name,Type[...] name,name...Type
+Where must varargs parameter be?,Last parameter,First parameter,Any position,Middle
+Can method have multiple varargs?,No,Yes,Only two,Only same type
+What is method return type?,Type of value returned or void,Always Object,Always void,No type needed
+Can method return type be var?,No,Yes,Only Java 17,Only primitives
+Can constructor have return statement?,Yes (without value),No,Only void,Only null
+Can void method have return?,Yes (empty return),No,Never,Only null
+Must non-void method return value?,Yes,No,Only sometimes,Only primitives
+Can method throw exception?,Yes,No,Only checked,Only unchecked
+Where is throws clause?,Method signature,Method body,Before method,After method
+Can static method access this?,No,Yes,Only fields,Only methods
+Can static method access super?,No,Yes,Only fields,Only methods
+What is static import?,Import static members,Import classes,Import packages,Import modules
+How do you static import?,import static package.Class.member,import package.Class.member,static import member,import Class.member
+Can you instantiate class with only private constructor?,No (from outside),Yes,Only subclass,Only same package
+Why make constructor private?,Singleton pattern, utility class,No reason,Performance,Required
+Can utility class have instance methods?,Not typical (usually static),Yes,Required,Recommended
+What is main method signature?,public static void main(String[] args),public void main(),static void main(),main()
+Must main method be public?,Yes,No,Only static,Only void
+Must main method be static?,Yes,No,Only public,Only void
+Must main method be void?,Yes,No,Only public,Only static
+Can main method throw exception?,Yes,No,Only checked,Only unchecked
+Can class have multiple main methods?,Yes (overloaded, but only one valid entry point),No,Only two,Only same signature

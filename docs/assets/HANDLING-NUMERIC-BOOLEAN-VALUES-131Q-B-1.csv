@@ -1,0 +1,132 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What are the primitive numeric types in Java?,"byte, short, int, long, float, double","int, float, double","Integer, Double, Float",Only int and double
+What is the size of byte?,8 bits,16 bits,32 bits,4 bits
+What is the size of short?,16 bits,8 bits,32 bits,64 bits
+What is the size of int?,32 bits,16 bits,64 bits,8 bits
+What is the size of long?,64 bits,32 bits,128 bits,16 bits
+What is the size of float?,32 bits,64 bits,16 bits,8 bits
+What is the size of double?,64 bits,32 bits,128 bits,16 bits
+What is the range of byte?,-128 to 127,-256 to 255,0 to 255,-127 to 128
+What is the default value of int?,0,null,undefined,1
+What is the default value of double?,0.0,null,0,1.0
+What is the default value of boolean?,false,true,null,0
+What is the wrapper class for int?,Integer,Int,INTEGER,Wrapper
+What is the wrapper class for char?,Character,Char,CHAR,CharWrapper
+What is the wrapper class for boolean?,Boolean,Bool,BOOLEAN,BoolWrapper
+Are wrapper classes immutable?,Yes,No,Sometimes,Only Integer
+What does autoboxing do?,Converts primitive to wrapper,Converts wrapper to primitive,Boxes objects,Puts in array
+What does unboxing do?,Converts wrapper to primitive,Converts primitive to wrapper,Unboxes objects,Removes from array
+Can autoboxing cause NullPointerException?,Yes (if wrapper is null),No,Only for Integer,Only for Boolean
+What happens when unboxing null?,NullPointerException,0,null,Compilation error
+What does Integer.valueOf() do?,Converts to Integer wrapper,Converts to int,Gets value,Parses string
+What does Integer.parseInt() return?,int primitive,Integer wrapper,String,long
+Can parseInt() throw exception?,Yes (NumberFormatException),No,Only for invalid,Only for null
+What is the cache range for Integer?,−128 to 127,0 to 255,−256 to 255,All values
+"What does Integer.valueOf(100) == Integer.valueOf(100) return?",true (cached),false,Compilation error,NullPointerException
+"What does Integer.valueOf(200) == Integer.valueOf(200) return?",false (not cached),true,Compilation error,NullPointerException
+What does Math.abs() return?,Absolute value,Rounded value,Ceiling value,Floor value
+What does Math.ceil() return?,Smallest integer >= argument,Largest integer <= argument,Rounded value,Absolute value
+What does Math.floor() return?,Largest integer <= argument,Smallest integer >= argument,Rounded value,Absolute value
+What does Math.round() return?,Nearest integer,Ceiling value,Floor value,Absolute value
+What type does Math.round(float) return?,int,long,float,double
+What type does Math.round(double) return?,long,int,double,float
+What does Math.max(a, b) return?,Larger value,Smaller value,Sum,Average
+What does Math.min(a, b) return?,Smaller value,Larger value,Difference,Average
+What does Math.pow(a, b) return?,a raised to power b,a * b,a + b,a / b
+What does Math.sqrt() return?,Square root,Cube root,Absolute value,Power of 2
+What does Math.random() return?,Double between 0.0 (inclusive) and 1.0 (exclusive),Int between 0 and 100,Random int,Boolean
+What is the return type of Math.random()?,double,int,float,Double
+What does Math.PI represent?,The value of pi,180 degrees,Euler's number,Golden ratio
+What does Math.E represent?,Euler's number,Pi,100,Golden ratio
+What operator has highest precedence?,Parentheses (),Multiplication *,Addition +,Assignment =
+What is the order of arithmetic operations?,Parentheses, Exponents, Multiplication/Division, Addition/Subtraction,Left to right,Addition first,Equal precedence
+Do multiplication and division have same precedence?,Yes (left to right),No,Multiplication higher,Division higher
+Do addition and subtraction have same precedence?,Yes (left to right),No,Addition higher,Subtraction higher
+What is 2 + 3 * 4?,14,20,24,11
+What is (2 + 3) * 4?,20,14,24,11
+What is 10 / 2 * 5?,25,1,10,50
+What is 10 / (2 * 5)?,1,25,10,50
+What is type promotion?,Smaller type converted to larger in expression,Larger to smaller,No conversion,Compilation feature
+What does byte + byte result in?,int,byte,short,long
+What does short + short result in?,int,short,byte,long
+What does int + long result in?,long,int,double,float
+What does int + float result in?,float,int,double,long
+What does float + double result in?,double,float,long,int
+What is the result type of byte + int?,int,byte,short,long
+Is char promoted to int in arithmetic?,Yes,No,Only with int,Only in casting
+What does 'a' + 1 evaluate to?,98 (int),b (char),a1 (String),Error
+Can you assign int to byte without cast?,No,Yes,Only if small,Only constants
+Can you assign byte to int without cast?,Yes,No,Always cast,Compilation error
+What is widening conversion?,Smaller to larger type (automatic),Larger to smaller,Same type,Conversion to double
+What is narrowing conversion?,Larger to smaller type (requires cast),Smaller to larger,Same type,Automatic
+Which conversions are widening?,"byte→short→int→long→float→double, char→int",Only same types,All conversions,None
+Can you cast double to int?,Yes (truncates decimal),No,Only round(),Compilation error
+What happens when casting 3.9 to int?,3 (truncates),4 (rounds),3.9,Error
+What happens when casting 300 to byte?,Overflow (-56),300,0,Error
+Does casting check for overflow?,No,Yes,Sometimes,Only narrowing
+What is 5 / 2 in Java?,2 (integer division),2.5,3,2.0
+What is 5.0 / 2?,2.5,2,3,5
+What is 5 / 2.0?,2.5,2,3,5
+What is 5 % 2?,1 (remainder),2,2.5,0
+What is -5 % 2?,-1,1,2,-2
+What does ++ do?,Increments by 1,Decrements by 1,Multiplies by 2,Adds 2
+What does −− do?,Decrements by 1,Increments by 1,Divides by 2,Subtracts 2
+What is the difference between ++i and i++?,++i increments then returns; i++ returns then increments,No difference,i++ is faster,++i is invalid
+What does int x = 5; y = ++x; result in?,x=6, y=6,x=5, y=5,x=6, y=5,x=5, y=6
+What does int x = 5; y = x++; result in?,x=6, y=5,x=5, y=5,x=6, y=6,x=5, y=6
+What are the logical operators?,&&, ||, !,&, |, ^,AND, OR, NOT,and, or, not
+What does && do?,Logical AND,Bitwise AND,Logical OR,Concatenation
+What does || do?,Logical OR,Bitwise OR,Logical AND,Division
+What does ! do?,Logical NOT,Factorial,Not equal,Negation
+Does && short-circuit?,Yes,No,Sometimes,Only with false
+Does || short-circuit?,Yes,No,Sometimes,Only with true
+What does true && false evaluate to?,false,true,Error,null
+What does true || false evaluate to?,true,false,Error,null
+What does !true evaluate to?,false,true,Error,null
+What does false && (expensive call) do?,Returns false without calling,Calls then returns false,Always calls,Error
+What are the bitwise operators?,"&, |, ^, ~",&&, ||, !,AND, OR, NOT,+, -, *
+What does & do?,Bitwise AND,Logical AND,Bitwise OR,Concatenation
+What does | do?,Bitwise OR,Logical OR,Bitwise AND,Division
+What does ^ do?,Bitwise XOR,Power,Bitwise AND,Logical XOR
+What does ~ do?,Bitwise NOT,Approximate,Not equal,Negation
+What is 5 & 3?,1,5,3,8
+What is 5 | 3?,7,5,3,2
+What is 5 ^ 3?,6,5,3,2
+What are the comparison operators?,"==, !=, <, >, <=, >=",AND, OR, NOT,+, -, *,is, equals
+What does == check?,Value equality,Reference equality,Type equality,Both value and type
+What does != do?,Checks inequality,Assignment,Logical NOT,Factorial
+Can you use == with primitives?,Yes,No,Only int,Only boolean
+Can you use == with objects?,Yes (but checks reference),No,Always use equals(),Only null
+What does < do?,Less than comparison,Less than or equal,Greater than,Assignment
+What does >= do?,Greater than or equal,Greater than,Less than or equal,Assignment
+What is the result type of comparison?,boolean,int,same as operands,Object
+What does 5 > 3 evaluate to?,true,false,1,5
+What is the ternary operator?,"condition ? true_expr : false_expr",if-else,switch,for loop
+What type must ternary condition be?,boolean,int,any type,Object
+Can ternary operator return different types?,Yes (with type promotion),No,Only same,Compilation error
+What does true ? 1 : 2.0 return?,1.0 (double),1 (int),2.0,Error
+What is compound assignment?,+=, -=, *=, /=, %=,=, ==, !=,++, --,+, -
+What does x += 5 do?,x = x + 5,x = 5,x + 5,5 += x
+Does compound assignment include cast?,Yes (implicit),No,Sometimes,Only for int
+What does byte b = 10; b += 300; do?,Compiles with overflow,Compilation error,b becomes 310,Error
+What is the difference between & and &&?,& doesn't short-circuit; && does,No difference,& is faster,& is bitwise only
+What is the difference between | and ||?,| doesn't short-circuit; || does,No difference,| is faster,| is bitwise only
+Can boolean use & and |?,Yes (no short-circuit),No,Only &&,Only ||
+What does true & false evaluate to?,false,true,Error,1
+What is operator precedence?,Order operators are evaluated,Speed of operators,Type of operators,Number of operands
+Which has higher precedence: * or +?,* (multiplication),+ (addition),Equal,Depends
+Which has higher precedence: && or ||?,&& (AND),|| (OR),Equal,Depends
+Can you change precedence?,Yes (with parentheses),No,Only for some,Automatic
+What does Integer.MAX_VALUE + 1 result in?,Integer.MIN_VALUE (overflow),Error,Integer.MAX_VALUE,Infinity
+What does 1.0 / 0.0 result in?,Infinity,Error,ArithmeticException,0.0
+What does 0.0 / 0.0 result in?,NaN,0.0,Infinity,Error
+What does 1 / 0 result in?,ArithmeticException,Infinity,0,Error
+Can float and double overflow?,Yes (to Infinity),No,Error,Exception
+Can integer division by zero throw exception?,Yes,No,Only for int,Only for long
+What is NaN?,Not a Number,Null,Zero,Infinity
+How do you check for NaN?,Double.isNaN(),== NaN,value == NaN,NaN.check()
+Does NaN == NaN?,false,true,Error,NullPointerException
+What does Boolean.parseBoolean() return?,boolean primitive,Boolean wrapper,String,int
+What does Boolean.parseBoolean("true") return?,true,false,"true",Error
+What does Boolean.parseBoolean("false") return?,false,true,"false",Error
+What does Boolean.parseBoolean("anything else") return?,false,true,Error,null

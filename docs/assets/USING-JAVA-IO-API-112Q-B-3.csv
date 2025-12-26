@@ -1,0 +1,113 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which class is used to create and manipulate file paths?,Path,File,FilePath,PathBuilder
+Which class provides static methods for file operations?,Files,FileUtils,FileOperations,IOUtils
+How do you create a Path object from a string?,Paths.get() or Path.of(),new Path(),Path.create(),PathFactory.get()
+"What is the method to create a Path in Java 11+?",Path.of(),Paths.get(),new Path(),Path.create()
+Which method creates a Path from multiple string segments?,Paths.get(String, String...),Path.of(String, String...),Both A and B,Neither A nor B
+Is Path an interface or a class?,Interface,Class,Abstract class,Enum
+Which package contains the Path interface?,java.nio.file,java.io,java.nio,java.file
+Which package contains the Files class?,java.nio.file,java.io,java.nio,java.file
+"What does Path.getFileName() return?",The name element farthest from root,The full path,The file extension,The parent directory
+"What does Path.getParent() return?",The parent path or null,The root,The file name,Empty string
+"What does Path.getRoot() return?",The root component or null,The parent,The file name,The drive letter
+"What does Path.getNameCount() return?",Number of name elements,Number of characters,File size,Directory depth
+"What does Path.getName(index) return?",Name element at index,Character at index,File at position,Directory at level
+"Is the root included in the name count?",No,Yes,Sometimes,Depends on OS
+"What index does getName() use for the first element?",0,1,-1,Starts from root
+Which method returns an absolute path?,toAbsolutePath(),absolute(),makeAbsolute(),getAbsolute()
+Which method resolves a path against another?,resolve(),combine(),append(),join()
+Which method creates a relative path between two paths?,relativize(),relative(),makeRelative(),getRelative()
+Which method removes redundancies from a path?,normalize(),simplify(),reduce(),clean()
+Which method converts Path to URI?,toUri(),asUri(),getUri(),toURL()
+Which method converts Path to File?,toFile(),asFile(),getFile(),File.from()
+"What does normalize() do to ""./folder/../file.txt""?",Simplifies to file.txt,No change,Throws exception,Deletes the file
+"What does path1.resolve(path2) return if path2 is absolute?",path2,path1/path2,Exception,path1
+"What does ""a/b"".resolve(""c/d"") return?",a/b/c/d,c/d,a/c/d,b/c/d
+Can you use resolve() with a String?,Yes,No,Only with Path,Only absolute paths
+"What does ""a/b/c"".relativize(""a/b/d"") return?",../d,d,a/b/d,c/d
+Can relativize() work with paths from different roots?,No (throws exception),Yes,Sometimes,Only on Windows
+Which method checks if a path is absolute?,isAbsolute(),absolute(),checkAbsolute(),isRelative()
+Which method checks if a file exists?,Files.exists(),Path.exists(),File.exists(),Files.isFile()
+Which method checks if a path is a directory?,Files.isDirectory(),Path.isDirectory(),Files.isFolder(),Path.isFolder()
+Which method checks if a path is a regular file?,Files.isRegularFile(),Files.isFile(),Path.isFile(),Files.isNormalFile()
+Which method checks if a path is readable?,Files.isReadable(),Path.isReadable(),Files.canRead(),Path.canRead()
+Which method checks if a path is writable?,Files.isWritable(),Path.isWritable(),Files.canWrite(),Path.canWrite()
+Which method checks if a path is executable?,Files.isExecutable(),Path.isExecutable(),Files.canExecute(),Path.canExecute()
+Which method creates a new file?,Files.createFile(),Path.createFile(),Files.newFile(),new File()
+Which method creates a directory?,Files.createDirectory(),Path.createDirectory(),Files.mkdir(),Path.mkdir()
+Which method creates directories including parents?,Files.createDirectories(),Files.createDirectory(),Files.mkdirs(),Path.createDirectories()
+What happens if you use createDirectory() and parent doesn't exist?,Throws exception,Creates parents,Returns null,Does nothing
+Which method deletes a file?,Files.delete(),Path.delete(),Files.remove(),Path.remove()
+Which method deletes a file if it exists?,Files.deleteIfExists(),Files.delete(),Files.tryDelete(),Files.safeDelete()
+What does Files.delete() do if file doesn't exist?,Throws NoSuchFileException,Does nothing,Returns false,Creates the file
+What does Files.deleteIfExists() return?,Boolean indicating if deleted,void,Path,Always true
+Can Files.delete() delete non-empty directories?,No (throws exception),Yes,Sometimes,Only with force flag
+Which method copies a file?,Files.copy(),Files.copyFile(),Path.copy(),FileUtils.copy()
+Which method moves a file?,Files.move(),Files.moveFile(),Path.move(),Files.rename()
+What does Files.copy() return?,The target Path,void,Boolean,The source Path
+Can Files.copy() overwrite existing files by default?,No,Yes,Sometimes,Only directories
+Which copy option allows overwriting?,StandardCopyOption.REPLACE_EXISTING,CopyOption.OVERWRITE,StandardCopyOption.OVERWRITE,CopyOption.REPLACE
+Which copy option preserves attributes?,StandardCopyOption.COPY_ATTRIBUTES,CopyOption.PRESERVE,StandardCopyOption.PRESERVE,CopyOption.ATTRIBUTES
+Which copy option ensures atomic move?,StandardCopyOption.ATOMIC_MOVE,MoveOption.ATOMIC,StandardCopyOption.ATOMIC,CopyOption.ATOMIC
+Which method reads all bytes from a file?,Files.readAllBytes(),Files.read(),Files.getBytes(),Files.readBytes()
+Which method reads all lines from a file?,Files.readAllLines(),Files.read(),Files.getLines(),Files.readLines()
+Which method reads a file as a Stream of lines?,Files.lines(),Files.readLines(),Files.stream(),Files.lineStream()
+Which method writes bytes to a file?,Files.write(),Files.writeBytes(),Files.output(),Files.save()
+Which method returns a BufferedReader?,Files.newBufferedReader(),Files.reader(),Files.getReader(),Files.openReader()
+Which method returns a BufferedWriter?,Files.newBufferedWriter(),Files.writer(),Files.getWriter(),Files.openWriter()
+Which method returns an InputStream?,Files.newInputStream(),Files.inputStream(),Files.getInputStream(),Files.openInputStream()
+Which method returns an OutputStream?,Files.newOutputStream(),Files.outputStream(),Files.getOutputStream(),Files.openOutputStream()
+What does Files.readAllLines() return?,List<String>,String[],Stream<String>,Collection<String>
+What does Files.lines() return?,Stream<String>,List<String>,String[],Iterator<String>
+Should you close the Stream from Files.lines()?,Yes,No,Optional,Automatic
+Is Files.lines() lazy or eager?,Lazy,Eager,Both,Neither
+Which write option appends to a file?,StandardOpenOption.APPEND,WriteOption.APPEND,OpenOption.APPEND,StandardOpenOption.ADD
+Which write option creates a new file?,StandardOpenOption.CREATE,WriteOption.CREATE,OpenOption.CREATE,StandardOpenOption.NEW
+Which write option creates only if doesn't exist?,StandardOpenOption.CREATE_NEW,StandardOpenOption.CREATE,WriteOption.NEW,OpenOption.CREATE_NEW
+What happens with CREATE_NEW if file exists?,Throws FileAlreadyExistsException,Overwrites,Appends,Does nothing
+Which method gets file attributes?,Files.readAttributes(),Files.getAttributes(),Path.getAttributes(),Files.attributes()
+Which method gets a single attribute?,Files.getAttribute(),Files.readAttribute(),Path.getAttribute(),Files.getProperty()
+Which method sets an attribute?,Files.setAttribute(),Files.writeAttribute(),Path.setAttribute(),Files.setProperty()
+Which attribute view provides basic attributes?,BasicFileAttributes,FileAttributes,BasicAttributes,StandardAttributes
+Which method gets file size?,Files.size(),Path.size(),Files.length(),Path.length()
+Which method gets last modified time?,Files.getLastModifiedTime(),Files.lastModified(),Path.getLastModified(),Files.modified()
+Which method sets last modified time?,Files.setLastModifiedTime(),Files.setModified(),Path.setLastModified(),Files.updateTime()
+Which method checks if paths point to same file?,Files.isSameFile(),Path.equals(),Files.equals(),Path.isSame()
+Does Path.equals() check file system?,No (only path strings),Yes,Sometimes,Always
+Which method returns file owner?,Files.getOwner(),Files.owner(),Path.getOwner(),Files.readOwner()
+Which method sets file owner?,Files.setOwner(),Files.owner(),Path.setOwner(),Files.writeOwner()
+Which method gets POSIX permissions?,Files.getPosixFilePermissions(),Files.getPermissions(),Files.readPermissions(),Files.posixPermissions()
+Which method sets POSIX permissions?,Files.setPosixFilePermissions(),Files.setPermissions(),Files.writePermissions(),Files.permissions()
+Which class represents POSIX permissions?,PosixFilePermission,FilePermission,Permission,PosixPermission
+Which method walks a file tree?,Files.walk(),Files.traverse(),Files.tree(),Files.walkFileTree()
+What does Files.walk() return?,Stream<Path>,List<Path>,Iterator<Path>,Collection<Path>
+What is the default max depth for Files.walk()?,Integer.MAX_VALUE,1,10,Unlimited
+How do you limit depth in Files.walk()?,Files.walk(path, maxDepth),Files.walk(path).limit(),Files.walkDepth(path, max),Cannot limit
+Which method walks tree with visitor pattern?,Files.walkFileTree(),Files.walk(),Files.traverse(),Files.visit()
+Which interface is used with walkFileTree()?,FileVisitor,TreeVisitor,PathVisitor,DirectoryVisitor()
+Which FileVisitor method is called before entering directory?,preVisitDirectory(),beforeDirectory(),enterDirectory(),visitDirectory()
+Which FileVisitor method is called after leaving directory?,postVisitDirectory(),afterDirectory(),exitDirectory(),leaveDirectory()
+Which FileVisitor method is called for each file?,visitFile(),processFile(),onFile(),handleFile()
+Which FileVisitor method handles visit failures?,visitFileFailed(),onError(),handleError(),failedVisit()
+Which class provides default FileVisitor implementation?,SimpleFileVisitor,DefaultFileVisitor,BasicFileVisitor,FileVisitorAdapter
+What does FileVisitResult.CONTINUE do?,Continue traversal,Stop traversal,Skip siblings,Skip subtree
+What does FileVisitResult.TERMINATE do?,Stop entire traversal,Continue,Skip directory,Skip siblings
+What does FileVisitResult.SKIP_SUBTREE do?,Skip directory contents,Stop traversal,Continue,Skip file
+What does FileVisitResult.SKIP_SIBLINGS do?,Skip remaining siblings,Stop traversal,Skip subtree,Continue
+Which method lists directory contents?,Files.list(),Files.listFiles(),Files.contents(),Files.readDirectory()
+What does Files.list() return?,Stream<Path>,List<Path>,Path[],Collection<Path>
+Does Files.list() traverse subdirectories?,No,Yes,Optional,Configurable
+Should you close Stream from Files.list()?,Yes,No,Optional,Automatic
+Which method creates a symbolic link?,Files.createSymbolicLink(),Files.symlink(),Files.link(),Path.createLink()
+Which method creates a hard link?,Files.createLink(),Files.hardlink(),Files.link(),Path.createLink()
+Which method reads a symbolic link?,Files.readSymbolicLink(),Files.readLink(),Files.getLink(),Path.readLink()
+Which method checks if path is symbolic link?,Files.isSymbolicLink(),Path.isSymbolicLink(),Files.isLink(),Path.isLink()
+Which LinkOption prevents following symbolic links?,LinkOption.NOFOLLOW_LINKS,LinkOption.NO_FOLLOW,NoFollowLinks,LinkOption.IGNORE_LINKS
+Which method creates a temporary file?,Files.createTempFile(),Files.tempFile(),Files.temporary(),File.createTempFile()
+Which method creates a temporary directory?,Files.createTempDirectory(),Files.tempDirectory(),Files.tempDir(),File.createTempDirectory()
+Where are temp files created by default?,System temp directory,Current directory,User home,Desktop
+Can you specify prefix and suffix for temp files?,Yes,No,Only prefix,Only suffix
+Which method gets the file store?,Files.getFileStore(),Path.getFileStore(),FileSystem.getStore(),Files.store()
+Which method gets total space in FileStore?,getTotalSpace(),getSpace(),totalSpace(),getSize()
+Which method gets usable space in FileStore?,getUsableSpace(),getSpace(),usableSpace(),getFreeSpace()
+Which method gets unallocated space in FileStore?,getUnallocatedSpace(),getFreeSpace(),unallocatedSpace(),getAvailable()

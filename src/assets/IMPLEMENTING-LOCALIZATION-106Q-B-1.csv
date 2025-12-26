@@ -1,0 +1,107 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which class is used to represent a specific geographical or cultural region in Java?,Locale,Region,Territory,Geography
+"What is the correct way to create a Locale for French in Canada?",new Locale(""fr"", ""CA""),new Locale(""CA"", ""fr""),new Locale(""French"", ""Canada""),Locale.of(""Canada"", ""French"")
+Which method returns the default Locale for the JVM?,Locale.getDefault(),Locale.getSystemDefault(),Locale.getJVMDefault(),Locale.getCurrent()
+"What does Locale.US represent?",English language in United States,United States region only,Universal Standard locale,Unicode Standard locale
+Which Locale constant represents Simplified Chinese?,Locale.SIMPLIFIED_CHINESE,Locale.CHINESE_SIMPLIFIED,Locale.CHINA,Locale.CN
+"What is the output of new Locale(""en"").getLanguage()?",en,EN,English,english
+"What is returned by new Locale(""fr"", ""CA"").getCountry()?",CA,FR,Canada,ca
+Which method is used to get all available locales in the JVM?,Locale.getAvailableLocales(),Locale.getAllLocales(),Locale.listLocales(),Locale.getLocales()
+"What does the following code return? Locale.forLanguageTag(""en-US"").getLanguage()",en,US,en-US,English
+Which class should you extend to create a resource bundle from Java code?,ListResourceBundle,PropertyResourceBundle,JavaResourceBundle,CodeResourceBundle
+What is the file extension for property-based resource bundles?,.properties,.bundle,.resource,.prop
+"If you have Messages_en_US.properties and Messages_en.properties, which is more specific?",Messages_en_US.properties,Messages_en.properties,Both are equally specific,Neither is more specific
+What happens if a resource bundle key is not found and there's no default bundle?,MissingResourceException is thrown,null is returned,Empty string is returned,NoSuchKeyException is thrown
+"What is the correct naming convention for a resource bundle file?",BaseName_language_country.properties,BaseName-language-country.properties,BaseName.language.country.properties,language_country_BaseName.properties
+Which method is used to load a resource bundle?,ResourceBundle.getBundle(),ResourceBundle.load(),ResourceBundle.get(),ResourceBundle.open()
+"In a ResourceBundle, what does the getString() method return?",String value for the specified key,Object value for the specified key,Localized message,Formatted string
+"If a key exists in both Messages_en.properties and Messages_fr.properties, which one is used when Locale is Locale.FRENCH?",Messages_fr.properties,Messages_en.properties,Messages.properties,Default system bundle
+What is the search order for resource bundles?,Most specific to least specific,Least specific to most specific,Alphabetical order,Random order
+"If you have Messages.properties, Messages_en.properties, and Messages_en_US.properties, which is the default bundle?",Messages.properties,Messages_en.properties,Messages_en_US.properties,None of them
+Which class is used for formatting messages with placeholders?,MessageFormat,StringFormat,MessageFormatter,PlaceholderFormat
+"What placeholder syntax is used in MessageFormat?",{0},{1},{2},$0,$1,$2,%s,%d,%f,[0],[1],[2]
+"What does MessageFormat.format(""Hello {0}"", ""World"") return?",Hello World,Hello {0},Hello 0,Compilation error
+Which NumberFormat method returns a currency formatter?,NumberFormat.getCurrencyInstance(),NumberFormat.getCurrency(),NumberFormat.currencyFormat(),NumberFormat.forCurrency()
+Which NumberFormat method returns a percentage formatter?,NumberFormat.getPercentInstance(),NumberFormat.getPercent(),NumberFormat.percentFormat(),NumberFormat.forPercent()
+"What does NumberFormat.getPercentInstance().format(0.75) typically return?",75%,0.75%,.75,0.75
+Which class is used to format dates and times in Java 8+?,DateTimeFormatter,DateFormat,SimpleDateFormat,TimeFormatter
+"What does DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT) create?",A formatter for short date format,A formatter for short time format,A formatter for abbreviated dates,A formatter for compact dates
+Which FormatStyle value produces the longest date format?,FormatStyle.FULL,FormatStyle.LONG,FormatStyle.MEDIUM,FormatStyle.SHORT
+"What does LocalDate.now().format(DateTimeFormatter.ISO_DATE) produce?",Date in ISO-8601 format,Date in localized format,Date in UTC format,Compilation error
+Which method creates a localized date-time formatter?,DateTimeFormatter.ofLocalizedDateTime(),DateTimeFormatter.localizedDateTime(),DateTimeFormatter.getLocalizedDateTime(),DateTimeFormatter.forLocalizedDateTime()
+"What is the ISO language code for English?",en,eng,EN,english
+"What is the ISO country code for Canada?",CA,CAN,ca,Canada
+Can a Locale have a language without a country?,Yes,No,Only for English,Only for default locale
+Can a Locale have a country without a language?,No,Yes,Only for US,Only for default locale
+Which method sets the default Locale?,Locale.setDefault(),Locale.setSystemDefault(),Locale.changeDefault(),Locale.updateDefault()
+"What is the third component of a Locale (after language and country)?",Variant,Script,Extension,Region
+How do you create a Locale using a Builder?,Locale.Builder,new LocaleBuilder(),Locale.newBuilder(),LocaleFactory.build()
+"What does Locale.getDisplayLanguage() return?",Language name in default locale,Language code,Language name in current locale,ISO language code
+"What does Locale.getDisplayLanguage(Locale.FRENCH) return?",Language name in French,Language name in English,Language code,French language name
+Which class represents a collection of locale-specific resources?,ResourceBundle,LocaleBundle,ResourceCollection,LocaleResource
+What type of ResourceBundle is created from .properties files?,PropertyResourceBundle,FileResourceBundle,PropertiesBundle,TextResourceBundle
+"In ListResourceBundle, which method must be overridden?",getContents(),getResources(),getKeys(),getValues()
+"What does the getContents() method return in ListResourceBundle?",Object[][],Map<String, Object>,List<Object>,String[]
+Can you mix PropertyResourceBundle and ListResourceBundle in the same hierarchy?,Yes,No,Only in Java 17+,Only with special configuration
+What encoding are .properties files expected to use by default?,ISO-8859-1,UTF-8,ASCII,UTF-16
+How can you use UTF-8 in .properties files in Java 9+?,Native UTF-8 support,Use \uXXXX escapes,Not possible,Convert to ListResourceBundle
+What happens if you call getString() on a key that contains a non-String value?,ClassCastException,Returns toString(),Returns null,Compilation error
+Which method returns all keys in a ResourceBundle?,getKeys(),keySet(),getAllKeys(),keys()
+Does ResourceBundle.getKeys() include keys from parent bundles?,Yes,No,Only default bundle,Only direct parent
+Can ResourceBundle handle null values?,No,Yes,Only in PropertyResourceBundle,Only in ListResourceBundle
+"What is the control class used with ResourceBundle for custom loading?",ResourceBundle.Control,ResourceBundleControl,BundleControl,LoadControl
+Which MessageFormat pattern element specifies the format type?,{0,number},number,0,format
+"What does the pattern ""Value: {0,number,currency}"" do?",Formats argument 0 as currency,Formats argument 0 as number,Creates currency symbol,Compilation error
+"What does the pattern ""Date: {0,date,short}"" do?",Formats argument 0 as short date,Formats argument 0 as date,Creates short date,Compilation error
+"What does the pattern ""Time: {0,time}"" do?",Formats argument 0 as time,Formats argument 0 with time zone,Creates time object,Compilation error
+"In MessageFormat, what does {0,choice,0#no items|1#one item|1<{0} items} represent?",Choice format based on value,Array choice,Multiple choices,Compilation error
+Which NumberFormat method parses a string to a Number?,parse(),parseNumber(),toNumber(),fromString()
+What exception might NumberFormat.parse() throw?,ParseException,NumberFormatException,ParsingException,FormatException
+Can NumberFormat.parse() handle grouping separators?,Yes,No,Only in English locale,Only with special flag
+"What does NumberFormat.getInstance().setMaximumFractionDigits(2) do?",Sets max decimal places to 2,Sets max integer digits to 2,Sets min decimal places to 2,Compilation error
+Which method sets the minimum fraction digits in NumberFormat?,setMinimumFractionDigits(),setMinFractionDigits(),setMinDecimals(),setMinimumDecimals()
+"What does DateTimeFormatter.ofPattern(""yyyy-MM-dd"") create?",Formatter with custom pattern,ISO date formatter,Localized formatter,Compilation error
+Which letter represents year in DateTimeFormatter patterns?,y,Y,YYYY,year
+Which letter represents month in DateTimeFormatter patterns?,M,m,MONTH,month
+Which letter represents day of month in DateTimeFormatter patterns?,d,D,dd,day
+Which letter represents hour (0-23) in DateTimeFormatter patterns?,H,h,HH,hour
+Which letter represents minute in DateTimeFormatter patterns?,m,M,mm,minute
+Which letter represents second in DateTimeFormatter patterns?,s,S,ss,second
+"What does ""yyyy"" represent in a date pattern?",4-digit year,2-digit year,Year with era,Year in words
+"What does ""yy"" represent in a date pattern?",2-digit year,4-digit year,Year with era,Day of year
+"What does ""MMM"" represent in a date pattern?",Abbreviated month name,Numeric month,Full month name,Month number
+"What does ""MMMM"" represent in a date pattern?",Full month name,Abbreviated month name,Numeric month,Month and year
+Can DateTimeFormatter be used with both LocalDate and LocalDateTime?,Yes,No,Only LocalDate,Only LocalDateTime
+Which method formats a temporal object to a string?,format(),toString(),asString(),stringify()
+Which method parses a string to a temporal object?,parse(),fromString(),valueOf(),parseString()
+What exception might DateTimeFormatter.parse() throw?,DateTimeParseException,ParseException,DateException,FormatException
+Can you chain DateTimeFormatter with a specific Locale?,Yes,No,Only for dates,Only for times
+Which method creates a formatter with a specific Locale?,withLocale(),setLocale(),forLocale(),usingLocale()
+"What does NumberFormat.getCompactNumberInstance() do in Java 12+?",Formats numbers in compact form,Compresses numbers,Formats numbers without grouping,Compilation error in Java 12
+"What might ""1,234"" be formatted as in compact form?","1K or 1.2K",1234,1_234,Compilation error
+Which Locale category affects number formatting?,Category.FORMAT,Category.NUMBER,Category.DISPLAY,Category.FORMATTING
+Which Locale category affects locale display names?,Category.DISPLAY,Category.FORMAT,Category.NAME,Category.LANGUAGE
+Can you set different default locales for different categories?,Yes,No,Only in Java 17+,Only with special permission
+"What does Locale.setDefault(Locale.Category.FORMAT, Locale.FRENCH) do?",Sets default for number/date formatting to French,Sets all defaults to French,Sets display language to French,Compilation error
+Does changing Locale.Category.FORMAT affect Locale.getDefault()?,No,Yes,Only if no DISPLAY set,Only in Java 17+
+"What is the correct order: language, country, variant?",language-country-variant,country-language-variant,variant-language-country,language-variant-country
+Can you create a Locale with only a variant?,No,Yes,Only with Builder,Only in Java 17+
+"What does Locale.forLanguageTag(""en-US"") create?",Locale for English in US,Locale for US only,Locale tag object,Compilation error
+What is a language tag?,BCP 47 language identifier,ISO language code,Locale string,Language constant
+"Is ""en_US"" a valid language tag?",No,Yes,Only in Java 8,Only with underscore
+"Is ""en-US"" a valid language tag?",Yes,No,Only in Java 17,Only with hyphen
+Which method converts a Locale to a language tag?,toLanguageTag(),toTag(),asLanguageTag(),getLanguageTag()
+"What separator is used in language tags?",Hyphen (-),Underscore (_),Period (.),Comma (,)
+"What separator is used in Locale constructors?",Both work but underscore traditional,Hyphen (-),Period (.),Comma (,)
+Can ResourceBundle.Control be used to customize bundle loading?,Yes,No,Only in Java 8,Deprecated in Java 17
+Which format does ResourceBundle.Control support by default?,properties and class,Only properties,Only class,XML and properties
+Can you specify cache expiration for resource bundles?,Yes with Control,No,Only in Java 17,Only for PropertyResourceBundle
+"What does the pattern {0,number,#,##0.00} do in MessageFormat?",Formats number with 2 decimals and grouping,Creates array of numbers,Formats as currency,Compilation error
+Can MessageFormat handle null arguments?,Yes (prints null),No (throws exception),Yes (prints empty),Yes (skips placeholder)
+What is the base class for both PropertyResourceBundle and ListResourceBundle?,ResourceBundle,AbstractResourceBundle,BaseResourceBundle,Object
+Is ResourceBundle thread-safe for reading?,Yes,No,Only PropertyResourceBundle,Only with synchronization
+Can you modify values in a ResourceBundle after loading?,No,Yes,Only PropertyResourceBundle,Only ListResourceBundle
+"What does ""de"" represent as a language code?",German,Denmark,Deutschland,Dutch
+"What does ""nl"" represent as a language code?",Dutch,Norway,New Language,Netherlands
+"What does ""ja"" represent as a language code?",Japanese,Java,Jakarta,Jamaica
+Which is correct for creating a Locale for Spanish in Mexico?,new Locale(""es"", ""MX""),new Locale(""MX"", ""es""),new Locale(""sp"", ""MX""),Locale.SPANISH_MEXICO

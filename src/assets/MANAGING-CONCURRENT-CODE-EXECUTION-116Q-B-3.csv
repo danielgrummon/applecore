@@ -1,0 +1,117 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What are the main ways to create a worker thread?,Implement Runnable or Callable,Extend Thread only,Use ExecutorService only,Implement Executable
+Which interface is used for tasks that don't return results?,Runnable,Callable,Future,Task
+Which interface is used for tasks that return results?,Callable,Runnable,Future,ReturnableTask
+What is the Runnable method signature?,void run(),Object run(),void execute(),Result run()
+What is the Callable method signature?,V call() throws Exception,V call(),void call(),Object call()
+Can Runnable throw checked exceptions?,No,Yes,Only IOException,Only in Java 17
+Can Callable throw checked exceptions?,Yes,No,Only RuntimeException,Only in call()
+Does Runnable return a value?,No,Yes,Only with Future,Only with submit()
+Does Callable return a value?,Yes,No,Only with get(),Only with Future
+"How do you create a thread with Runnable?",new Thread(runnable).start(),new Thread().start(),runnable.start(),Thread.execute(runnable)
+Can you use lambda for Runnable?,Yes (functional interface),No,Only in Java 17,Only named classes
+Can you use lambda for Callable?,Yes (functional interface),No,Only in Java 17,Only named classes
+What are the thread lifecycle states?,NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED,Only NEW and TERMINATED,Only RUNNING and STOPPED,NEW, RUNNING, TERMINATED
+What is the initial state of a thread?,NEW,RUNNABLE,READY,INITIALIZED
+What state is a thread in after start()?,RUNNABLE,RUNNING,STARTED,ACTIVE
+What state is a thread waiting for a lock?,BLOCKED,WAITING,RUNNABLE,LOCKED
+What state is a thread calling wait()?,WAITING,BLOCKED,RUNNABLE,PAUSED
+What state is a thread calling sleep()?,TIMED_WAITING,WAITING,BLOCKED,SLEEPING
+What is the final state of a thread?,TERMINATED,DEAD,STOPPED,FINISHED
+Can a thread return from TERMINATED state?,No,Yes,Only with restart(),Only daemon threads
+Which method returns thread state?,getState(),state(),getStatus(),status()
+What type does getState() return?,Thread.State,String,int,ThreadState
+Can you restart a terminated thread?,No,Yes,Only new Thread,Only with reset()
+Which ExecutorService uses fixed number of threads?,FixedThreadPool,CachedThreadPool,SingleThreadExecutor,ScheduledThreadPool
+Which ExecutorService creates threads as needed?,CachedThreadPool,FixedThreadPool,SingleThreadExecutor,WorkStealingPool
+Which ExecutorService uses only one thread?,SingleThreadExecutor,FixedThreadPool(1),Both A and B,Neither
+Which ExecutorService supports scheduling?,ScheduledThreadPoolExecutor,FixedThreadPool,CachedThreadPool,SingleThreadExecutor
+Which method creates FixedThreadPool?,Executors.newFixedThreadPool(n),new FixedThreadPool(n),ExecutorService.fixed(n),Executors.createFixed(n)
+What happens in CachedThreadPool with idle threads?,Terminated after 60 seconds,Never terminated,Terminated immediately,Terminated after 1 minute
+How many threads does SingleThreadExecutor use?,Exactly 1,0,Variable,At least 1
+What is the benefit of ExecutorService over manual threads?,Thread reuse and management,Faster execution,Less memory,Automatic synchronization
+Which method submits Runnable to ExecutorService?,submit() or execute(),run(),start(),perform()
+What does ExecutorService.execute() accept?,Runnable,Callable,Both,Future
+What does ExecutorService.submit() accept?,Runnable or Callable,Only Callable,Only Runnable,Only Future
+What does execute() return?,void,Future<?>,Boolean,Result
+What does submit(Runnable) return?,Future<?>,void,Future<Void>,null
+What does submit(Callable<T>) return?,Future<T>,T,void,Result<T>
+"Can you use submit(Runnable, T)?",Yes (returns Future<T>),No,Only Callable,Only with result
+What does the second parameter in submit(Runnable, T) do?,Result to return on completion,Initial value,Thread name,Priority
+Which method submits tasks and waits for all?,invokeAll(),submitAll(),executeAll(),waitForAll()
+Which method submits tasks and returns first result?,invokeAny(),submitAny(),executeAny(),firstResult()
+What does invokeAll() return?,List<Future<T>>,List<T>,Future<List<T>>,Collection<Future<T>>
+What does invokeAny() return?,T (first successful result),Future<T>,List<T>,All results
+Does invokeAny() wait for all tasks?,No (returns after first),Yes,Sometimes,Only on timeout
+Does invokeAll() wait for all tasks?,Yes,No,Only without timeout,Optional
+Can invokeAll() have timeout?,Yes,No,Only seconds,Only milliseconds
+Can invokeAny() have timeout?,Yes,No,Only seconds,Only milliseconds
+What exception if invokeAny() has no successful task?,ExecutionException,NoSuchElementException,TimeoutException,InterruptedException
+Which method schedules task once?,schedule(),scheduleOnce(),run(),execute()
+Which method schedules task repeatedly with fixed rate?,scheduleAtFixedRate(),schedule(),scheduleRepeatedly(),fixedRate()
+Which method schedules with fixed delay between executions?,scheduleWithFixedDelay(),schedule(),fixedDelay(),scheduleRepeatedly()
+What's difference between fixed rate and fixed delay?,Rate: from start; Delay: from end,Same thing,Rate faster,Delay faster
+Does ScheduledExecutorService extend ExecutorService?,Yes,No,Only in Java 17,Separate interface
+What does schedule() return?,ScheduledFuture,Future,void,Task
+Can you cancel scheduled task?,Yes (with Future.cancel()),No,Only before execution,Only after execution
+Which class is the base implementation of ExecutorService?,ThreadPoolExecutor,ExecutorServiceImpl,BaseExecutor,StandardExecutor
+What are ThreadPoolExecutor core parameters?,corePoolSize, maximumPoolSize, keepAliveTime,Only thread count,Only timeout,Size and queue only
+What is corePoolSize?,Minimum threads to keep alive,Maximum threads,Initial threads,Default is 1
+What is maximumPoolSize?,Maximum threads allowed,Minimum threads,Queue size,Default is 10
+What happens when core threads are busy and new task arrives?,Queued,Create new thread,Rejected,Blocks
+When are threads created beyond core size?,When queue is full,Immediately,Never,When core is busy
+What is keepAliveTime?,Time idle threads wait before termination,Thread lifetime,Task timeout,Schedule interval
+Which queue is commonly used in ThreadPoolExecutor?,LinkedBlockingQueue,ArrayBlockingQueue,PriorityQueue,SynchronousQueue
+What is RejectedExecutionHandler?,Handles rejected tasks,Handles exceptions,Handles timeouts,Handles shutdown
+What are rejection policies?,ABORT, DISCARD, DISCARD_OLDEST, CALLER_RUNS,ABORT only,THROW only,ERROR only
+What does AbortPolicy do?,Throws RejectedExecutionException,Silently discards,Runs in caller,Discards oldest
+What does DiscardPolicy do?,Silently discards task,Throws exception,Runs in caller,Queues forever
+What does DiscardOldestPolicy do?,Discards oldest queued task,Discards new task,Throws exception,Runs in caller
+What does CallerRunsPolicy do?,Runs task in caller thread,Throws exception,Discards task,Creates new thread
+Which pool is designed for ForkJoin tasks?,ForkJoinPool,FixedThreadPool,CachedThreadPool,WorkStealingPool
+What is work-stealing?,Idle threads take tasks from busy threads,Load balancing,Priority scheduling,Thread creation
+Which method creates WorkStealingPool?,Executors.newWorkStealingPool(),Executors.newForkJoinPool(),Executors.workStealing(),new WorkStealingPool()
+What parallelism does WorkStealingPool use by default?,Number of processors,1,10,Unlimited
+Which service helps retrieve completed tasks?,CompletionService,ExecutorService,FutureService,ResultService
+Which implementation of CompletionService is common?,ExecutorCompletionService,StandardCompletionService,DefaultCompletionService,FutureCompletionService
+What does CompletionService.take() do?,Retrieves and removes next completed task,Peeks at next task,Submits task,Cancels task
+What does CompletionService.poll() do?,Retrieves completed task or null,Blocks until task completes,Submits task,Cancels task
+Can CompletionService.poll() have timeout?,Yes,No,Only milliseconds,Only seconds
+Why use CompletionService?,Process results as they complete,Faster execution,Thread safety,Automatic retry
+Which method gracefully shuts down executor?,shutdown(),stop(),close(),terminate()
+Which method forces immediate shutdown?,shutdownNow(),shutdown(),forceShutdown(),kill()
+What does shutdown() return?,void,List of tasks,Boolean,Future
+What does shutdownNow() return?,List of waiting tasks,void,Boolean,Number of tasks
+Can you submit tasks after shutdown()?,No (throws RejectedExecutionException),Yes,Only running tasks,Only queued tasks
+Do running tasks complete after shutdown()?,Yes,No,Sometimes,Only daemon
+Do running tasks complete after shutdownNow()?,Attempts to interrupt,Yes (always),No (always),Only if quick
+Which method waits for termination?,awaitTermination(),waitForTermination(),join(),wait()
+Does awaitTermination() shut down executor?,No,Yes,Sometimes,Only on timeout
+What does awaitTermination() return?,boolean (true if terminated),void,List of tasks,Number of tasks
+Can awaitTermination() timeout?,Yes,No,Only seconds,Never times out
+Which state indicates executor won't accept tasks?,isShutdown(),isStopped(),isClosed(),isTerminated()
+Which state indicates all tasks completed?,isTerminated(),isShutdown(),isDone(),isComplete()
+Can threads have priorities?,Yes,No,Only daemon,Only in Java 17
+What is the priority range?,1-10,0-10,1-100,0-100
+What is Thread.MIN_PRIORITY?,1,0,10,5
+What is Thread.MAX_PRIORITY?,10,100,1,5
+What is Thread.NORM_PRIORITY?,5,1,10,0
+Which method sets priority?,setPriority(),priority(),setLevel(),level()
+Are priorities guaranteed to work?,No (JVM/OS dependent),Yes (always),Only on Linux,Only in Java 17
+What is a ThreadGroup?,Container for organizing threads,Thread pool,Executor,Synchronizer
+Can ThreadGroup limit max priority?,Yes,No,Only for daemon,Only in Java 17
+Is ThreadGroup commonly used?,No (mostly legacy),Yes (recommended),Required,Only in Java 17
+Which method handles uncaught exceptions?,setUncaughtExceptionHandler(),setCatchHandler(),setExceptionHandler(),onException()
+Can you set default exception handler?,Yes (static method),No,Only per thread,Only in Java 17
+What interface is UncaughtExceptionHandler?,Thread.UncaughtExceptionHandler,ExceptionHandler,UncaughtHandler,ThreadExceptionHandler
+What method does UncaughtExceptionHandler require?,uncaughtException(Thread, Throwable),handle(Exception),catch(Throwable),onException(Throwable)
+Are daemon thread exceptions handled differently?,JVM may exit before handler runs,Same as non-daemon,Always handled,Never handled
+Which thread always exists?,main thread,daemon thread,worker thread,executor thread
+Is main thread a daemon?,No,Yes,Configurable,Depends on OS
+Can you make main thread daemon?,No (throws IllegalThreadStateException),Yes,After start,Before start
+What happens if exception in Runnable?,Task terminates,Thread pool terminates,JVM exits,Exception ignored
+What happens if exception in Callable?,Wrapped in ExecutionException,Task terminates silently,Thread terminates,JVM exits
+How do you get Callable exception?,Catch ExecutionException from get(),Try-catch in call(),Automatically propagated,Exception handler
+Does Future.get() throw exceptions?,Yes (ExecutionException, InterruptedException),No,Only ExecutionException,Only InterruptedException
+What wraps the original exception in Future?,ExecutionException,RuntimeException,Exception,Throwable
+Which method gets cause from ExecutionException?,getCause(),getOriginal(),getException(),getRoot()

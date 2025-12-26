@@ -1,0 +1,122 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+How do you create an object?,Using new keyword,Using create keyword,Using make keyword,Declaring variable
+What does new keyword do?,Allocates memory and calls constructor,Only allocates memory,Only calls constructor,Creates reference
+What is a constructor?,Special method to initialize objects,Regular method,Static method,Final method
+Must constructor have same name as class?,Yes,No,Optional,Only public constructors
+Can constructor have return type?,No,Yes,Only void,Any type
+Can constructor be private?,Yes,No,Only public,Only protected
+What is default constructor?,No-arg constructor provided by compiler,First constructor,Public constructor,Main constructor
+When is default constructor provided?,When no constructors defined,Always,Never,Only for public classes
+Can you have multiple constructors?,Yes (overloading),No,Only two,Only with different types
+What is constructor chaining?,Constructor calling another constructor,Method calling constructor,Inheritance,Composition
+Which keyword calls another constructor in same class?,this(),super(),new(),call()
+Which keyword calls parent constructor?,super(),this(),parent(),base()
+Where must this() or super() appear?,First statement in constructor,Anywhere,Last statement,Middle
+Can constructor call both this() and super()?,No (only one),Yes,Sometimes,Only in Java 17
+What is object declaration?,Creating reference variable,Creating object,Initializing object,Calling constructor
+What is object instantiation?,Creating object with new,Declaring variable,Assigning reference,Calling method
+Can you declare without instantiating?,Yes,No,Only primitives,Only with null
+Can you instantiate without declaring?,No (must assign to variable or use immediately),Yes,Sometimes,Only anonymous
+What is a reference variable?,Variable that refers to object,Object itself,Primitive variable,Method
+What is null?,Reference to no object,Zero,Empty string,Default value
+Can you call methods on null?,No (NullPointerException),Yes,Only static,Only public
+What is a nested class?,Class defined within another class,Inherited class,Interface implementation,Package-private class
+What is a static nested class?,Nested class with static modifier,Inner class,Local class,Anonymous class
+Can static nested class access outer instance members?,No,Yes,Only public,Only static
+Can static nested class access outer static members?,Yes,No,Only public,Only private
+What is an inner class?,Non-static nested class,Static nested class,Local class,Anonymous class
+Can inner class access outer instance members?,Yes,No,Only public,Only static
+Must inner class have outer instance?,Yes (to instantiate),No,Sometimes,Only public inner
+How do you create static nested class instance?,Outer.Nested obj = new Outer.Nested();,new Outer.new Nested(),new Nested(),Outer.new Nested()
+How do you create inner class instance?,Outer outer = new Outer(); Outer.Inner inner = outer.new Inner();,new Outer.Inner(),Outer.Inner obj = new Outer.Inner(),new Inner()
+What is a local class?,Class defined inside method,Static nested class,Inner class,Anonymous class
+Where can local class be defined?,Inside methods, constructors, or blocks,Only methods,Only constructors,Anywhere
+Can local class access method local variables?,Yes (if effectively final),No,All variables,Only final
+What does effectively final mean?,Not modified after initialization,Declared final,Final keyword,Cannot be used
+Can local class be static?,No,Yes,Only in static methods,Only in Java 17
+What is an anonymous class?,Class without name defined inline,Local class,Named class,Abstract class
+Where are anonymous classes commonly used?,Interface implementation, subclassing,Only interfaces,Only abstract classes,Anywhere
+Can anonymous class have constructor?,No (can have initializer),Yes,Only default,Only parameterized
+Can anonymous class extend class and implement interface?,No (only one),Yes,Sometimes,Only in Java 17
+How do you refer to outer instance in inner class?,OuterClass.this,this,super,outer
+Can static nested class use OuterClass.this?,No,Yes,Sometimes,Only public
+What is object lifecycle?,Creation, use, garbage collection,Only creation,Only destruction,Creation and destruction
+When is object created?,When new is executed,When declared,When assigned,When used
+When is object eligible for garbage collection?,When no reachable references,When null assigned,When out of scope,When program ends
+Can you force garbage collection?,No (only suggest with System.gc()),Yes (System.gc()),Yes (gc()),Yes (Runtime.gc())
+What does System.gc() do?,Suggests JVM to run GC,Forces GC,Returns memory,Deletes objects
+Is garbage collection guaranteed to run?,No,Yes,Only when called,Only when needed
+What happens before object is garbage collected?,finalize() may be called (deprecated),Constructor called,Object deleted,Memory freed
+Is finalize() deprecated?,Yes (Java 9+),No,Only in Java 17,Removed
+Can finalize() prevent garbage collection?,Yes (by resurrecting object),No,Sometimes,Only once
+How many times can finalize() be called?,At most once,Multiple times,Never,Exactly once
+What makes object eligible for GC?,No live references to it,Null assigned,Out of scope,All references
+What happens when reference goes out of scope?,Object may become eligible for GC,Object deleted,Reference becomes null,Compilation error
+Can you access object after it's garbage collected?,No,Yes,Sometimes,Only static members
+What is island of isolation?,Objects referencing each other but unreachable,Single object,Multiple objects,Static references
+Are objects in island of isolation eligible for GC?,Yes,No,Sometimes,Only circular
+What does reassigning reference do?,Points reference to different object,Deletes old object,Creates new object,Modifies object
+Does reassigning reference delete old object?,No (may become eligible for GC),Yes,Sometimes,Only if null
+Can multiple references point to same object?,Yes,No,Only two,Only same type
+What happens if all references are null?,Object eligible for GC,Object deleted,Compilation error,Nothing
+What is memory leak in Java?,Objects not GC'd due to unintended references,Running out of memory,Stack overflow,Null pointer
+Can Java have memory leaks?,Yes (unintended strong references),No,Only with native code,Never
+What is strong reference?,Normal reference (prevents GC),Weak reference,Soft reference,Phantom reference
+What is weak reference?,Reference that doesn't prevent GC,Strong reference,Normal reference,Required reference
+When is object memory actually freed?,After garbage collection,When null assigned,When out of scope,When created
+Where are objects stored?,Heap,Stack,Method area,Permanent generation
+Where are local variables stored?,Stack,Heap,Method area,Permanent generation
+Where are static variables stored?,Method area (metaspace),Stack,Heap,Permanent generation
+What is the new operator's return type?,Reference to created object,Object itself,void,Constructor
+Can you create object without new?,Yes (literals, cloning, deserialization),No,Only strings,Only primitives
+What are object creation alternatives?,"String literals, clone(), deserialization, reflection",Only new,Only constructors,new and literals
+Can constructor throw exceptions?,Yes,No,Only unchecked,Only checked
+What happens if constructor throws exception?,Object not created,Object partially created,Object created,Compilation error
+Can you overload constructors?,Yes,No,Only two,Only different types
+Can you override constructors?,No,Yes,Only in subclass,Only public
+What is constructor visibility?,Can be public, private, protected, package-private,Only public,Only private,Only protected
+What is singleton pattern use of constructor?,Private constructor,Public constructor,Protected constructor,No constructor
+Can abstract class have constructor?,Yes,No,Only protected,Only private
+Can interface have constructor?,No,Yes,Only default,Only static
+What is copy constructor?,Constructor that copies another object,Default constructor,Parameterized constructor,Clone method
+Does Java provide copy constructor by default?,No,Yes,Only for some classes,Only primitives
+What is constructor parameter passing?,By value,By reference,By copy,By pointer
+Can this() call be conditional?,No (must be first statement),Yes,Sometimes,Only with if
+Can super() call be conditional?,No (must be first statement),Yes,Sometimes,Only with if
+What if no super() call in constructor?,Implicit super() added,Compilation error,Runtime error,No parent call
+When is static nested class loaded?,When first referenced,When outer loaded,At startup,Never
+When is inner class loaded?,When instantiated,When outer loaded,At startup,Never
+Can nested class have same name as outer?,No,Yes,Only static,Only private
+Can you have private nested class?,Yes,No,Only protected,Only public
+Can nested class access private members of outer?,Yes,No,Only public,Only protected
+Can outer class access private members of nested?,Yes,No,Only public,Only static
+What is anonymous inner class restriction?,Cannot have explicit constructor,Can have constructor,Must have constructor,Multiple constructors
+Can anonymous class be abstract?,No (must provide implementations),Yes,Sometimes,Only methods
+Can anonymous class be final?,Implicitly yes,No,Explicitly only,Sometimes
+Can local class be public?,No,Yes,Only static,Only in public methods
+Can local class be protected?,No,Yes,Only in protected methods,Only nested
+Can local class be private?,No,Yes,Only in private methods,Only nested
+Can local class be static?,No (unless in static context),Yes,Always,Never
+What access modifiers can local class have?,None (implicitly package-private),All modifiers,public and private,Only public
+Can method local variables be accessed after method returns?,No,Yes,Only final,Only static
+Why must local variables be effectively final for local class?,To ensure consistency after method returns,Performance,Security,Syntax requirement
+Can anonymous class access local variables?,Yes (if effectively final),No,All variables,Only final
+Can static nested class extend outer class?,Yes,No,Only if public,Only abstract
+Can inner class be static?,No (would be static nested class),Yes,Sometimes,Only in Java 17
+What happens to object with no references?,Eligible for garbage collection,Immediately deleted,Compilation error,Stays in memory
+Can you explicitly delete object in Java?,No,Yes (delete keyword),Yes (free()),Yes (destroy())
+What is phantom reference?,Reference for cleanup after GC,Strong reference,Weak reference,Normal reference
+What is soft reference?,Reference cleared when memory needed,Strong reference,Weak reference,Phantom reference
+What is reference queue?,Queue notified when references cleared,Object queue,GC queue,Memory queue
+Can finalize() be called explicitly?,Yes (but shouldn't),No,Only by JVM,Never
+What replaced finalize()?,Cleaner API (Java 9+),Nothing,System.gc(),Runtime.gc()
+What is try-with-resources advantage?,Automatic resource cleanup,Manual cleanup,Faster execution,Less code
+Does try-with-resources prevent memory leaks?,Helps with resource leaks,Prevents memory leaks,No advantage,Only GC
+What is object pooling?,Reusing objects instead of creating new,Creating multiple objects,Deleting objects,GC optimization
+Why use object pooling?,Performance (reduce GC overhead),Memory saving,Required,Best practice
+Can you create object in static block?,Yes,No,Only static objects,Only final objects
+Can you create object in instance initializer?,Yes,No,Only instance objects,Only final objects
+What runs first: static block or constructor?,Static block,Constructor,Same time,Depends on code
+Can nested class be generic?,Yes,No,Only static,Only inner
+Can you serialize nested class?,Depends on type and modifiers,Always,Never,Only static
+Is inner class serialization recommended?,No (outer instance dependency),Yes,Always,Required

@@ -1,0 +1,131 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is an enum?,Special class representing fixed set of constants,Interface,Abstract class,Final class
+What keyword declares enum?,enum,class,enumerate,enumeration
+When were enums introduced?,Java 5,Java 1,Java 8,Java 11
+Can enum be instantiated with new?,No,Yes,Only private,Only in enum
+Are enum constants objects?,Yes,No,Only static,Only final
+What is implicit superclass of enum?,java.lang.Enum,Object,Enum class,No superclass
+Can enum extend class?,No (already extends Enum),Yes,Only abstract,Only Object
+Can enum implement interface?,Yes,No,Only marker,Only functional
+Can enum be extended?,No (implicitly final),Yes,Only by enum,Only same package
+Are enum constants static?,Yes (implicitly),No,Only if declared,Only final
+Are enum constants final?,Yes (implicitly),No,Only if declared,Only static
+What is default enum modifier?,public or package-private,Only public,private,protected
+Can enum be abstract?,No,Yes,Only with abstract methods,Only constants
+Can enum be final?,Redundant (implicitly final),No,Required,Only methods
+Where can enum be declared?,Top-level or nested,Only top-level,Only nested,Only in class
+Can enum be local?,No,Yes,Only in methods,Only static
+How do you declare enum constants?,CONSTANT_NAME,constant_name,ConstantName,constant-name
+What is naming convention for enum constants?,UPPER_CASE_SNAKE,camelCase,PascalCase,lowercase
+Can enum have constructor?,Yes (private or package-private only),No,Only public,Only default
+What is default constructor access in enum?,private,public,protected,package-private
+Can enum constructor be public?,No,Yes,Only if no fields,Only nested
+Can enum constructor be protected?,No,Yes,Only nested,Only with fields
+Why is enum constructor private?,Prevents external instantiation,Required,Performance,Tradition
+When is enum constructor called?,When constants are created,Explicitly,Never,At runtime each time
+How many times is enum constructor called per constant?,Once,Every access,Never,Multiple times
+Can you call enum constructor?,No (implicitly called for constants),Yes with new,Yes with super(),Yes explicitly
+Can enum have fields?,Yes,No,Only static,Only final
+Can enum have instance fields?,Yes,No,Only static,Only constants
+Can enum have static fields?,Yes,No,Only instance,Only final
+Can enum have methods?,Yes,No,Only static,Only abstract
+Can enum have instance methods?,Yes,No,Only static,Only abstract
+Can enum have static methods?,Yes,No,Only instance,Only abstract
+Can enum have abstract methods?,Yes (constants must implement),No,Only concrete,Only interface
+Can enum implement abstract methods differently per constant?,Yes (constant-specific behavior),No,Same implementation,Only one constant
+What is constant-specific method?,Method implemented differently for each constant,Static method,Abstract method,Constructor
+How do you create constant-specific method?,Declare abstract in enum and implement in each constant body,Static method,Override,Constructor
+Can enum constant have body?,Yes (for constant-specific behavior),No,Only methods,Only fields
+Can enum override Object methods?,Yes,No,Only toString(),Only equals()
+Should you override toString() in enum?,Optional (default returns constant name),Required,No (final),Always
+What does default toString() return?,Constant name,Constant ordinal,Constant value,Class name
+What is ordinal()?,Returns position of constant (0-based),Returns value,Returns name,Returns index
+Is ordinal() 0-based or 1-based?,0-based,1-based,Configurable,Random
+Should you depend on ordinal()?,No (can change if constants reordered),Yes,Always,Required
+What is name()?,Returns constant name,Returns ordinal,Returns value,Returns toString()
+Is name() final?,Yes,No,Can override,Same as toString()
+Can you override name()?,No (final),Yes,Only in constants,Required
+What is difference between name() and toString()?,name() is final, toString() can be overridden,Same thing,name() returns ordinal,toString() is final
+What does valueOf() do?,Returns enum constant for string name,Returns ordinal,Creates new constant,Returns all constants
+What happens if valueOf() given invalid name?,IllegalArgumentException,Returns null,Compilation error,Creates constant
+Is valueOf() case-sensitive?,Yes,No,Configurable,Only lowercase
+What does values() do?,Returns array of all constants in order,Returns list,Returns set,Returns first constant
+Is values() static?,Yes,No,Instance method,Both
+Where does values() come from?,Compiler-generated,Enum class,Object class,User defined
+Can you modify array from values()?,Yes (but doesn't affect enum),No,Affects enum,Compilation error
+What is enumeration order?,Declaration order,Alphabetical,Random,Ordinal order
+Can enum implement Comparable?,Yes (implicitly),No,Only explicitly,Only with compareTo()
+How are enums compared?,By ordinal (declaration order),By name,By value,By hashCode()
+Can you use == to compare enum constants?,Yes (recommended),No,Only equals(),Only compareTo()
+Should you use equals() or == for enums?,== (better performance and null-safe),equals(),No difference,compareTo()
+Can enum constant be null?,Yes (variable can be null),No,Only fields,Only parameters
+What does compareTo() return for enums?,Difference in ordinals,Alphabetical order,0 or 1,Boolean
+Can enum be used in switch?,Yes,No,Only Java 8+,Only with ordinal
+Can switch use enum without qualification?,Yes (in case labels),No,Only fully qualified,Only static import
+What is syntax for enum in switch?,case CONSTANT:,case EnumType.CONSTANT:,case enum CONSTANT:,Both a and b
+Can enum be generic?,No,Yes,Only bounded,Only constants
+Can enum have type parameters?,No,Yes,Only methods,Only fields
+Can enum be used as type parameter?,Yes,No,Only bounded,Only Comparable
+Can enum be serialized?,Yes (special handling),No,Only with Serializable,Only constants
+What is guaranteed in enum serialization?,Singleton per constant preserved,Nothing,New instances,Same ordinal
+How many instances of each enum constant?,Exactly one (singleton),Multiple,Zero,Configurable
+Is enum thread-safe?,Yes (constants are singletons),No,Only with synchronization,Only static
+Can you use reflection to create enum instance?,No (special handling),Yes,Only with new,Only constants
+What is EnumSet?,Specialized Set for enum types,Regular set,Enum collection,Array of enums
+What is EnumSet backed by?,Bit vector,Hash table,Array,Tree
+Is EnumSet thread-safe?,No,Yes,Only operations,Only iteration
+What is EnumMap?,Specialized Map with enum keys,Regular map,Hash map,Tree map
+What is EnumMap backed by?,Array,Hash table,Tree,Linked list
+Is EnumMap thread-safe?,No,Yes,Only put,Only get
+Can EnumMap have null key?,No,Yes,One null,Multiple nulls
+Can EnumMap have null value?,Yes,No,One null,Only with key
+What is noneOf()?,Creates empty EnumSet,Creates full EnumSet,Creates null set,Creates one element
+What is allOf()?,Creates EnumSet with all constants,Creates empty set,Creates one element,Creates null set
+What is range()?,Creates EnumSet with range of constants,Creates all,Creates none,Creates one
+Can enum have nested class?,Yes,No,Only static,Only enum
+Can enum have nested enum?,Yes,No,Only top-level,Only one level
+Can nested enum be non-static?,No (implicitly static),Yes,Only in class,Only in interface
+Can you iterate over enum constants?,Yes (using values()),No,Only for loop,Only EnumSet
+Can enum implement multiple interfaces?,Yes,No,Only one,Only functional
+Can enum have private methods?,Yes,No,Only public,Only protected
+Can enum have package-private methods?,Yes,No,Only public,Only private
+What is purpose of enum?,Type-safe constants,Performance,Syntax sugar,Replace integers
+What is advantage of enum over constants?,Type safety, methods, fields,Performance,Memory,Shorter code
+Can enum have main method?,Yes,No,Only static,Only nested
+Can you subclass enum constant?,No (constants are final),Yes,Only with body,Only abstract methods
+What is constant-specific class body?,Anonymous class for each constant,Regular class,Static class,Inner class
+Can enum constructor call instance method?,No (not initialized yet),Yes,Only static,Only super
+Can enum constructor access static fields?,Yes,No,Only final,Only after initialization
+What is circular initialization in enum?,Constant refers to not-yet-initialized constant,No such issue,Compilation error,Runtime error
+Can enum constant reference another constant?,Yes (if already initialized),No,Always,Only forward reference
+Can you have forward reference in enum?,No (in initializer),Yes,Always,Only backward
+What happens with forward reference?,Compilation error or unexpected null,Works fine,Runtime error,Warning
+Can enum have static initializer?,Yes,No,Only instance,Only constructor
+When is enum class initialized?,First reference to any constant or static member,At startup,Never,Each access
+Are all enum constants initialized together?,Yes (when enum class is loaded),No,One at a time,On demand
+Can enum constant be lazy-initialized?,No (all initialized at class load),Yes,Only with fields,Only methods
+What is singleton pattern with enum?,Single-constant enum,Multi-constant enum,No pattern,Deprecated pattern
+Why use enum for singleton?,Simple, thread-safe, serialization-safe,Only tradition,Performance,No reason
+Can enum prevent reflection attacks?,Yes,No,Only with security manager,Only private constructor
+Can enum prevent serialization attacks?,Yes (special handling),No,Only with Serializable,Only readResolve()
+What is strategy pattern with enum?,Enum constants as strategies,No pattern,Only methods,Only fields
+Can enum implement command pattern?,Yes (constants as commands),No,Only with methods,Only interfaces
+Can enum have companion object pattern?,No (no companion objects in Java),Yes,Only static,Only nested
+What is valueOf() vs name()?,valueOf() takes String, name() returns String,Same thing,valueOf() returns ordinal,name() takes String
+Can you create enum at runtime?,No (fixed at compile time),Yes,With reflection,With factory
+Can you add enum constants at runtime?,No,Yes,With reflection,With annotation processor
+What is purpose of ordinal()?,Internal use (array index in EnumSet/Map),Public API,Required,Comparison
+Should public API depend on ordinal()?,No (implementation detail),Yes,Always,Required
+Can two constants have same ordinal?,No (unique per constant),Yes,Only different enums,Only same value
+What is Enum class?,Abstract class all enums extend,Interface,Enum type,Base class
+Can you extend Enum class?,No (compiler does it),Yes,Only for enums,Only abstract
+What methods does Enum class provide?,"name(), ordinal(), equals(), hashCode(), compareTo(), toString()",Only name(),Only ordinal(),None
+Can you override equals() in enum?,Yes (but not recommended),No (final),Required,Always
+Can you override hashCode() in enum?,Yes (but not recommended),No (final),Required,Always
+Is enum equals() based on ==?,Yes,No,Only sometimes,Only if overridden
+Can enum be used in annotations?,Yes,No,Only as value,Only constants
+Can enum constant be annotation value?,Yes,No,Only Class,Only String
+What types allowed in annotations?,"Primitives, String, Class, enum, annotation, arrays",Any type,Only primitives,Only String
+Can enum have varargs constructor?,Yes,No,Only regular args,Only one param
+Can enum constants have different fields?,Yes (via constructor),No,Same fields,Only static
+Can enum have multiple constructors?,Yes (overloading),No,Only one,Only default

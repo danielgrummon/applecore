@@ -1,0 +1,127 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Are String objects mutable?,No (immutable),Yes,Sometimes,Only with StringBuilder
+Can you modify String after creation?,No (creates new String),Yes,With methods,With operators
+What does String concatenation return?,New String,Modified original,void,StringBuilder
+Where are String literals stored?,String pool,Heap only,Stack,Permanent generation
+What is String interning?,Storing in pool for reuse,Creating String,Modifying String,Deleting String
+Which method interns a String?,intern(),pool(),store(),cache()
+"What does ""abc"" == ""abc"" return?",true (same pool reference),false,Compilation error,NullPointerException
+"What does new String(""abc"") == ""abc"" return?",false (different objects),true,Compilation error,NullPointerException
+"What does new String(""abc"").equals(""abc"") return?",true (same content),false,Compilation error,NullPointerException
+Which method checks String equality?,equals(),==,compareTo(),compare()
+Which method compares String lexicographically?,compareTo(),equals(),==,compare()
+What does compareTo() return?,Negative, zero, or positive int,boolean,String,void
+"What does ""abc"".compareTo(""abc"") return?",0,true,false,1
+"What does ""abc"".compareTo(""def"") return?",Negative number,Positive number,0,Equal
+Which method ignores case in comparison?,equalsIgnoreCase(),equals(),compareToIgnoreCase(),Both A and C
+What does charAt() return?,char,Character,String,int
+What does charAt() require?,Index (int),Character,String,Nothing
+What happens if charAt() index is invalid?,StringIndexOutOfBoundsException,ArrayIndexOutOfBoundsException,IndexOutOfBoundsException,Returns null
+What does length() return?,Number of characters,Size in bytes,Array length,String
+Is String length() zero-based?,No (returns count),Yes,Depends,Index-based
+What does substring() return?,New String,Modified original,char[],StringBuilder
+What does substring(beginIndex) return?,String from beginIndex to end,Single character,Error,Full string
+What does substring(beginIndex, endIndex) include?,beginIndex inclusive, endIndex exclusive,Both inclusive,Both exclusive,beginIndex exclusive
+"What does ""hello"".substring(1, 4) return?",ell,hell,ello,hel
+Does substring() modify original?,No (immutable),Yes,Sometimes,With assignment
+What does indexOf() return?,Index of first occurrence or -1,Always index,Character,boolean
+What does indexOf() return if not found?,-1,0,null,Exception
+What does lastIndexOf() return?,Index of last occurrence or -1,First occurrence,0,Exception
+Can indexOf() search for String?,Yes,No,Only char,Only int
+Can indexOf() start from specific index?,Yes (overloaded version),No,Only from start,Only lastIndexOf
+What does contains() return?,boolean,int,String,Index
+What does startsWith() return?,boolean,int,String,char
+What does endsWith() return?,boolean,int,String,char
+Can startsWith() have offset?,Yes,No,Only endsWith,Only indexOf
+What does replace() do?,Returns new String with replacements,Modifies original,Returns void,Deletes characters
+What does replace(char, char) replace?,All occurrences,First occurrence,Last occurrence,None
+What does replaceFirst() replace?,First occurrence,All occurrences,Last occurrence,Nothing
+What does replaceAll() use?,Regular expression,Plain text,Character only,Index-based
+Is replaceAll() regex-based?,Yes,No,Sometimes,Only in Java 17
+What does trim() remove?,Leading and trailing whitespace,All whitespace,Nothing,Middle spaces
+What does strip() remove?,Leading and trailing whitespace (Unicode-aware),Only spaces,All whitespace,Nothing
+Is strip() Unicode-aware?,Yes,No,Same as trim,Only in Java 17
+Which method is newer: trim or strip?,strip (Java 11),trim,Same time,Neither
+What does stripLeading() remove?,Leading whitespace,Trailing whitespace,All whitespace,Nothing
+What does stripTrailing() remove?,Trailing whitespace,Leading whitespace,All whitespace,Nothing
+What does toUpperCase() return?,New String in uppercase,Modified original,char[],void
+What does toLowerCase() return?,New String in lowercase,Modified original,char[],void
+Does case conversion modify original?,No (immutable),Yes,Sometimes,With locale
+What does concat() do?,Concatenates strings,Modifies original,Returns char[],Splits string
+Is concat() same as + operator?,Similar result but different implementation,Exactly same,Completely different,concat is faster
+What does split() return?,String[],String,List<String>,char[]
+What does split() use?,Regular expression,Plain text,Character,Index
+"What does ""a,b,c"".split("","") return?","String[] {""a"", ""b"", ""c""}",Single string,Three characters,Error
+Can split() have limit?,Yes,No,Only -1,Only positive
+What does join() do?,Joins strings with delimiter,Splits string,Modifies original,Returns char[]
+"What does String.join(""-"", ""a"", ""b"") return?",a-b,a b,ab,ab-
+What does isEmpty() check?,Length is 0,String is null,No characters,Whitespace only
+What does isBlank() check?,String is empty or only whitespace,Only empty,Only whitespace,Is null
+Is isBlank() available in Java 8?,No (Java 11+),Yes,Only Java 17,Deprecated
+What does repeat() do?,Repeats string n times,Returns same,Error,Modifies original
+When was repeat() added?,Java 11,Java 8,Java 9,Java 17
+"What does ""ha"".repeat(3) return?",hahaha,ha3,ha ha ha,Error
+What does indent() do?,Adjusts indentation,Removes spaces,Adds tabs,Error
+What does transform() do?,Applies function to string,Modifies original,Converts type,Error
+When were indent() and transform() added?,Java 12,Java 11,Java 13,Java 17
+What are text blocks?,Multi-line string literals,Text arrays,StringBuilder,String blocks
+What delimiters do text blocks use?,Triple quotes ("""),Double quotes (""),Single quotes ('),Backticks (`)
+When were text blocks introduced?,Java 13 (preview), Java 15 (standard),Java 11,Java 8,Java 17
+"What does text block preserve?",Line breaks and indentation,Only text,Nothing special,Quotes
+Do text blocks allow embedded quotes?,Yes (no escaping needed),No,Only single quotes,Only with backslash
+What happens to incidental whitespace?,Removed automatically,Preserved,Added,Error
+What is incidental indentation?,Common leading whitespace,All indentation,Trailing spaces,Tab characters
+Can text blocks be single line?,No,Yes,Only with quotes,Error
+Where must opening delimiter be?,On separate line,Anywhere,Same line as text,End of block
+Where must closing delimiter be?,On separate line or same line as last content,Only separate line,Only with content,Start of block
+What does \s do in text blocks?,Preserves trailing space,Nothing special,Tab character,Error
+What does \<newline> do?,Escapes line break,Adds line break,Error,Nothing
+Can you concatenate text blocks?,Yes,No,Only with +,Only with concat
+Is StringBuilder mutable?,Yes,No,Sometimes,Only with sync
+Which class is thread-safe: StringBuilder or StringBuffer?,StringBuffer,StringBuilder,Both,Neither
+Which is faster: StringBuilder or StringBuffer?,StringBuilder,StringBuffer,Same speed,Depends
+What does StringBuilder.append() return?,StringBuilder (for chaining),void,String,boolean
+Can you chain StringBuilder methods?,Yes,No,Only two,Only append
+What does StringBuilder.insert() do?,Inserts at specified position,Appends,Replaces,Deletes
+What does StringBuilder.delete() require?,Start and end index,Single index,Character,String
+What does StringBuilder.deleteCharAt() require?,Single index,Range,Character,String
+What does StringBuilder.reverse() do?,Reverses character order,Returns reversed string,Error,Sorts
+Does StringBuilder.reverse() modify object?,Yes,No,Returns new,Error
+What does StringBuilder.setCharAt() do?,Replaces character at index,Inserts character,Appends character,Deletes character
+What does StringBuilder.capacity() return?,Current capacity,Length,Size in bytes,Maximum size
+What is default StringBuilder capacity?,16,10,32,0
+What does StringBuilder.ensureCapacity() do?,Ensures minimum capacity,Sets exact capacity,Returns capacity,Error
+What does StringBuilder.trimToSize() do?,Reduces capacity to length,Trims whitespace,Deletes characters,Error
+How do you convert StringBuilder to String?,toString(),getString(),convert(),asString()
+How do you create StringBuilder from String?,new StringBuilder(string),StringBuilder.of(string),string.toBuilder(),StringBuilder.from(string)
+Can StringBuilder be empty?,Yes,No,Only null,Must have characters
+What does StringBuilder.length() return?,Number of characters,Capacity,Size in bytes,Index
+Can StringBuilder length exceed capacity?,No (capacity grows),Yes,Error,Only temporarily
+What happens when capacity is exceeded?,Capacity automatically increases,Error,Truncation,Fixed size
+What does String.format() do?,Formats string with placeholders,Formats numbers,Converts type,Error
+What is format specifier syntax?,%d, %s, %f, etc.,${}, {}, [],<>
+What does %s represent?,String,Separator,Space,Special
+What does %d represent?,Decimal integer,Double,Date,Digit
+What does %f represent?,Floating-point,Format,Function,Fixed
+What does %n represent?,Platform-specific newline,Number,Null,Name
+Can you use printf() with String?,No (System.out.printf()),Yes,Only StringBuilder,Error
+What does String.valueOf() do?,Converts to String,Validates string,Gets value,Error
+Can valueOf() convert null?,Yes (returns "null"),No,Error,Returns empty
+What does chars() return?,IntStream of char codes,char[],Stream<Character>,String
+What does codePoints() return?,IntStream of Unicode code points,int[],Stream<Integer>,String
+Are chars() and codePoints() same?,No (different for surrogate pairs),Yes,Sometimes,Only ASCII
+What does lines() return?,Stream<String>,String[],List<String>,char[]
+When was lines() added?,Java 11,Java 8,Java 9,Java 17
+Does String implement CharSequence?,Yes,No,Only StringBuilder,Only in Java 17
+What is CharSequence?,Interface for character sequences,Class,String parent,char[]
+Which classes implement CharSequence?,"String, StringBuilder, StringBuffer",Only String,Only StringBuilder,All text classes
+Can you compare String with ==?,Not recommended (use equals()),Yes (recommended),Always works,Required
+What is string literal optimization?,Compiler combines literals,Runtime optimization,JVM feature,No optimization
+"What does ""a"" + ""b"" compile to?",Single literal "ab",Concatenation operation,StringBuilder,Error
+Does + operator use StringBuilder?,Yes (in loops/complex expressions),No,Always,Never
+When should you use StringBuilder?,Loops and multiple modifications,Single concatenation,Never,Always
+When is String + acceptable?,Simple one-time concatenation,Never,Always,Loops
+What does String.copyValueOf() do?,Creates String from char[],Copies string,Gets value,Returns char[]
+Is String final?,Yes,No,Only methods,Only in Java 17
+Can you extend String?,No,Yes,Only private,Only abstract
+Why is String immutable?,Security, caching, thread-safety,Performance only,No reason,Legacy

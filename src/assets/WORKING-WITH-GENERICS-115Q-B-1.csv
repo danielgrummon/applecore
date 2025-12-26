@@ -1,0 +1,116 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What are generics?,Type parameters for classes/methods/interfaces,Generic programming,Variable types,Dynamic typing
+When were generics introduced?,Java 5,Java 1,Java 8,Java 11
+Why use generics?,Type safety at compile time,Runtime performance,Code compression,Dynamic typing
+What is type parameter?,Placeholder for type (e.g., T, E, K, V),Actual type,Parameter value,Generic class
+What is syntax for generic class?,class Name<T>,class Name(T),class<T> Name,class Name{T}
+What is syntax for generic method?,<T> ReturnType method(),ReturnType<T> method(),generic method<T>(),T method()
+Can you have multiple type parameters?,Yes (e.g., <K, V>),No,Only two,Only three
+What is common convention for type parameter?,Single uppercase letter (T, E, K, V),Lowercase,Full name,Any name
+What does T commonly represent?,Type,Template,Generic,Class
+What does E commonly represent?,Element,Entity,Exception,Entry
+What does K commonly represent?,Key,Konstant,Kind,Class
+What does V commonly represent?,Value,Variable,Vector,Version
+What is diamond operator?,<>,(),<T>,[]
+When was diamond operator introduced?,Java 7,Java 5,Java 8,Java 11
+What does diamond operator do?,Infers type from context,Creates diamond,Declares type,Removes generics
+"What can you use instead of List<String> list = new ArrayList<String>()?","List<String> list = new ArrayList<>()",Nothing shorter,List list = new ArrayList(),auto list
+Can you use raw types?,Yes (but discouraged),No,Only for legacy,Compilation error
+What is raw type?,Generic class without type parameter,Primitive type,Unboxed type,Original type
+What happens with raw types?,Compiler warnings,Compilation error,Runtime error,Nothing
+What is type erasure?,Generics removed at runtime,Generics at runtime,Type deletion,Compilation process
+What are generics at runtime?,Erased to Object or bound,Preserved,Type parameters,Actual types
+Can you do new T()?,No (type erasure),Yes,Only bounded,Only with constructor
+Can you do new T[]?,No (type erasure),Yes,Only bounded,Only primitives
+Can you do T.class?,No (type erasure),Yes,Only bounded,Only runtime
+Can you do instanceof T?,No (type erasure),Yes,Only bounded,Only classes
+"Can you do List<String>.class?",No,Yes,Only at runtime,Only in generics
+What is reifiable type?,Type whose information is available at runtime,Generic type,Erased type,Primitive type
+Are generics reifiable?,No,Yes,Only bounded,Only unbounded
+Are arrays reifiable?,Yes,No,Only object arrays,Only primitive arrays
+Can you create generic array?,No (type safety),Yes,Only bounded,Only Object[]
+What is workaround for generic array?,"Use ArrayList or (T[])new Object[]",No workaround,Use raw types,Use reflection
+What is bounded type parameter?,Type parameter with constraint,Unlimited parameter,Final parameter,Fixed parameter
+What is upper bound?,<T extends Type>,<T super Type>,<T implements Type>,<T : Type>
+What does <T extends Number> mean?,T must be Number or subclass,T must be exactly Number,T must extend only,T must be primitive
+Can you have multiple bounds?,Yes (e.g., <T extends Class & Interface>),No,Only two,Only interfaces
+What is order for multiple bounds?,Class first, then interfaces,Interfaces first,Any order,Alphabetical
+Can you have multiple class bounds?,No (only one class),Yes,Two classes,Unlimited classes
+Can you have multiple interface bounds?,Yes,No,Only two,Only three
+What does <T extends Comparable<T>> mean?,T must implement Comparable of itself,T extends Comparable,T is comparable,T has compareTo()
+What is lower bound?,<? super Type>,<? extends Type>,<T super Type>,<T extends Type>
+Can you use lower bound for type parameter?,No (only wildcards),Yes,Only methods,Only classes
+What is wildcard?,? in generic type,* symbol,Type parameter,Any type
+What is unbounded wildcard?,<?>,<Object>,<*>,<?>
+What does <?> mean?,Unknown type,Any type,Object type,No type
+Can you add to List<?>?,No (except null),Yes,Only Object,Only wildcards
+Can you read from List<?>?,Yes (as Object),No,Only specific types,Only null
+What is upper bounded wildcard?,<? extends Type>,<? super Type>,<T extends Type>,<?> Type
+What does <? extends Number> mean?,Unknown type that is Number or subclass,Exactly Number,Extends keyword,Number parameter
+Can you add to List<? extends Number>?,No (except null),Yes,Only Number,Only subclasses
+Can you read from List<? extends Number>?,Yes (as Number),No,Only Object,Only subclasses
+What is lower bounded wildcard?,<? super Type>,<? extends Type>,<T super Type>,<?> Type
+What does <? super Integer> mean?,Unknown type that is Integer or superclass,Exactly Integer,Super keyword,Integer parameter
+Can you add Integer to List<? super Integer>?,Yes,No,Only as Object,Only with cast
+Can you read from List<? super Integer>?,Yes (as Object only),Yes (as Integer),No,Only with cast
+What is PECS principle?,Producer Extends, Consumer Super,Producer Super, Consumer Extends,All extend,All super
+When to use extends?,When reading from structure (producer),When writing to structure,Always,Never
+When to use super?,When writing to structure (consumer),When reading from structure,Always,Never
+What is covariance?,Preserves subtype relationship (extends),Reverses relationship,Invariant,No relationship
+What is contravariance?,Reverses subtype relationship (super),Preserves relationship,Invariant,No relationship
+What is invariance?,No subtype relationship,Preserves relationship,Reverses relationship,Covariance
+Are Java generics covariant?,No (invariant),Yes,Only arrays,Only wildcards
+Is Integer[] subtype of Number[]?,Yes (arrays are covariant),No,Only with generics,Compilation error
+Is List<Integer> subtype of List<Number>?,No (generics are invariant),Yes,Only with extends,Only unbounded
+Can you assign List<Integer> to List<Number>?,No,Yes,With cast,With extends
+Can you assign List<Integer> to List<?>?,Yes,No,With cast,With extends
+Can you assign List<Integer> to List<? extends Number>?,Yes,No,With cast,With super
+Can you assign List<Number> to List<? super Integer>?,Yes,No,With cast,With extends
+What is bridge method?,Compiler-generated method for type erasure,User method,Override method,Interface method
+When are bridge methods created?,To maintain polymorphism after erasure,Always,Never,Only interfaces
+Can you overload with different type parameters?,"No (same signature after erasure, unless different param count)",Yes,Only primitives,Only bounded
+"Can you have method(List<String>) and method(List<Integer>)?",No (same erasure),Yes,Only in different classes,Only static
+Can generic class extend non-generic?,Yes,No,Only abstract,Only final
+Can non-generic class extend generic?,Yes (specify type or use raw),No,Only interfaces,Only abstract
+Can generic class extend generic?,Yes,No,Only same parameters,Only subtype
+What is recursive type bound?,<T extends Comparable<T>>,<T extends T>,<T super T>,<T implements T>
+What is self-referential bound?,Type parameter references itself in bound,Type references class,Circular reference,Infinite loop
+What is use of recursive bound?,Ensure comparability with same type,Performance,Memory,Syntax
+Can interface be generic?,Yes,No,Only classes,Only methods
+Can enum be generic?,No,Yes,Only bounded,Only elements
+Can you have generic static field?,No (shared across all type parameters),Yes,Only final,Only bounded
+Can you have generic static method?,Yes,No,Only instance methods,Only bounded
+What is syntax for generic static method?,<T> static ReturnType method(),static <T> ReturnType method(),static ReturnType<T> method(),Both a and b
+Can you have generic constructor?,Yes,No,Only default,Only parameterized
+What is syntax for generic constructor?,<T> Constructor(),Constructor<T>(),new <T>Constructor(),Both a and c
+Can type parameter shadow class parameter?,Yes (method parameter can differ),No,Compilation error,Runtime error
+What is type inference?,Compiler deduces type from context,Manual typing,Runtime typing,Type erasure
+When does type inference occur?,Method invocation, diamond operator,Never,Only diamond,Only methods
+Can you explicitly specify type arguments?,Yes (<Type>method()),No,Only implicit,Only classes
+What is target typing?,Type inferred from assignment target,Source typing,Method typing,Parameter typing
+"For List<String> list = new ArrayList<>(), what is inferred?",String,Object,Nothing,ArrayList
+Can you use var with generics?,Yes,No,Only Java 11+,Only bounded
+"For var list = new ArrayList<String>(), what is type?",ArrayList<String>,List<String>,List,ArrayList
+Can you use primitives as type arguments?,No (use wrappers),Yes,Only int,Only boolean
+What happens with List<int>?,Compilation error,Uses Integer,Creates primitive list,Runtime error
+What is generic exception?,Cannot exist (no generic Throwable subclasses),Regular exception,Type-safe exception,Parameterized exception
+Can you catch generic exception?,No (type erasure),Yes,Only bounded,Only runtime
+Can you throw type parameter?,No (unless bounded by Throwable),Yes,Always,Only checked
+What is heap pollution?,Contamination from raw types or unsafe casts,Memory leak,Stack overflow,Type safety
+When does heap pollution occur?,Mixing raw types with generics,Never,Only errors,Only arrays
+What is @SafeVarargs?,Suppresses warnings for varargs heap pollution,Makes method safe,Adds safety checks,Prevents errors
+Where can @SafeVarargs be used?,Final/static/private methods and constructors,Any method,Only varargs,Only generics
+What is generic singleton factory pattern?,Single instance for different types,One factory,Singleton with generics,Factory method
+What is heterogeneous container?,Container holding different types (e.g., Map<Class<?>, Object>),Homogeneous container,List of objects,Mixed collection
+What is typesafe heterogeneous container?,Uses Class objects as keys for type safety,Unsafe container,Regular map,Generic list
+What is favor composition over inheritance?,Use generics with composition,Always inherit,Never compose,Equal preference
+Can lambda use type parameters from class?,Yes (captured),No,Only method parameters,Only new parameters
+Can lambda introduce new type parameters?,No,Yes,Only Java 11+,Only bounded
+What is difference between <T> and <?>?,T is type parameter, ? is wildcard,Same thing,T for classes only,? for methods only
+When to use T vs ?,T when using type, ? when only reading,Always T,Always ?,No difference
+Can you instantiate T?,No (without reflection or factory),Yes,Only bounded,Only with new
+What is supplier pattern for generics?,Pass Supplier<T> or Class<T> to create instances,Regular supplier,Factory pattern,Builder pattern
+What is Class<T>?,Represents class of type T,Any class,Generic class,Type parameter
+What does clazz.newInstance() do?,Creates instance (deprecated),Returns class,Gets type,Compiles class
+What is preferred over newInstance()?,clazz.getDeclaredConstructor().newInstance(),Class.forName(),new Object(),Reflection
+Can you have generic annotation?,No (limited support),Yes,Only retention,Only target

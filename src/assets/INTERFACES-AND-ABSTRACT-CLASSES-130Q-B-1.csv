@@ -1,0 +1,131 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is an interface?,Contract specifying methods,Class type,Abstract class,Implementation
+What keyword declares interface?,interface,class,abstractInterface,type
+Can interface be instantiated?,No,Yes,Only with new,Only anonymous
+What are interface methods by default?,public abstract,private,protected,package-private
+What are interface variables by default?,public static final,private,protected,instance
+Can interface have instance variables?,No (only constants),Yes,Only private,Only public
+Can interface have constructors?,No,Yes,Only default,Only private
+Can interface extend class?,No,Yes,Only abstract,Only Object
+Can interface extend interface?,Yes (multiple),No,Only one,Only same package
+Can interface extend multiple interfaces?,Yes,No,Only two,Only related
+Can class implement multiple interfaces?,Yes,No,Only two,Only related
+What keyword implements interface?,implements,extends,uses,interface
+Can class extend and implement?,Yes (extends first, then implements),No,Only implement,Only extend
+What must implementing class do?,Provide implementations for all abstract methods or be abstract,Nothing,Only some methods,Only public methods
+Can interface method be private?,Yes (Java 9+, for helper methods),No,Only default,Only static
+Can interface method be protected?,No,Yes,Only abstract,Only default
+Can interface method be package-private?,No,Yes,Only default,Only static
+What is default method?,Method with implementation in interface (Java 8+),Default constructor,First method,Required method
+What keyword marks default method?,default,public,virtual,override
+When were default methods introduced?,Java 8,Java 5,Java 7,Java 9
+Why were default methods added?,Evolve interfaces without breaking implementations,Required feature,Performance,Syntax sugar
+Can default method be abstract?,No,Yes,Only if overridden,Only in sub-interface
+Can default method be static?,No (different concepts),Yes,Same thing,Only Java 9+
+Can class override default method?,Yes,No,Must override,Cannot override
+Can interface override inherited default?,Yes (override or re-declare as abstract),No,Only override,Only abstract
+What if class inherits conflicting defaults?,Must override and resolve,Compilation error,First wins,Last wins
+What is static method in interface?,Method belonging to interface (Java 8+),Instance method,Default method,Abstract method
+Can static interface method be inherited?,No,Yes,Only public,Only default
+How do you call static interface method?,InterfaceName.methodName(),instance.methodName(),Inherited,Any way
+Can implementing class override static method?,No (method hiding, not overriding),Yes,Must override,Inherits
+What is abstract method in interface?,Method without implementation,Method with implementation,Default method,Static method
+Must abstract method have abstract keyword?,No (implicit in interface),Yes,Only before Java 8,Only after Java 8
+Can interface have final methods?,No (for default/static yes, but not useful),Yes,Only default,Only static
+Can interface be final?,No,Yes,Only marker,Only functional
+Can interface be abstract?,Redundant (implicitly abstract),No,Required,Only with abstract methods
+What is marker interface?,Interface with no methods,Tagged interface,Empty interface,Default interface
+What are examples of marker interfaces?,"Serializable, Cloneable, Remote",Runnable,Comparable,Iterable
+What is functional interface?,Interface with exactly one abstract method,Interface with functions,Lambda interface,SAM interface
+What is SAM?,Single Abstract Method,Some Abstract Methods,Static Abstract Method,Simple Method
+What annotation marks functional interface?,@FunctionalInterface,@Functional,@Lambda,@SAM
+Can functional interface have default methods?,Yes (doesn't count toward SAM),No,Only one,Only static
+Can functional interface have static methods?,Yes (doesn't count toward SAM),No,Only one,Only abstract
+Can functional interface extend interface?,Yes (if still only one abstract method),No,Only functional,Only marker
+What are common functional interfaces?,"Predicate, Function, Consumer, Supplier",Serializable,Comparable,Runnable
+Can lambda implement functional interface?,Yes,No,Only explicit,Only anonymous
+Can method reference implement functional interface?,Yes,No,Only lambda,Only explicit
+What is abstract class?,Class that can have abstract methods,Interface,Concrete class,Final class
+What keyword declares abstract class?,abstract,interface,virtual,abstractClass
+Can abstract class be instantiated?,No,Yes,Only with subclass,Only anonymous
+Can abstract class have constructors?,Yes,No,Only default,Only private
+Can abstract class have instance variables?,Yes,No,Only static,Only final
+Can abstract class have concrete methods?,Yes,No,Only abstract,Only static
+Can abstract class have abstract methods?,Yes,No,Must have,Only public
+Must abstract class have abstract methods?,No,Yes,At least one,At least two
+Can concrete class have abstract methods?,No,Yes,Only private,Only default
+What must subclass of abstract class do?,Implement all abstract methods or be abstract,Nothing,Only some,Only public
+Can abstract class extend abstract class?,Yes,No,Only if no abstract methods,Only same package
+Can abstract class implement interface?,Yes,No,Must implement all,Only marker
+Can abstract method be final?,No (contradiction),Yes,Only in abstract class,Only private
+Can abstract method be private?,No,Yes,Only in abstract class,Only Java 9+
+Can abstract method be static?,No,Yes,Only in interface,Only Java 8+
+Can abstract class be final?,No (contradiction),Yes,Only with no subclass,Only methods final
+What is purpose of abstract class?,Share code and define template,Only abstraction,Only interface,Only inheritance
+What is difference between interface and abstract class?,Interface is contract; abstract class is partial implementation,Same thing,Interface has code,Abstract class is contract
+Can you inherit from multiple abstract classes?,No,Yes,Only two,Only same package
+When to use interface?,Define capability or contract,Always,Never,Only Java 8+
+When to use abstract class?,Share code with related classes,Always,Never,Only with abstract methods
+Can interface have equals() implementation?,Yes (as default),No,Only abstract,Only static
+Can interface override Object methods?,Only as default (Java 8+) for non-final methods,No,Always,Yes as abstract
+Which Object methods can be default in interface?,"toString, equals, hashCode (as default)",None,All,Only toString
+Can interface declare abstract Object methods?,Yes (but redundant),No,Only public,Only some
+What is constant in interface?,public static final variable,Any variable,Method,Instance field
+How do you declare constant in interface?,Type NAME = value (public static final implicit),static final Type NAME = value,const Type NAME = value,final Type NAME = value
+Can interface constant be reassigned?,No (final),Yes,Only in implementation,Only static
+Can implementing class hide interface constant?,Yes (with same name),No,Compilation error,Only static
+What is diamond problem?,Multiple inheritance ambiguity,Single inheritance,No problem in Java,Interface problem
+Does Java have diamond problem?,No for state (single inheritance); yes for behavior (multiple interfaces),Yes,No,Only interfaces
+How does Java resolve diamond problem?,Requires explicit override,First parent wins,Last parent wins,Compilation error
+What if class inherits same default from two interfaces?,Must override,Compilation error,First wins,Last wins
+Can you call super interface default?,Yes (InterfaceName.super.method()),No,Only direct super,Only this.super
+What is interface constant hiding?,Class/subinterface hides inherited constant,Overriding constant,Removing constant,Private constant
+Can interface extend class?,No,Yes,Only abstract,Only Object
+Can enum implement interface?,Yes,No,Only marker,Only functional
+Can record implement interface?,Yes,No,Only marker,Only functional
+Can annotation extend interface?,No (annotation extends Annotation),Yes,Only marker,Only meta
+What is sealed interface?,Interface restricting permitted implementations (Java 17),Final interface,Abstract interface,Closed interface
+Can interface be nested?,Yes,No,Only static,Only in class
+Can nested interface be non-static?,Implicitly static,No,Yes,Only in class
+What is access modifier for nested interface?,Can be public, protected, private, package-private,Only public,Only private,Only protected
+Can local class implement interface?,Yes,No,Only anonymous,Only named
+Can anonymous class implement interface?,Yes,No,Only local,Only nested
+Can lambda implement interface with multiple methods?,No (only functional),Yes,Only default methods,Only static methods
+What is Comparator interface?,Functional interface for comparing,Comparable,Comparison,Iterator
+What is Comparable interface?,Interface for natural ordering,Comparator,Functional interface,Iterator
+How many abstract methods in Comparable?,One (compareTo),Two,None,Many
+Can interface have private static method?,Yes (Java 9+),No,Only public static,Only default
+What is purpose of private interface method?,Helper for default/static methods,Encapsulation,Required,Public alternative
+Can private interface method be abstract?,No,Yes,Only Java 11+,Only static
+Can you call private interface method from implementing class?,No,Yes,Only default,Only static
+What is multiple inheritance of type?,Class implements multiple interfaces,Multiple superclasses,Diamond problem,No inheritance
+What is multiple inheritance of state?,Multiple instance variables from parents (not in Java),Multiple interfaces,Diamond problem,Java feature
+Does Java support multiple inheritance of state?,No (single class inheritance),Yes,Only interfaces,Only abstract
+Does Java support multiple inheritance of type?,Yes (multiple interfaces),No,Only abstract,Only single
+Can interface have instance initializer?,No,Yes,Only static,Only constants
+Can interface have static initializer?,Yes,No,Only instance,Only methods
+What is purpose of static block in interface?,Initialize static constants,Initialize instance,Required,Constructors
+Can static block in interface throw exception?,Yes (initialization error),No,Only unchecked,Only checked
+What is evolution of interfaces?,Adding methods over time,Interface versions,Inheritance,Implementation
+How do default methods help evolution?,Add methods without breaking existing implementations,Performance,Required,Syntax
+What happens if don't override default?,Uses default implementation,Compilation error,Abstract method,Nothing
+Can default method call other default methods?,Yes,No,Only abstract,Only static
+Can default method call abstract methods?,Yes,No,Only default,Only static
+Can static method call default methods?,No (needs instance),Yes,Only in same interface,Only public
+Can static method call other static methods?,Yes,No,Only public,Only same interface
+Can abstract method call default methods?,No (no implementation),Yes,Only override,Only interface
+What is interface vs class for constants?,Both can hold constants,Only interface,Only class,Neither
+Should you use interface only for constants?,No (constant interface anti-pattern),Yes,Required,Best practice
+What is constant interface anti-pattern?,Interface only for constants,Good practice,Required pattern,Modern approach
+What is preferred over constant interface?,Class with private constructor or enum,Interface,Abstract class,Multiple interfaces
+Can interface be package-private?,Yes,No,Only public,Only nested
+Can interface be private?,Only nested interfaces,No,All interfaces,Only Java 9+
+Can interface be protected?,Only nested interfaces,No,All interfaces,Only in abstract class
+What is implicit modifier for top-level interface?,public or package-private,Only public,abstract,interface
+What is covariant return type?,Override with subtype return,Same return type,Any return type,No return type
+Can interface method have covariant return in implementation?,Yes,No,Only Object,Only same type
+Can overriding narrow exception?,Yes,No,Only unchecked,Only checked
+Can interface method throw exceptions?,Yes (abstract and default can),No,Only unchecked,Only default
+Can implementing method throw fewer exceptions?,Yes,No,Must throw same,Must throw more
+Can implementing method throw more checked exceptions?,No,Yes,Only if declared,Only unchecked
+What is marker vs functional interface difference?,Marker has zero, functional has one abstract method,Same thing,Marker deprecated,Functional is new

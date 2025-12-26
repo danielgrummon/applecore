@@ -1,0 +1,108 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which method creates a parallel stream from a collection?,parallelStream(),parallel(),concurrentStream(),threadedStream()
+Which method converts a sequential stream to parallel?,parallel(),parallelStream(),makeParallel(),asParallel()
+Which method converts a parallel stream to sequential?,sequential(),sequentialStream(),makeSequential(),asSequential()
+Can you check if a stream is parallel?,Yes (isParallel()),No,Only before operations,Only after terminal operation
+Which method checks if stream is parallel?,isParallel(),parallel(),checkParallel(),isSequential()
+What is the default ForkJoinPool size?,Number of processors,Fixed at 10,Fixed at 100,Unlimited
+Which pool executes parallel streams by default?,Common ForkJoinPool,Custom thread pool,ExecutorService,Fixed thread pool
+Can you specify a custom thread pool for parallel streams?,Yes (with workarounds),No,Yes (built-in method),Only in Java 17
+Are parallel streams always faster?,No,Yes,Only for large datasets,Only for small datasets
+When should you use parallel streams?,Large datasets with CPU-intensive operations,Always,Never,Only small datasets
+What is a key requirement for parallel stream operations?,Thread-safety,Synchronization,Volatile variables,Locks
+Should operations in parallel streams have side effects?,No,Yes,Sometimes,Only reads
+Are stateful operations safe in parallel streams?,No (generally avoid),Yes (always safe),Only sorted(),Only distinct()
+Which operation is stateful?,sorted(),map(),filter(),forEach()
+Which operation is stateful?,distinct(),map(),filter(),anyMatch()
+Which operation is stateless?,map(),sorted(),distinct(),limit()
+Which operation is stateless?,filter(),sorted(),distinct(),skip()
+Does order matter in parallel streams?,Depends on stream source,Never,Always,Only with sorted()
+Are parallel streams ordered by default?,Depends on source,Always ordered,Never ordered,Only Lists
+Which method removes ordering constraint?,unordered(),removeOrder(),noOrder(),sequential()
+Does unordered() improve parallel performance?,Yes (potentially),No,Always,Never
+Which terminal operation maintains encounter order?,forEachOrdered(),forEach(),Both maintain order,Neither maintains order
+Does forEach() maintain order in parallel streams?,No,Yes,Sometimes,Only for Lists
+Does forEachOrdered() maintain order in parallel streams?,Yes,No,Sometimes,Only for Sets
+Which is better for parallel streams: forEach or forEachOrdered?,Depends on ordering needs,forEach,forEachOrdered,Same performance
+Can parallel streams process LinkedList efficiently?,No (poor performance),Yes,Better than ArrayList,Same as ArrayList
+Which collection is best for parallel streams?,ArrayList,LinkedList,TreeSet,LinkedHashSet
+Are Sets ordered in parallel streams?,Depends on Set type,Always,Never,Only TreeSet
+Can you use parallel streams with infinite streams?,Yes (with limit),No,Always,Only finite
+What happens with limit() in parallel streams?,May process more elements,Processes exactly n elements,Throws exception,Same as sequential
+Is findAny() deterministic in parallel streams?,No,Yes,Only for ordered streams,Only for Sets
+Is findFirst() deterministic in parallel streams?,Yes,No,Only for ordered streams,Only for Lists
+Which is faster in parallel streams: findAny or findFirst?,findAny,findFirst,Same speed,Depends on data
+Does skip() work well with parallel streams?,No (poor performance),Yes (excellent),Better than sequential,Same as sequential
+Does limit() work well with parallel streams?,No (limits parallelism),Yes (excellent),Better than sequential,Same performance
+Which reduce operation is safe in parallel?,reduce(identity, accumulator, combiner),reduce(accumulator),Both,Neither
+How many parameters does parallel reduce need?,3 (identity, accumulator, combiner),1,2,4
+What is the combiner in reduce()?,Combines partial results,Accumulates elements,Provides identity,Filters elements
+Is two-parameter reduce safe for parallel?,No,Yes,Sometimes,Only with commutative operations
+What property should reduce accumulator have?,Associative,Commutative,Both A and B,Neither
+What property should reduce combiner have?,Associative,Commutative,Both A and B,Neither
+Are Collectors thread-safe for parallel streams?,Yes (designed for it),No,Only some,Only Collectors.toList()
+Which Collector is most efficient for parallel?,Collectors.toConcurrentMap(),Collectors.toMap(),Collectors.toList(),Collectors.toSet()
+What does Collectors.groupingByConcurrent() return?,ConcurrentHashMap,HashMap,TreeMap,LinkedHashMap
+Is groupingBy() safe for parallel streams?,Yes,No,Only groupingByConcurrent(),Only with synchronization
+Can you use custom collectors with parallel streams?,Yes,No,Only built-in collectors,Only in Java 17
+Which collection is thread-safe?,CopyOnWriteArrayList,ArrayList,LinkedList,Vector with synchronization
+Which Map is thread-safe?,ConcurrentHashMap,HashMap,TreeMap,LinkedHashMap
+Which Set is thread-safe?,CopyOnWriteArraySet,HashSet,TreeSet,LinkedHashSet
+Is Hashtable thread-safe?,Yes (but legacy),No,Only in Java 17,Deprecated
+Is Vector thread-safe?,Yes (but legacy),No,Better than ArrayList,Recommended for concurrent
+Is Collections.synchronizedList thread-safe?,Yes,No,Only reads,Only writes
+What does CopyOnWriteArrayList do on modification?,Creates new array copy,Locks array,Uses atomic operations,Throws exception
+Is CopyOnWriteArrayList good for frequent writes?,No,Yes,Better than ArrayList,Same performance
+Is CopyOnWriteArrayList good for many reads?,Yes,No,Worse than ArrayList,Same as ArrayList
+Are iterators on CopyOnWriteArrayList fail-fast?,No (snapshot iterators),Yes,Sometimes,Only on modification
+Can CopyOnWriteArrayList throw ConcurrentModificationException?,No,Yes,Sometimes,Only during iteration
+What does ConcurrentHashMap use for thread safety?,Lock striping/CAS,Single lock,Synchronization,No locking
+Can ConcurrentHashMap have null keys?,No,Yes,Only values,Both keys and values
+Can ConcurrentHashMap have null values?,No,Yes,Only keys,Both keys and values
+Is size() in ConcurrentHashMap exact?,No (approximate),Yes (exact),Only when locked,Only when empty
+Are atomic operations available on ConcurrentHashMap?,Yes,No,Only in Java 17,Only for reads
+Which method atomically puts if absent?,putIfAbsent(),put(),computeIfAbsent(),Both A and C
+Which method atomically computes if absent?,computeIfAbsent(),putIfAbsent(),compute(),getOrDefault()
+Which method atomically computes new value?,compute(),computeIfAbsent(),computeIfPresent(),put()
+Which method atomically updates existing value?,computeIfPresent(),compute(),computeIfAbsent(),replace()
+Which method atomically merges values?,merge(),compute(),combine(),join()
+Does ConcurrentHashMap support bulk operations?,Yes,No,Only in Java 17,Only for primitives
+Which bulk operation applies to all entries?,forEach(),forEachKey(),forEachValue(),All of above
+What is the parallelism threshold in bulk operations?,Minimum size for parallel,Maximum size,Thread count,Batch size
+Can you modify ConcurrentHashMap during iteration?,Yes,No,Only additions,Only removals
+Are Stream operations on ConcurrentHashMap thread-safe?,No (need external sync),Yes,Only parallel streams,Only sequential streams
+Which queue is thread-safe?,ConcurrentLinkedQueue,LinkedList,ArrayDeque,PriorityQueue
+Which queue is blocking?,LinkedBlockingQueue,ConcurrentLinkedQueue,ArrayDeque,PriorityQueue
+What does a blocking queue do when full?,Blocks until space available,Throws exception,Returns false,Grows automatically
+What does BlockingQueue.put() do when full?,Blocks,Throws exception,Returns false,Overwrites
+What does BlockingQueue.offer() do when full?,Returns false,Blocks,Throws exception,Overwrites
+What does BlockingQueue.take() do when empty?,Blocks,Throws exception,Returns null,Returns empty
+What does BlockingQueue.poll() do when empty?,Returns null,Blocks,Throws exception,Returns empty
+Which queue is bounded?,ArrayBlockingQueue,LinkedBlockingQueue (can be),Both A and B,Neither
+Which queue is unbounded?,LinkedBlockingQueue (default),ArrayBlockingQueue,DelayQueue,Both A and C
+What is LinkedBlockingQueue default capacity?,Integer.MAX_VALUE,100,1000,Unlimited
+Which queue orders by delay?,DelayQueue,PriorityBlockingQueue,LinkedBlockingQueue,ArrayBlockingQueue
+Which queue is priority-based?,PriorityBlockingQueue,DelayQueue,ArrayBlockingQueue,LinkedBlockingQueue
+Which queue is LIFO?,LinkedBlockingDeque,LinkedBlockingQueue,ArrayBlockingQueue,PriorityBlockingQueue
+Can BlockingDeque work as both stack and queue?,Yes,No,Only as stack,Only as queue
+Which method transfers without storing?,SynchronousQueue.transfer(),put(),offer(),add()
+What is SynchronousQueue capacity?,0,1,10,Unlimited
+Is ConcurrentSkipListMap sorted?,Yes,No,Only with comparator,Only TreeMap
+Is ConcurrentSkipListSet sorted?,Yes,No,Only with comparator,Only TreeSet
+What algorithm does ConcurrentSkipListMap use?,Skip list,Red-black tree,Hash table,B-tree
+Are ConcurrentSkipList collections thread-safe?,Yes,No,Only reads,Only writes
+Can you use non-thread-safe collections in parallel streams?,Not recommended,Yes (safe),Always safe,Never safe
+Should you synchronize parallel stream operations?,No (defeats purpose),Yes (required),Sometimes,Only terminal operations
+Are lambdas in parallel streams executed concurrently?,Yes,No,Only map(),Only filter()
+Can race conditions occur in parallel streams?,Yes (with shared state),No,Only with reduce(),Only with collect()
+What causes race conditions in parallel streams?,Shared mutable state,Immutable objects,Pure functions,Stateless operations,
+Should you modify external variables in parallel streams?,No,Yes,Only atomic,Only synchronized
+Are local variables safe in parallel stream operations?,Yes,No,Only final,Only primitive
+Can you use AtomicInteger in parallel streams?,Yes (but not recommended),No,Required,Best practice
+What is the impact of boxing in parallel streams?,Reduces performance,Improves performance,No impact,Only in sequential
+Should you use parallel streams for I/O operations?,No,Yes,Always,Better than sequential
+Are parallel streams good for database queries?,No,Yes,Always,Better than sequential
+Can parallel streams cause deadlock?,Yes (with locks/synchronized),No,Always,Never
+What happens if exception occurs in parallel stream?,Stream stops with exception,Continues processing,Catches automatically,Only that thread stops
+Are exceptions in parallel streams deterministic?,No,Yes,Sometimes,Only checked exceptions
+Can you use try-catch in parallel stream operations?,Yes,No,Only terminal,Only intermediate

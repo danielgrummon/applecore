@@ -1,0 +1,100 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which interface must a class implement to be serializable?,Serializable,Serialization,SerializableObject,Persistable
+What package contains the Serializable interface?,java.io,java.util,java.nio,java.lang
+Does Serializable have any methods?,No,Yes (serialize()),Yes (writeObject()),Yes (readObject())
+What type of interface is Serializable?,Marker interface,Functional interface,Abstract interface,Normal interface
+Which class is used to serialize objects?,ObjectOutputStream,SerializationStream,ObjectWriter,SerializeStream
+Which class is used to deserialize objects?,ObjectInputStream,DeserializationStream,ObjectReader,DeserializeStream
+Which method writes an object to a stream?,writeObject(),serialize(),write(),writeData()
+Which method reads an object from a stream?,readObject(),deserialize(),read(),readData()
+What does writeObject() accept as parameter?,Object,Serializable,byte[],String
+What does readObject() return?,Object,Serializable,byte[],Specific type
+Must you cast the result of readObject()?,Yes,No,Only for primitives,Only for custom objects
+Which exception might readObject() throw?,ClassNotFoundException,SerializationException,DeserializationException,ObjectException
+Which exception might writeObject() throw?,IOException,SerializationException,WriteException,ObjectException
+Can you serialize an object that doesn't implement Serializable?,No (throws NotSerializableException),Yes,Only primitives,Only with ObjectOutputStream
+What exception is thrown for non-serializable objects?,NotSerializableException,SerializationException,InvalidObjectException,IllegalStateException
+Which keyword prevents a field from being serialized?,transient,volatile,temporary,nonserialized
+Are transient fields serialized?,No,Yes,Only primitives,Only objects
+Are static fields serialized?,No,Yes,Only final,Only public
+What is the default value of transient fields after deserialization?,Default value for the type,null,0,Unchanged
+"What is the value of a transient int field after deserialization?",0,null,Unchanged,Error
+"What is the value of a transient String field after deserialization?",null,Empty string,Unchanged,Error
+What is serialVersionUID?,Version identifier for serialization,Serial number,Object ID,Version number
+What is the type of serialVersionUID?,long,int,String,UUID
+Should serialVersionUID be static?,Yes,No,Optional,Doesn't matter
+Should serialVersionUID be final?,Yes,No,Optional,Doesn't matter
+What happens if serialVersionUID doesn't match during deserialization?,InvalidClassException,ClassNotFoundException,SerializationException,VersionMismatchException
+Is serialVersionUID required?,No (but recommended),Yes (always),Only for versioning,Only for Externalizable
+What generates default serialVersionUID?,JVM calculation,Random number,Hash code,Sequential number
+Does changing class structure affect default serialVersionUID?,Yes,No,Sometimes,Only methods
+Which interface provides custom serialization control?,Externalizable,CustomSerializable,SerializationControl,Customizable
+What methods does Externalizable require?,writeExternal() and readExternal(),serialize() and deserialize(),write() and read(),save() and load()
+Does Externalizable extend Serializable?,Yes,No,Only in Java 17,Optional
+Is the no-arg constructor required for Externalizable?,Yes,No,Only for Serializable,Optional
+Is the no-arg constructor called during Externalizable deserialization?,Yes,No,Sometimes,Only for subclasses
+Which method can customize serialization in Serializable?,writeObject(ObjectOutputStream),serialize(),write(),save()
+Which method can customize deserialization in Serializable?,readObject(ObjectInputStream),deserialize(),read(),load()
+What is the signature of custom writeObject()?,private void writeObject(ObjectOutputStream),public void writeObject(ObjectOutputStream),protected void writeObject(ObjectOutputStream),void writeObject(ObjectOutputStream)
+What is the signature of custom readObject()?,private void readObject(ObjectInputStream),public void readObject(ObjectInputStream),protected void readObject(ObjectInputStream),void readObject(ObjectInputStream)
+Must custom readObject()/writeObject() be private?,Yes,No,Can be any,Public recommended
+How do you write default serialization in custom writeObject()?,defaultWriteObject(),writeDefault(),writeObject(),super.writeObject()
+How do you read default serialization in custom readObject()?,defaultReadObject(),readDefault(),readObject(),super.readObject()
+Which method can substitute object during serialization?,writeReplace(),replaceObject(),substitute(),writeSubstitute()
+Which method can substitute object during deserialization?,readResolve(),resolveObject(),substitute(),readSubstitute()
+What does writeReplace() return?,Object to serialize instead,void,boolean,Serializable
+What does readResolve() return?,Object to return instead,void,boolean,Serializable
+Can readResolve() be used to implement singleton pattern?,Yes,No,Only with Externalizable,Only in Java 17
+What is the signature of writeReplace()?,protected Object writeReplace(),private Object writeReplace(),public Object writeReplace(),Object writeReplace()
+What is the signature of readResolve()?,protected Object readResolve(),private Object readResolve(),public Object readResolve(),Object readResolve()
+Can a parent class be non-serializable?,Yes,No,Only abstract,Only if private
+What happens if parent is non-serializable?,Parent's no-arg constructor called,Parent serialized anyway,Exception thrown,Compilation error
+Is the parent's no-arg constructor required if parent is non-serializable?,Yes,No,Sometimes,Only in Java 17
+Are child classes automatically serializable if parent is?,Yes,No,Only if implements Serializable,Only in Java 17
+Can you serialize an object with non-serializable field?,No (throws NotSerializableException),Yes,Only if transient,Only if null
+How can you handle non-serializable fields?,Mark as transient,Remove them,Make them serializable,Use writeReplace()
+Does order of fields matter in serialization?,No (only for Externalizable),Yes,Sometimes,Only primitives
+Can you serialize arrays?,Yes,No,Only primitive arrays,Only Object arrays
+Can you serialize collections?,Yes (if elements serializable),No,Only List,Only Set
+What happens with circular references during serialization?,Handled automatically,StackOverflowError,Exception thrown,Infinite loop
+Are object references preserved during serialization?,Yes,No,Only for same type,Only in same stream
+Can you serialize an enum?,Yes,No,Only if implements Serializable,Only constant names
+How are enums serialized?,By name,By ordinal,Entire enum object,Cannot serialize
+Are enum constants unique after deserialization?,Yes,No,Sometimes,Only with readResolve()
+Can you serialize a lambda expression?,No (throws NotSerializableException),Yes,Only stateless,Only with Serializable
+Can you serialize anonymous classes?,Only if all captured variables serializable,Always,Never,Only with Externalizable
+Which method validates deserialized object?,validateObject(),validate(),check(),verify()
+Which interface supports validation?,ObjectInputValidation,Validatable,ValidationInterface,SerializableValidator
+When is validateObject() called?,After complete graph deserialized,During deserialization,Before deserialization,Never automatically
+Which method registers validation?,registerValidation(),addValidation(),setValidation(),validateOn()
+Can serialization bypass constructors?,Yes (for Serializable),No,Only Externalizable,Only in Java 17
+Can serialization bypass field initializers?,Yes,No,Sometimes,Only transient
+Can serialization set final fields?,Yes (via reflection),No,Only non-static,Only in readObject()
+What security risk does deserialization pose?,Arbitrary code execution,None,Only data corruption,Only DoS
+Should you deserialize untrusted data?,No,Yes,Only with validation,Only in sandbox
+Which method can filter deserialized classes?,ObjectInputFilter,ClassFilter,DeserializationFilter,SecurityFilter
+Can you serialize a Thread?,No (NotSerializableException),Yes,Only if stopped,Only daemon threads
+Can you serialize an OutputStream?,No,Yes,Only ObjectOutputStream,Only ByteArrayOutputStream
+Can you serialize a Socket?,No,Yes,Only closed,Only client sockets
+What happens to object identity across serialization?,New identity,Same identity,Depends on JVM,Random
+Are serialized objects platform-independent?,Yes,No,Only primitives,Only with Externalizable
+What is the file extension convention for serialized objects?,.ser,.obj,.dat,.bin
+Can you append to existing serialization stream?,Yes (but complex),No,Only once,Only with reset()
+Which method resets the stream?,reset(),clear(),flush(),restart()
+What does reset() do?,Forgets written objects,Clears stream,Closes stream,Reopens stream
+Can serialized format change between Java versions?,Yes (potentially),No,Only major versions,Never
+Is serialization type-safe?,No (casts required),Yes,Only with generics,Only in Java 17
+Can you serialize generic types?,Yes (but type erasure applies),No,Only raw types,Only bounded types
+What happens to type parameters during serialization?,Lost (type erasure),Preserved,Depends on bounds,Saved as metadata
+Can you version control with serialVersionUID?,Yes,No,Only major versions,Automatic
+What is serial form?,Serialized representation format,Serial number,Version ID,Object graph
+Should you document serial form?,Yes (if public API),No,Optional,Only for Externalizable
+Can you change class and maintain compatibility?,Yes (with care),No,Never,Always
+What breaks serialization compatibility?,Adding/removing non-transient fields,Adding methods,Changing method bodies,Adding constants
+Can you add transient fields without breaking compatibility?,Yes,No,Sometimes,Only private
+Can you add methods without breaking compatibility?,Yes,No,Only private,Only static
+Which annotation documents serialization?,@Serial (Java 14+),@Serializable,@SerialVersion,@Serialize
+What does @Serial annotate?,Serialization-related methods/fields,Classes,Packages,Modules
+Is Object class serializable?,No,Yes,Implements Serializable,Partially
+Can you serialize null?,Yes,No,Only as field,Only in collections
+What is written for null reference?,Null marker,Nothing,Exception,Default value

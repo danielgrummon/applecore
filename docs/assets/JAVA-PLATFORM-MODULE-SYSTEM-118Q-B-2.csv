@@ -1,0 +1,119 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which command compiles Java source files?,javac,java,javacompile,compile
+What option specifies source file location in javac?,-d,--source-path,-s,--output
+What does -d specify in javac?,Output directory for class files,Source directory,Module directory,Dependency path
+What option specifies module path in javac?,--module-path or -p,--modules,-mp,--module-dir
+What option specifies classpath in javac?,--class-path or -cp,--classpath-dir,-c,--path
+Can you use both classpath and module path?,Yes,No,Only in Java 17,Only for automatic modules
+"How do you compile a module?",javac -d out --module-source-path src -m module.name,javac -d out src/*.java,javac --module src,javac -m module.name
+What is --module-source-path?,Root directory containing module source directories,Module path,Source files,Output directory
+Can you compile multiple modules at once?,Yes,No,Only two,Only with separate commands
+What does -m specify in javac?,Module name to compile,Main class,Module path,Module version
+Which command creates JAR files?,jar,javac,jlink,jmod
+What option creates a new JAR?,jar --create or jar -c,jar --new,jar -n,jar --make
+What option specifies JAR file name?,jar --file or jar -f,jar --name,jar -n,jar --output
+What option specifies manifest file?,jar --manifest or jar -m,jar --manifest-file,-mf,jar --meta
+What option specifies entry point?,jar --main-class or jar -e,jar --entry,-e,jar --start
+What option updates existing JAR?,jar --update or jar -u,jar --modify,jar -m,jar --change
+What option extracts JAR contents?,jar --extract or jar -x,jar --unzip,jar -z,jar --open
+What option lists JAR contents?,jar --list or jar -t,jar --show,jar -s,jar --view
+What is the manifest file name?,MANIFEST.MF,manifest.txt,META.INF,MANIFEST.txt
+Where is MANIFEST.MF located?,META-INF directory,Root of JAR,manifest directory,WEB-INF
+What does Main-Class specify in manifest?,Entry point class,Module name,Package name,JAR name
+What format is Main-Class value?,Fully qualified class name,Simple class name,Class path,Package path
+Does Main-Class need .class extension?,No,Yes,Optional,Only in modular JARs
+What is a modular JAR?,JAR with module-info.class at root,JAR in module path,JAR with manifest,JAR with modules
+Where is module-info.class in modular JAR?,Root directory,META-INF,Module directory,Any location
+Can a JAR be both modular and executable?,Yes,No,Only automatic,Only unnamed
+How do you create modular JAR?,"Compile with module-info.java, include in JAR root",Use --module flag,Add to manifest,Use jmod
+What is a non-modular JAR?,Traditional JAR without module descriptor,JAR on classpath,JAR without manifest,Unnamed JAR
+Can non-modular JAR be on module path?,Yes (becomes automatic module),No,Only with flag,Only in Java 17
+What is an automatic module?,Non-modular JAR on module path,JAR with automatic exports,Self-describing JAR,Module without dependencies
+How is automatic module name determined?,Automatic-Module-Name in manifest or filename,Filename only,Manifest only,Package name
+What manifest attribute specifies module name?,Automatic-Module-Name,Module-Name,Name,Automatic-Name
+How is module name derived from filename?,Remove version and extension, replace non-alphanumeric,Use full filename,Use first part,Random name
+Which characters are replaced in automatic module names?,Non-alphanumeric to dots,All to underscores,Dots to dashes,No replacement
+"For JAR ""my-lib-1.0.jar"", what is automatic module name?",my.lib,my-lib,my.lib.1.0,mylib10
+Should you use Automatic-Module-Name?,Yes (more stable),No,Optional,Only for libraries
+Do automatic modules require all modules?,Yes (implicitly),No,Only explicit,Only java.base
+Do automatic modules export all packages?,Yes,No,Only public,Only named packages
+Can automatic modules access classpath?,Yes,No,Only unnamed,Only named modules
+What is the unnamed module?,All code on classpath,Module without name,Automatic module,Default module
+Can unnamed module read named modules?,Yes,No,Only automatic,Only platform
+Can named modules read unnamed module?,No,Yes,Only automatic,With --add-reads
+How do you run modular application?,java --module-path mods -m module/main.class,java -jar app.jar,java -cp classpath Main,java --module Main
+What does -m specify when running?,module/mainclass,Module name only,Main class only,Module path
+Is the /mainclass required in -m?,No (if specified in module-info or manifest),Yes (always),Only for libraries,Only without manifest
+What does --module-path specify?,Location of modules,Module to run,Module name,Module version
+Can you use -jar with modules?,Yes,No,Only automatic,Only unnamed
+What takes precedence: -jar or -m?,-jar,--m,-Same,Depends on order
+What does jlink do?,Creates custom runtime image,Links JARs,Creates modules,Compiles code
+What does jlink require?,Modular JARs,Any JARs,Source files,Class files
+Can jlink work with non-modular JARs?,No,Yes,Only automatic,With conversion
+What option specifies modules to include in jlink?,--add-modules,--modules,-m,--include
+What option specifies module path in jlink?,--module-path or -p,--modules,--path,-mp
+What option specifies output directory in jlink?,--output,--out,-o,--directory
+What does jlink optimize?,Size and startup,Compilation,Runtime speed,Memory usage
+What is included in jlink output?,Custom JRE with specified modules,Full JDK,Source code,All platform modules
+Can jlink include application modules?,Yes,No,Only platform,Only java.base
+What script does jlink create?,bin/java launcher,run.sh,start.bat,module.sh
+Can you run jlink image without JDK installed?,Yes,No,Only with JRE,Only on same OS
+What is a multi-release JAR?,JAR with version-specific classes,JAR with multiple modules,JAR with multiple manifests,Large JAR
+What manifest attribute indicates multi-release JAR?,Multi-Release: true,Multi-Release: yes,Version: Multi,Release: Multiple
+Where are version-specific classes in multi-release JAR?,META-INF/versions/N,versions/N,META-INF/N,classes/N
+"What does ""N"" represent in META-INF/versions/N?",Java version number,Module number,Release number,Variant number
+Can automatic modules be in multi-release JAR?,Yes,No,Only version 9+,Only if named
+What is bottom-up migration?,Migrate dependencies first,Migrate top-level first,Migrate all at once,No migration needed
+What is top-down migration?,Migrate application first using automatic modules,Migrate dependencies first,Start from bottom,Migrate all together
+When is top-down migration useful?,Dependencies are not modularized,All modularized,Simple applications,Never
+When is bottom-up migration preferred?,You control all dependencies,Using third-party libraries,Complex applications,Always
+What happens to classpath code?,Becomes unnamed module,Compilation error,Ignored,Becomes automatic
+Can you gradually migrate to modules?,Yes,No,Only all at once,Only in Java 17
+Can modules depend on classpath?,No directly (unnamed module),Yes,Only automatic,With flag
+Can classpath depend on modules?,Yes (unnamed reads all),No,Only platform,With flag
+What allows gradual migration?,Automatic modules,Unnamed module,Both A and B,Neither
+What is a bridge between classpath and modules?,Automatic modules,Unnamed module,Platform modules,Bridge pattern
+Which migration uses automatic modules?,Top-down,Bottom-up,Both,Neither
+What do you convert first in bottom-up?,Libraries/dependencies,Application code,All together,Platform modules
+What do you convert first in top-down?,Application code,Libraries/dependencies,All together,Platform modules
+How do you make non-modular JAR automatic?,Place on module path,Add module-info,Update manifest,Use jmod
+Can automatic module require named modules?,No (reads all automatically),Yes,Only platform,With requires
+Can named module require automatic module?,Yes,No,Only transitive,Only static
+What issue can occur with automatic modules?,Unreliable module names,Performance issues,Security issues,Compilation errors
+Why add Automatic-Module-Name?,Ensures stable module name,Required by spec,Performance,Security
+What if automatic module name changes?,Breaks dependents,No impact,Warning only,Runtime error
+Can you export packages from unnamed module?,No,Yes,Only public,With manifest
+Can you export packages from automatic module?,Yes (all packages),No,Only specified,Only public
+Do automatic modules have strong encapsulation?,No,Yes,Partial,Only exports
+What command shows module dependencies?,jdeps,jlink,jar,javac
+What does jdeps analyze?,Dependencies between classes/modules,Module structure,Performance,Memory
+What option generates module-info with jdeps?,--generate-module-info,--create-module,-g,--module-info
+Can jdeps analyze non-modular code?,Yes,No,Only JARs,Only classes
+What does jdeps --check show?,Module dependencies and issues,File size,Performance,Errors
+What is jdeps useful for during migration?,Identifying dependencies for modularization,Compiling code,Running code,Creating JARs
+What is module hell?,Dependency conflicts in modules,Too many modules,Large modules,Slow modules
+How does JPMS help with classpath hell?,Explicit dependencies and encapsulation,Faster loading,Smaller size,Better performance
+Can you have duplicate classes in modules?,No (within module path),Yes,Only automatic,Only unnamed
+What happens with duplicate modules?,Module resolution error,Uses first found,Merges them,Warning only
+Can you rename module?,No (must create new module),Yes,With flag,In manifest
+Can module have multiple versions on module path?,No,Yes,Only with qualifier,In different directories
+How do you package resources in modular JAR?,Include in module with packages,Separate JAR,META-INF only,Cannot package
+Are resources encapsulated by modules?,Yes (same as packages),No,Only non-exported,Always accessible
+Can you access resource from another module?,Only if package is opened or exported,Always,Never,Only with reflection
+What method loads module resources?,Module.getResourceAsStream(),ClassLoader.getResource(),Both work,Neither
+What is module layer?,Runtime grouping of modules,Module hierarchy,Package layer,Compilation layer
+Can you create custom module layers?,Yes,No,Only platform,Only in Java 17
+What is the boot layer?,Default module layer,First module,java.base,Application layer
+What command shows module resolution?,java --show-module-resolution,jdeps --show,javac --show-modules,jar --show
+What does --dry-run do with jlink?,Shows what would be included,Tests execution,Compiles,Creates temporary image
+What is a JMOD file?,Module archive format for JDK,Same as JAR,Module descriptor,Compiled module
+When are JMOD files used?,Build time with jlink,Runtime,Development,Testing
+Can JMOD files be on module path at runtime?,No,Yes,Only platform,Only with flag
+What does jmod create do?,Creates JMOD file,Creates module,Compiles code,Extracts JMOD
+What can JMOD files contain that JARs cannot?,Native libraries and config files,Classes,Resources,Manifests
+What option specifies main class in jar command?,--main-class or -e,--entry,-m,--start
+Can you update module-info in existing JAR?,Yes (with jar --update),No,Only recreate,Only at creation
+What validates module descriptor?,java and javac,jmod,jlink,jar
+What happens if module descriptor is invalid?,Compilation or module resolution error,Warning only,Ignored,Runtime error
+Can you have modular and non-modular code together?,Yes (via classpath and module path),No,Only automatic,Only unnamed
+What is the module system's main goal?,Strong encapsulation and reliable configuration,Performance,Security,Simplicity

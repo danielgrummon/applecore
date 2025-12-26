@@ -1,0 +1,123 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is method overloading?,Multiple methods with same name but different parameters,Multiple methods with different names,Overriding parent method,Creating new method
+What must be different for method overloading?,Parameter list,Return type,Access modifier,Exception thrown
+Can methods be overloaded by return type only?,No,Yes,Sometimes,Only primitives
+Can methods be overloaded by access modifier?,No,Yes,Sometimes,Only public/private
+Can methods be overloaded by exception?,No,Yes,Sometimes,Only checked exceptions
+What defines method signature?,Method name and parameter types,Name and return type,Name only,All attributes
+Do parameter names matter for overloading?,No,Yes,Sometimes,Only in same class
+Does return type affect overloading?,No (but can be different),Yes,Sometimes,Must be same
+Can you overload by changing parameter order?,Yes (if types differ),No,Only primitives,Only objects
+"Which are overloaded? method(int) and method(double)",Yes,No,Compilation error,Ambiguous
+"Which are overloaded? method(int, double) and method(double, int)",Yes,No,Same signature,Compilation error
+"Which are overloaded? method(int) and method(Integer)",Yes,No,Same type,Compilation error
+Can static method overload instance method?,Yes,No,Only in subclass,Only private
+Can instance method overload static method?,Yes,No,Only in subclass,Only public
+Can private method be overloaded?,Yes,No,Only public,Only protected
+Can final method be overloaded?,Yes,No,Only in same class,Only static
+What is var-args?,Variable number of arguments,Variable arguments type,Argument variables,Variable return
+What is var-args syntax?,Type... name,Type[] name,Type[...] name,...Type name
+Where must var-args parameter be?,Last parameter,First parameter,Any position,Second parameter
+Can method have multiple var-args?,No,Yes,Only same type,Only different types
+"What does method(int... nums) accept?",Zero or more ints,At least one int,Exactly one int,Only arrays
+Can var-args parameter be null?,Yes,No,Only empty array,Compilation error
+Can var-args parameter be empty?,Yes (zero arguments),No,Only with default,Must have one
+How is var-args treated internally?,As an array,As a list,As a set,As special type
+Can you pass array to var-args?,Yes,No,Only if same type,Must convert
+Can you pass individual values to var-args?,Yes,No,Only one value,Must use array
+"For method(int... nums), what does calling method(1, 2, 3) create?",int[] with values 1, 2, 3,Three separate parameters,List of integers,Set of integers
+"For method(String... args), what does calling method() create?",Empty array,null,Compilation error,One null element
+Can var-args method be overloaded?,Yes,No,Only with non-varargs,Only same type
+"Which is more specific: method(int) or method(int...)?",method(int),method(int...),Equally specific,Ambiguous
+"If both method(int) and method(int...) exist, which is called with method(5)?",method(int),method(int...),Compilation error,Runtime error
+"If both method(int) and method(int...) exist, which is called with method(5, 6)?",method(int...),method(int),Compilation error,Runtime error
+Can var-args coexist with array parameter?,Yes (different signatures),No,Same signature,Compilation error
+"Which are different: method(int[]) and method(int...)?",No (same signature),Yes,Different internally,Compilation error
+What happens if ambiguous overload?,Compilation error,Runtime error,First method called,Random choice
+"If method(int) and method(long) exist, which is called with method(5)?",method(int),method(long),Compilation error,Both
+"If method(long) exists (no int version), what happens with method(5)?",Promoted to long,Compilation error,Cast to long,Runtime error
+What is type promotion in overloading?,Widening conversion to find match,Casting,Autoboxing,Type inference
+What is widening order for primitives?,"byte→short→int→long→float→double, char→int",Only upward,Any direction,No order
+Can byte be widened to int?,Yes,No,Only with cast,Only in overloading
+Can int be widened to byte?,No (narrowing),Yes,Only with cast,Automatic
+"If method(int) and method(Integer) exist, which is called with method(5)?",method(int),method(Integer),Compilation error,Both
+Does exact match have priority?,Yes,No,Equal priority,Random
+Does widening beat autoboxing?,Yes,No,Equal priority,Compilation error
+Does autoboxing beat varargs?,Yes,No,Equal priority,Compilation error
+What is overloading priority order?,Exact → Widening → Autoboxing → Varargs,Random,Varargs first,Autoboxing first
+Can widening combine with autoboxing?,No,Yes,Sometimes,Only primitives
+"If only method(Long) exists, can you call with int?",No,Yes,With promotion,Automatic
+"If method(Object) and method(String) exist, which is called with method(""hello"")?",method(String),method(Object),Compilation error,Both
+Which is more specific in overloading?,Subtype,Supertype,Equal,Neither
+"If method(Number) and method(Integer) exist, which is called with method(new Integer(5))?",method(Integer),method(Number),Compilation error,Both
+Can null be passed to overloaded method?,Yes,No,Only Object,Only String
+"If method(String) and method(Object) exist, which is called with method(null)?",method(String) (more specific),method(Object),Compilation error,Both
+"If method(String) and method(Integer) exist, which is called with method(null)?",Compilation error (ambiguous),method(String),method(Object),Runtime error
+Can constructor be overloaded?,Yes,No,Only with super(),Only one constructor
+What must differ in constructor overloading?,Parameter list,Access modifier,Return type,Name
+Can constructor call overloaded constructor?,Yes (with this()),No,Only super(),Only once
+Must this() be first in constructor?,Yes,No,Only if super(),Anywhere
+Can constructor call both this() and super()?,No,Yes,Sometimes,Only in Java 17
+"If class has method(int) and method(double), what happens with method(5.0f)?",method(double),method(int),Compilation error,Cast to int
+What happens with method(byte) when passed int?,Compilation error (narrowing),Automatic conversion,Widens to int,Cast required
+Can overloaded method have different access levels?,Yes,No,Only wider,Only narrower
+Can overloaded method throw different exceptions?,Yes,No,Only checked,Only unchecked
+"If method(int, int) and method(int, long) exist, which is called with method(5, 5)?",method(int, int),method(int, long),Compilation error,Both
+"If only method(long, long) exists, can you call method(5, 5)?",Yes (both promoted),No,Only first promoted,Compilation error
+Can varargs accept zero arguments?,Yes,No,Must have one,Compilation error
+What type is varargs parameter inside method?,Array,List,Collection,Special type
+Can you modify varargs array?,Yes,No,Only elements,Only length
+"For method(int x, int... nums), minimum arguments?",1,0,2,3
+"For method(int x, int... nums), can you call method(5)?",Yes,No,Need two arguments,Compilation error
+"For method(String s, int... nums), can you call method(""hi"")?",Yes,No,Need int,Compilation error
+Can varargs be first parameter?,No (must be last),Yes,Only if only parameter,Sometimes
+"If method(String...) exists, can you pass String[]?",Yes,No,Must use individual,Compilation error
+"If method(int...) and method(int, int) exist, which is called with method(1, 2)?",method(int, int),method(int...),Compilation error,Both
+"If only method(int...) exists, can you call method()?",Yes (empty varargs),No,Need one argument,Compilation error
+What does varargs length default to?,0 (if no arguments),1,null,-1
+Can overloaded methods have same parameters?,No,Yes,Only different order,Only different types
+"If method(int) and method(short) exist, which is called with method((short)5)?",method(short),method(int),Compilation error,Both
+Does casting affect overload resolution?,Yes,No,Sometimes,Only primitives
+Can you overload main method?,Yes (but only standard signature runs),No,Only in same class,Compilation error
+"If method(Object...) and method(String...) exist, which is called with method(""a"", ""b"")?",method(String...),method(Object...),Compilation error,Both
+Can primitive array be passed to Object varargs?,No (requires wrapper array),Yes,Automatically boxed,Element by element
+"If method(int...) exists, can you call method(new int[]{1,2,3})?",Yes,No,Must unpack,Compilation error
+Is varargs syntactic sugar for arrays?,Yes,No,Different type,Special handling
+Can overloaded method be in different classes?,Yes (through inheritance),No,Only same class,Only subclass
+Can subclass overload parent method?,Yes,No,Only override,Compilation error
+Does overriding require same parameters?,Yes,No,Can be different,Only return type same
+Does overloading require different parameters?,Yes,No,Can be same,Only return type different
+Can bridge methods cause apparent overloading?,Yes (compiler-generated),No,Only in generics,Never
+What happens with ambiguous varargs call?,Compilation error,Runtime error,First method,Last method
+"If method(int...) and method(long...) exist, what happens with method(5)?",Compilation error (ambiguous),method(int...),method(long...),Promotion to long
+"If method(Integer...) and method(int...) exist, which is called with method(5)?",method(int...) (no autoboxing to varargs),method(Integer...),Compilation error,Both
+Can you overload by adding varargs?,Yes,No,Same as array,Compilation error
+"Are method(int[]) and method(int...) the same?",Yes (same signature),No,Different signatures,Overloaded
+Can you have method(int...) and method(int[])?,No (same signature),Yes,Overloaded,Compilation error
+What does compiler choose for method(5)?,Most specific match,First match,Random,All matches
+Can widening and boxing happen together?,No,Yes,Sometimes,Only for varargs
+"If method(Long) exists, can you call with int?",No,Yes,With promotion,Automatic
+"If method(long) exists, can you call with int?",Yes (widening),No,With cast,Compilation error
+Can you overload by changing parameter names only?,No,Yes,Only public methods,Only private methods
+Does parameter name appear in signature?,No,Yes,Sometimes,Only for documentation
+Can overloaded methods call each other?,Yes,No,Only same parameters,Only different class
+Is method recursion related to overloading?,No,Yes,Same concept,Required for overloading
+Can overloaded method have different implementations?,Yes,No,Only return type,Same code
+Are overloaded methods polymorphic?,Yes (compile-time polymorphism),No,Only runtime,Not polymorphic
+When is overload resolved?,Compile-time,Runtime,Load-time,Never
+When is override resolved?,Runtime,Compile-time,Load-time,Never
+Can you overload operators in Java?,No,Yes,Only +,Only arithmetic
+Can you overload special methods like toString()?,Yes,No,Only in subclass,Overriding only
+Can private method be overloaded in same class?,Yes,No,Only public,Only protected
+Can two private methods with same name exist?,Yes (if different parameters),No,Compilation error,Only one private
+What is method hiding?,Static method with same signature in subclass,Method overloading,Method overriding,Method shadowing
+Can you hide and overload simultaneously?,Yes,No,Only static,Only instance
+"If parent has method(int) and child adds method(long), is it overloaded?",Yes,No,Overridden,Hidden
+Can overloading cross package boundaries?,Yes,No,Only public methods,Only protected
+Must overloaded methods be in same class?,No (can be in hierarchy),Yes,Only same file,Only same package
+Can interface methods be overloaded?,Yes,No,Only default methods,Only static methods
+Can abstract methods be overloaded?,Yes,No,Only concrete,Only in abstract class
+Can you overload generic methods?,Yes,No,Same after erasure,Compilation error
+Does type erasure affect overloading?,Yes (can cause issues),No,Never,Only at runtime
+"Can you have method(List<String>) and method(List<Integer>)?",No (same after erasure),Yes,Overloaded,Different signatures
+What resolves first: overloading or autoboxing?,Overloading,Autoboxing,Same time,Neither

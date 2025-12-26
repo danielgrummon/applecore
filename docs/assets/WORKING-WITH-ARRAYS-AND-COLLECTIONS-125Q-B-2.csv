@@ -1,0 +1,126 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is Collections.emptyList()?,Returns immutable empty list,Returns new ArrayList,Returns null,Returns list with null
+What is Collections.singletonList()?,Returns immutable list with one element,Returns ArrayList with one element,Returns List.of(),Same as Arrays.asList()
+What is Collections.unmodifiableList()?,Returns unmodifiable view,Returns copy,Makes list final,Returns immutable list
+Does unmodifiable view prevent modification of original?,No,Yes,Only additions,Only removals
+What happens if you modify unmodifiable collection?,UnsupportedOperationException,Nothing,Compilation error,Silent failure
+What is difference between unmodifiable and immutable?,Unmodifiable is view, immutable is independent,Same thing,Immutable is view,No difference
+What does List.copyOf() create?,Unmodifiable copy,Modifiable copy,View,Reference
+Can List.copyOf() contain null?,No (throws NPE),Yes,Only one,Only if source allows
+What is Collections.nCopies()?,Creates immutable list with n copies of element,Creates n separate objects,Creates ArrayList,Copies collection n times
+What is Stack class?,Legacy LIFO collection extending Vector,Modern stack,Queue implementation,Deque implementation
+Should you use Stack class?,No (use ArrayDeque),Yes,Only for legacy,Always
+What does Stack.push() do?,Adds element to top,Removes from top,Returns top,Clears stack
+What does Stack.pop() do?,Removes and returns top element,Adds element,Returns without removal,Clears stack
+What does Stack.peek() do?,Returns top without removal,Removes top,Adds element,Returns size
+Is Stack thread-safe?,Yes (extends Vector),No,Only push,Only pop
+What is EnumSet?,Specialized Set for enum types,Regular set,Hash set,Tree set
+What is EnumSet backed by?,Bit vector,Hash table,Array,Tree
+Is EnumSet thread-safe?,No,Yes,Only operations,Only iteration
+Can EnumSet contain null?,No,Yes,One null,With comparator
+What is EnumMap?,Specialized Map for enum keys,Regular map,Hash map,Tree map
+What is EnumMap backed by?,Array,Hash table,Tree,Linked nodes
+Is EnumMap thread-safe?,No,Yes,Only put,Only get
+Can EnumMap have null key?,No,Yes,One null,Multiple nulls
+Can EnumMap have null value?,Yes,No,One null,Only with key
+What is WeakHashMap?,Map with weak keys for garbage collection,Regular HashMap,Strong references,Immutable map
+When are WeakHashMap entries removed?,When key is only weakly reachable,Never,Manually,When value is null
+What is IdentityHashMap?,Map using == for key comparison,Map using equals(),Hash map,Tree map
+What does IdentityHashMap use for hashing?,System.identityHashCode(),hashCode(),equals(),compareTo()
+What is Properties class?,String-based map for configuration,Regular map,Immutable map,Sorted map
+What does Properties extend?,Hashtable,HashMap,Map,Object
+Can Properties have non-String keys/values?,Technically yes but discouraged,No,Only keys,Only values
+What is BitSet?,Set of bits,Set of integers,Boolean array,Byte array
+What is BitSet used for?,Efficient storage of boolean flags,Number storage,String storage,Object storage
+What is difference between array and ArrayList?,Array is fixed size, ArrayList is dynamic,Same thing,ArrayList is faster,Array is dynamic
+Can array use generics?,No,Yes,Only objects,Only primitives
+Can ArrayList hold primitives?,No (uses wrappers),Yes,Only int,Only boolean
+What is autoboxing in collections?,Automatic primitive to wrapper conversion,Manual conversion,Type casting,Generic inference
+What is performance cost of autoboxing?,Object creation overhead,None,Faster,Compilation time
+What are specialized primitive collections?,Not in standard library (use third-party),IntList, DoubleSet,Array only,Wrapper collections
+What is ArrayList initial capacity?,10 (default constructor),0,16,1
+How do you set ArrayList initial capacity?,Pass to constructor,After creation,Automatically,Cannot set
+What is ArrayList.trimToSize()?,Reduces capacity to current size,Increases capacity,Clears list,Returns size
+What is ArrayList.ensureCapacity()?,Increases capacity if needed,Sets exact capacity,Reduces capacity,Returns capacity
+Does ArrayList preserve insertion order?,Yes,No,Sometimes,Only if sorted
+Does HashSet preserve insertion order?,No,Yes,Sometimes,Only with TreeSet
+Does LinkedHashSet preserve insertion order?,Yes,No,Random,Sorted
+Does TreeSet preserve insertion order?,No (sorted order),Yes,Random,Hash order
+What iteration order does HashMap have?,Unpredictable,Insertion,Sorted,Reverse
+What iteration order does LinkedHashMap have?,Insertion (or access),Random,Sorted,Reverse insertion
+What iteration order does TreeMap have?,Sorted by key,Insertion,Random,Reverse sorted
+What is NavigableSet?,SortedSet with navigation methods,Regular set,Hash set,List
+What are NavigableSet methods?,lower(), floor(), ceiling(), higher(),before(), after(),previous(), next(),min(), max()
+What does lower() return?,Largest element < given,Largest element <=,Smallest element >,Smallest element >=
+What does floor() return?,Largest element <= given,Largest element <,Smallest element >=,Smallest element >
+What does ceiling() return?,Smallest element >= given,Smallest element >,Largest element <=,Largest element <
+What does higher() return?,Smallest element > given,Smallest element >=,Largest element <,Largest element <=
+What implements NavigableSet?,TreeSet,HashSet,LinkedHashSet,ArrayList
+What is NavigableMap?,SortedMap with navigation methods,Regular map,Hash map,List map
+What implements NavigableMap?,TreeMap,HashMap,LinkedHashMap,Hashtable
+What does map.putIfAbsent() do?,Puts if key absent, returns current value,Always puts,Throws if present,Returns boolean
+What does map.replace() do?,Replaces value if key exists,Always replaces,Adds if absent,Throws if absent
+What does map.computeIfAbsent() do?,Computes value if absent using function,Always computes,Throws if absent,Returns null
+What does map.computeIfPresent() do?,Computes new value if present,Always computes,Throws if absent,Removes entry
+What does map.compute() do?,Computes value regardless of presence,Only if absent,Only if present,Never computes
+What does map.merge() do?,Merges value using function if key exists,Always merges,Throws if absent,Removes entry
+What is default method in Map?,Methods with default implementation in interface,Static methods,Abstract methods,Final methods
+When were default methods added to collections?,Java 8,Java 5,Java 7,Java 11
+What does list.replaceAll() do?,Replaces each element using operator,Replaces all occurrences,Clears list,Returns new list
+What does list.sort() do?,Sorts list in place,Returns sorted copy,Throws exception,Shuffles list
+What does collection.removeIf() do?,Removes elements matching predicate,Removes first,Removes all,Throws exception
+What is Spliterator?,Splittable iterator for parallel processing,Regular iterator,Split collection,Stream iterator
+What does Spliterator.trySplit() do?,Splits elements for parallel processing,Tries to iterate,Splits in half,Throws exception
+What is Collection.stream()?,Returns sequential stream,Returns parallel stream,Returns iterator,Returns array
+What is Collection.parallelStream()?,Returns parallel stream,Returns sequential stream,Returns iterator,Returns array
+Can you modify collection from stream?,Not recommended (may cause issues),Yes freely,Never,Only filter
+What is time complexity of ArrayList.get()?,O(1),O(n),O(log n),O(n²)
+What is time complexity of ArrayList.add()?,O(1) amortized,O(n),O(log n),O(n²)
+What is time complexity of ArrayList.add(index)?,O(n),O(1),O(log n),O(n²)
+What is time complexity of ArrayList.remove(index)?,O(n),O(1),O(log n),O(n²)
+What is time complexity of LinkedList.get()?,O(n),O(1),O(log n),O(n²)
+What is time complexity of LinkedList.add()?,O(1) at ends,O(n),O(log n),O(n²)
+What is time complexity of LinkedList.remove(first/last)?,O(1),O(n),O(log n),O(n²)
+What is time complexity of HashSet.add()?,O(1) average,O(n),O(log n),O(n²)
+What is time complexity of TreeSet.add()?,O(log n),O(1),O(n),O(n²)
+What is time complexity of HashMap.get()?,O(1) average,O(n),O(log n),O(n²)
+What is time complexity of TreeMap.get()?,O(log n),O(1),O(n),O(n²)
+What is space complexity of ArrayList?,O(n),O(1),O(log n),O(n²)
+What is space complexity of LinkedList?,O(n) with higher overhead,O(n) same as ArrayList,O(1),O(log n)
+What is Collections.binarySearch() requirement?,Sorted list,Any list,Unique elements,ArrayList only
+What is time complexity of Collections.binarySearch()?,O(log n) for RandomAccess, O(n) otherwise,Always O(log n),Always O(1),Always O(n)
+What is RandomAccess interface?,Marker for fast random access,Guarantees O(1) access,Forces indexing,Prevents iteration
+Which classes implement RandomAccess?,ArrayList, Vector, Stack,LinkedList,All Lists,HashSet
+What is time complexity of Collections.sort()?,O(n log n),O(n),O(n²),O(log n)
+What is SubList?,View of portion of list,Copy of portion,New list,Filtered list
+Does modifying SubList affect original?,Yes,No,Only additions,Only removals
+What happens to SubList if original structurally modified?,ConcurrentModificationException,Updates automatically,Becomes invalid,Nothing
+What is structural modification?,Changing size (add/remove),Changing values,Sorting,Iterating
+What is Queue.element()?,Returns head, throws if empty,Returns head, null if empty,Removes head,Adds element
+What is difference between peek() and element()?,peek() returns null, element() throws,No difference,element() removes,peek() adds
+What is Queue.remove()?,Removes and returns head, throws if empty,Same as poll(),Removes all,Adds element
+What is difference between poll() and remove()?,poll() returns null, remove() throws,No difference,remove() keeps element,poll() throws
+What is Deque.offerFirst()?,Adds at front, returns boolean,Throws if fails,Removes from front,Returns element
+What is Deque.pollFirst()?,Removes from front, returns null if empty,Throws if empty,Adds at front,Returns without removal
+What is Deque.peekFirst()?,Returns first without removal, null if empty,Throws if empty,Removes first,Adds first
+What is Deque.offerLast()?,Adds at end, returns boolean,Throws if fails,Removes from end,Returns element
+What is Deque.pollLast()?,Removes from end, returns null if empty,Throws if empty,Adds at end,Returns without removal
+What is Deque.peekLast()?,Returns last without removal, null if empty,Throws if empty,Removes last,Adds last
+Can Deque work as FIFO?,Yes (addLast/removeFirst),No,Only ArrayDeque,Only LinkedList
+Can Deque work as LIFO?,Yes (addFirst/removeFirst),No,Only stack,Only queue
+What is BlockingQueue?,Queue with blocking operations,Regular queue,Thread-safe queue,Immutable queue
+What is BlockingQueue.put()?,Adds element, waits if full,Throws if full,Returns false,Removes element
+What is BlockingQueue.take()?,Removes element, waits if empty,Throws if empty,Returns null,Adds element
+What are BlockingQueue implementations?,ArrayBlockingQueue, LinkedBlockingQueue, PriorityBlockingQueue,ArrayList, LinkedList,HashMap,TreeSet
+What is CopyOnWriteArrayList?,Thread-safe list with copy-on-write,Synchronized ArrayList,Immutable list,Concurrent list
+When does CopyOnWriteArrayList copy?,On modification (add/remove/set),On read,On iteration,Never
+What is CopyOnWriteArrayList best for?,Many reads, few writes,Many writes,Balanced read/write,Sorted data
+What is CopyOnWriteArraySet?,Set backed by CopyOnWriteArrayList,Hash-based set,Tree-based set,Synchronized set
+What is ConcurrentSkipListSet?,Thread-safe sorted set,Hash-based set,Synchronized TreeSet,Copy-on-write set
+What is ConcurrentSkipListMap?,Thread-safe sorted map,Hash-based map,Synchronized TreeMap,Copy-on-write map
+Does ConcurrentHashMap lock entire map?,No (segment-level locking),Yes,Never locks,Locks per entry
+What is Collections.checkedList()?,Returns type-safe view,Returns copy,Makes list final,Checks for nulls
+What is Collections.checkedSet()?,Returns type-safe view,Returns copy,Makes set final,Checks for duplicates
+What is Collections.checkedMap()?,Returns type-safe view,Returns copy,Makes map final,Checks keys
+When would you use checked collections?,To prevent incorrect types at runtime,Always,Never,Only generics
+What is heap pollution?,Generic type issues at runtime,Memory leak,Stack overflow,OutOfMemoryError

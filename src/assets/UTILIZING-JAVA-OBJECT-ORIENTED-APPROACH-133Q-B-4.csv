@@ -1,0 +1,134 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is variable scope?,Region where variable is accessible,Variable type,Variable name,Variable value
+What are the types of variable scopes?,"Instance, class (static), local, parameter",Only local,Only instance and static,Global and local
+What is instance variable scope?,From declaration to end of class (accessed via instance),Only current method,Only constructor,Entire program
+What is class variable scope?,From declaration to end of class (accessed via class or instance),Only static methods,Only instance methods,Only current file
+What is local variable scope?,From declaration to end of block,Entire method,Entire class,Entire program
+What is parameter scope?,Entire method,Declaration to end of block,Entire class,Calling method
+Where are instance variables declared?,Inside class, outside methods,Inside methods,Inside constructors,In parameters
+Where are local variables declared?,Inside methods, constructors, or blocks,Outside methods,In class body,Anywhere
+Where are class variables declared?,Inside class with static keyword,Inside methods,Only in constructors,Only main method
+Do instance variables have default values?,Yes,No,Only primitives,Only objects
+Do local variables have default values?,No,Yes,Only primitives,Only objects
+Must local variables be initialized before use?,Yes,No,Only primitives,Only final
+Can local variable shadow instance variable?,Yes,No,Only in constructors,Only private
+How do you access shadowed instance variable?,this.variableName,super.variableName,variableName,Cannot access
+Can static variable shadow instance variable?,No (different contexts),Yes,Always,Sometimes
+Can parameter shadow instance variable?,Yes,No,Only in constructor,Only final
+Can local variable have same name as parameter?,No (in same scope),Yes,Only primitives,Only final
+What is variable lifetime?,Duration variable exists in memory,Variable scope,Variable type,Variable value
+When are instance variables created?,When object is instantiated,When class loads,When method called,At compile time
+When are static variables created?,When class is loaded,When object created,When method called,At runtime
+When are local variables created?,When execution reaches declaration,At method start,At class load,At compile time
+When are instance variables destroyed?,When object is garbage collected,When method ends,When class unloads,Never
+When are static variables destroyed?,When class is unloaded,When object destroyed,When method ends,Never
+When are local variables destroyed?,When block/method exits,When object destroyed,When class unloads,Never
+What is var keyword?,Local variable type inference,Variable declaration,Variant type,Versatile type
+When was var introduced?,Java 10,Java 8,Java 9,Java 11
+Can var be used for instance variables?,No,Yes,Only private,Only final
+Can var be used for method parameters?,No (except lambda in Java 11+),Yes,Only local,Always
+Can var be used for constructor parameters?,No,Yes,Only public,Only this()
+Can var be used for return types?,No,Yes,Only methods,Only constructors
+Where can var be used?,Local variables only (and lambda params Java 11+),Anywhere,Only methods,Only loops
+Must var be initialized?,Yes,No,Only primitives,Only objects
+Can var be null?,No (cannot infer type),Yes,Only objects,Only references
+Can var be used without initializer?,No,Yes,Only final,Only in declarations
+"What type is inferred for var x = 10?",int,Integer,Object,Number
+"What type is inferred for var s = ""hello""?",String,Object,CharSequence,char[]
+"What type is inferred for var list = new ArrayList<String>()?",ArrayList<String>,List<String>,Collection,Object
+Can var infer generic types?,Yes,No,Only raw types,Partially
+Can var be final?,Yes,No,Only local,Only methods
+Is var a reserved type?,Yes,No,Keyword,Reserved word
+Can you use var as variable name?,No (in local variable context),Yes,Only fields,Only parameters
+Can you use var as method name?,Yes,No,Only static,Only private
+Can var be used in for loop?,Yes,No,Only enhanced for,Only traditional for
+Can var be used in try-with-resources?,Yes,No,Only single resource,Only multiple resources
+"What is wrong with var x;?",Not initialized,Nothing,Only in methods,Only primitives
+Can var improve code readability?,Sometimes (debatable),Always,Never,Not related
+What is encapsulation?,Hiding implementation details,Inheritance,Polymorphism,Abstraction
+What is data hiding?,Restricting direct access to data,Encrypting data,Deleting data,Hiding variables
+How do you achieve encapsulation?,Private fields with public getters/setters,Public fields,Protected fields,Package-private fields
+What access modifier enforces encapsulation?,private,public,protected,default
+What are accessor methods?,Getters to retrieve field values,Setters only,Any method,Static methods
+What are mutator methods?,Setters to modify field values,Getters only,Any method,Static methods
+What is naming convention for getter?,getName() for field name,get_name(),getName,getter_name()
+What is naming convention for boolean getter?,isFlag() or hasFlag(),getFlag(),booleanFlag(),checkFlag()
+What is naming convention for setter?,setName(value),set_name(),name(value),setter_name()
+Can getter have parameters?,No,Yes,Only for indexed,Only for validation
+Can setter have return type?,Yes (void or this for chaining),No,Only void,Only boolean
+Why use getters/setters?,Validation, flexibility, maintaining invariants,Performance,Required by Java,Shorter code
+Can you validate in setter?,Yes,No,Only primitives,Only objects
+Can you make field read-only?,Yes (getter only, no setter),No,Only final,Only static
+Can you make field write-only?,Yes (setter only, no getter - rare),No,Only private,Only mutable
+What is JavaBeans naming convention?,get/set prefix with capitalized field name,Lowercase method names,Underscore prefix,No convention
+What is immutable object?,Object whose state cannot change after creation,Mutable object,Static object,Final object
+How do you make class immutable?,Private final fields, no setters, defensive copying,Public fields,Protected fields,Only final keyword
+Must immutable class be final?,Recommended (prevents subclass mutation),No,Yes (required),Only fields final
+Must immutable fields be final?,Yes,No,Only primitives,Only objects
+Can immutable class have setters?,No,Yes,Only private,Only returning new instance
+Should immutable class defensive copy mutable fields?,Yes,No,Only in constructor,Only in getter
+What is defensive copying?,Creating copy to prevent external modification,Shallow copy,Reference copy,No copying
+When should you defensive copy in constructor?,When receiving mutable object,Never,Always,Only arrays
+When should you defensive copy in getter?,When returning mutable object,Never,Always,Only collections
+"What type of copy for defensive copying: deep or shallow?",Depends on mutability (deep for nested mutables),Always deep,Always shallow,No difference
+Are String objects immutable?,Yes,No,Sometimes,Only literals
+Are wrapper classes immutable?,Yes,No,Only Integer,Only final
+"Is java.util.Date immutable?",No,Yes,Only date part,Only time part
+What should immutable class return instead of setter?,New instance with modified value,void,Old instance,Nothing
+What is the benefit of immutability?,Thread-safety, simplicity, caching,Performance,Memory savings,Required
+Can immutable objects be cached?,Yes (safe to reuse),No,Only singletons,Only static
+Are immutable objects thread-safe?,Yes,No,Sometimes,Need synchronization
+Can two references share immutable object safely?,Yes,No,Only same thread,Need cloning
+What pattern ensures single instance?,Singleton,Factory,Builder,Prototype
+How is singleton related to immutability?,Often immutable for safety,Not related,Always mutable,Never immutable
+What is Builder pattern use?,Creating immutable objects with many fields,Singleton,Factory,Modifying objects
+Why use Builder for immutable classes?,Readable construction of complex objects,Performance,Required,Shorter code
+Can record be immutable?,Yes (by default),No,Only fields,Only methods
+Are record fields automatically final?,Yes,No,Only if declared,Only private
+Can you add setter to record?,Yes (but defeats purpose),No,Only private,Compilation error
+What makes defensive copy necessary?,Mutable object references,Immutable objects,Primitives,Static fields
+"For Date field in immutable class, what should constructor do?",new Date(parameter.getTime()),Assign directly,Set to null,Use reference
+"For Date getter in immutable class, what should it return?",new Date(field.getTime()),Direct reference,null,Clone
+Can immutable class have non-final fields?,Technically yes (if not exposed/modified), but not recommended,No (never),Yes (always),Only private
+Can immutable object contain mutable objects?,Yes (if properly encapsulated),No,Only collections,Only arrays
+What should immutable class do with mutable collection?,Defensive copy and use unmodifiable wrapper,Direct assignment,Make field public,Use reference
+Which method makes collection unmodifiable?,Collections.unmodifiableList(),Collections.immutableList(),Collections.fixedList(),List.lock()
+Does unmodifiableList create new list?,No (wrapper view),Yes,Sometimes,Deep copy
+Can you modify original list after unmodifiableList?,Yes (affects unmodifiable view),No,Only elements,Only size
+Should immutable class constructor clone array parameter?,Yes,No,Only primitive arrays,Only object arrays
+Should immutable class getter clone array field?,Yes,No,Only primitive arrays,Only object arrays
+What is the scope of for loop variable?,Block containing the for loop,Entire method,After loop,Before loop
+Can you access for loop variable after loop?,No,Yes,Only enhanced for,Only traditional for
+What is scope of enhanced for variable?,Body of the loop,Entire method,After loop,Before declaration
+Can multiple blocks have same local variable name?,Yes (if non-overlapping),No,Only methods,Only classes
+What happens with nested scopes?,Inner scope can shadow outer,Compilation error,Both visible,Outer shadows inner
+Can method parameter shadow class field?,Yes,No,Only constructor,Only private field
+How to differentiate between parameter and field?,Use this.fieldName for field,Use super,Use class name,Cannot differentiate
+Can static method access instance variables?,No (without instance),Yes,Only public,Only final
+Can instance method access static variables?,Yes,No,Only public,Only in same class
+What is variable hiding?,Class variable in subclass hides parent's,Local shadowing field,Method hiding,Package hiding
+How to access hidden static variable?,ParentClass.variableName,this.variableName,super.variableName,variableName
+Can lambda capture local variables?,Yes (if effectively final),No,All variables,Only parameters
+What does effectively final mean for var?,Not modified after initialization,Declared final,Cannot be reassigned,Must be constant
+Can var be used in lambda parameters?,Yes (Java 11+),No,Only Java 10,Never
+"What is type of var in lambda (var x, var y) -> x + y?",Inferred from context,Object,Generic,Any
+Can var have annotations in lambda?,Yes,No,Only Java 11,Only type annotations
+Why use var in lambda?,To add annotations to inferred types,Shorter code,Required,Better performance
+Can catch parameter use var?,Yes (Java 10+),No,Only checked exceptions,Never
+"What type inferred for var ex in catch?",Exception type from catch,Object,Throwable,RuntimeException
+What is scope of catch parameter?,Catch block,Entire try-catch,Try block,After catch
+Can var be used in multi-catch?,No,Yes,Only single type,Only in Java 11+
+What prevents encapsulation breaking?,Private fields with controlled access,Public fields,Static fields,Final fields
+Can you access private field from another instance?,Yes (same class),No,Only this instance,Only subclass
+Is encapsulation same as data hiding?,Related but not identical,Yes (same),No (unrelated),Opposite
+Can package-private break encapsulation?,Yes (within package),No,Only public,Only private
+What is the principle of least privilege?,Restrict access to minimum necessary,Maximum access,Public everything,Private everything
+Should fields be public in general?,No,Yes,Only final,Only static
+When can field be public?,For constants (public static final),Never,Always,Only primitives
+What is information hiding?,Concealing implementation details,Hiding data,Encrypting,Making private
+Can encapsulation exist without inheritance?,Yes,No,Requires inheritance,Requires polymorphism
+Is encapsulation related to coupling?,Yes (reduces coupling),No,Increases coupling,Unrelated
+What improves when encapsulation is followed?,Maintainability, flexibility, security,Performance,Memory usage,Compilation speed
+Can constructor break encapsulation?,Yes (if exposes internal state),No,Always,Never
+Should getter return internal collection?,No (return copy or unmodifiable),Yes,Only List,Only Set
+What is the risk of returning mutable internal state?,External modification breaks invariants,Performance,Memory leak,Thread deadlock

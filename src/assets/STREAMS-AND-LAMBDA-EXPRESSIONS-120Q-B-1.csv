@@ -1,0 +1,121 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+Which method converts a collection to a stream?,stream(),toStream(),asStream(),getStream()
+Which method creates a parallel stream?,parallelStream(),parallel(),concurrentStream(),threadStream()
+What does flatMap() do?,Flattens nested structures into single stream,Maps values,Filters elements,Reduces stream
+Which operation decomposes a stream?,flatMap(),map(),filter(),reduce()
+"What does Stream.of(1, 2, 3) create?",Stream with three elements,Array,List,Set
+How do you create an empty stream?,Stream.empty(),new Stream(),Stream.of(),Stream.create()
+Which method concatenates two streams?,Stream.concat(),merge(),combine(),join()
+What does reduce() do?,Combines elements to single result,Filters elements,Maps values,Creates stream
+Which collector groups elements?,Collectors.groupingBy(),Collectors.toMap(),Collectors.toList(),Collectors.reducing()
+Which collector partitions elements?,Collectors.partitioningBy(),Collectors.groupingBy(),Collectors.splitting(),Collectors.dividing()
+What does partitioningBy() return?,Map<Boolean, List<T>>,Map<String, List<T>>,List<List<T>>,Set<List<T>>
+What does groupingBy() return?,Map<K, List<V>>,List<V>,Set<V>,Map<K, V>
+How many groups does partitioningBy() create?,Exactly 2 (true and false),Variable,1,3
+Is map() an intermediate or terminal operation?,Intermediate,Terminal,Both,Neither
+Is collect() an intermediate or terminal operation?,Terminal,Intermediate,Both,Neither
+Which operation is lazy?,filter(),collect(),forEach(),count()
+Which operation is eager?,forEach(),map(),filter(),peek()
+Can you reuse a stream?,No,Yes,Only parallel,Only sequential
+What happens if you reuse a stream?,IllegalStateException,Works normally,Compilation error,Returns empty
+Which method converts stream to List?,collect(Collectors.toList()),toList(),asList(),getList()
+Which method converts stream to Set?,collect(Collectors.toSet()),toSet(),asSet(),getSet()
+Which method converts stream to Map?,collect(Collectors.toMap()),toMap(),asMap(),getMap()
+What does Stream.of() accept?,Varargs,Array only,Collection only,List only
+How do you create stream from array?,Arrays.stream(array),array.stream(),Stream.of(array),new Stream(array)
+How do you create infinite stream?,Stream.generate() or Stream.iterate(),Stream.infinite(),Stream.unlimited(),Cannot create
+What does Stream.generate() require?,Supplier,Function,Predicate,Consumer
+What does Stream.iterate() require?,Seed and UnaryOperator,Only seed,Only function,Supplier
+Which operation limits stream size?,limit(),take(),truncate(),max()
+Which operation skips elements?,skip(),drop(),ignore(),pass()
+What does distinct() do?,Removes duplicates,Sorts elements,Filters nulls,Maps values
+What does sorted() do?,Sorts elements,Removes duplicates,Filters elements,Maps values
+Does sorted() require Comparable?,Yes (or Comparator),No,Only for objects,Only for primitives
+What does peek() do?,Performs action without modifying stream,Modifies elements,Filters elements,Terminal operation
+Is peek() for debugging?,Yes (primarily),No,Only in production,Never use
+What does anyMatch() return?,boolean,Stream,Optional,List
+What does allMatch() return?,boolean,Stream,Optional,List
+What does noneMatch() return?,boolean,Stream,Optional,List
+What does findFirst() return?,Optional<T>,T,Stream<T>,boolean
+What does findAny() return?,Optional<T>,T,Stream<T>,boolean
+What does count() return?,long,int,Long,Integer
+What does max() return?,Optional<T>,T,Stream<T>,Comparator
+What does min() return?,Optional<T>,T,Stream<T>,Comparator
+Does max() require Comparator?,Yes,No,Only for objects,Only for primitives
+What does forEach() return?,void,Stream,boolean,Collection
+What does forEachOrdered() do?,Maintains encounter order,Same as forEach,Sorts then iterates,Parallel only
+What is the difference between map() and flatMap()?,flatMap flattens nested structures,No difference,map is faster,flatMap filters
+"What does flatMap(Function<T, Stream<R>>) return?",Stream<R>,Stream<Stream<R>>,Stream<T>,List<R>
+Which method flattens Optional?,flatMap(),map(),flatten(),unwrap()
+What does filter() require?,Predicate,Function,Consumer,Supplier
+What does map() require?,Function,Predicate,Consumer,Supplier
+What does reduce() require?,BinaryOperator,UnaryOperator,Predicate,Function
+What is the identity value in reduce()?,Starting value that doesn't change result,First element,Last element,Zero
+What does reduce with identity return?,T (not Optional),Optional<T>,Stream<T>,void
+What does reduce without identity return?,Optional<T>,T,Stream<T>,void
+How many parameters can reduce() have?,1, 2, or 3,Only 1,Only 2,Only 3
+What is the combiner in reduce()?,Combines partial results in parallel,Same as accumulator,Filters elements,Initial value
+Is combiner used in sequential streams?,No,Yes,Sometimes,Always
+When is combiner called?,In parallel streams,In sequential streams,Never,Always
+What does Collectors.joining() do?,Concatenates strings,Joins streams,Merges collections,Splits strings
+What delimiter does joining() use by default?,None (empty string),Comma,Space,Newline
+Can joining() have prefix and suffix?,Yes,No,Only prefix,Only suffix
+What does Collectors.counting() return?,Long,Integer,long,int
+What does Collectors.summingInt() do?,Sums integer values,Counts elements,Averages values,Groups elements
+What does Collectors.averagingInt() return?,Double,Integer,OptionalDouble,double
+What does Collectors.summarizingInt() return?,IntSummaryStatistics,Integer,Long,Statistics
+What statistics does IntSummaryStatistics provide?,"Count, sum, min, average, max",Only count,Only sum,Only average
+What does Collectors.maxBy() require?,Comparator,Function,Predicate,No parameters
+What does Collectors.maxBy() return?,Optional<T>,T,Stream<T>,Comparator
+What does Collectors.mapping() do?,Maps then collects,Only maps,Only collects,Groups elements
+What does Collectors.filtering() do?,Filters then collects,Only filters,Only collects,Groups elements
+What does Collectors.flatMapping() do?,FlatMaps then collects,Only flatMaps,Only collects,Groups elements
+What is downstream collector?,Collector used after grouping/partitioning,Primary collector,Upstream collector,Final collector
+Can groupingBy() have downstream collector?,Yes,No,Only partitioningBy,Only counting
+What does Collectors.toUnmodifiableList() return?,Unmodifiable List,Modifiable List,ImmutableList,ArrayList
+Can you modify result of toUnmodifiableList()?,No (throws UnsupportedOperationException),Yes,Sometimes,Only add
+What does Collectors.collectingAndThen() do?,Transforms collection result,Only collects,Only transforms,Groups elements
+How many functions does collectingAndThen() take?,2,1,3,4
+What does Stream.concat() return?,New stream with both streams,Merged collection,Single value,void
+Does concat() modify original streams?,No,Yes,First stream only,Second stream only
+Can you concat more than two streams?,Yes (nested concat),No,Only two,Unlimited with one call
+What does parallel() do to sequential stream?,Converts to parallel,No effect,Throws exception,Creates new stream
+What does sequential() do to parallel stream?,Converts to sequential,No effect,Throws exception,Creates new stream
+Can you call parallel() multiple times?,Yes (last call wins),No,First call wins,Exception
+Is stream parallel by default?,No,Yes,Depends on source,Depends on size
+Which stream is ordered?,Stream from List,Stream from HashSet,Stream.generate(),All streams
+Which stream is unordered?,Stream from HashSet,Stream from List,Stream from LinkedHashSet,All sequential streams
+Does order matter for reduce()?,Yes (for non-associative operations),No,Only parallel,Only sequential
+What property should reduce operation have?,Associative,Commutative,Both A and B,Neither
+What property is optional but helpful for parallel reduce?,Commutative,Associative,Stateless,Immutable
+Are streams reusable?,No,Yes,Only infinite,Only finite
+What is a stream pipeline?,Source + intermediate ops + terminal op,Only source,Only operations,Terminal operation
+How many terminal operations can a stream have?,Exactly 1,0,Many,Unlimited
+How many intermediate operations can a stream have?,0 or more,Exactly 1,At least 1,At most 10
+When are intermediate operations executed?,When terminal operation is called,Immediately,Never,At creation
+What is lazy evaluation?,Execution delayed until terminal operation,Immediate execution,No execution,Slow execution
+What does short-circuiting mean?,Stops processing when result known,Processes all elements,Only for parallel,Only for sequential
+Which operations are short-circuiting?,anyMatch(), findFirst(), limit(),map(), filter(), sorted(),collect(), reduce(), forEach(),All operations
+Does limit() short-circuit?,Yes,No,Only parallel,Only sequential
+Does allMatch() short-circuit?,Yes,No,Only when false,Only when true
+What does mapToInt() return?,IntStream,Stream<Integer>,Stream<int>,Integer
+What does mapToDouble() return?,DoubleStream,Stream<Double>,Stream<double>,Double
+What does mapToLong() return?,LongStream,Stream<Long>,Stream<long>,Long
+What does flatMapToInt() return?,IntStream,Stream<Integer>,Stream<int>,Integer
+What is the benefit of primitive streams?,Better performance (no boxing),No benefit,Easier syntax,More methods
+Which method sums IntStream?,sum(),reduce(),collect(),total()
+Which method averages IntStream?,average(),avg(),mean(),reduce()
+What does IntStream.range(1, 5) create?,Stream of 1, 2, 3, 4,Stream of 1, 2, 3, 4, 5,Stream of 5 elements,Empty stream
+What does IntStream.rangeClosed(1, 5) create?,Stream of 1, 2, 3, 4, 5,Stream of 1, 2, 3, 4,Stream of 6 elements,Empty stream
+What does boxed() do on IntStream?,Converts to Stream<Integer>,Wraps in box,Converts to array,Converts to List
+What does partitioningBy() accept?,Predicate,Function,Comparator,Consumer
+Can partitioningBy() have downstream collector?,Yes,No,Only groupingBy,Only counting
+What does groupingBy() accept?,Function (classifier),Predicate,Comparator,Consumer
+Can groupingBy() have custom map supplier?,Yes (3-parameter version),No,Only HashMap,Only TreeMap
+What does Collectors.toMap() require?,Key mapper and value mapper,Only key mapper,Only value mapper,No parameters
+What happens if toMap() encounters duplicate keys?,IllegalStateException,Overwrites,Keeps first,Keeps both
+How do you handle duplicate keys in toMap()?,Provide merge function,Cannot handle,Always throws exception,Automatic merge
+What is the third parameter in toMap()?,Merge function,Map supplier,Comparator,Collector
+What is the fourth parameter in toMap()?,Map supplier,Merge function,Comparator,Collector
+Can you create TreeMap with toMap()?,Yes (with map supplier),No,Only HashMap,Only LinkedHashMap
+What does Collectors.reducing() do?,Similar to Stream.reduce(),Groups elements,Partitions elements,Filters elements

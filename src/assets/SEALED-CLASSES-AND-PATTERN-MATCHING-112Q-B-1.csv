@@ -1,0 +1,113 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is a sealed class?,Class that restricts which classes can extend it,Final class,Abstract class,Private class
+When were sealed classes introduced?,Java 17 (preview 15, 16),Java 11,Java 8,Java 18
+What keyword makes class sealed?,sealed,final,restricted,closed
+What must sealed class have?,permits clause (or subclasses in same file),Nothing extra,Only abstract methods,Only private constructor
+What is permits clause?,Specifies allowed subclasses,Permission list,Import statement,Access modifier
+What is syntax for permits?,sealed class Parent permits Child1, Child2,sealed class Parent: Child1, Child2,sealed class Parent {Child1, Child2},sealed class Parent extends Child1
+Can you omit permits clause?,Yes (if subclasses in same file),No,Only for interfaces,Only for abstract
+What must permitted subclass be?,final, sealed, or non-sealed,Only final,Only sealed,Only non-sealed
+What is non-sealed keyword?,Allows subclass to be extended freely,Not sealed,Unsealed,Open
+What does non-sealed do?,Removes sealing restriction,Makes class abstract,Makes class final,Prevents extension
+Can sealed class be final?,No (contradiction),Yes,Only if no permits,Only abstract
+Can sealed class be abstract?,Yes,No,Must be concrete,Only interfaces
+Can interface be sealed?,Yes,No,Only classes,Only abstract
+What must permitted interface implementation be?,final, sealed, or non-sealed,Only final,Only sealed,Only non-sealed
+Can enum extend sealed class?,Yes,No,Only implement sealed interface,Only if permitted
+Can record extend sealed class?,Yes (if permitted),No,Only implement,Only abstract sealed
+Can sealed class extend sealed class?,Yes,No,Only if permitted,Only non-sealed
+Must permitted subclasses be in same module?,Yes (or same package if unnamed module),No,Only named modules,Only packages
+Can permitted subclass be in different package?,Yes (same module),No,Only same package,Only unnamed module
+What is purpose of sealed classes?,Controlled inheritance hierarchy,Performance,Memory savings,Syntax sugar
+What is benefit of sealed classes?,Exhaustive switch without default,Type safety,Performance,Documentation
+Can you use sealed with final?,No (contradiction),Yes,Only for methods,Only for fields
+Can you use sealed with non-sealed?,No (applied to different classes),Yes,Always,Sometimes
+What does compiler enforce for sealed?,All permitted subclasses exist and extend,Nothing,Only syntax,Only access
+What is sealed interface?,Interface restricting implementations,Final interface,Abstract interface,Closed interface
+Can sealed interface have default methods?,Yes,No,Only abstract,Only static
+Can permitted subclass be anonymous?,No,Yes,Only inner,Only local
+Can permitted subclass be local?,No,Yes,Only anonymous,Only nested
+Can permitted subclass be inner?,Yes,No,Only static nested,Only top-level
+Must permitted subclass be direct?,Yes (direct subtypes only),No,Can be indirect,Any level
+What happens if permitted subclass not final/sealed/non-sealed?,Compilation error,Runtime error,Warning,Nothing
+Can you make subclass of non-sealed?,Yes (freely),No,Only if permitted,Only sealed
+What is exhaustiveness in switch?,All possible types covered,All values covered,Complete switch,No default needed
+Do sealed classes enable exhaustiveness?,Yes (compiler knows all types),No,Only with default,Only enums
+What is pattern matching?,Matching value against pattern,String matching,Regex,Switch statement
+When was pattern matching for instanceof introduced?,Java 16,Java 14,Java 17,Java 11
+What is pattern matching for instanceof?,instanceof with type pattern and variable,Regular instanceof,Pattern variable,Type casting
+What is syntax for pattern matching instanceof?,if (obj instanceof String s),if (obj instanceof String),if (String s = obj),instanceof obj String s
+What is pattern variable?,Variable declared in pattern,Any variable,Matched variable,Instance variable
+What is scope of pattern variable?,Where pattern matches (flow scoping),Entire method,Only if block,Only where declared
+Can you use pattern variable outside if?,Yes (if compiler proves match),No,Only with else,Only in block
+"For if (obj instanceof String s), where is s available?",In true branch and flow-dependent locations,Entire method,Only if block,Nowhere
+Can you reuse variable name in pattern?,No (in same scope),Yes,Only different types,Only different blocks
+What is type test pattern?,instanceof with type,Pattern for types,Test pattern,Type checking
+Can you add extra condition to pattern?,Yes (if (obj instanceof String s && s.length() > 0)),No,Only separate if,Only in switch
+What is pattern matching for switch?,Switch using type patterns (Java 17 preview, 21 standard),Regular switch,String switch,Enum switch
+What is syntax for pattern switch?,"switch(obj) { case String s -> ...; }",Regular switch,switch instanceof,pattern switch obj
+Can switch have type patterns?,Yes (Java 21),No,Only Java 17,Only preview
+Can switch pattern have guard?,Yes (when clause in Java 21),No,Only if inside,Only separate
+What is guard in switch?,Additional condition (when clause),Default case,Fall-through,Switch expression
+What is syntax for guarded pattern?,case String s when s.length() > 0 ->,case String s if s.length() > 0,case String s && s.length() > 0,when String s -> s.length() > 0
+Can switch on sealed class be exhaustive?,Yes,No,Only with default,Only enums
+Must exhaustive switch cover all permitted types?,Yes,No,Only most common,Only with default
+Can you omit default in exhaustive switch?,Yes,No,Always required,Only sealed
+What happens if missing case in sealed switch?,Compilation error,Runtime error,Warning,Nothing
+Can record be used in pattern matching?,Yes (with deconstruction patterns in Java 21),No,Only instanceof,Only switch
+What is record pattern?,Pattern deconstructing record (Java 21),Record instanceof,Record matching,Pattern record
+What is syntax for record pattern?,"case Point(int x, int y) ->",case Point p ->,case (int x, int y),Point(int x, int y) case
+What is deconstruction?,Extracting record components,Destroying object,Pattern matching,Type casting
+Can you nest patterns?,Yes (Java 21),No,Only one level,Only records
+What is nested pattern?,"Pattern within pattern, e.g., case Box(Point(int x, int y))",Multiple patterns,Pattern in method,Pattern in class,Deep pattern
+Can you use var in pattern?,Yes,No,Only instanceof,Only switch
+What does var pattern do?,Matches any type,Infers type,Variable pattern,Generic pattern
+Is var pattern useful?,For guarded patterns or nested patterns,No,Always,Never
+What is total pattern?,Pattern matching all values,Complete pattern,Full pattern,Exhaustive pattern
+Is Object pattern total?,Yes,No,Only non-null,Only with guard
+Is sealed type pattern total?,Yes (if all permitted types covered),No,Only with default,Only abstract
+Can pattern variable shadow existing variable?,No,Yes,Only outer scope,Only different type
+What is flow scoping?,Pattern variable scope determined by control flow,Regular scoping,Method scoping,Block scoping
+What is dominance in switch?,Pattern that makes later patterns unreachable,First pattern,Default case,Most specific
+What is error if case dominates?,Compilation error,Runtime error,Warning,Nothing
+"For switch(obj) { case Object o -> ...; case String s -> ...; }, what's wrong?",Object dominates String,Nothing,Runtime error,String dominates
+What is order for switch patterns?,Most specific to least specific,Any order,Least to most,Alphabetical
+Can you have null case in switch?,Yes (Java 17+),No,Only default,Only with pattern
+What is syntax for null case?,case null ->,case (null),null:,when null
+Can pattern variable be null?,No (null doesn't match type patterns unless explicit),Yes,Only Objects,Only with guard
+What happens when switching null without null case?,NullPointerException,Matches default,Compilation error,Matches Object
+Can you have both null and default?,Yes,No,Only Java 21,Only sealed
+What is unconditional pattern?,Pattern always matching,Default pattern,Total pattern,Object pattern
+Can you have code after unconditional pattern?,No (unreachable),Yes,Only default,Only return
+What is refinement in patterns?,More specific pattern after general,Pattern improvement,Nested pattern,Guard pattern
+Can you refine with guard?,Yes,No,Only switch,Only if
+What is constant case in pattern switch?,Regular case like case "text":,Pattern case,Null case,Default case
+Can you mix constant and pattern cases?,Yes,No,Only primitives,Only String
+What is case compatibility?,Patterns must not dominate,All cases allowed,Type matching,Pattern ordering
+What is benefit of pattern matching?,More concise, less casting, safer,Performance,Memory,Syntax only
+Can you use pattern in for loop?,No,Yes,Only enhanced for,Only Java 21
+Can you use pattern in catch?,No,Yes,Only multi-catch,Only Java 21
+What replaces cast after instanceof?,Pattern variable,Nothing,Automatic cast,Type inference
+"For if (obj instanceof String s), do you need cast?",No (s is already String),Yes,Only sometimes,Only in else
+Can you assign to pattern variable?,No (effectively final),Yes,Only once,Only primitives
+What is pattern variable mutability?,Effectively final,Mutable,Final,Constant
+Can pattern variable capture?,Yes (in lambda/inner class),No,Only lambda,Only inner class
+What is sealed interface use case?,Defining closed set of types,All interfaces,Open hierarchy,Multiple inheritance
+Can sealed types improve performance?,Potentially (JVM optimizations),No,Always,Only with final
+What is exhaustive coverage?,All possible types handled,All values covered,Complete code,No gaps
+What does compiler check for exhaustiveness?,All permitted types covered or default present,Nothing,Only runtime,Only warnings
+Can you use sealed with enum?,No (enum is implicitly final),Yes,Only constants,Only methods
+Can abstract class be permitted subclass?,Yes,No,Only concrete,Only final
+Can you have zero permitted subclasses?,No (at least one required),Yes,Only abstract,Only interface
+What is advantage over final?,Allows controlled extension,No extension,Open extension,Same as final
+What is advantage over open class?,Limited, known subclasses,Unlimited subclasses,Same as open,No advantage
+Can you use reflection with sealed classes?,Yes,No,Only getPermittedSubclasses(),Only checking
+What method gets permitted subclasses?,getPermittedSubclasses(),getSubclasses(),getChildren(),getImplementations()
+Can you seal nested class?,Yes,No,Only static,Only inner
+Can you seal record?,No (records are implicitly final),Yes,Only fields,Only methods
+Can sealed class have private constructor?,Yes,No,Only public,Only protected
+What visibility must permitted subclasses have?,Accessible to sealed class,Any visibility,Public only,Same package only
+Can you retroactively permit subclass?,No (permits fixed at compile time),Yes,Only same module,Only with annotation
+What is use of non-sealed in hierarchy?,Allow open extension from that point,Close extension,Seal more,Remove sealing
+Can library use sealed classes?,Yes (but limits client extension),No,Only applications,Only internal
+When to use sealed classes?,Closed domain models,Always,Never,Only utilities

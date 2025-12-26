@@ -1,0 +1,123 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+What is the parent class of all exceptions?,Throwable,Exception,Error,RuntimeException
+What is the parent class of all errors?,Error,Throwable,Exception,RuntimeException
+Which class represents checked exceptions?,Exception (excluding RuntimeException),RuntimeException,Error,Throwable
+Which class represents unchecked exceptions?,RuntimeException,Exception,Error,CheckedException
+Are errors checked or unchecked?,Unchecked,Checked,Both,Neither
+Must checked exceptions be declared or caught?,Yes,No,Only caught,Only declared
+Must unchecked exceptions be declared or caught?,No,Yes,Must be caught,Must be declared
+Which keyword catches exceptions?,catch,handle,except,trap
+Which keyword declares exceptions?,throws,throw,catch,declare
+Which keyword throws an exception?,throw,throws,raise,error
+Can a method declare multiple exceptions?,Yes,No,Only two,Only same type
+Can a catch block catch multiple exception types?,Yes (multi-catch),No,Only in Java 17,Only same hierarchy
+What is the multi-catch syntax?,catch (Ex1 | Ex2 e),catch (Ex1, Ex2 e),catch (Ex1 || Ex2 e),catch (Ex1 & Ex2 e)
+Are multi-catch exceptions related by inheritance?,No (must not be),Yes,Can be,Should be
+Can you modify multi-catch exception variable?,No (effectively final),Yes,Only reassign,Only fields
+Which block always executes?,finally,catch,try,all blocks
+When does finally NOT execute?,JVM crash or System.exit(),When exception thrown,When no exception,Never executes
+Can you have try without catch?,Yes (with finally or try-with-resources),No,Only with finally,Only in Java 17
+Can you have try without finally?,Yes (with catch or try-with-resources),No,Only with catch,Only in Java 17
+Can you have finally without catch?,Yes,No,Only with try,Only in Java 17
+Can you have catch without try?,No,Yes,Only in Java 17,With finally
+What is try-with-resources?,Automatic resource management,Manual resource closing,Resource creation,Resource allocation
+Which interface is required for try-with-resources?,AutoCloseable,Closeable,Both A and B,Resource
+What method does AutoCloseable require?,close(),dispose(),free(),release()
+Can close() throw exceptions?,Yes,No,Only unchecked,Only checked
+Which is broader: AutoCloseable or Closeable?,AutoCloseable,Closeable,Same,Neither
+Can Closeable throw IOException?,Yes,No,Only checked,Any exception
+Can AutoCloseable throw Exception?,Yes,No,Only IOException,Only unchecked
+Can you have multiple resources in try-with-resources?,Yes,No,Only two,Only same type
+How are resources closed in try-with-resources?,Reverse order of declaration,Declaration order,Random order,Not closed
+What happens if close() throws exception?,Suppressed if try block throws,Replaces try exception,Both thrown,Ignored
+Which method retrieves suppressed exceptions?,getSuppressed(),getSuppressedExceptions(),getSupressed(),suppressedExceptions()
+When was try-with-resources introduced?,Java 7,Java 6,Java 8,Java 9
+Can you use effectively final variable in try-with-resources?,Yes (Java 9+),No,Only final,Only Java 17
+Must resource be declared in try parentheses?,No (can be effectively final in Java 9+),Yes,Only Java 7,Always required
+Can you access resource after try block?,No (out of scope),Yes,Only if no exception,Only effectively final
+What is the order of execution?,try → catch → finally,try → finally → catch,catch → try → finally,finally → try → catch
+If catch throws exception, does finally execute?,Yes,No,Sometimes,Only unchecked
+If finally throws exception, what happens?,Suppresses catch exception,Both thrown,Catch exception thrown,Compilation error
+Can you have multiple catch blocks?,Yes,No,Only two,Only same type
+What is the order of catch blocks?,Most specific to most general,Most general to most specific,Any order,Alphabetical
+Can you catch parent before child?,No (unreachable code),Yes,Only in Java 17,Sometimes
+What happens if you catch Exception before IOException?,IOException catch unreachable,Works fine,Compilation warning,Runtime error
+Can you rethrow caught exception?,Yes,No,Only checked,Only unchecked
+Can you throw checked exception from catch?,Yes,No,Only if declared,Only RuntimeException
+What does throw do?,Throws exception,Declares exception,Catches exception,Suppresses exception
+What does throws do?,Declares exception in method signature,Throws exception,Catches exception,Multiple throws
+Can constructors throw exceptions?,Yes,No,Only unchecked,Only checked
+Can static blocks throw checked exceptions?,No (must catch),Yes,Only unchecked,Only in Java 17
+Can instance initializers throw checked exceptions?,Yes (if constructor declares),No,Only unchecked,Always
+What is a custom exception?,User-defined exception class,Built-in exception,Error class,Throwable subclass
+What should custom exception extend?,Exception or RuntimeException,Throwable,Error,Object
+Should custom checked exception extend?,Exception,RuntimeException,Error,Throwable
+Should custom unchecked exception extend?,RuntimeException,Exception,Error,Throwable
+Can custom exception have constructors?,Yes,No,Only default,Only parameterized
+What parameter should exception constructor accept?,String message,Throwable cause,Both A and B,No parameters
+What is exception chaining?,Linking cause to exception,Multiple exceptions,Catch chain,Finally chain
+Which method sets exception cause?,Constructor or initCause(),setCause(),addCause(),withCause()
+Which method gets exception cause?,getCause(),getCauseException(),cause(),getOriginalCause()
+Can you chain exceptions?,Yes,No,Only checked,Only unchecked
+What does printStackTrace() do?,Prints exception details to error stream,Throws exception,Catches exception,Returns stack trace
+What does getMessage() return?,Exception message,Stack trace,Cause,Exception class
+What does toString() return on exception?,Class name and message,Only message,Only class,Stack trace
+What is NullPointerException?,Unchecked exception for null reference,Checked exception,Error,Null error
+What is ArrayIndexOutOfBoundsException?,Unchecked exception for invalid array index,Checked exception,Error,Index error
+What is ClassCastException?,Unchecked exception for invalid cast,Checked exception,Error,Cast error
+What is NumberFormatException?,Unchecked exception for number parsing,Checked exception,Error,Format error
+What is IllegalArgumentException?,Unchecked exception for invalid argument,Checked exception,Error,Argument error
+What is IllegalStateException?,Unchecked exception for illegal state,Checked exception,Error,State error
+What is IOException?,Checked exception for I/O operations,Unchecked exception,Error,IO error
+What is FileNotFoundException?,Checked exception (subclass of IOException),Unchecked exception,Error,File error
+What is SQLException?,Checked exception for database,Unchecked exception,Error,SQL error
+What is InterruptedException?,Checked exception for thread interruption,Unchecked exception,Error,Thread error
+What is ArithmeticException?,Unchecked exception for math errors,Checked exception,Error,Math error
+When is ArithmeticException thrown?,Division by zero (integers),Any division,Float division,Never
+What is StackOverflowError?,Error from infinite recursion,Exception,Stack exception,Memory error
+What is OutOfMemoryError?,Error from memory exhaustion,Exception,Memory exception,Heap error
+Are errors meant to be caught?,No (typically not),Yes (always),Only sometimes,Must be caught
+Can you catch Error?,Yes (but shouldn't),No,Only RuntimeException,Only Exception
+Can you catch Throwable?,Yes (catches everything),No,Only Exception,Only Error
+Should you catch Throwable?,No (too broad),Yes,Always,Recommended
+What does catch (Exception e) catch?,All checked and unchecked exceptions (not Errors),Only checked,Only unchecked,Everything
+Does catch (Exception e) catch Error?,No,Yes,Sometimes,Only OutOfMemoryError
+Can finally return a value?,Yes (but not recommended),No,Only null,Only primitives
+What happens if finally returns?,Suppresses try/catch return,Works normally,Compilation error,Runtime error
+Can you have nested try blocks?,Yes,No,Only two levels,Only in catch
+Can catch block have try block?,Yes,No,Only finally,Only in Java 17
+What is the diamond problem with multi-catch?,Cannot catch related exceptions,Multiple inheritance,Catch ordering,Resource leaking
+Can multi-catch variable be reassigned?,No (effectively final),Yes,Only same type,Only in finally
+What does empty catch block do?,Suppresses exception (bad practice),Rethrows exception,Logs exception,Compilation error
+Should you use empty catch blocks?,No (bad practice),Yes,Always,Recommended
+What is exception swallowing?,Catching and ignoring exception,Rethrowing exception,Exception chaining,Logging exception
+Is exception swallowing recommended?,No,Yes,Sometimes,Always
+Can you catch same exception twice?,No (unreachable catch),Yes,Only different variables,Only multi-catch
+What determines if exception is checked?,Extends Exception but not RuntimeException,Extends RuntimeException,Extends Error,Extends Throwable
+What determines if exception is unchecked?,Extends RuntimeException or Error,Only RuntimeException,Only Error,Extends Exception
+Can you throw null?,No (NullPointerException thrown),Yes,Only in catch,Only in finally
+What type must throw expression be?,Throwable or subclass,Exception,Any object,String
+Can you throw primitive types?,No,Yes,Only int,Only boolean
+Can you throw String?,No,Yes,Only Exception,Only Error
+Must catch parameter be used?,No,Yes,Only in Java 17,Only for logging
+Can catch block be empty?,Yes (but bad practice),No,Only with finally,Only unchecked
+What is try-catch-finally execution order?,try → catch (if exception) → finally,try → finally → catch,catch → try → finally,All execute always
+If no exception thrown, does catch execute?,No,Yes,Sometimes,Depends on finally
+If exception thrown but not caught, does finally execute?,Yes,No,Sometimes,Only for checked
+Can finally throw exception?,Yes,No,Only unchecked,Only if catch throws
+What happens if both catch and finally throw?,Finally exception propagates,Catch exception propagates,Both thrown,Compilation error
+Can you have return in try?,Yes,No,Only void,Only with finally
+Can you have return in catch?,Yes,No,Only void,Only if finally has return
+Can you have return in finally?,Yes (but not recommended),No,Only void,Recommended
+Which return executes if all blocks have return?,finally,try,catch,First one
+What does unreachable code mean?,Code that can never execute,Code after exception,Code in catch,Dead code
+Is code after throw unreachable?,Yes,No,Only checked,Only unchecked
+Must catch block catch something?,Yes (at least declare parameter),No,Only exception,Can be empty
+Can you catch multiple exceptions in separate catches?,Yes,No,Only multi-catch,Only same type
+What is the benefit of multi-catch?,Less code duplication,Faster execution,Better performance,Required in Java 17
+When was multi-catch introduced?,Java 7,Java 6,Java 8,Java 9
+Can exception variable be final?,Yes (implicitly in multi-catch),No,Only single catch,Must be explicit
+Is try-with-resources better than finally?,Yes (cleaner and safer),No,Same,Only for files
+What interface did Closeable extend before Java 7?,Nothing (introduced in Java 5),AutoCloseable,Resource,Flushable
+When was AutoCloseable introduced?,Java 7,Java 5,Java 8,Java 6
+Can you manually close resource in try-with-resources?,Yes (but automatic close still happens),No,Only if exception,Prevents automatic close
