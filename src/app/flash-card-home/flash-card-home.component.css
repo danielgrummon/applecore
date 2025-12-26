@@ -547,6 +547,61 @@
     transform: translateX(-5px);
 }
 
+/* Spider decorations */
+.owl-decor {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0.2;
+    animation: owlFloat 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+.owl-decor img {
+    width: 150px;
+    height: 150px;
+    display: block;
+}
+
+.owl-decor.top-left {
+    top: 50px;
+    left: 50px;
+    filter: drop-shadow(0 0 30px #ff00ff);
+}
+
+.owl-decor.top-right {
+    top: 50px;
+    right: 50px;
+    filter: drop-shadow(0 0 30px #00ff00);
+}
+
+.owl-decor.bottom-left {
+    bottom: 50px;
+    left: 50px;
+    filter: drop-shadow(0 0 30px #ffff00);
+}
+
+.owl-decor.bottom-right {
+    bottom: 50px;
+    right: 50px;
+    filter: drop-shadow(0 0 30px #00ffff);
+}
+
+@keyframes owlFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+
+    66% {
+        transform: translateY(-10px) rotate(-5deg);
+    }
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .game-title {
@@ -574,5 +629,9 @@
     .back-button {
         font-size: 14px;
         padding: 10px 20px;
+    }
+
+    .owl-decor {
+        display: none;
     }
 }

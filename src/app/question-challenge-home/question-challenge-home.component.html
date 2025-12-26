@@ -1,6 +1,10 @@
 <div class="home-container">
     @if (!gameStarted()) {
-    <button class="back-button" (click)="backToArcade.emit()">← BACK TO ARCADE</button>
+    <div class="owl-decor top-left"><img src="bat.svg" alt="Spider mascot"></div>
+    <div class="owl-decor top-right"><img src="bat.svg" alt="Spider mascot"></div>
+    <div class="owl-decor bottom-left"><img src="bat.svg" alt="Spider mascot"></div>
+    <div class="owl-decor bottom-right"><img src="bat.svg" alt="Spider mascot"></div>
+    <button class="back-button" (click)="backToArcade.emit()">← BACK TO MENU</button>
     <div class="home-screen">
         <h1 class="game-title">QUESTION CHALLENGE</h1>
         <div class="menu">

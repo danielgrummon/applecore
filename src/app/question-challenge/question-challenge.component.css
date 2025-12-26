@@ -108,6 +108,32 @@
   }
 }
 
+/* Back to Menu button in header during gameplay */
+.header-back-button {
+  padding: 0.75rem 1.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(90deg, #ff6600, #ff0000);
+  border: 3px solid #ff00ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow:
+    0 0 15px #ff6600,
+    0 0 30px rgba(255, 102, 0, 0.3);
+}
+
+.header-back-button:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 20px #ff6600,
+    0 0 40px #ff6600;
+}
+
 /* Header when round is complete */
 .header-complete {
   display: flex;
@@ -730,7 +756,8 @@
     font-size: 28px;
   }
 
-  .header-button {
+  .header-button,
+  .header-back-button {
     font-size: 16px;
     padding: 0.6rem 1.2rem;
   }
@@ -810,7 +837,8 @@
     flex-direction: column;
   }
 
-  .header-button {
+  .header-button,
+  .header-back-button {
     width: 100%;
   }
 }

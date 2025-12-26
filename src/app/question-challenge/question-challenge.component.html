@@ -16,6 +16,10 @@
         <div class="stat-label">SCORE</div>
         <div class="stat-value">{{ getCurrentRoundPercent() }}%</div>
       </div>
+
+      <button class="header-back-button" (click)="backToArcade.emit()">
+        BACK TO MENU
+      </button>
     } @else {
       <!-- Show action buttons when round is complete -->
       <div class="header-complete">
