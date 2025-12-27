@@ -1,0 +1,1090 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 1, 15);
+        System.out.println(date);
+    }
+}",2024-01-15,Compilation error,15-01-2024,01/15/2024
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, Month.MARCH, 10);
+        System.out.println(date.getMonthValue());
+    }
+}",3,MARCH,Compilation error,2
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 2, 28);
+        LocalDate newDate = date.plusDays(1);
+        System.out.println(newDate);
+    }
+}",2024-02-29,2024-03-01,Compilation error,2024-02-28
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(14, 30);
+        System.out.println(time);
+    }
+}",14:30,02:30 PM,Compilation error,14:30:00
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(23, 45, 30);
+        LocalTime newTime = time.plusHours(2);
+        System.out.println(newTime);
+    }
+}",01:45:30,25:45:30,Compilation error,23:45:30
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 6, 15, 10, 30);
+        System.out.println(dt.getHour());
+    }
+}",10,Compilation error,30,2024
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 1, 15);
+        LocalTime time = LocalTime.of(10, 30);
+        LocalDateTime dt = LocalDateTime.of(date, time);
+        System.out.println(dt);
+    }
+}",2024-01-15T10:30,Compilation error,2024-01-15 10:30,01/15/2024 10:30
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDateTime dt = date.atTime(14, 30);
+        System.out.println(dt.getMinute());
+    }
+}",30,14,Compilation error,15
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 12, 25);
+        date.plusDays(5);
+        System.out.println(date);
+    }
+}",2024-12-25,2024-12-30,Compilation error,2025-01-05
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 1, 31);
+        LocalDate newDate = date.plusMonths(1);
+        System.out.println(newDate);
+    }
+}",2024-02-29,2024-02-31,Compilation error,DateTimeException
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        System.out.println(date.getDayOfWeek());
+    }
+}",FRIDAY,Friday,5,Compilation error
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 2, 15);
+        System.out.println(date.isLeapYear());
+    }
+}",true,false,Compilation error,2024
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofYears(1);
+        System.out.println(period);
+    }
+}",P1Y,1Y,1 year,Compilation error
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2024, 1, 1);
+        LocalDate end = LocalDate.of(2024, 12, 31);
+        Period period = Period.between(start, end);
+        System.out.println(period.getMonths());
+    }
+}",11,12,364,Compilation error
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofHours(2);
+        System.out.println(duration.toMinutes());
+    }
+}",120,2,Compilation error,7200
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime start = LocalTime.of(10, 0);
+        LocalTime end = LocalTime.of(14, 30);
+        Duration duration = Duration.between(start, end);
+        System.out.println(duration.toHours());
+    }
+}",4,4.5,270,Compilation error
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        Period period = Period.ofMonths(2);
+        LocalDate newDate = date.plus(period);
+        System.out.println(newDate);
+    }
+}",2024-05-15,2024-03-17,Compilation error,2024-03-15
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30);
+        Duration duration = Duration.ofHours(3);
+        LocalTime newTime = time.plus(duration);
+        System.out.println(newTime);
+    }
+}",13:30,Compilation error,10:33,07:30
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zdt = ZonedDateTime.of(2024, 1, 1, 0, 0, 0, 0, ZoneId.of(""UTC""));
+        System.out.println(zdt.getZone());
+    }
+}",UTC,Compilation error,GMT,Z
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2024, 3, 15, 10, 30);
+        ZonedDateTime zdt = ldt.atZone(ZoneId.of(""America/New_York""));
+        System.out.println(zdt.getZone());
+    }
+}",America/New_York,EST,Compilation error,UTC
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Instant instant = Instant.ofEpochSecond(0);
+        System.out.println(instant);
+    }
+}",1970-01-01T00:00:00Z,0,Compilation error,1970-01-01
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Instant instant = Instant.parse(""2024-01-01T00:00:00Z"");
+        ZonedDateTime zdt = instant.atZone(ZoneId.of(""UTC""));
+        System.out.println(zdt.getYear());
+    }
+}",2024,Compilation error,2023,1
+"What is the output?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""dd/MM/yyyy"");
+        System.out.println(date.format(formatter));
+    }
+}",15/03/2024,Compilation error,03/15/2024,2024-03-15
+"What is the result?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        String text = ""2024-12-25"";
+        LocalDate date = LocalDate.parse(text, DateTimeFormatter.ISO_LOCAL_DATE);
+        System.out.println(date.getMonth());
+    }
+}",DECEMBER,12,Compilation error,December
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 1, 15);
+        LocalDate first = date.withDayOfMonth(1);
+        System.out.println(first);
+    }
+}",2024-01-01,2024-01-15,Compilation error,2024-01-31
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate adjusted = date.with(TemporalAdjusters.firstDayOfMonth());
+        System.out.println(adjusted);
+    }
+}",2024-03-01,2024-03-15,Compilation error,2024-01-01
+"What is the output?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 2, 15);
+        LocalDate adjusted = date.with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println(adjusted.getDayOfMonth());
+    }
+}",29,28,Compilation error,31
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate next = date.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+        System.out.println(next.getDayOfMonth());
+    }
+}",18,15,Compilation error,22
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2024, 3, 15);
+        LocalDate date2 = LocalDate.of(2024, 3, 20);
+        System.out.println(date1.isBefore(date2));
+    }
+}",true,false,Compilation error,0
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2024, 3, 15);
+        LocalDate date2 = LocalDate.of(2024, 3, 15);
+        System.out.println(date1.equals(date2));
+    }
+}",true,false,Compilation error,null
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time1 = LocalTime.of(10, 30);
+        LocalTime time2 = LocalTime.of(14, 45);
+        System.out.println(time1.compareTo(time2));
+    }
+}",Negative number,0,Positive number,Compilation error
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2024, 1, 1);
+        LocalDate end = LocalDate.of(2024, 1, 10);
+        long days = ChronoUnit.DAYS.between(start, end);
+        System.out.println(days);
+    }
+}",9,10,Compilation error,8
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(5);
+        Period p2 = Period.ofDays(3);
+        Period result = p1.plus(p2);
+        System.out.println(result.getDays());
+    }
+}",8,5,3,Compilation error
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofMinutes(90);
+        Duration d2 = Duration.ofHours(1);
+        Duration result = d1.minus(d2);
+        System.out.println(result.toMinutes());
+    }
+}",30,90,60,Compilation error
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofMonths(3);
+        Period doubled = period.multipliedBy(2);
+        System.out.println(doubled.getMonths());
+    }
+}",6,3,Compilation error,12
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofHours(5);
+        Duration negated = duration.negated();
+        System.out.println(negated.toHours());
+    }
+}","-5",5,Compilation error,0
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate modified = date.minusWeeks(2);
+        System.out.println(modified);
+    }
+}",2024-03-01,2024-03-13,Compilation error,2024-02-29
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30, 45);
+        System.out.println(time.getSecond());
+    }
+}",45,30,Compilation error,10
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30, 45, 500000000);
+        System.out.println(time.getNano());
+    }
+}",500000000,500,Compilation error,45
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 3, 15, 10, 30);
+        LocalDate date = dt.toLocalDate();
+        System.out.println(date);
+    }
+}",2024-03-15,Compilation error,2024-03-15T10:30,10:30
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 3, 15, 10, 30);
+        LocalTime time = dt.toLocalTime();
+        System.out.println(time);
+    }
+}",10:30,Compilation error,2024-03-15T10:30,2024-03-15
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zdt = ZonedDateTime.of(2024, 3, 15, 10, 30, 0, 0, ZoneId.of(""America/New_York""));
+        Instant instant = zdt.toInstant();
+        System.out.println(instant.toString().contains(""T""));
+    }
+}",true,false,Compilation error,null
+"What is the output?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(14, 30);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""hh:mm a"");
+        System.out.println(time.format(formatter));
+    }
+}",02:30 PM,14:30 PM,Compilation error,02:30 AM
+"What is the result?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""EEEE"");
+        System.out.println(date.format(formatter));
+    }
+}",Friday,FRIDAY,Compilation error,Fri
+"What is the output?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""MMMM yyyy"");
+        System.out.println(date.format(formatter));
+    }
+}",March 2024,03 2024,Compilation error,MAR 2024
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        try {
+            LocalDate date = LocalDate.of(2024, 2, 30);
+            System.out.println(date);
+        } catch (Exception e) {
+            System.out.println(""Error"");
+        }
+    }
+}",Error,2024-02-30,Compilation error,2024-03-01
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        try {
+            LocalTime time = LocalTime.of(25, 0);
+            System.out.println(time);
+        } catch (Exception e) {
+            System.out.println(""Invalid"");
+        }
+    }
+}",Invalid,01:00,Compilation error,25:00
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofDays(2);
+        System.out.println(duration.toHours());
+    }
+}",48,2,Compilation error,172800
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.of(1, 2, 3);
+        System.out.println(period);
+    }
+}",P1Y2M3D,1Y2M3D,Compilation error,P1Y2M3W
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofYears(1).plusMonths(6);
+        System.out.println(period.getYears() + "" "" + period.getMonths());
+    }
+}",1 6,0 18,Compilation error,1 0
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 1, 1);
+        System.out.println(date.getYear());
+    }
+}",2024,Compilation error,1,01
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 12, 25);
+        System.out.println(date.getMonthValue());
+    }
+}",12,DECEMBER,Compilation error,25
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        System.out.println(date.getMonth());
+    }
+}",MARCH,3,Compilation error,March
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Year year = Year.of(2024);
+        System.out.println(year.isLeap());
+    }
+}",true,false,Compilation error,2024
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        YearMonth ym = YearMonth.of(2024, 2);
+        System.out.println(ym.lengthOfMonth());
+    }
+}",29,28,Compilation error,30
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        MonthDay md = MonthDay.of(12, 25);
+        System.out.println(md);
+    }
+}",--12-25,12-25,Compilation error,25-12
+"What is the output?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30, 45, 123456789);
+        LocalTime truncated = time.truncatedTo(ChronoUnit.MINUTES);
+        System.out.println(truncated);
+    }
+}",10:30,10:30:45,Compilation error,10:00
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofSeconds(90);
+        Duration d2 = Duration.ofMinutes(1);
+        System.out.println(d1.compareTo(d2));
+    }
+}",Positive number,0,Negative number,Compilation error
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2024, 3, 15);
+        LocalDate date2 = LocalDate.of(2024, 3, 20);
+        System.out.println(date2.isAfter(date1));
+    }
+}",true,false,Compilation error,5
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Instant instant = Instant.ofEpochMilli(1000);
+        System.out.println(instant.toEpochMilli());
+    }
+}",1000,1,Compilation error,1000000
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of(""UTC""));
+        System.out.println(zdt.getOffset());
+    }
+}",Z,+00:00,Compilation error,UTC
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        OffsetDateTime odt = OffsetDateTime.of(2024, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC);
+        System.out.println(odt.getOffset());
+    }
+}",Z,+00:00,Compilation error,UTC
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        Period period = Period.ofWeeks(2);
+        LocalDate newDate = date.plus(period);
+        System.out.println(newDate);
+    }
+}",2024-03-29,2024-03-17,Compilation error,2024-05-15
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofSeconds(125);
+        System.out.println(d.getSeconds());
+    }
+}",125,2,Compilation error,5
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt1 = LocalDateTime.of(2024, 3, 15, 10, 30);
+        LocalDateTime dt2 = LocalDateTime.of(2024, 3, 15, 14, 45);
+        Duration duration = Duration.between(dt1, dt2);
+        System.out.println(duration.toMinutes());
+    }
+}",255,4,Compilation error,15300
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        long dayOfYear = date.getLong(ChronoField.DAY_OF_YEAR);
+        System.out.println(dayOfYear);
+    }
+}",75,15,Compilation error,3
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 1, 1);
+        LocalDate newDate = date.withYear(2025);
+        System.out.println(newDate);
+    }
+}",2025-01-01,2024-01-01,Compilation error,2025-01-02
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 31);
+        LocalDate newDate = date.withMonth(2);
+        System.out.println(newDate);
+    }
+}",2024-02-29,2024-02-31,Compilation error,DateTimeException
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30);
+        LocalTime newTime = time.withHour(14);
+        System.out.println(newTime);
+    }
+}",14:30,10:14,Compilation error,14:00
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 3, 15, 10, 30);
+        LocalDateTime newDt = dt.plusYears(1).plusMonths(2);
+        System.out.println(newDt.getYear() + "" "" + newDt.getMonthValue());
+    }
+}",2025 5,2024 12,Compilation error,2025 2
+"What is the output?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2024, 1, 1);
+        LocalDate end = LocalDate.of(2024, 12, 31);
+        long months = ChronoUnit.MONTHS.between(start, end);
+        System.out.println(months);
+    }
+}",11,12,Compilation error,364
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(10);
+        LocalDate date = LocalDate.of(2024, 1, 25);
+        LocalDate newDate = date.plus(period);
+        System.out.println(newDate);
+    }
+}",2024-02-04,2024-01-35,Compilation error,2024-02-10
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofMinutes(150);
+        System.out.println(duration.toHoursPart());
+    }
+}",2,150,Compilation error,0
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofMinutes(150);
+        System.out.println(duration.toMinutesPart());
+    }
+}",30,150,Compilation error,2
+"What is the output?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate firstMonday = date.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
+        System.out.println(firstMonday.getDayOfMonth());
+    }
+}",4,1,Compilation error,11
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate nextOrSame = date.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
+        System.out.println(nextOrSame.getDayOfMonth());
+    }
+}",15,22,Compilation error,16
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        long epochDay = date.toEpochDay();
+        LocalDate restored = LocalDate.ofEpochDay(epochDay);
+        System.out.println(restored.equals(date));
+    }
+}",true,false,Compilation error,epochDay
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zdt1 = ZonedDateTime.of(2024, 3, 15, 10, 0, 0, 0, ZoneId.of(""UTC""));
+        ZonedDateTime zdt2 = ZonedDateTime.of(2024, 3, 15, 10, 0, 0, 0, ZoneId.of(""America/New_York""));
+        System.out.println(zdt1.isEqual(zdt2));
+    }
+}",false,true,Compilation error,Different zones
+"What is the output?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 3, 15, 10, 30);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""yyyy-MM-dd'T'HH:mm"");
+        System.out.println(dt.format(formatter));
+    }
+}",2024-03-15T10:30,Compilation error,2024-03-15 10:30,2024-03-1510:30
+"What is the result?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        String text = ""15/03/2024"";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""dd/MM/yyyy"");
+        LocalDate date = LocalDate.parse(text, formatter);
+        System.out.println(date.getDayOfMonth());
+    }
+}",15,3,Compilation error,2024
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime midnight = LocalTime.MIDNIGHT;
+        LocalTime noon = LocalTime.NOON;
+        System.out.println(midnight + "" "" + noon);
+    }
+}",00:00 12:00,Compilation error,MIDNIGHT NOON,0:0 12:0
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate min = LocalDate.MIN;
+        System.out.println(min.getYear());
+    }
+}","-999999999",0,1970,Compilation error
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate max = LocalDate.MAX;
+        System.out.println(max.getYear());
+    }
+}",999999999,2147483647,Compilation error,9999
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofSeconds(3661);
+        System.out.println(d1.toHours() + "":"" + d1.toMinutesPart() + "":"" + d1.toSecondsPart());
+    }
+}",1:1:1,1:61:1,Compilation error,3661:0:0
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofYears(2).plusMonths(15);
+        System.out.println(p.getYears() + "" "" + p.getMonths());
+    }
+}",2 15,3 3,Compilation error,2 3
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.parse(""P1Y2M3D"");
+        System.out.println(p.getYears() + "" "" + p.getMonths() + "" "" + p.getDays());
+    }
+}",1 2 3,Compilation error,P1Y2M3D,123
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.parse(""PT2H30M"");
+        System.out.println(d.toMinutes());
+    }
+}",150,2,Compilation error,230
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30);
+        LocalTime newTime = time.minusMinutes(45);
+        System.out.println(newTime);
+    }
+}",09:45,10:15,Compilation error,"-00:15"
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 1, 1);
+        LocalDate newDate = date.minusMonths(3);
+        System.out.println(newDate);
+    }
+}",2023-10-01,2024-10-01,Compilation error,2023-12-01
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zdt = ZonedDateTime.of(2024, 3, 15, 10, 30, 0, 0, ZoneId.of(""America/New_York""));
+        ZonedDateTime withZone = zdt.withZoneSameInstant(ZoneId.of(""UTC""));
+        System.out.println(withZone.getHour());
+    }
+}",14,10,Compilation error,15
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zdt = ZonedDateTime.of(2024, 3, 15, 10, 30, 0, 0, ZoneId.of(""America/New_York""));
+        ZonedDateTime withZone = zdt.withZoneSameLocal(ZoneId.of(""UTC""));
+        System.out.println(withZone.getHour());
+    }
+}",10,14,Compilation error,6
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate previous = date.with(TemporalAdjusters.previous(DayOfWeek.MONDAY));
+        System.out.println(previous.getDayOfMonth());
+    }
+}",11,15,Compilation error,18
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        System.out.println(date.getDayOfYear());
+    }
+}",75,15,Compilation error,3
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.ofYearDay(2024, 100);
+        System.out.println(date);
+    }
+}",2024-04-09,2024-01-100,Compilation error,2024-100-01
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.ofSecondOfDay(3661);
+        System.out.println(time);
+    }
+}",01:01:01,00:00:3661,Compilation error,3661:00:00
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30, 45);
+        long seconds = time.toSecondOfDay();
+        System.out.println(seconds);
+    }
+}",37845,10,Compilation error,630
+"What is the output?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 5);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""d MMM yyyy"");
+        System.out.println(date.format(formatter));
+    }
+}",5 Mar 2024,05 Mar 2024,Compilation error,5 March 2024
+"What is the result?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 3, 15, 14, 30);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(""h:mm a"");
+        System.out.println(dt.format(formatter));
+    }
+}",2:30 PM,14:30 PM,Compilation error,02:30 AM
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofDays(1).plusHours(12);
+        System.out.println(duration.toHours());
+    }
+}",36,1,Compilation error,12
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.between(LocalDate.of(2024, 1, 15), LocalDate.of(2024, 3, 10));
+        System.out.println(period.getMonths() + "" "" + period.getDays());
+    }
+}",1 26,2 0,Compilation error,1 24
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Instant instant1 = Instant.parse(""2024-01-01T00:00:00Z"");
+        Instant instant2 = Instant.parse(""2024-01-01T12:00:00Z"");
+        Duration duration = Duration.between(instant1, instant2);
+        System.out.println(duration.toHours());
+    }
+}",12,0,Compilation error,43200
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 3, 15, 10, 30);
+        ZonedDateTime zdt = dt.atZone(ZoneId.systemDefault());
+        System.out.println(zdt.getClass().getSimpleName());
+    }
+}",ZonedDateTime,LocalDateTime,Compilation error,DateTime
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDateTime startOfDay = date.atStartOfDay();
+        System.out.println(startOfDay.getHour());
+    }
+}",0,Compilation error,12,24
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        ZonedDateTime zdt = date.atStartOfDay(ZoneId.of(""UTC""));
+        System.out.println(zdt.getZone());
+    }
+}",UTC,Compilation error,GMT,Z
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2024, 3, 15);
+        LocalDate date2 = LocalDate.of(2024, 3, 15);
+        System.out.println(date1 == date2);
+    }
+}",false,true,Compilation error,null
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        boolean supported = date.isSupported(ChronoUnit.HOURS);
+        System.out.println(supported);
+    }
+}",false,true,Compilation error,UnsupportedTemporalTypeException
+"What is the output?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30);
+        boolean supported = time.isSupported(ChronoUnit.DAYS);
+        System.out.println(supported);
+    }
+}",false,true,Compilation error,UnsupportedTemporalTypeException
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dt = LocalDateTime.of(2024, 3, 10, 2, 30);
+        ZonedDateTime zdt = dt.atZone(ZoneId.of(""America/New_York""));
+        System.out.println(zdt.getHour());
+    }
+}",3,2,Compilation error,1
+"What is the output?
+import java.time.*;
+import java.time.format.*;
+public class Test {
+    public static void main(String[] args) {
+        try {
+            LocalDate.parse(""2024-13-01"");
+            System.out.println(""Valid"");
+        } catch (DateTimeParseException e) {
+            System.out.println(""Invalid"");
+        }
+    }
+}",Invalid,Valid,Compilation error,2024-13-01
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Clock clock = Clock.systemUTC();
+        Instant instant = Instant.now(clock);
+        System.out.println(instant.toString().endsWith(""Z""));
+    }
+}",true,false,Compilation error,UTC
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        long epochDay = date.toEpochDay();
+        System.out.println(epochDay > 0);
+    }
+}",true,false,Compilation error,19797
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofHours(3);
+        Duration d2 = Duration.ofMinutes(180);
+        System.out.println(d1.equals(d2));
+    }
+}",true,false,Compilation error,180
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(7);
+        Period p2 = Period.ofWeeks(1);
+        System.out.println(p1.equals(p2));
+    }
+}",true,false,Compilation error,7
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate endOfYear = date.with(TemporalAdjusters.lastDayOfYear());
+        System.out.println(endOfYear);
+    }
+}",2024-12-31,2024-03-31,Compilation error,2024-365
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate firstOfYear = date.with(TemporalAdjusters.firstDayOfYear());
+        System.out.println(firstOfYear);
+    }
+}",2024-01-01,2024-03-01,Compilation error,2024-001
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate firstOfNextYear = date.with(TemporalAdjusters.firstDayOfNextYear());
+        System.out.println(firstOfNextYear);
+    }
+}",2025-01-01,2024-01-01,Compilation error,2024-04-01
+"What is the output?
+import java.time.*;
+import java.time.temporal.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 3, 15);
+        LocalDate firstOfNextMonth = date.with(TemporalAdjusters.firstDayOfNextMonth());
+        System.out.println(firstOfNextMonth);
+    }
+}",2024-04-01,2024-03-01,Compilation error,2024-02-01
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        OffsetTime ot = OffsetTime.of(10, 30, 0, 0, ZoneOffset.ofHours(5));
+        System.out.println(ot.getOffset());
+    }
+}",+05:00,5,Compilation error,05:00
+"What is the output?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        ZoneOffset offset = ZoneOffset.ofHoursMinutes(5, 30);
+        System.out.println(offset);
+    }
+}",+05:30,5:30,Compilation error,+0530
+"What is the result?
+import java.time.*;
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2024, 1, 1);
+        LocalDate date2 = LocalDate.of(2023, 12, 31);
+        Period period = date1.until(date2);
+        System.out.println(period.getDays());
+    }
+}","-1",1,0,Compilation error

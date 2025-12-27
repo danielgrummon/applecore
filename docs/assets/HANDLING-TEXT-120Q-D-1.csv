@@ -1,0 +1,939 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        s.concat("" World"");
+        System.out.println(s);
+    }
+}",Hello,Hello World,Compilation error,NullPointerException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = ""Java"";
+        String s2 = ""Java"";
+        System.out.println(s1 == s2);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = new String(""Java"");
+        String s2 = new String(""Java"");
+        System.out.println(s1 == s2);
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = new String(""Java"");
+        String s2 = ""Java"";
+        System.out.println(s1 == s2);
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = new String(""Java"");
+        String s2 = ""Java"";
+        System.out.println(s1.equals(s2));
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = new String(""Java"").intern();
+        String s2 = ""Java"";
+        System.out.println(s1 == s2);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.charAt(1));
+    }
+}",e,H,1,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.charAt(5));
+    }
+}",StringIndexOutOfBoundsException,o,5,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.length());
+    }
+}",5,4,6,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = """";
+        System.out.println(s.length());
+    }
+}",0,Compilation error,NullPointerException,−1
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.substring(1));
+    }
+}",ello,Hello,H,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.substring(1, 4));
+    }
+}",ell,Hell,ello,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.indexOf('l'));
+    }
+}",2,3,1,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.indexOf('x'));
+    }
+}",−1,0,Compilation error,null
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.lastIndexOf('l'));
+    }
+}",3,2,4,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.indexOf(""ll""));
+    }
+}",2,3,Compilation error,−1
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.contains(""ell""));
+    }
+}",true,false,Compilation error,2
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.startsWith(""He""));
+    }
+}",true,false,Compilation error,0
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.endsWith(""lo""));
+    }
+}",true,false,Compilation error,3
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""abc"";
+        System.out.println(s.compareTo(""abc""));
+    }
+}",0,true,false,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""abc"";
+        System.out.println(s.compareTo(""def""));
+    }
+}",Negative number,Positive number,0,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""def"";
+        System.out.println(s.compareTo(""abc""));
+    }
+}",Positive number,Negative number,0,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""ABC"";
+        System.out.println(s.equals(""abc""));
+    }
+}",false,true,Compilation error,0
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""ABC"";
+        System.out.println(s.equalsIgnoreCase(""abc""));
+    }
+}",true,false,Compilation error,0
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello"";
+        System.out.println(s.replace('l', 'L'));
+    }
+}",heLLo,helLo,hello,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello"";
+        System.out.println(s.replace(""ll"", ""LL""));
+    }
+}",heLLo,hello,helLo,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello"";
+        System.out.println(s.replaceFirst(""l"", ""L""));
+    }
+}",heLlo,heLLo,hello,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello"";
+        System.out.println(s.replaceAll(""l"", ""L""));
+    }
+}",heLLo,heLlo,hello,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""  hello  "";
+        System.out.println(s.trim());
+    }
+}",hello,  hello  ,Compilation error,  hello
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""  hello  "";
+        System.out.println(s.strip());
+    }
+}",hello,  hello  ,Compilation error,  hello
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""  hello"";
+        System.out.println(s.stripLeading());
+    }
+}",hello,  hello,Compilation error,hello
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello  "";
+        System.out.println(s.stripTrailing());
+    }
+}",hello,hello  ,Compilation error,  hello
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello"";
+        System.out.println(s.toUpperCase());
+    }
+}",HELLO,hello,Hello,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""HELLO"";
+        System.out.println(s.toLowerCase());
+    }
+}",hello,HELLO,Hello,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.concat("" World""));
+    }
+}",Hello World,Hello,World,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a,b,c"";
+        String[] arr = s.split("","");
+        System.out.println(arr.length);
+    }
+}",3,1,2,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a,b,c"";
+        String[] arr = s.split("","");
+        System.out.println(arr[1]);
+    }
+}",b,a,c,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String result = String.join(""-"", ""a"", ""b"", ""c"");
+        System.out.println(result);
+    }
+}",a-b-c,abc,a b c,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = """";
+        System.out.println(s.isEmpty());
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""  "";
+        System.out.println(s.isEmpty());
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""  "";
+        System.out.println(s.isBlank());
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = """";
+        System.out.println(s.isBlank());
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""ha"";
+        System.out.println(s.repeat(3));
+    }
+}",hahaha,ha3,ha ha ha,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.repeat(0));
+    }
+}",Empty string,test,0,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        sb.append("" World"");
+        System.out.println(sb);
+    }
+}",Hello World,Hello,World,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        sb.insert(5, "" World"");
+        System.out.println(sb);
+    }
+}",Hello World,World Hello,Hello,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        sb.delete(1, 4);
+        System.out.println(sb);
+    }
+}",Ho,H,Hello,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        sb.deleteCharAt(0);
+        System.out.println(sb);
+    }
+}",ello,Hello,H,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        sb.reverse();
+        System.out.println(sb);
+    }
+}",olleH,Hello,Compilation error,HELLO
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        sb.setCharAt(0, 'h');
+        System.out.println(sb);
+    }
+}",hello,Hello,h,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.capacity());
+    }
+}",16,0,10,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        System.out.println(sb.length());
+    }
+}",5,16,Compilation error,0
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        System.out.println(sb.toString());
+    }
+}",Hello,Compilation error,StringBuilder,null
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder result = sb.append(""A"").append(""B"").append(""C"");
+        System.out.println(result);
+    }
+}",ABC,A,Compilation error,null
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.format(""%s %d"", ""Value"", 42);
+        System.out.println(s);
+    }
+}",Value 42,Compilation error,%s %d,Value
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.format(""%d"", 100);
+        System.out.println(s);
+    }
+}",100,Compilation error,%d,d
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.format(""%.2f"", 3.14159);
+        System.out.println(s);
+    }
+}",3.14,3.14159,Compilation error,%.2f
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.valueOf(123);
+        System.out.println(s);
+    }
+}",123,Compilation error,null,123.0
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.valueOf(true);
+        System.out.println(s);
+    }
+}",true,1,Compilation error,TRUE
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.valueOf((Object)null);
+        System.out.println(s);
+    }
+}",null,Compilation error,NullPointerException,Empty string
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        long count = s.chars().count();
+        System.out.println(count);
+    }
+}",5,Compilation error,0,Hello
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""A"";
+        s.chars().forEach(System.out::println);
+    }
+}",65,A,1,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Line1\nLine2"";
+        long count = s.lines().count();
+        System.out.println(count);
+    }
+}",2,1,Compilation error,0
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = ""a"" + ""b"";
+        String s2 = ""ab"";
+        System.out.println(s1 == s2);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = null;
+        System.out.println(s + ""test"");
+    }
+}",nulltest,NullPointerException,Compilation error,test
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.substring(0, 0));
+    }
+}",Empty string,test,Compilation error,t
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.substring(2, 2));
+    }
+}",Empty string,st,Compilation error,s
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb1 = new StringBuilder(""Hello"");
+        StringBuilder sb2 = new StringBuilder(""Hello"");
+        System.out.println(sb1.equals(sb2));
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb1 = new StringBuilder(""Hello"");
+        StringBuilder sb2 = sb1;
+        System.out.println(sb1 == sb2);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a,b,,c"";
+        String[] arr = s.split("","");
+        System.out.println(arr.length);
+    }
+}",4,3,2,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""abc"";
+        System.out.println(s.indexOf(""a"", 1));
+    }
+}",−1,0,1,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""abcabc"";
+        System.out.println(s.indexOf(""bc"", 2));
+    }
+}",4,1,Compilation error,−1
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.startsWith(""lo"", 3));
+    }
+}",true,false,Compilation error,3
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        String result = s.transform(str -> str.toUpperCase());
+        System.out.println(result);
+    }
+}",TEST,test,Compilation error,null
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        String result = s.indent(2);
+        System.out.println(result.startsWith(""  ""));
+    }
+}",true,false,Compilation error,2
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a-b-c"";
+        String[] arr = s.split(""-"", 2);
+        System.out.println(arr.length);
+    }
+}",2,3,1,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a-b-c"";
+        String[] arr = s.split(""-"", 2);
+        System.out.println(arr[1]);
+    }
+}",b-c,b,c,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello"";
+        System.out.println(s.replaceAll(""[aeiou]"", ""*""));
+    }
+}",h*ll*,hello,h*llo,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""123"";
+        System.out.println(s.replaceAll(""\d"", ""X""));
+    }
+}",XXX,123,X,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(50);
+        System.out.println(sb.capacity());
+    }
+}",50,16,0,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Test"");
+        sb.ensureCapacity(100);
+        System.out.println(sb.capacity() >= 100);
+    }
+}",true,false,Compilation error,100
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""ABC"";
+        System.out.println(s.compareToIgnoreCase(""abc""));
+    }
+}",0,Negative number,Positive number,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        CharSequence cs = ""Hello"";
+        System.out.println(cs.length());
+    }
+}",5,Compilation error,Hello,0
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Java"";
+        CharSequence cs = s;
+        System.out.println(cs.charAt(0));
+    }
+}",J,Java,0,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.codePoints().count());
+    }
+}",4,Compilation error,0,test
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""  test  "";
+        System.out.println(s.trim().length());
+    }
+}",4,8,Compilation error,6
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        s.toUpperCase();
+        System.out.println(s);
+    }
+}",test,TEST,Compilation error,Test
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.substring(5));
+    }
+}",Empty string,Hello,Compilation error,StringIndexOutOfBoundsException
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.substring(0, 5));
+    }
+}",Hello,Hell,Compilation error,StringIndexOutOfBoundsException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        String s = sb.substring(1, 4);
+        System.out.println(s);
+    }
+}",ell,Hello,Compilation error,Hel
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = ""test"";
+        String s2 = new String(""test"").intern();
+        System.out.println(s1 == s2);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a"";
+        s = s + ""b"" + ""c"";
+        System.out.println(s);
+    }
+}",abc,a,Compilation error,c
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String[] arr = {""a"", ""b"", ""c""};
+        String result = String.join("","", arr);
+        System.out.println(result);
+    }
+}","a,b,c",abc,Compilation error,a b c
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.contains(""es""));
+    }
+}",true,false,Compilation error,1
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello World"";
+        System.out.println(s.indexOf(' '));
+    }
+}",5,Compilation error,−1,0
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.repeat(1));
+    }
+}",test,testtest,1,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(""A"");
+        sb.append(100);
+        System.out.println(sb);
+    }
+}",A100,A,100,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(true);
+        System.out.println(sb);
+    }
+}",true,1,Compilation error,TRUE
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""abcdef"";
+        System.out.println(s.regionMatches(0, ""abc"", 0, 3));
+    }
+}",true,false,Compilation error,0
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        char[] chars = s.toCharArray();
+        System.out.println(chars.length);
+    }
+}",4,Compilation error,0,test
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        char[] chars = {'t', 'e', 's', 't'};
+        String s = new String(chars);
+        System.out.println(s);
+    }
+}",test,Compilation error,chars,null
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""hello"";
+        byte[] bytes = s.getBytes();
+        System.out.println(bytes.length);
+    }
+}",5,Compilation error,0,hello
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.contentEquals(""test""));
+    }
+}",true,false,Compilation error,0
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""test"");
+        System.out.println(""test"".contentEquals(sb));
+    }
+}",true,false,Compilation error,0
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Line1\nLine2\nLine3"";
+        System.out.println(s.lines().count());
+    }
+}",3,2,1,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.format(""%5d"", 42);
+        System.out.println(s.length());
+    }
+}",5,2,Compilation error,42
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = String.format(""%-5s"", ""hi"");
+        System.out.println(s.length());
+    }
+}",5,2,Compilation error,hi
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Hello"");
+        sb.replace(0, 5, ""Goodbye"");
+        System.out.println(sb);
+    }
+}",Goodbye,Hello,Compilation error,GoodbyeHello
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""Test"");
+        sb.trimToSize();
+        System.out.println(sb.capacity() == sb.length());
+    }
+}",true,false,Compilation error,4
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a\tb\tc"";
+        String[] arr = s.split(""\t"");
+        System.out.println(arr.length);
+    }
+}",3,1,2,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test  test"";
+        String result = s.replaceAll(""\s+"", "" "");
+        System.out.println(result);
+    }
+}",test test,test  test,Compilation error,testtest
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""123abc"";
+        System.out.println(s.matches("".*\d+.*""));
+    }
+}",true,false,Compilation error,123
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = """";
+        System.out.println(s.equals(null));
+    }
+}",false,true,NullPointerException,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.equalsIgnoreCase(null));
+    }
+}",false,true,NullPointerException,Compilation error
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(""test"");
+        sb.setLength(2);
+        System.out.println(sb);
+    }
+}",te,test,Compilation error,st
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""ab"");
+        sb.setLength(5);
+        System.out.println(sb.length());
+    }
+}",5,2,Compilation error,ab
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.hashCode() == s.hashCode());
+    }
+}",true,false,Compilation error,Different
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""ABCDE"";
+        System.out.println(s.toLowerCase().substring(2));
+    }
+}",cde,CDE,Compilation error,abc
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s1 = ""Hello"";
+        String s2 = s1;
+        s1 = s1 + "" World"";
+        System.out.println(s2);
+    }
+}",Hello,Hello World,Compilation error,World
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""abc123def"";
+        System.out.println(s.replaceAll(""[^0-9]"", """"));
+    }
+}",123,abc123def,Compilation error,abcdef
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""  a  b  c  "";
+        System.out.println(s.strip().replace(""  "", "" ""));
+    }
+}",a b c,  a  b  c  ,Compilation error,abc
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        StringBuffer sb = new StringBuffer(""Hello"");
+        sb.append("" World"");
+        System.out.println(sb);
+    }
+}",Hello World,Hello,Compilation error,World
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Java 17"";
+        System.out.println(s.lastIndexOf('a'));
+    }
+}",3,1,Compilation error,−1
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Hello"";
+        System.out.println(s.subSequence(1, 4));
+    }
+}",ell,Hello,Compilation error,Hel
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(""ABCDE"");
+        sb.insert(2, ""XY"");
+        System.out.println(sb);
+    }
+}",ABXYCDE,ABCDE,XYCDE,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""a b c"";
+        System.out.println(s.replace(' ', '-'));
+    }
+}",a-b-c,a b c,Compilation error,abc
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        String s = ""test"";
+        System.out.println(s.indexOf(""test""));
+    }
+}",0,−1,Compilation error,4

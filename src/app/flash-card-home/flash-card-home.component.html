@@ -90,23 +90,64 @@
             <div class="instructions">
                 <h2>CSV FILE FORMAT</h2>
                 <div class="format-example">
-                    <p class="format-header">Your CSV file should have this format:</p>
+                    <p class="format-header">Your CSV file must have exactly 5 columns:</p>
                     <div class="format-box">
                         <code>Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3</code>
                     </div>
-                    <p class="format-note"><strong>Important:</strong></p>
+                    <p class="format-note"><strong>Required Structure:</strong></p>
                     <ul class="format-list">
-                        <li><strong>Column 1:</strong> The question text</li>
-                        <li><strong>Column 2:</strong> The correct answer (shown when revealed)</li>
-                        <li><strong>Columns 3-5:</strong> Three wrong answers (not used in flash cards)</li>
+                        <li><strong>Header Row:</strong> First row must be the header (will be skipped)</li>
+                        <li><strong>Column 1:</strong> The question text (displayed on card front)</li>
+                        <li><strong>Column 2:</strong> The correct answer (revealed when you flip the card)</li>
+                        <li><strong>Columns 3-5:</strong> Three wrong answers (required but not displayed in flash cards)</li>
+                        <li><strong>All 5 columns required:</strong> Every row must have exactly 5 fields</li>
                     </ul>
-                    <p class="format-example-text"><strong>Example:</strong></p>
+                    <p class="format-note"><strong>Note:</strong> Flash cards only use columns 1 and 2, but all 5 columns must be present. You can use the same CSV files as Question Challenge!</p>
+                    <p class="format-example-text"><strong>Basic Example:</strong></p>
                     <div class="format-box example">
                         <code>What is the capital of France?,Paris,London,Berlin,Madrid</code><br>
                         <code>What is 2 + 2?,4,3,5,6</code><br>
                         <code>Who painted the Mona Lisa?,Da Vinci,Picasso,Van Gogh,Monet</code>
                     </div>
-                    <p class="format-note">Note: Flash cards only display the question and correct answer. You can use the same CSV files as Question Challenge.</p>
+                    <p class="format-example-text"><strong>Multi-Line Content (Code Examples):</strong></p>
+                    <ul class="format-list">
+                        <li><strong>Wrap in double quotes:</strong> Any field with commas, newlines, or quotes must be wrapped in double quotes</li>
+                        <li><strong>Press ENTER:</strong> Inside quotes, press ENTER/Return to add line breaks</li>
+                        <li><strong>No line limit:</strong> Use as many lines as needed for code snippets</li>
+                        <li><strong>Indentation preserved:</strong> Spaces and tabs are kept as-is</li>
+                    </ul>
+                    <div class="format-box example">
+                        <code>"What does this code print?<br>
+for i in range(3):<br>
+&nbsp;&nbsp;print(i)",0 1 2,Error,3 2 1,0 1</code>
+                    </div>
+                    <p class="format-example-text"><strong>Escaping Special Characters:</strong></p>
+                    <ul class="format-list">
+                        <li><strong>Quotes inside quotes:</strong> Use "" (two double quotes) to represent a literal quote</li>
+                        <li><strong>Commas:</strong> Must wrap field in quotes if it contains commas</li>
+                        <li><strong>Example:</strong> "He said ""Hello"",world",correct,wrong1,wrong2,wrong3</li>
+                    </ul>
+                    <div class="format-box example">
+                        <code>"What is the output?<br>
+String s = ""Hello"";<br>
+System.out.println(s);",Hello,Compilation error,"""Hello""",null</code>
+                    </div>
+                    <p class="format-example-text"><strong>Common Mistakes to Avoid:</strong></p>
+                    <ul class="format-list">
+                        <li><strong>Missing fields:</strong> Each row MUST have exactly 5 comma-separated values</li>
+                        <li><strong>Unmatched quotes:</strong> Every opening quote must have a closing quote</li>
+                        <li><strong>Wrong escaping:</strong> Use "" not \" for quotes inside quoted fields</li>
+                        <li><strong>Missing header:</strong> First row must be the header row</li>
+                        <li><strong>Trailing commas:</strong> Don't add extra commas at the end of rows</li>
+                    </ul>
+                    <p class="format-example-text"><strong>Advanced: Java Text Blocks and Special Cases:</strong></p>
+                    <ul class="format-list">
+                        <li><strong>Triple quotes (Java text blocks):</strong> Use """""" (six quotes) to represent """ in code</li>
+                        <li><strong>Escape sequences:</strong> Use \n for newlines in answers, \t for tabs</li>
+                        <li><strong>Unicode characters:</strong> Fully supported (€, ♥, etc.)</li>
+                        <li><strong>Empty fields:</strong> Use empty string between commas: ,,, (if intentional)</li>
+                    </ul>
+                    <p class="format-note"><strong>Validation:</strong> The app will reject files with incorrect field counts or formatting errors. Check that every row has exactly 5 fields!</p>
                 </div>
             </div>
         </div>
