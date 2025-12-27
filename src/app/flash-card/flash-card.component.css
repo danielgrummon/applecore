@@ -136,7 +136,8 @@
 .flash-card {
   width: 100%;
   min-height: 500px;
-  position: relative;
+  display: grid;
+  grid-template-areas: "card";
   transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
@@ -147,7 +148,7 @@
 
 /* Card Faces */
 .card-face {
-  position: absolute;
+  grid-area: card;
   width: 100%;
   min-height: 500px;
   backface-visibility: hidden;
@@ -584,12 +585,7 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .flash-card {
-    min-height: 450px;
-  }
-
   .card-face {
-    min-height: 450px;
     padding: 2rem;
   }
 
@@ -616,12 +612,7 @@
     font-size: 36px;
   }
 
-  .flash-card {
-    min-height: 400px;
-  }
-
   .card-face {
-    min-height: 400px;
     padding: 1.5rem;
   }
 
@@ -665,12 +656,7 @@
 }
 
 @media (max-width: 480px) {
-  .flash-card {
-    min-height: 350px;
-  }
-
   .card-face {
-    min-height: 350px;
     padding: 1rem;
   }
 
