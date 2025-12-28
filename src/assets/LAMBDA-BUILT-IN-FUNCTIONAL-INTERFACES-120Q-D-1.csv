@@ -1,0 +1,1227 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p = s -> s.length() > 3;
+        System.out.println(p.test(""Java""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Consumer;
+
+public class Test {
+    public static void main(String[] args) {
+        Consumer<String> c = s -> System.out.println(s.toUpperCase());
+        c.accept(""hello"");
+    }
+}",HELLO,hello,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<String, Integer> f = s -> s.length();
+        System.out.println(f.apply(""Java""));
+    }
+}",4,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Supplier;
+
+public class Test {
+    public static void main(String[] args) {
+        Supplier<String> s = () -> ""Hello"";
+        System.out.println(s.get());
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<Integer> p1 = x -> x > 5;
+        Predicate<Integer> p2 = x -> x < 10;
+        System.out.println(p1.and(p2).test(7));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p = s -> s.isEmpty();
+        System.out.println(p.negate().test(""Java""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Consumer;
+
+public class Test {
+    public static void main(String[] args) {
+        Consumer<String> c1 = s -> System.out.print(s);
+        Consumer<String> c2 = s -> System.out.print(s.length());
+        c1.andThen(c2).accept(""Hi"");
+    }
+}",Hi2,2Hi,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<Integer, Integer> f1 = x -> x * 2;
+        Function<Integer, Integer> f2 = x -> x + 3;
+        System.out.println(f1.andThen(f2).apply(5));
+    }
+}",13,16,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<Integer, Integer> f1 = x -> x * 2;
+        Function<Integer, Integer> f2 = x -> x + 3;
+        System.out.println(f1.compose(f2).apply(5));
+    }
+}",16,13,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        IntPredicate p = x -> x % 2 == 0;
+        System.out.println(p.test(4));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        IntConsumer c = x -> System.out.println(x * 2);
+        c.accept(5);
+    }
+}",10,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        IntFunction<String> f = x -> ""Value: "" + x;
+        System.out.println(f.apply(10));
+    }
+}",Value: 10,10,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        IntSupplier s = () -> 42;
+        System.out.println(s.getAsInt());
+    }
+}",42,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        BiPredicate<String, Integer> p = (s, i) -> s.length() == i;
+        System.out.println(p.test(""Java"", 4));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        BiConsumer<String, Integer> c = (s, i) -> System.out.println(s + i);
+        c.accept(""Count: "", 5);
+    }
+}",Count: 5,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        BiFunction<Integer, Integer, Integer> f = (x, y) -> x + y;
+        System.out.println(f.apply(3, 7));
+    }
+}",10,37,Compilation error,Runtime error
+"What is the result?
+import java.util.function.UnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        UnaryOperator<String> u = s -> s.toUpperCase();
+        System.out.println(u.apply(""java""));
+    }
+}",JAVA,java,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        BinaryOperator<Integer> b = (x, y) -> x * y;
+        System.out.println(b.apply(4, 5));
+    }
+}",20,9,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        IntUnaryOperator u = x -> x * x;
+        System.out.println(u.applyAsInt(5));
+    }
+}",25,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntBinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        IntBinaryOperator b = (x, y) -> x - y;
+        System.out.println(b.applyAsInt(10, 3));
+    }
+}",7,13,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        LongPredicate p = x -> x > 100L;
+        System.out.println(p.test(200L));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoublePredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        DoublePredicate p = x -> x >= 0.5;
+        System.out.println(p.test(0.7));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        LongConsumer c = x -> System.out.println(x + 10);
+        c.accept(5L);
+    }
+}",15,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleConsumer c = x -> System.out.println(x * 2);
+        c.accept(3.5);
+    }
+}",7.0,3.5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToIntFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToIntFunction<String> f = s -> s.length();
+        System.out.println(f.applyAsInt(""Hello""));
+    }
+}",5,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToLongFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToLongFunction<String> f = s -> s.length() * 10L;
+        System.out.println(f.applyAsLong(""Java""));
+    }
+}",40,4,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToDoubleFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToDoubleFunction<String> f = s -> s.length() * 1.5;
+        System.out.println(f.applyAsDouble(""Hi""));
+    }
+}",3.0,2.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        LongFunction<String> f = x -> ""Number: "" + x;
+        System.out.println(f.apply(100L));
+    }
+}",Number: 100,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleFunction<Integer> f = x -> (int) (x * 2);
+        System.out.println(f.apply(5.5));
+    }
+}",11,10,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntToLongFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        IntToLongFunction f = x -> x * 1000L;
+        System.out.println(f.applyAsLong(5));
+    }
+}",5000,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntToDoubleFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        IntToDoubleFunction f = x -> x / 2.0;
+        System.out.println(f.applyAsDouble(7));
+    }
+}",3.5,7.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongToIntFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        LongToIntFunction f = x -> (int) (x / 100);
+        System.out.println(f.applyAsInt(500L));
+    }
+}",5,500,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongToDoubleFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        LongToDoubleFunction f = x -> x * 0.5;
+        System.out.println(f.applyAsDouble(10L));
+    }
+}",5.0,10.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleToIntFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleToIntFunction f = x -> (int) Math.ceil(x);
+        System.out.println(f.applyAsInt(3.2));
+    }
+}",4,3,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleToLongFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleToLongFunction f = x -> (long) (x * 100);
+        System.out.println(f.applyAsLong(2.5));
+    }
+}",250,2,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        LongSupplier s = () -> 1000L;
+        System.out.println(s.getAsLong());
+    }
+}",1000,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleSupplier s = () -> Math.PI;
+        System.out.println(s.getAsDouble() > 3.0);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BooleanSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        BooleanSupplier s = () -> 5 > 3;
+        System.out.println(s.getAsBoolean());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ObjIntConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        ObjIntConsumer<String> c = (s, i) -> System.out.println(s + i);
+        c.accept(""Value: "", 10);
+    }
+}",Value: 10,10,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ObjLongConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        ObjLongConsumer<String> c = (s, l) -> System.out.println(s + l);
+        c.accept(""Count: "", 100L);
+    }
+}",Count: 100,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ObjDoubleConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        ObjDoubleConsumer<String> c = (s, d) -> System.out.println(s + d);
+        c.accept(""Price: "", 9.99);
+    }
+}",Price: 9.99,9.99,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToIntBiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToIntBiFunction<String, String> f = (s1, s2) -> s1.length() + s2.length();
+        System.out.println(f.applyAsInt(""Hi"", ""Bye""));
+    }
+}",5,2,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToLongBiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToLongBiFunction<Integer, Integer> f = (x, y) -> (long) x * y;
+        System.out.println(f.applyAsLong(5, 10));
+    }
+}",50,15,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToDoubleBiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToDoubleBiFunction<Integer, Integer> f = (x, y) -> (double) x / y;
+        System.out.println(f.applyAsDouble(10, 4));
+    }
+}",2.5,2.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        LongUnaryOperator u = x -> x + 100L;
+        System.out.println(u.applyAsLong(50L));
+    }
+}",150,50,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleUnaryOperator u = x -> x * x;
+        System.out.println(u.applyAsDouble(3.0));
+    }
+}",9.0,3.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongBinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        LongBinaryOperator b = (x, y) -> x + y;
+        System.out.println(b.applyAsLong(100L, 200L));
+    }
+}",300,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleBinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleBinaryOperator b = (x, y) -> x * y;
+        System.out.println(b.applyAsDouble(2.5, 4.0));
+    }
+}",10.0,6.5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p1 = s -> s.startsWith(""J"");
+        Predicate<String> p2 = s -> s.endsWith(""a"");
+        System.out.println(p1.or(p2).test(""Python""));
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<String, String> f = Function.identity();
+        System.out.println(f.apply(""Test""));
+    }
+}",Test,null,Compilation error,Runtime error
+"What is the result?
+import java.util.function.UnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        UnaryOperator<Integer> u = UnaryOperator.identity();
+        System.out.println(u.apply(42));
+    }
+}",42,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BinaryOperator;
+import java.util.Comparator;
+
+public class Test {
+    public static void main(String[] args) {
+        BinaryOperator<Integer> b = BinaryOperator.maxBy(Comparator.naturalOrder());
+        System.out.println(b.apply(10, 20));
+    }
+}",20,10,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BinaryOperator;
+import java.util.Comparator;
+
+public class Test {
+    public static void main(String[] args) {
+        BinaryOperator<String> b = BinaryOperator.minBy(Comparator.naturalOrder());
+        System.out.println(b.apply(""Zebra"", ""Apple""));
+    }
+}",Apple,Zebra,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p = Predicate.isEqual(""Java"");
+        System.out.println(p.test(""Java""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p = Predicate.isEqual(""Java"");
+        System.out.println(p.test(""Python""));
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        IntPredicate p1 = x -> x > 0;
+        IntPredicate p2 = x -> x < 100;
+        System.out.println(p1.and(p2).test(50));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        IntPredicate p = x -> x < 0;
+        System.out.println(p.negate().test(10));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        IntConsumer c1 = x -> System.out.print(x);
+        IntConsumer c2 = x -> System.out.print(x * 2);
+        c1.andThen(c2).accept(5);
+    }
+}",510,55,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        BiPredicate<Integer, Integer> p = (x, y) -> x > y;
+        System.out.println(p.test(10, 5));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        BiPredicate<String, String> p = (s1, s2) -> s1.contains(s2);
+        System.out.println(p.negate().test(""Hello"", ""bye""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        BiConsumer<String, String> c1 = (s1, s2) -> System.out.print(s1);
+        BiConsumer<String, String> c2 = (s1, s2) -> System.out.print(s2);
+        c1.andThen(c2).accept(""A"", ""B"");
+    }
+}",AB,BA,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        BiFunction<String, Integer, String> f = (s, i) -> s.repeat(i);
+        System.out.println(f.apply(""Hi"", 3));
+    }
+}",HiHiHi,Hi3,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        BiFunction<Integer, Integer, Integer> f1 = (x, y) -> x + y;
+        Function<Integer, Integer> f2 = z -> z * 2;
+        System.out.println(f1.andThen(f2).apply(3, 4));
+    }
+}",14,7,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Supplier;
+
+public class Test {
+    public static void main(String[] args) {
+        int count = 10;
+        Supplier<Integer> s = () -> count;
+        System.out.println(s.get());
+    }
+}",10,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p = s -> s.length() > 5;
+        Function<String, Integer> f = String::length;
+        System.out.println(p.test(""Hello"") && f.apply(""Hi"") == 2);
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Consumer;
+import java.util.List;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""C"");
+        Consumer<String> c = s -> System.out.print(s);
+        list.forEach(c);
+    }
+}",ABC,CBA,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<Integer, Double> f1 = x -> x * 2.0;
+        Function<Double, String> f2 = d -> ""Value: "" + d;
+        System.out.println(f1.andThen(f2).apply(5));
+    }
+}",Value: 10.0,10.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<String, Integer> f1 = s -> s.length();
+        Function<Integer, Integer> f2 = x -> x + 1;
+        System.out.println(f1.compose(f2).apply(10));
+    }
+}",Compilation error,Runtime error,11,2
+"What is the result?
+import java.util.function.IntSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        int x = 5;
+        IntSupplier s = () -> x * 10;
+        System.out.println(s.getAsInt());
+    }
+}",50,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntFunction;
+import java.util.stream.IntStream;
+
+public class Test {
+    public static void main(String[] args) {
+        IntFunction<Integer> f = x -> x * x;
+        int result = IntStream.of(2, 3, 4).mapToObj(f).mapToInt(x -> x).sum();
+        System.out.println(result);
+    }
+}",29,9,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToIntFunction;
+import java.util.List;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""Hi"", ""Bye"");
+        ToIntFunction<String> f = String::length;
+        System.out.println(f.applyAsInt(list.get(0)));
+    }
+}",2,3,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleUnaryOperator u = Math::sqrt;
+        System.out.println(u.applyAsDouble(16.0));
+    }
+}",4.0,16.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntBinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        IntBinaryOperator b = Math::max;
+        System.out.println(b.applyAsInt(10, 20));
+    }
+}",20,10,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<Integer> p = x -> x != null && x > 0;
+        System.out.println(p.test(5));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Consumer;
+
+public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        Consumer<String> c = s -> sb.append(s);
+        c.accept(""A"");
+        c.accept(""B"");
+        System.out.println(sb);
+    }
+}",AB,BA,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Supplier;
+
+public class Test {
+    public static void main(String[] args) {
+        Supplier<Double> s = Math::random;
+        System.out.println(s.get() >= 0.0 && s.get() < 1.0);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.UnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        UnaryOperator<String> u = s -> s + s;
+        System.out.println(u.apply(""Hi""));
+    }
+}",HiHi,Hi,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        BinaryOperator<String> b = (s1, s2) -> s1 + s2;
+        System.out.println(b.apply(""Hello"", ""World""));
+    }
+}",HelloWorld,WorldHello,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        LongPredicate p1 = x -> x % 2 == 0;
+        LongPredicate p2 = x -> x > 10;
+        System.out.println(p1.and(p2).test(12L));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoublePredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        DoublePredicate p1 = x -> x > 0.0;
+        DoublePredicate p2 = x -> x < 1.0;
+        System.out.println(p1.or(p2).test(0.5));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        LongConsumer c1 = x -> System.out.print(x);
+        LongConsumer c2 = x -> System.out.print("" "");
+        c1.andThen(c2).accept(100L);
+    }
+}",100 ,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleConsumer c = System.out::println;
+        c.accept(3.14);
+    }
+}",3.14,Compilation error,Runtime error,0.0
+"What is the result?
+import java.util.function.LongFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        LongFunction<Boolean> f = x -> x % 2 == 0;
+        System.out.println(f.apply(10L));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleFunction<String> f = d -> String.format(""%.2f"", d);
+        System.out.println(f.apply(3.14159));
+    }
+}",3.14,3.14159,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntToLongFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        IntToLongFunction f = x -> (long) x * x;
+        System.out.println(f.applyAsLong(10));
+    }
+}",100,10,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntToDoubleFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        IntToDoubleFunction f = Math::sqrt;
+        System.out.println(f.applyAsDouble(9));
+    }
+}",3.0,9.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongToIntFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        LongToIntFunction f = x -> (int) (x % 100);
+        System.out.println(f.applyAsInt(1234L));
+    }
+}",34,1234,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongToDoubleFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        LongToDoubleFunction f = x -> x / 10.0;
+        System.out.println(f.applyAsDouble(25L));
+    }
+}",2.5,25.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleToIntFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleToIntFunction f = x -> (int) Math.floor(x);
+        System.out.println(f.applyAsInt(5.9));
+    }
+}",5,6,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleToLongFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleToLongFunction f = Math::round;
+        System.out.println(f.applyAsLong(4.7));
+    }
+}",5,4,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        LongSupplier s = System::currentTimeMillis;
+        System.out.println(s.getAsLong() > 0);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleSupplier s = () -> 5.0 / 2.0;
+        System.out.println(s.getAsDouble());
+    }
+}",2.5,5.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BooleanSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        String s = ""Java"";
+        BooleanSupplier bs = () -> s.length() == 4;
+        System.out.println(bs.getAsBoolean());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ObjIntConsumer;
+import java.util.List;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""C"");
+        ObjIntConsumer<String> c = (s, i) -> System.out.print(s + i);
+        c.accept(""X"", 1);
+    }
+}",X1,1X,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ObjLongConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        ObjLongConsumer<StringBuilder> c = (sb, l) -> sb.append(l);
+        StringBuilder sb = new StringBuilder(""Count: "");
+        c.accept(sb, 100L);
+        System.out.println(sb);
+    }
+}",Count: 100,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ObjDoubleConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        ObjDoubleConsumer<String> c = (s, d) -> System.out.print(s.repeat((int) d));
+        c.accept(""Hi"", 2.0);
+    }
+}",HiHi,Hi,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToIntBiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToIntBiFunction<Integer, Integer> f = Integer::sum;
+        System.out.println(f.applyAsInt(5, 10));
+    }
+}",15,510,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToLongBiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToLongBiFunction<String, String> f = (s1, s2) -> (long) (s1.length() * s2.length());
+        System.out.println(f.applyAsLong(""Hi"", ""Bye""));
+    }
+}",6,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.ToDoubleBiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        ToDoubleBiFunction<Double, Double> f = (d1, d2) -> d1 + d2;
+        System.out.println(f.applyAsDouble(2.5, 3.5));
+    }
+}",6.0,5.0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        LongUnaryOperator u = x -> -x;
+        System.out.println(u.applyAsLong(100L));
+    }
+}",-100,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleUnaryOperator u = Math::abs;
+        System.out.println(u.applyAsDouble(-5.5));
+    }
+}",5.5,-5.5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongBinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        LongBinaryOperator b = Long::max;
+        System.out.println(b.applyAsLong(100L, 200L));
+    }
+}",200,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleBinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleBinaryOperator b = Math::min;
+        System.out.println(b.applyAsDouble(5.5, 3.3));
+    }
+}",3.3,5.5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p = s -> s != null && !s.isEmpty();
+        System.out.println(p.test(""""));
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Consumer;
+
+public class Test {
+    public static void main(String[] args) {
+        int[] count = {0};
+        Consumer<String> c = s -> count[0]++;
+        c.accept(""A"");
+        c.accept(""B"");
+        System.out.println(count[0]);
+    }
+}",2,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+import java.util.List;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<List<String>, Integer> f = List::size;
+        System.out.println(f.apply(List.of(""A"", ""B"", ""C"")));
+    }
+}",3,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Supplier;
+import java.util.ArrayList;
+
+public class Test {
+    public static void main(String[] args) {
+        Supplier<ArrayList<String>> s = ArrayList::new;
+        System.out.println(s.get().isEmpty());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        BiPredicate<String, String> p1 = String::equals;
+        BiPredicate<String, String> p2 = (s1, s2) -> s1.length() == s2.length();
+        System.out.println(p1.and(p2).test(""Hi"", ""Hi""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiConsumer;
+import java.util.Map;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = Map.of(""A"", 1, ""B"", 2);
+        BiConsumer<String, Integer> c = (k, v) -> System.out.print(k + v);
+        map.forEach(c);
+    }
+}",A1B2,A2B1,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        BiFunction<String, String, Integer> f = (s1, s2) -> s1.indexOf(s2);
+        System.out.println(f.apply(""Hello"", ""ll""));
+    }
+}",2,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.UnaryOperator;
+import java.util.List;
+
+public class Test {
+    public static void main(String[] args) {
+        UnaryOperator<String> u = String::trim;
+        System.out.println(u.apply(""  Hi  ""));
+    }
+}",Hi,  Hi  ,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BinaryOperator;
+import java.util.Comparator;
+
+public class Test {
+    public static void main(String[] args) {
+        BinaryOperator<String> b = BinaryOperator.maxBy(Comparator.comparingInt(String::length));
+        System.out.println(b.apply(""Hi"", ""Hello""));
+    }
+}",Hello,Hi,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        IntUnaryOperator u1 = x -> x + 1;
+        IntUnaryOperator u2 = x -> x * 2;
+        System.out.println(u1.andThen(u2).applyAsInt(5));
+    }
+}",12,11,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        IntUnaryOperator u1 = x -> x + 1;
+        IntUnaryOperator u2 = x -> x * 2;
+        System.out.println(u1.compose(u2).applyAsInt(5));
+    }
+}",11,12,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntBinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        IntBinaryOperator b = Integer::sum;
+        System.out.println(b.applyAsInt(7, 8));
+    }
+}",15,78,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Predicate;
+
+public class Test {
+    public static void main(String[] args) {
+        Predicate<String> p1 = s -> s.length() > 3;
+        Predicate<String> p2 = s -> s.contains(""a"");
+        Predicate<String> p3 = p1.and(p2);
+        System.out.println(p3.test(""Java""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+public class Test {
+    public static void main(String[] args) {
+        Consumer<Integer> c = x -> System.out.print(x * 2);
+        Stream.of(1, 2, 3).forEach(c);
+    }
+}",246,123,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Function;
+
+public class Test {
+    public static void main(String[] args) {
+        Function<String, Character> f = s -> s.charAt(0);
+        System.out.println(f.apply(""Hello""));
+    }
+}",H,e,Compilation error,Runtime error
+"What is the result?
+import java.util.function.Supplier;
+
+public class Test {
+    public static void main(String[] args) {
+        Supplier<String> s = () -> ""Java "" + ""17"";
+        System.out.println(s.get());
+    }
+}",Java 17,17,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntPredicate;
+import java.util.stream.IntStream;
+
+public class Test {
+    public static void main(String[] args) {
+        IntPredicate p = x -> x % 2 == 0;
+        long count = IntStream.range(1, 10).filter(p).count();
+        System.out.println(count);
+    }
+}",4,5,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        int[] sum = {0};
+        IntConsumer c = x -> sum[0] += x;
+        c.accept(10);
+        c.accept(20);
+        System.out.println(sum[0]);
+    }
+}",30,0,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        IntFunction<Boolean> f = x -> x % 2 == 0;
+        System.out.println(f.apply(7));
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.function.IntSupplier;
+
+public class Test {
+    public static void main(String[] args) {
+        int x = 5;
+        IntSupplier s = () -> ++x;
+        System.out.println(s.getAsInt());
+    }
+}",Compilation error,6,5,Runtime error
+"What is the result?
+import java.util.function.BiPredicate;
+
+public class Test {
+    public static void main(String[] args) {
+        BiPredicate<Integer, Integer> p = (x, y) -> x.equals(y);
+        System.out.println(p.test(5, 5));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiConsumer;
+
+public class Test {
+    public static void main(String[] args) {
+        BiConsumer<Integer, Integer> c = (x, y) -> System.out.print(x + y);
+        c.accept(3, 7);
+    }
+}",10,37,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BiFunction;
+
+public class Test {
+    public static void main(String[] args) {
+        BiFunction<String, Integer, String> f = String::substring;
+        System.out.println(f.apply(""Hello"", 1));
+    }
+}",ello,Hello,Compilation error,Runtime error
+"What is the result?
+import java.util.function.UnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        UnaryOperator<Integer> u1 = x -> x * 2;
+        UnaryOperator<Integer> u2 = x -> x + 3;
+        System.out.println(u1.andThen(u2).apply(5));
+    }
+}",13,16,Compilation error,Runtime error
+"What is the result?
+import java.util.function.BinaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        BinaryOperator<Integer> b = Integer::min;
+        System.out.println(b.apply(10, 20));
+    }
+}",10,20,Compilation error,Runtime error
+"What is the result?
+import java.util.function.LongUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        LongUnaryOperator u = x -> x / 10;
+        System.out.println(u.applyAsLong(100L));
+    }
+}",10,100,Compilation error,Runtime error
+"What is the result?
+import java.util.function.DoubleUnaryOperator;
+
+public class Test {
+    public static void main(String[] args) {
+        DoubleUnaryOperator u = x -> x + 0.5;
+        System.out.println(u.applyAsDouble(2.0));
+    }
+}",2.5,2.0,Compilation error,Runtime error
