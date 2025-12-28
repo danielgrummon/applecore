@@ -1,0 +1,1352 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        long count = list.stream().map(x -> x * 2).count();
+        System.out.println(count);
+    }
+}",3,6,2,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        List<String> result = list.stream()
+            .map(String::toUpperCase)
+            .collect(Collectors.toList());
+        System.out.println(result.get(0));
+    }
+}",A,a,Compilation error,Runtime error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        Optional<Integer> first = list.stream().findFirst();
+        System.out.println(first.get());
+    }
+}",1,5,Compilation error,NoSuchElementException
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(2, 4, 6);
+        boolean result = list.stream().allMatch(x -> x % 2 == 0);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        Optional<Integer> result = list.stream()
+            .filter(x -> x > 5)
+            .findFirst();
+        System.out.println(result.isPresent());
+    }
+}",false,true,Compilation error,NoSuchElementException
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        int sum = IntStream.of(1, 2, 3, 4, 5).sum();
+        System.out.println(sum);
+    }
+}",15,5,10,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(3, 1, 4, 2);
+        List<Integer> sorted = list.stream()
+            .sorted()
+            .collect(Collectors.toList());
+        System.out.println(sorted.get(0));
+    }
+}",1,3,4,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""cherry"");
+        long count = list.stream()
+            .filter(s -> s.length() > 5)
+            .count();
+        System.out.println(count);
+    }
+}",2,3,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.of(""test"");
+        String result = opt.orElse(""default"");
+        System.out.println(result);
+    }
+}",test,default,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.empty();
+        String result = opt.orElse(""default"");
+        System.out.println(result);
+    }
+}",default,null,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        int sum = list.stream()
+            .mapToInt(x -> x)
+            .sum();
+        System.out.println(sum);
+    }
+}",6,3,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        boolean result = list.stream().anyMatch(x -> x > 3);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        boolean result = list.stream().noneMatch(x -> x > 5);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        String result = list.stream()
+            .collect(Collectors.joining("",""));
+        System.out.println(result);
+    }
+}","a,b,c",abc,Compilation error,ClassCastException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        OptionalDouble avg = list.stream()
+            .mapToInt(x -> x)
+            .average();
+        System.out.println(avg.getAsDouble());
+    }
+}",3.0,3,15,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(5, 2, 8, 1);
+        OptionalInt max = list.stream()
+            .mapToInt(x -> x)
+            .max();
+        System.out.println(max.getAsInt());
+    }
+}",8,5,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(5, 2, 8, 1);
+        OptionalInt min = list.stream()
+            .mapToInt(x -> x)
+            .min();
+        System.out.println(min.getAsInt());
+    }
+}",1,5,8,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""apricot"");
+        Map<Character, Long> map = list.stream()
+            .collect(Collectors.groupingBy(
+                s -> s.charAt(0),
+                Collectors.counting()
+            ));
+        System.out.println(map.get('a'));
+    }
+}",2,1,3,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        Map<Boolean, List<Integer>> map = list.stream()
+            .collect(Collectors.partitioningBy(x -> x % 2 == 0));
+        System.out.println(map.get(true).size());
+    }
+}",2,3,5,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<List<Integer>> list = List.of(
+            List.of(1, 2),
+            List.of(3, 4)
+        );
+        long count = list.stream()
+            .flatMap(l -> l.stream())
+            .count();
+        System.out.println(count);
+    }
+}",4,2,8,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        list.stream()
+            .peek(x -> System.out.print(x))
+            .count();
+    }
+}",123,No output,Compilation error,321
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<Integer> opt = Optional.of(5);
+        int result = opt.map(x -> x * 2).get();
+        System.out.println(result);
+    }
+}",10,5,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.of(""hello"");
+        boolean result = opt.isPresent();
+        System.out.println(result);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Optional<String> any = list.stream().findAny();
+        System.out.println(any.isPresent());
+    }
+}",true,false,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long count = Stream.of(""a"", ""b"", ""c"")
+            .filter(s -> s.equals(""a""))
+            .count();
+        System.out.println(count);
+    }
+}",1,3,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        List<Integer> result = list.stream()
+            .map(x -> x * 2)
+            .collect(Collectors.toList());
+        System.out.println(result.get(1));
+    }
+}",4,2,6,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.empty();
+        opt.ifPresent(System.out::println);
+        System.out.println(""Done"");
+    }
+}",Done,Compilation error,NoSuchElementException,DoneNull
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"");
+        Map<Integer, List<String>> map = list.stream()
+            .collect(Collectors.groupingBy(String::length));
+        System.out.println(map.get(6).size());
+    }
+}",2,1,0,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        double avg = DoubleStream.of(1.0, 2.0, 3.0)
+            .average()
+            .getAsDouble();
+        System.out.println(avg);
+    }
+}",2.0,3.0,1.0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(3, 1, 4, 2);
+        List<Integer> result = list.stream()
+            .sorted(Comparator.reverseOrder())
+            .collect(Collectors.toList());
+        System.out.println(result.get(0));
+    }
+}",4,1,3,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long sum = LongStream.of(1L, 2L, 3L).sum();
+        System.out.println(sum);
+    }
+}",6,3,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<Integer> opt = Optional.ofNullable(null);
+        int result = opt.orElse(10);
+        System.out.println(result);
+    }
+}",10,null,Compilation error,NullPointerException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        int sum = list.stream()
+            .mapToInt(String::length)
+            .sum();
+        System.out.println(sum);
+    }
+}",6,3,9,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        Optional<Integer> result = list.stream()
+            .reduce((a, b) -> a + b);
+        System.out.println(result.get());
+    }
+}",6,3,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = Stream.of(""a"", ""b"", ""a"")
+            .collect(Collectors.toSet());
+        System.out.println(set.size());
+    }
+}",2,3,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""1"", ""2"", ""3"");
+        List<Integer> result = list.stream()
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+        System.out.println(result.get(0));
+    }
+}",1,Compilation error,"1 (as String)",ClassCastException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.of(""test"");
+        String result = opt.orElseGet(() -> ""default"");
+        System.out.println(result);
+    }
+}",test,default,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        boolean result = Stream.of(1, 2, 3)
+            .allMatch(x -> x > 0);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        long count = list.stream()
+            .filter(x -> x % 2 == 0)
+            .count();
+        System.out.println(count);
+    }
+}",2,3,5,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        String result = list.stream()
+            .collect(Collectors.joining());
+        System.out.println(result);
+    }
+}",abc,"a,b,c",Compilation error,a
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        int max = IntStream.range(1, 5).max().getAsInt();
+        System.out.println(max);
+    }
+}",4,5,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long count = IntStream.rangeClosed(1, 5).count();
+        System.out.println(count);
+    }
+}",5,4,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""apricot"");
+        Map<Character, List<String>> map = list.stream()
+            .collect(Collectors.groupingBy(s -> s.charAt(0)));
+        System.out.println(map.get('a').size());
+    }
+}",2,1,3,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<Integer> opt = Optional.of(10);
+        Optional<Integer> result = opt.filter(x -> x > 5);
+        System.out.println(result.isPresent());
+    }
+}",true,false,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<Integer> opt = Optional.of(3);
+        Optional<Integer> result = opt.filter(x -> x > 5);
+        System.out.println(result.isPresent());
+    }
+}",false,true,Compilation error,NoSuchElementException
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        int result = list.stream()
+            .reduce(0, (a, b) -> a + b);
+        System.out.println(result);
+    }
+}",6,3,0,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Optional<String> result = list.stream()
+            .reduce((a, b) -> a + b);
+        System.out.println(result.get());
+    }
+}",abc,a,cba,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        boolean result = IntStream.of(1, 2, 3)
+            .anyMatch(x -> x == 2);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        boolean result = IntStream.of(1, 2, 3)
+            .noneMatch(x -> x > 5);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        List<Integer> result = list.stream()
+            .limit(2)
+            .collect(Collectors.toList());
+        System.out.println(result.size());
+    }
+}",2,3,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        List<Integer> result = list.stream()
+            .skip(2)
+            .collect(Collectors.toList());
+        System.out.println(result.size());
+    }
+}",3,2,5,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""cherry"");
+        boolean result = list.stream()
+            .allMatch(s -> s.length() > 3);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(5, 3, 8, 1);
+        List<Integer> result = list.stream()
+            .sorted()
+            .limit(2)
+            .collect(Collectors.toList());
+        System.out.println(result.get(1));
+    }
+}",3,1,5,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = Stream.of(""a"", ""b"", ""a"")
+            .collect(Collectors.toMap(
+                s -> s,
+                s -> 1,
+                Integer::sum
+            ));
+        System.out.println(map.get(""a""));
+    }
+}",2,1,3,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.of(""test"");
+        Optional<Integer> result = opt.map(String::length);
+        System.out.println(result.get());
+    }
+}",4,Compilation error,NoSuchElementException,test
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        List<String> result = list.stream()
+            .sorted(Comparator.comparing(String::length))
+            .collect(Collectors.toList());
+        System.out.println(result.get(0));
+    }
+}",a,ccc,bb,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        double avg = list.stream()
+            .collect(Collectors.averagingInt(x -> x));
+        System.out.println(avg);
+    }
+}",2.0,2,6.0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        int sum = list.stream()
+            .collect(Collectors.summingInt(x -> x));
+        System.out.println(sum);
+    }
+}",15,5,3,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        long count = list.stream()
+            .collect(Collectors.counting());
+        System.out.println(count);
+    }
+}",3,1,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<List<String>> list = List.of(
+            List.of(""a"", ""b""),
+            List.of(""c"", ""d"")
+        );
+        List<String> result = list.stream()
+            .flatMap(l -> l.stream())
+            .collect(Collectors.toList());
+        System.out.println(result.size());
+    }
+}",4,2,8,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt1 = Optional.of(""test"");
+        Optional<String> opt2 = opt1.flatMap(s -> Optional.of(s.toUpperCase()));
+        System.out.println(opt2.get());
+    }
+}",TEST,test,Compilation error,NoSuchElementException
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        Optional<Integer> max = list.stream()
+            .max(Integer::compareTo);
+        System.out.println(max.get());
+    }
+}",3,1,6,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        Optional<Integer> min = list.stream()
+            .min(Integer::compareTo);
+        System.out.println(min.get());
+    }
+}",1,3,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""apricot"");
+        Optional<String> max = list.stream()
+            .max(Comparator.comparing(String::length));
+        System.out.println(max.get());
+    }
+}",banana,apple,apricot,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        Map<Boolean, Long> map = list.stream()
+            .collect(Collectors.partitioningBy(
+                x -> x % 2 == 0,
+                Collectors.counting()
+            ));
+        System.out.println(map.get(false));
+    }
+}",3,2,5,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        String result = Stream.of(""a"", ""b"", ""c"")
+            .collect(Collectors.joining(""-""));
+        System.out.println(result);
+    }
+}",a-b-c,abc,Compilation error,a
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        list.stream()
+            .peek(System.out::print)
+            .forEach(x -> {});
+    }
+}",123,No output,Compilation error,321
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long count = IntStream.iterate(1, x -> x + 1)
+            .limit(5)
+            .count();
+        System.out.println(count);
+    }
+}",5,Infinite loop,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        Optional<Integer> first = list.stream()
+            .filter(x -> x > 3)
+            .findFirst();
+        System.out.println(first.get());
+    }
+}",4,5,3,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Map<String, Integer> map = list.stream()
+            .collect(Collectors.toMap(
+                s -> s,
+                String::length
+            ));
+        System.out.println(map.get(""a""));
+    }
+}",1,0,Compilation error,a
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 2, 3, 3, 3);
+        List<Integer> result = list.stream()
+            .distinct()
+            .collect(Collectors.toList());
+        System.out.println(result.size());
+    }
+}",3,6,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        int sum = IntStream.of(1, 2, 3)
+            .map(x -> x * 2)
+            .sum();
+        System.out.println(sum);
+    }
+}",12,6,3,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long sum = LongStream.of(1L, 2L, 3L)
+            .mapToLong(x -> x * 2)
+            .sum();
+        System.out.println(sum);
+    }
+}",12,6,3,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        double sum = DoubleStream.of(1.0, 2.0, 3.0)
+            .mapToDouble(x -> x * 2)
+            .sum();
+        System.out.println(sum);
+    }
+}",12.0,6.0,3.0,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        IntSummaryStatistics stats = list.stream()
+            .collect(Collectors.summarizingInt(x -> x));
+        System.out.println(stats.getCount());
+    }
+}",3,6,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        IntSummaryStatistics stats = list.stream()
+            .collect(Collectors.summarizingInt(x -> x));
+        System.out.println(stats.getMax());
+    }
+}",5,1,15,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<Integer> opt = Optional.empty();
+        int result = opt.orElseThrow();
+    }
+}",NoSuchElementException at runtime,Compilation error,0,null
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.of(""test"");
+        opt.ifPresentOrElse(
+            System.out::println,
+            () -> System.out.println(""empty"")
+        );
+    }
+}",test,empty,Compilation error,No output
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.empty();
+        opt.ifPresentOrElse(
+            System.out::println,
+            () -> System.out.println(""empty"")
+        );
+    }
+}",empty,No output,Compilation error,null
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt1 = Optional.of(""a"");
+        Optional<String> opt2 = Optional.of(""b"");
+        Optional<String> result = opt1.or(() -> opt2);
+        System.out.println(result.get());
+    }
+}",a,b,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt1 = Optional.empty();
+        Optional<String> opt2 = Optional.of(""b"");
+        Optional<String> result = opt1.or(() -> opt2);
+        System.out.println(result.get());
+    }
+}",b,Compilation error,NoSuchElementException,null
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Optional<String> result = list.stream()
+            .filter(s -> s.equals(""d""))
+            .findAny();
+        System.out.println(result.isEmpty());
+    }
+}",true,false,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        Stream<Integer> stream = list.stream();
+        System.out.println(stream.count());
+        System.out.println(stream.count());
+    }
+}",IllegalStateException at runtime,1 then 1,3 then 3,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""apricot"", ""blueberry"");
+        Map<Character, Long> map = list.stream()
+            .collect(Collectors.groupingBy(
+                s -> s.charAt(0),
+                Collectors.counting()
+            ));
+        System.out.println(map.get('b'));
+    }
+}",2,1,4,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+        Map<Boolean, List<Integer>> map = list.stream()
+            .collect(Collectors.partitioningBy(x -> x > 3));
+        System.out.println(map.get(true).size());
+    }
+}",3,2,6,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+        int sum = Arrays.stream(arr).sum();
+        System.out.println(sum);
+    }
+}",6,3,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        String result = list.stream()
+            .collect(Collectors.joining("","", ""["", ""]""));
+        System.out.println(result);
+    }
+}","[a,b,c]","a,b,c",abc,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        boolean result = list.stream()
+            .allMatch(x -> x < 10);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        int product = list.stream()
+            .reduce(1, (a, b) -> a * b);
+        System.out.println(product);
+    }
+}",6,1,3,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        Optional<String> max = list.stream()
+            .max(Comparator.comparingInt(String::length));
+        System.out.println(max.get());
+    }
+}",ccc,a,bb,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        int first = IntStream.rangeClosed(1, 10)
+            .filter(x -> x % 2 == 0)
+            .findFirst()
+            .getAsInt();
+        System.out.println(first);
+    }
+}",2,1,10,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<List<Integer>> list = List.of(
+            List.of(1, 2),
+            List.of(3),
+            List.of(4, 5, 6)
+        );
+        int sum = list.stream()
+            .flatMap(l -> l.stream())
+            .mapToInt(x -> x)
+            .sum();
+        System.out.println(sum);
+    }
+}",21,6,3,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""apricot"");
+        Map<Integer, List<String>> map = list.stream()
+            .collect(Collectors.groupingBy(String::length));
+        System.out.println(map.size());
+    }
+}",2,3,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<Integer> opt = Optional.of(5);
+        boolean result = opt.filter(x -> x > 3).isPresent();
+        System.out.println(result);
+    }
+}",true,false,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(5, 2, 8, 1, 9);
+        int second = list.stream()
+            .sorted()
+            .skip(1)
+            .findFirst()
+            .get();
+        System.out.println(second);
+    }
+}",2,5,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        List<String> result = list.stream()
+            .map(s -> s + s)
+            .collect(Collectors.toList());
+        System.out.println(result.get(0));
+    }
+}",aa,a,Compilation error,aaa
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        boolean result = Stream.of(1, 3, 5)
+            .noneMatch(x -> x % 2 == 0);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long count = Stream.generate(() -> ""x"")
+            .limit(5)
+            .count();
+        System.out.println(count);
+    }
+}",5,Infinite loop,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        long count = list.stream()
+            .takeWhile(x -> x < 4)
+            .count();
+        System.out.println(count);
+    }
+}",3,4,5,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        long count = list.stream()
+            .dropWhile(x -> x < 3)
+            .count();
+        System.out.println(count);
+    }
+}",3,2,5,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Map<Boolean, List<String>> map = list.stream()
+            .collect(Collectors.partitioningBy(s -> s.equals(""a"")));
+        System.out.println(map.get(true).size());
+    }
+}",1,3,2,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        double avg = list.stream()
+            .mapToDouble(x -> x)
+            .average()
+            .getAsDouble();
+        System.out.println(avg);
+    }
+}",2.0,2,6.0,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Set<String> set = list.stream()
+            .collect(Collectors.toCollection(TreeSet::new));
+        System.out.println(set.iterator().next());
+    }
+}",a,c,b,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        Map<String, List<Integer>> map = list.stream()
+            .collect(Collectors.groupingBy(
+                x -> x % 2 == 0 ? ""even"" : ""odd""
+            ));
+        System.out.println(map.get(""odd"").size());
+    }
+}",3,2,5,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> opt = Optional.of(""test"");
+        String result = opt.stream()
+            .findFirst()
+            .get();
+        System.out.println(result);
+    }
+}",test,Compilation error,NoSuchElementException,empty
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        long sum = list.stream()
+            .mapToLong(x -> x)
+            .sum();
+        System.out.println(sum);
+    }
+}",6,3,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""apricot"", ""banana"");
+        Map<Character, String> map = list.stream()
+            .collect(Collectors.toMap(
+                s -> s.charAt(0),
+                s -> s,
+                (s1, s2) -> s1 + "","" + s2
+            ));
+        System.out.println(map.get('a'));
+    }
+}","apple,apricot",apple,apricot,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(5, 2, 8, 1, 9, 3);
+        List<Integer> result = list.stream()
+            .sorted(Comparator.reverseOrder())
+            .limit(3)
+            .collect(Collectors.toList());
+        System.out.println(result.get(0));
+    }
+}",9,1,5,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""1"", ""2"", ""3"");
+        int sum = list.stream()
+            .flatMapToInt(s -> IntStream.of(Integer.parseInt(s)))
+            .sum();
+        System.out.println(sum);
+    }
+}",6,3,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        boolean result = IntStream.empty()
+            .allMatch(x -> x > 0);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,NoSuchElementException
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        int max = list.stream()
+            .collect(Collectors.maxBy(Integer::compareTo))
+            .get();
+        System.out.println(max);
+    }
+}",5,1,15,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        int min = list.stream()
+            .collect(Collectors.minBy(Integer::compareTo))
+            .get();
+        System.out.println(min);
+    }
+}",1,5,0,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""apricot"");
+        Map<Integer, String> map = list.stream()
+            .collect(Collectors.groupingBy(
+                String::length,
+                Collectors.joining("","")
+            ));
+        System.out.println(map.get(6));
+    }
+}","banana,apricot",banana,apricot,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        Map<Boolean, Integer> map = list.stream()
+            .collect(Collectors.partitioningBy(
+                x -> x % 2 == 0,
+                Collectors.summingInt(x -> x)
+            ));
+        System.out.println(map.get(true));
+    }
+}",6,2,15,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        String[] arr = {""a"", ""b"", ""c""};
+        String result = Arrays.stream(arr)
+            .collect(Collectors.joining());
+        System.out.println(result);
+    }
+}",abc,a,Compilation error,"a,b,c"
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Optional<String>> list = List.of(
+            Optional.of(""a""),
+            Optional.empty(),
+            Optional.of(""b"")
+        );
+        long count = list.stream()
+            .flatMap(Optional::stream)
+            .count();
+        System.out.println(count);
+    }
+}",2,3,1,Compilation error
+"What is the output?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        boolean result = list.stream()
+            .peek(x -> System.out.print(x))
+            .anyMatch(x -> x == 2);
+        System.out.println(result);
+    }
+}",12true,123true,true,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Map<String, String> map = list.stream()
+            .collect(Collectors.toMap(
+                s -> s,
+                String::toUpperCase
+            ));
+        System.out.println(map.get(""a""));
+    }
+}",A,a,Compilation error,null
