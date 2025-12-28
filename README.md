@@ -60,3 +60,15 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ICON converter website: https://favicon.io/favicon-converter/
+
+## Deployment
+
+```bash
+npm run build
+ng build --configuration production --base-href / --output-path docs
+git restore docs/CNAME
+git add -A
+git commit -m "added more test banks"
+git status
+git push
+```

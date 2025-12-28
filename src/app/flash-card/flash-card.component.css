@@ -10,8 +10,9 @@
   padding-bottom: 4rem;
   position: relative;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   font-family: 'Courier New', monospace;
+  box-sizing: border-box;
 }
 
 /* Background themes - 8 variations */
@@ -203,6 +204,10 @@
   padding: 2rem;
   white-space: pre-wrap;
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  overflow: auto;
   text-shadow:
     0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -612,6 +617,10 @@
     font-size: 36px;
   }
 
+  .card-wrapper {
+    max-width: 100%;
+  }
+
   .card-face {
     padding: 1.5rem;
   }
@@ -619,6 +628,7 @@
   .card-content {
     font-size: 18px;
     padding: 1rem;
+    text-align: left;
   }
 
   .card-content.answer {
@@ -656,25 +666,42 @@
 }
 
 @media (max-width: 480px) {
+  .flash-card-container {
+    padding: 0.5rem;
+  }
+
+  .card-wrapper {
+    max-width: 100%;
+  }
+
   .card-face {
     padding: 1rem;
+    min-height: 400px;
   }
 
   .card-label {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .card-content {
-    font-size: 16px;
+    font-size: 14px;
+    padding: 0.5rem;
+    line-height: 1.4;
+    text-align: left;
   }
 
   .card-content.answer {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .reveal-button {
-    font-size: 18px;
-    padding: 12px 24px;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .assessment-button {
+    font-size: 16px;
+    padding: 12px 20px;
   }
 
   .completion-card {
@@ -687,5 +714,74 @@
 
   .stat-number {
     font-size: 36px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+}
+
+/* iPhone specific adjustments */
+@media (max-width: 390px) {
+  .flash-card-container {
+    padding: 0.25rem;
+  }
+
+  .flash-card-header {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .card-face {
+    padding: 0.75rem;
+    min-height: 350px;
+  }
+
+  .card-content {
+    font-size: 13px;
+    padding: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .card-content.answer {
+    font-size: 14px;
+  }
+
+  .reveal-button {
+    font-size: 14px;
+    padding: 8px 16px;
+    letter-spacing: 1px;
+  }
+
+  .assessment-button {
+    font-size: 14px;
+    padding: 10px 16px;
+    letter-spacing: 1px;
+  }
+
+  .card-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .nav-button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .progress-indicator {
+    font-size: 16px;
   }
 }
