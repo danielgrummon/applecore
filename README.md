@@ -72,3 +72,11 @@ git commit -m "added more test banks"
 git status
 git push
 ```
+
+## Repoint HEAD to a3fe267
+
+```bash
+git reset --hard a3fe267
+git push --force origin main
+git log --oneline -5
+```

@@ -1,0 +1,2980 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Runnable r = () -> System.out.println(""Running"");
+        r.run();
+    }
+}",Running,Compilation error,Runtime error,Nothing prints
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Runnable r = () -> System.out.println(""Running"");
+        r.start();
+    }
+}",Compilation error,Running,Runtime error,Nothing prints
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> System.out.println(""Running""));
+        t.run();
+        System.out.println(""Main"");
+    }
+}","Running
+Main",Compilation error,"Main
+Running",Runtime error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> System.out.println(""Running""));
+        t.start();
+        System.out.println(""Main"");
+    }
+}",Output order is unpredictable,"Running
+Main",Compilation error,"Main
+Running"
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Callable<String> c = () -> ""Result"";
+        String result = c.call();
+        System.out.println(result);
+    }
+}",Compilation error,Result,Runtime error,Nothing prints
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Callable<String> c = () -> ""Result"";
+        String result = c.call();
+        System.out.println(result);
+    }
+}",Result,Compilation error,Runtime error,Nothing prints
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(() -> System.out.println(""Task""));
+    }
+}",Program may not terminate,Task,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(() -> System.out.println(""Task""));
+        service.shutdown();
+    }
+}",Task,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.shutdown();
+        service.execute(() -> System.out.println(""Task""));
+    }
+}",Runtime error,Task,Compilation error,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<?> future = service.submit(() -> System.out.println(""Task""));
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}",Compilation error,null,Task,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<?> future = service.submit(() -> System.out.println(""Task""));
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}","Task
+null",Compilation error,null,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<String> future = service.submit(() -> ""Result"");
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}",Compilation error,Result,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Callable<String> task = () -> ""Result"";
+        Future<String> future = service.submit(task);
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}",Result,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(() -> ""Result"");
+        service.shutdown();
+    }
+}",Compilation error,Nothing prints,Runtime error,Result
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        String result = service.submit(() -> ""Result"");
+        System.out.println(result);
+        service.shutdown();
+    }
+}",Compilation error,Result,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<String> future = service.submit(() -> ""Result"");
+        service.shutdown();
+        System.out.println(future.get());
+    }
+}",Result,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.shutdown();
+        Future<String> future = service.submit(() -> ""Result"");
+        System.out.println(future.get());
+    }
+}",Runtime error,Result,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<Integer> future = service.submit(() -> 5 / 0);
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}",Runtime error,Compilation error,0,ArithmeticException at submit
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<Integer> future = service.submit(() -> 5 / 0);
+        service.shutdown();
+    }
+}",Program completes normally,Runtime error,Compilation error,ArithmeticException thrown
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<?> future = service.submit(() -> System.out.println(""Task""));
+        future.cancel(true);
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}",Runtime error,null,Compilation error,Task
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<?> future = service.submit(() -> System.out.println(""Task""));
+        future.cancel(true);
+        System.out.println(future.isCancelled());
+        service.shutdown();
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<?> future = service.submit(() -> System.out.println(""Task""));
+        System.out.println(future.isDone());
+        future.get();
+        System.out.println(future.isDone());
+        service.shutdown();
+    }
+}",Output is unpredictable,"false
+true",Compilation error,"true
+true"
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        System.out.println(service.isShutdown());
+        service.shutdown();
+        System.out.println(service.isShutdown());
+    }
+}","false
+true",Compilation error,"true
+true",Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.shutdown();
+        System.out.println(service.isTerminated());
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(() -> { try { Thread.sleep(5000); } catch (Exception e) {} });
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.SECONDS);
+        System.out.println(service.isTerminated());
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(() -> { try { Thread.sleep(100); } catch (Exception e) {} });
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.SECONDS);
+        System.out.println(service.isTerminated());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        boolean result = service.awaitTermination(1, TimeUnit.SECONDS);
+        System.out.println(result);
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.shutdown();
+        boolean result = service.awaitTermination(1, TimeUnit.SECONDS);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.schedule(() -> System.out.println(""Task""), 1, TimeUnit.SECONDS);
+        service.shutdown();
+        Thread.sleep(2000);
+    }
+}",Task,Nothing prints,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.schedule(() -> System.out.println(""Task""), 1, TimeUnit.SECONDS);
+        service.shutdown();
+    }
+}",Nothing prints,Task,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        Callable<String> task = () -> ""Result"";
+        Future<String> future = service.schedule(task, 0, TimeUnit.SECONDS);
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}",Result,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.scheduleAtFixedRate(() -> System.out.println(""Task""), 0, 1, TimeUnit.SECONDS);
+        service.shutdown();
+    }
+}",Nothing prints,Task,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        Callable<String> task = () -> ""Result"";
+        service.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
+        service.shutdown();
+    }
+}",Compilation error,Nothing prints,Runtime error,Result
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.scheduleWithFixedDelay(() -> System.out.println(""Task""), 0, 1, TimeUnit.SECONDS);
+        Thread.sleep(3500);
+        service.shutdown();
+    }
+}",Task prints 3-4 times,Task prints once,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.scheduleAtFixedRate(() -> System.out.println(""Task""), 1, 1, TimeUnit.SECONDS);
+        Thread.sleep(500);
+        service.shutdown();
+    }
+}",Nothing prints,Task,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        List<Callable<String>> tasks = List.of(() -> ""A"", () -> ""B"");
+        List<Future<String>> futures = service.invokeAll(tasks);
+        System.out.println(futures.size());
+        service.shutdown();
+    }
+}",2,Compilation error,Runtime error,0
+"What is the result?
+import java.util.concurrent.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        List<Callable<String>> tasks = List.of(() -> ""A"", () -> ""B"");
+        String result = service.invokeAny(tasks);
+        System.out.println(result);
+        service.shutdown();
+    }
+}",Either A or B,AB,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        List<Callable<String>> tasks = new ArrayList<>();
+        String result = service.invokeAny(tasks);
+        System.out.println(result);
+        service.shutdown();
+    }
+}",Runtime error,null,Compilation error,Nothing prints
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.get());
+    }
+}",5,Compilation error,0,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        ai.set(10);
+        System.out.println(ai.get());
+    }
+}",10,5,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.getAndSet(10));
+        System.out.println(ai.get());
+    }
+}","5
+10",Compilation error,"10
+5","10
+10"
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.incrementAndGet());
+    }
+}",6,5,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.getAndIncrement());
+    }
+}",5,6,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.getAndIncrement());
+        System.out.println(ai.get());
+    }
+}","5
+6",Compilation error,"6
+6","6
+5"
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.decrementAndGet());
+    }
+}",4,5,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.getAndDecrement());
+    }
+}",5,4,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicBoolean ab = new AtomicBoolean(true);
+        System.out.println(ab.get());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicBoolean ab = new AtomicBoolean(true);
+        System.out.println(ab.getAndSet(false));
+        System.out.println(ab.get());
+    }
+}","true
+false",Compilation error,"false
+false","false
+true"
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicLong al = new AtomicLong(100L);
+        System.out.println(al.incrementAndGet());
+    }
+}",101,100,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        ai.incrementAndGet();
+        ai.incrementAndGet();
+        System.out.println(ai.get());
+    }
+}",7,5,Compilation error,6
+"What is the result?
+public class Test {
+    private int count = 0;
+    public static void main(String[] args) {
+        synchronized(this) {
+            count++;
+        }
+        System.out.println(count);
+    }
+}",Compilation error,1,Runtime error,0
+"What is the result?
+public class Test {
+    private int count = 0;
+    public void increment() {
+        synchronized(this) {
+            count++;
+        }
+    }
+    public static void main(String[] args) {
+        new Test().increment();
+    }
+}",Program completes normally,Compilation error,Runtime error,1
+"What is the result?
+public class Test {
+    private static int count = 0;
+    public synchronized void increment() {
+        count++;
+    }
+    public static void main(String[] args) {
+        new Test().increment();
+        System.out.println(count);
+    }
+}",1,Compilation error,0,Runtime error
+"What is the result?
+public class Test {
+    private static int count = 0;
+    public static synchronized void increment() {
+        count++;
+    }
+    public static void main(String[] args) {
+        increment();
+        System.out.println(count);
+    }
+}",1,Compilation error,0,Runtime error
+"What is the result?
+public class Test {
+    private int count = 0;
+    public synchronized static void increment() {
+        count++;
+    }
+    public static void main(String[] args) {
+        increment();
+    }
+}",Compilation error,1,Runtime error,0
+"What is the result?
+public class Test {
+    private final Object lock = new Object();
+    private int count = 0;
+    public void increment() {
+        synchronized(lock) {
+            count++;
+        }
+    }
+    public static void main(String[] args) {
+        new Test().increment();
+    }
+}",Program completes normally,Compilation error,Runtime error,1
+"What is the result?
+public class Test {
+    private static final Object lock = new Object();
+    public static void main(String[] args) {
+        synchronized(lock) {
+            System.out.println(""Task"");
+        }
+    }
+}",Task,Compilation error,Runtime error,Nothing prints
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Object lock = null;
+        synchronized(lock) {
+            System.out.println(""Task"");
+        }
+    }
+}",Runtime error,Task,Compilation error,Nothing prints
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        lock.lock();
+        System.out.println(""Task"");
+        lock.unlock();
+    }
+}",Task,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        try {
+            lock.lock();
+            System.out.println(""Task"");
+        } finally {
+            lock.unlock();
+        }
+    }
+}",Task,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        lock.lock();
+        lock.lock();
+        System.out.println(""Task"");
+        lock.unlock();
+        lock.unlock();
+    }
+}",Task,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        lock.lock();
+        System.out.println(""Task"");
+        lock.unlock();
+        lock.unlock();
+    }
+}",Runtime error,Task,Compilation error,Program hangs
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        System.out.println(lock.tryLock());
+        lock.unlock();
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        if (lock.tryLock()) {
+            try {
+                System.out.println(""Locked"");
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+}",Locked,Compilation error,Runtime error,Nothing prints
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Lock lock = new ReentrantLock();
+        System.out.println(lock.tryLock(1, TimeUnit.SECONDS));
+        lock.unlock();
+    }
+}",Compilation error,true,Runtime error,false
+"What is the result?
+import java.util.concurrent.locks.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Lock lock = new ReentrantLock();
+        System.out.println(lock.tryLock(1, TimeUnit.SECONDS));
+        lock.unlock();
+    }
+}",true,Compilation error,false,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+        System.out.println(lock.isLocked());
+        lock.unlock();
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CyclicBarrier barrier = new CyclicBarrier(2);
+        barrier.await();
+        System.out.println(""Done"");
+    }
+}",Program hangs,Done,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CyclicBarrier barrier = new CyclicBarrier(1);
+        barrier.await();
+        System.out.println(""Done"");
+    }
+}",Done,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        CyclicBarrier barrier = new CyclicBarrier(2);
+        for (int i = 0; i < 2; i++) {
+            service.submit(() -> {
+                try { barrier.await(); } catch (Exception e) {}
+            });
+        }
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.SECONDS);
+        System.out.println(""Done"");
+    }
+}",Done,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        for (String s : list) {
+            list.add(""B"");
+        }
+    }
+}",Runtime error,Compilation error,Program completes normally,AB
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new CopyOnWriteArrayList<>();
+        list.add(""A"");
+        for (String s : list) {
+            list.add(""B"");
+        }
+        System.out.println(list.size());
+    }
+}",Program hangs,2,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        System.out.println(map.get(""A""));
+    }
+}",1,Compilation error,null,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(null, 1);
+        System.out.println(map.size());
+    }
+}",Runtime error,1,Compilation error,0
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", null);
+        System.out.println(map.size());
+    }
+}",Runtime error,1,Compilation error,0
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new ConcurrentLinkedQueue<>();
+        queue.add(""A"");
+        System.out.println(queue.poll());
+    }
+}",A,Compilation error,null,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new ConcurrentLinkedQueue<>();
+        queue.add(null);
+        System.out.println(queue.size());
+    }
+}",Runtime error,1,Compilation error,0
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new CopyOnWriteArraySet<>();
+        set.add(""A"");
+        for (String s : set) {
+            set.add(""B"");
+        }
+        System.out.println(set.size());
+    }
+}",2,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new ConcurrentSkipListMap<>();
+        map.put(""B"", 2);
+        map.put(""A"", 1);
+        System.out.println(map.keySet());
+    }
+}","[A, B]",Compilation error,"[B, A]",Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new ConcurrentSkipListSet<>();
+        set.add(""B"");
+        set.add(""A"");
+        System.out.println(set);
+    }
+}","[A, B]",Compilation error,"[B, A]",Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        BlockingQueue<String> queue = new LinkedBlockingQueue<>();
+        queue.add(""A"");
+        System.out.println(queue.take());
+    }
+}",A,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        BlockingQueue<String> queue = new LinkedBlockingQueue<>();
+        System.out.println(queue.take());
+    }
+}",Program hangs,null,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Collections.synchronizedList(new ArrayList<>());
+        list.add(""A"");
+        System.out.println(list.get(0));
+    }
+}",A,Compilation error,null,Runtime error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Collections.synchronizedList(new ArrayList<>());
+        list.add(""A"");
+        for (String s : list) {
+            list.add(""B"");
+        }
+    }
+}",Runtime error,Compilation error,Program completes normally,Program hangs
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = Collections.synchronizedMap(new HashMap<>());
+        map.put(""A"", 1);
+        System.out.println(map.get(""A""));
+    }
+}",1,Compilation error,null,Runtime error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = Collections.synchronizedSet(new HashSet<>());
+        set.add(""A"");
+        System.out.println(set.contains(""A""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        Stream<Integer> s = list.stream().parallel();
+        System.out.println(s.isParallel());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        Stream<Integer> s = list.parallelStream();
+        System.out.println(s.isParallel());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        list.parallelStream().forEach(System.out::print);
+    }
+}",Output order is unpredictable,1234,Compilation error,4321
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        list.parallelStream().forEachOrdered(System.out::print);
+    }
+}",1234,Output order is unpredictable,Compilation error,4321
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        Optional<Integer> result = list.parallelStream().findAny();
+        System.out.println(result.get());
+    }
+}",Any element from list,1,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        Optional<Integer> result = list.parallelStream().findFirst();
+        System.out.println(result.get());
+    }
+}",1,Any element from list,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        Optional<Integer> result = list.stream().findAny();
+        System.out.println(result.get());
+    }
+}",1,Any element from list,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Stream<Integer> s = Stream.of(1, 2, 3).parallel();
+        s = s.unordered();
+        System.out.println(s.isParallel());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""w"", ""o"", ""l"", ""f"");
+        String result = list.parallelStream()
+            .reduce("""", (s1, c) -> s1 + c);
+        System.out.println(result);
+    }
+}",Output is unpredictable,wolf,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""w"", ""o"", ""l"", ""f"");
+        String result = list.parallelStream()
+            .reduce("""", (s1, c) -> s1 + c, (s2, s3) -> s2 + s3);
+        System.out.println(result);
+    }
+}",wolf,Output is unpredictable,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        int result = list.parallelStream()
+            .reduce(0, (a, b) -> a + b);
+        System.out.println(result);
+    }
+}",10,Compilation error,Runtime error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        int result = list.parallelStream()
+            .reduce(1, (a, b) -> a + b);
+        System.out.println(result);
+    }
+}",Result is unpredictable,10,Compilation error,11
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        int result = list.parallelStream()
+            .reduce(0, (a, b) -> a + b, (c, d) -> c + d);
+        System.out.println(result);
+    }
+}",6,Compilation error,Runtime error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        int result = list.parallelStream()
+            .reduce(0, (i, s) -> i + s.length(), (i1, i2) -> i1 + i2);
+        System.out.println(result);
+    }
+}",6,Compilation error,Runtime error,3
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        List.of(""B"", ""C"").parallelStream()
+            .forEach(s -> list.add(s));
+        System.out.println(list.size());
+    }
+}",Runtime error may occur,3,Compilation error,1
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new CopyOnWriteArrayList<>();
+        list.add(""A"");
+        List.of(""B"", ""C"").parallelStream()
+            .forEach(s -> list.add(s));
+        System.out.println(list.size());
+    }
+}",3,Runtime error,Compilation error,1
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        List<String> result = list.parallelStream()
+            .collect(Collectors.toList());
+        System.out.println(result.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        Set<String> result = list.parallelStream()
+            .collect(Collectors.toSet());
+        System.out.println(result.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        Map<Integer, List<String>> result = list.parallelStream()
+            .collect(Collectors.groupingBy(String::length));
+        System.out.println(result.size());
+    }
+}",3,Compilation error,Runtime error,1
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""bb"", ""ccc"");
+        Map<Integer, List<String>> result = list.parallelStream()
+            .collect(Collectors.groupingByConcurrent(String::length));
+        System.out.println(result.size());
+    }
+}",3,Compilation error,Runtime error,1
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        String result = list.parallelStream()
+            .collect(Collectors.joining());
+        System.out.println(result);
+    }
+}",abc,Compilation error,Runtime error,Output is unpredictable
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        int sum = list.parallelStream()
+            .mapToInt(i -> i)
+            .sum();
+        System.out.println(sum);
+    }
+}",6,Compilation error,Runtime error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        long count = list.parallelStream()
+            .filter(i -> i % 2 == 0)
+            .count();
+        System.out.println(count);
+    }
+}",2,Compilation error,4,0
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> System.out.println(""Running""));
+        t.start();
+        t.start();
+    }
+}",Runtime error,Running prints twice,Compilation error,Running prints once
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> {
+            try { Thread.sleep(1000); } catch (Exception e) {}
+        });
+        t.start();
+        System.out.println(t.getState());
+    }
+}",Output is unpredictable,NEW,Compilation error,TERMINATED
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> System.out.println(""Running""));
+        System.out.println(t.getState());
+    }
+}",NEW,RUNNABLE,Compilation error,TERMINATED
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> System.out.println(""Running""));
+        t.start();
+        t.join();
+        System.out.println(t.getState());
+    }
+}",TERMINATED,RUNNABLE,NEW,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread.sleep(100);
+        System.out.println(""Done"");
+    }
+}",Done,Compilation error,Runtime error,Program hangs
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread.sleep(100);
+        System.out.println(""Done"");
+    }
+}",Compilation error,Done,Runtime error,Program hangs
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> {
+            while (true) {
+                if (Thread.interrupted()) {
+                    System.out.println(""Interrupted"");
+                    break;
+                }
+            }
+        });
+        t.start();
+        t.interrupt();
+    }
+}",Interrupted or nothing prints,Compilation error,Runtime error,Program hangs
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                System.out.println(""Interrupted"");
+            }
+        });
+        t.start();
+        t.interrupt();
+        t.join();
+    }
+}",Interrupted,Nothing prints,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        service.submit(() -> System.out.println(""Task 1""));
+        service.submit(() -> System.out.println(""Task 2""));
+        service.shutdown();
+    }
+}",Both tasks may print,Compilation error,Runtime error,Neither task prints
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newCachedThreadPool();
+        service.submit(() -> System.out.println(""Task""));
+        service.shutdown();
+    }
+}",Task may or may not print,Compilation error,Runtime error,Task
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newFixedThreadPool(1);
+        for (int i = 0; i < 3; i++) {
+            final int j = i;
+            service.submit(() -> System.out.print(j));
+        }
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.SECONDS);
+    }
+}",012 in any order,012,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(2);
+        service.schedule(() -> System.out.println(""Task""), 0, TimeUnit.SECONDS);
+        Thread.sleep(100);
+        service.shutdown();
+    }
+}",Task,Nothing prints,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<Integer> f1 = service.submit(() -> 10);
+        Future<Integer> f2 = service.submit(() -> 20);
+        System.out.println(f1.get() + f2.get());
+        service.shutdown();
+    }
+}",30,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<?> future = service.submit(() -> {
+            Thread.sleep(100);
+            return ""Result"";
+        });
+        future.get(50, TimeUnit.MILLISECONDS);
+        service.shutdown();
+    }
+}",Runtime error,Result,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<String> future = service.submit(() -> {
+            Thread.sleep(100);
+            return ""Result"";
+        });
+        System.out.println(future.get(1, TimeUnit.SECONDS));
+        service.shutdown();
+    }
+}",Result,Runtime error,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(() -> {
+            service.submit(() -> System.out.println(""Inner""));
+        });
+        service.shutdown();
+    }
+}",Program may deadlock,Inner,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.shutdownNow();
+        System.out.println(service.isShutdown());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        List<Runnable> tasks = service.shutdownNow();
+        System.out.println(tasks.size());
+    }
+}",0,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(() -> { try { Thread.sleep(5000); } catch (Exception e) {} });
+        List<Runnable> tasks = service.shutdownNow();
+        Thread.sleep(100);
+        System.out.println(service.isTerminated());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        System.out.println(ai.addAndGet(5));
+    }
+}",15,10,Compilation error,5
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        System.out.println(ai.getAndAdd(5));
+    }
+}",10,15,Compilation error,5
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        System.out.println(ai.getAndAdd(5));
+        System.out.println(ai.get());
+    }
+}","10
+15",Compilation error,"15
+15","5
+10"
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicBoolean ab = new AtomicBoolean();
+        System.out.println(ab.get());
+    }
+}",false,true,Compilation error,null
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger();
+        System.out.println(ai.get());
+    }
+}",0,Compilation error,null,Random value
+"What is the result?
+public class Test {
+    private int count = 0;
+    public synchronized void increment() {
+        count++;
+    }
+    public synchronized int getCount() {
+        return count;
+    }
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.increment();
+        System.out.println(t.getCount());
+    }
+}",1,Compilation error,0,Runtime error
+"What is the result?
+public class Test {
+    private static int count = 0;
+    public static void increment() {
+        synchronized(Test.class) {
+            count++;
+        }
+    }
+    public static void main(String[] args) {
+        increment();
+        System.out.println(count);
+    }
+}",1,Compilation error,0,Runtime error
+"What is the result?
+public class Test {
+    public void method1() {
+        synchronized(this) {
+            method2();
+        }
+    }
+    public synchronized void method2() {
+        System.out.println(""Method 2"");
+    }
+    public static void main(String[] args) {
+        new Test().method1();
+    }
+}",Method 2,Compilation error,Program hangs,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        try {
+            lock.lock();
+            System.out.println(""Task"");
+        } catch (Exception e) {
+            lock.unlock();
+        }
+    }
+}",Program may hang,Task,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+        lock.lock();
+        System.out.println(lock.getHoldCount());
+        lock.unlock();
+        lock.unlock();
+    }
+}",2,1,Compilation error,0
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+        System.out.println(lock.getHoldCount());
+        lock.unlock();
+    }
+}",1,0,Compilation error,2
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CyclicBarrier barrier = new CyclicBarrier(3);
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        for (int i = 0; i < 2; i++) {
+            service.submit(() -> {
+                try { barrier.await(); } catch (Exception e) {}
+            });
+        }
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.SECONDS);
+        System.out.println(""Done"");
+    }
+}",Done,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CyclicBarrier barrier = new CyclicBarrier(2, () -> System.out.println(""Action""));
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        for (int i = 0; i < 2; i++) {
+            service.submit(() -> {
+                try { barrier.await(); } catch (Exception e) {}
+            });
+        }
+        service.shutdown();
+        service.awaitTermination(1, TimeUnit.SECONDS);
+    }
+}",Action,Nothing prints,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new CopyOnWriteArrayList<>();
+        list.add(1);
+        list.add(2);
+        for (Integer i : list) {
+            list.remove(i);
+        }
+        System.out.println(list.size());
+    }
+}",0,2,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new ConcurrentHashMap<>();
+        map.putIfAbsent(""A"", ""1"");
+        map.putIfAbsent(""A"", ""2"");
+        System.out.println(map.get(""A""));
+    }
+}",1,2,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new ConcurrentHashMap<>();
+        map.put(""A"", ""1"");
+        map.put(""A"", ""2"");
+        System.out.println(map.get(""A""));
+    }
+}",2,1,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(2);
+        queue.offer(1);
+        queue.offer(2);
+        System.out.println(queue.offer(3));
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(2);
+        queue.offer(1);
+        queue.offer(2);
+        queue.put(3);
+        System.out.println(""Done"");
+    }
+}",Program hangs,Done,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
+        queue.add(1);
+        queue.add(2);
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+    }
+}","1
+2
+null",Compilation error,"1
+2
+Program hangs",Runtime error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Collections.synchronizedList(new ArrayList<>());
+        synchronized(list) {
+            list.add(1);
+            for (Integer i : list) {
+                list.add(2);
+            }
+        }
+    }
+}",Runtime error,Compilation error,Program completes normally,Program hangs
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Stream<Integer> s = Stream.of(1, 2, 3);
+        s.parallel();
+        System.out.println(s.isParallel());
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Stream<Integer> s = Stream.of(1, 2, 3);
+        s = s.parallel();
+        System.out.println(s.isParallel());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        long count = list.parallelStream()
+            .peek(System.out::println)
+            .count();
+        System.out.println(count);
+    }
+}",Elements may not print,3,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+        int sum = list.parallelStream()
+            .reduce(10, (a, b) -> a + b);
+        System.out.println(sum);
+    }
+}",Result is unpredictable,21,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        Optional<Integer> result = list.parallelStream()
+            .reduce((a, b) -> a + b);
+        System.out.println(result.get());
+    }
+}",10,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        List<Integer> result = list.parallelStream()
+            .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        System.out.println(result.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        StringBuilder sb = new StringBuilder();
+        list.parallelStream()
+            .forEach(i -> sb.append(i));
+        System.out.println(sb.length());
+    }
+}",Result is unpredictable,3,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new HashSet<>();
+        List.of(1, 2, 3).parallelStream()
+            .forEach(i -> set.add(i));
+        System.out.println(set.size());
+    }
+}",Runtime error may occur,3,Compilation error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = ConcurrentHashMap.newKeySet();
+        List.of(1, 2, 3).parallelStream()
+            .forEach(i -> set.add(i));
+        System.out.println(set.size());
+    }
+}",3,Runtime error,Compilation error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        Map<Boolean, List<String>> result = list.parallelStream()
+            .collect(Collectors.partitioningBy(s -> s.equals(""a"")));
+        System.out.println(result.size());
+    }
+}",2,3,Compilation error,1
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""apple"", ""banana"", ""apricot"");
+        Map<Character, Long> result = list.parallelStream()
+            .collect(Collectors.groupingByConcurrent(
+                s -> s.charAt(0), Collectors.counting()));
+        System.out.println(result.get('a'));
+    }
+}",2,3,Compilation error,1
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Callable<Integer> c1 = () -> 5;
+        Callable<Integer> c2 = () -> 10;
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        Future<Integer> f1 = service.submit(c1);
+        Future<Integer> f2 = service.submit(c2);
+        System.out.println(f1.get() + f2.get());
+        service.shutdown();
+    }
+}",15,Compilation error,Runtime error,5
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<Integer> future = service.submit(() -> {
+            throw new RuntimeException(""Error"");
+        });
+        service.shutdown();
+    }
+}",Program completes normally,Runtime error at submit,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<Integer> future = service.submit(() -> {
+            throw new RuntimeException(""Error"");
+        });
+        future.get();
+        service.shutdown();
+    }
+}",Runtime error at get(),Runtime error at submit,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(() -> {
+            throw new RuntimeException(""Error"");
+        });
+        service.shutdown();
+    }
+}",Exception may print to console,Compilation error,Runtime error in main,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
+        service.scheduleAtFixedRate(() -> System.out.print(""A""), 0, 1, TimeUnit.SECONDS);
+        Thread.sleep(2500);
+        service.shutdown();
+    }
+}",A prints 3 times,A prints once,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
+        service.scheduleWithFixedDelay(() -> {
+            System.out.print(""A"");
+            try { Thread.sleep(500); } catch (Exception e) {}
+        }, 0, 100, TimeUnit.MILLISECONDS);
+        Thread.sleep(1500);
+        service.shutdown();
+    }
+}",A prints 2-3 times,A prints once,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    private static int count = 0;
+    private static Lock lock = new ReentrantLock();
+    public static void increment() {
+        lock.lock();
+        try {
+            count++;
+        } finally {
+            lock.unlock();
+        }
+    }
+    public static void main(String[] args) {
+        increment();
+        System.out.println(count);
+    }
+}",1,Compilation error,0,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Lock lock = new ReentrantLock();
+        boolean acquired = lock.tryLock(100, TimeUnit.MILLISECONDS);
+        System.out.println(acquired);
+        if (acquired) lock.unlock();
+    }
+}",Compilation error,true,false,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Lock lock = new ReentrantLock();
+        boolean acquired = lock.tryLock(100, TimeUnit.MILLISECONDS);
+        System.out.println(acquired);
+        if (acquired) lock.unlock();
+    }
+}",true,Compilation error,false,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new ConcurrentLinkedDeque<>();
+        deque.push(1);
+        deque.push(2);
+        System.out.println(deque.pop());
+    }
+}",2,1,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        IntStream.range(1, 5).parallel()
+            .forEachOrdered(System.out::print);
+    }
+}",1234,Output is unpredictable,Compilation error,5432
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""a"", ""b"", ""c"");
+        String result = list.parallelStream()
+            .reduce("""", String::concat);
+        System.out.println(result.length());
+    }
+}",Result is unpredictable,3,Compilation error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Optional<Integer> opt = Stream.<Integer>empty()
+            .parallel()
+            .reduce((a, b) -> a + b);
+        System.out.println(opt.isPresent());
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        int result = Stream.of(1, 2, 3, 4)
+            .parallel()
+            .mapToInt(i -> i)
+            .reduce(0, Integer::sum);
+        System.out.println(result);
+    }
+}",10,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        NavigableMap<String, Integer> map = new ConcurrentSkipListMap<>();
+        map.put(""C"", 3);
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        System.out.println(map.firstKey());
+    }
+}",A,C,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        NavigableSet<Integer> set = new ConcurrentSkipListSet<>();
+        set.add(3);
+        set.add(1);
+        set.add(2);
+        System.out.println(set.pollFirst());
+    }
+}",1,3,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.countDown();
+        latch.await();
+        System.out.println(""Done"");
+    }
+}",Done,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CountDownLatch latch = new CountDownLatch(2);
+        latch.countDown();
+        latch.await(100, TimeUnit.MILLISECONDS);
+        System.out.println(""Done"");
+    }
+}",Done,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        CountDownLatch latch = new CountDownLatch(2);
+        for (int i = 0; i < 2; i++) {
+            service.submit(() -> latch.countDown());
+        }
+        latch.await();
+        System.out.println(""Done"");
+        service.shutdown();
+    }
+}",Done,Program hangs,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t1 = new Thread(() -> System.out.print(""A""));
+        Thread t2 = new Thread(() -> System.out.print(""B""));
+        t1.start();
+        t2.start();
+    }
+}",Output order is unpredictable,AB,BA,Compilation error
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t1 = new Thread(() -> System.out.print(""A""));
+        Thread t2 = new Thread(() -> System.out.print(""B""));
+        t1.start();
+        t1.join();
+        t2.start();
+        t2.join();
+    }
+}",AB,BA,Output order is unpredictable,Compilation error
+"What is the result?
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        long count = Stream.iterate(1, i -> i + 1)
+            .parallel()
+            .limit(100)
+            .count();
+        System.out.println(count);
+    }
+}",100,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Stream.of(1, 2, 3)
+            .parallel()
+            .sorted()
+            .collect(Collectors.toList());
+        System.out.println(list);
+    }
+}","[1, 2, 3]",Output is unpredictable,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService service = null;
+        service.execute(() -> System.out.println(""Task""));
+    }
+}",Runtime error,Compilation error,Task,Nothing prints
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<String> future = service.submit(() -> ""Result"");
+        future.cancel(false);
+        System.out.println(future.get());
+        service.shutdown();
+    }
+}",Runtime error,Result,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<String> future = service.submit(() -> {
+            Thread.sleep(100);
+            return ""Result"";
+        });
+        future.cancel(false);
+        Thread.sleep(200);
+        System.out.println(future.isCancelled());
+        service.shutdown();
+    }
+}",Output is unpredictable,true,false,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<String> future = service.submit(() -> {
+            Thread.sleep(5000);
+            return ""Result"";
+        });
+        future.cancel(true);
+        System.out.println(future.isCancelled());
+        service.shutdown();
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    private volatile int count = 0;
+    public void increment() {
+        count++;
+    }
+    public static void main(String[] args) {
+        new Test().increment();
+    }
+}",Program completes normally,Compilation error,Runtime error,1
+"What is the result?
+public class Test {
+    private volatile boolean flag = false;
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.flag = true;
+        System.out.println(t.flag);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newFixedThreadPool(0);
+        service.submit(() -> System.out.println(""Task""));
+        service.shutdown();
+    }
+}",Runtime error,Task,Compilation error,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(0);
+        service.schedule(() -> System.out.println(""Task""), 0, TimeUnit.SECONDS);
+        service.shutdown();
+    }
+}",Runtime error,Task,Compilation error,Nothing prints
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(() -> {
+            System.out.println(Thread.currentThread().isDaemon());
+        });
+        Thread.sleep(100);
+        service.shutdown();
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> System.out.println(""Task""));
+        t.setDaemon(true);
+        t.start();
+    }
+}",Task may not print,Task,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> System.out.println(""Task""));
+        t.start();
+        t.setDaemon(true);
+    }
+}",Runtime error,Task,Compilation error,Program completes normally
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Callable<String> task = () -> {
+            System.out.println(""Task"");
+            return ""Result"";
+        };
+        String result = task.call();
+        System.out.println(result);
+    }
+}","Task
+Result",Compilation error,Runtime error,Result
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new CopyOnWriteArrayList<>();
+        list.add(""A"");
+        Iterator<String> it = list.iterator();
+        list.add(""B"");
+        while (it.hasNext()) {
+            System.out.print(it.next());
+        }
+    }
+}",A,AB,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        Iterator<String> it = list.iterator();
+        list.add(""B"");
+        while (it.hasNext()) {
+            System.out.print(it.next());
+        }
+    }
+}",Runtime error,AB,A,Compilation error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Lock lock1 = new ReentrantLock();
+        Lock lock2 = new ReentrantLock();
+        lock1.lock();
+        lock2.lock();
+        System.out.println(""Both locked"");
+        lock1.unlock();
+        lock2.unlock();
+    }
+}",Both locked,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Semaphore semaphore = new Semaphore(1);
+        semaphore.acquire();
+        System.out.println(""Acquired"");
+        semaphore.release();
+    }
+}",Acquired,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Semaphore semaphore = new Semaphore(0);
+        semaphore.acquire();
+        System.out.println(""Acquired"");
+    }
+}",Program hangs,Acquired,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Semaphore semaphore = new Semaphore(1);
+        System.out.println(semaphore.tryAcquire());
+        System.out.println(semaphore.availablePermits());
+    }
+}","true
+0",Compilation error,"false
+1","true
+1"
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Semaphore semaphore = new Semaphore(2);
+        semaphore.acquire();
+        semaphore.acquire();
+        System.out.println(semaphore.availablePermits());
+    }
+}",0,2,Compilation error,1
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Semaphore semaphore = new Semaphore(1);
+        semaphore.release();
+        System.out.println(semaphore.availablePermits());
+    }
+}",2,1,Compilation error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> data = new ArrayList<>();
+        List.of(""a"", ""b"", ""c"").parallelStream()
+            .filter(s -> {
+                data.add(s);
+                return true;
+            })
+            .count();
+        System.out.println(data.size());
+    }
+}",Runtime error may occur,3,Compilation error,0
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        int[] counter = {0};
+        List.of(1, 2, 3).parallelStream()
+            .forEach(i -> counter[0]++);
+        System.out.println(counter[0]);
+    }
+}",Result is unpredictable,3,Compilation error,0
+"What is the result?
+import java.util.concurrent.atomic.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger counter = new AtomicInteger(0);
+        List.of(1, 2, 3).parallelStream()
+            .forEach(i -> counter.incrementAndGet());
+        System.out.println(counter.get());
+    }
+}",Compilation error,3,Runtime error,Result is unpredictable
+"What is the result?
+import java.util.concurrent.atomic.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger counter = new AtomicInteger(0);
+        List.of(1, 2, 3).parallelStream()
+            .forEach(i -> counter.incrementAndGet());
+        System.out.println(counter.get());
+    }
+}",3,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        for (String key : map.keySet()) {
+            map.put(""B"", 2);
+        }
+    }
+}",Runtime error,Compilation error,Program completes normally,AB
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        for (String key : map.keySet()) {
+            map.put(""B"", 2);
+        }
+        System.out.println(map.size());
+    }
+}",2,Compilation error,Runtime error,1
+"What is the result?
+public class Test {
+    private static int value = 0;
+    public static synchronized void setValue(int v) {
+        value = v;
+    }
+    public static int getValue() {
+        return value;
+    }
+    public static void main(String[] args) {
+        setValue(10);
+        System.out.println(getValue());
+    }
+}",10,Compilation error,0,Runtime error
+"What is the result?
+public class Test {
+    private static volatile int value = 0;
+    public static void setValue(int v) {
+        value = v;
+    }
+    public static int getValue() {
+        return value;
+    }
+    public static void main(String[] args) {
+        setValue(10);
+        System.out.println(getValue());
+    }
+}",10,Compilation error,0,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<?> f1 = service.submit(() -> System.out.println(""Task 1""));
+        Future<?> f2 = service.submit(() -> System.out.println(""Task 2""));
+        f1.get();
+        f2.get();
+        service.shutdown();
+    }
+}",Both tasks print,Compilation error,Runtime error,Only Task 1 prints
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(() -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.print(i);
+            }
+        });
+        service.submit(() -> {
+            for (int i = 5; i < 10; i++) {
+                System.out.print(i);
+            }
+        });
+        Thread.sleep(100);
+        service.shutdown();
+    }
+}",0123456789,Output order is unpredictable,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        service.submit(() -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.print(i);
+            }
+        });
+        service.submit(() -> {
+            for (int i = 5; i < 10; i++) {
+                System.out.print(i);
+            }
+        });
+        Thread.sleep(100);
+        service.shutdown();
+    }
+}",Output order is unpredictable,0123456789,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        ScheduledFuture<?> future = service.schedule(() -> ""Result"", 1, TimeUnit.SECONDS);
+        System.out.println(future.getDelay(TimeUnit.SECONDS));
+        service.shutdown();
+    }
+}",Value close to 1,Compilation error,1,0
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        ScheduledFuture<?> future = service.scheduleAtFixedRate(() -> {}, 1, 1, TimeUnit.SECONDS);
+        future.cancel(false);
+        service.shutdown();
+    }
+}",Program completes normally,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> result = Stream.<String>empty()
+            .parallel()
+            .findAny();
+        System.out.println(result.isPresent());
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Optional<String> result = Stream.<String>empty()
+            .parallel()
+            .findFirst();
+        System.out.println(result.isPresent());
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        boolean result = Stream.of(1, 2, 3, 4)
+            .parallel()
+            .anyMatch(i -> i > 2);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        boolean result = Stream.of(1, 2, 3, 4)
+            .parallel()
+            .allMatch(i -> i > 0);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        boolean result = Stream.of(1, 2, 3, 4)
+            .parallel()
+            .noneMatch(i -> i > 10);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ReadWriteLock rwLock = new ReentrantReadWriteLock();
+        rwLock.readLock().lock();
+        System.out.println(""Read locked"");
+        rwLock.readLock().unlock();
+    }
+}",Read locked,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ReadWriteLock rwLock = new ReentrantReadWriteLock();
+        rwLock.writeLock().lock();
+        System.out.println(""Write locked"");
+        rwLock.writeLock().unlock();
+    }
+}",Write locked,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.locks.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ReadWriteLock rwLock = new ReentrantReadWriteLock();
+        rwLock.readLock().lock();
+        rwLock.readLock().lock();
+        System.out.println(""Double read locked"");
+        rwLock.readLock().unlock();
+        rwLock.readLock().unlock();
+    }
+}",Double read locked,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Exchanger<String> exchanger = new Exchanger<>();
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        service.submit(() -> {
+            try {
+                String received = exchanger.exchange(""A"");
+                System.out.println(received);
+            } catch (Exception e) {}
+        });
+        service.submit(() -> {
+            try {
+                String received = exchanger.exchange(""B"");
+                System.out.println(received);
+            } catch (Exception e) {}
+        });
+        Thread.sleep(100);
+        service.shutdown();
+    }
+}",A and B printed,Compilation error,Runtime error,Nothing prints
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Exchanger<String> exchanger = new Exchanger<>();
+        String result = exchanger.exchange(""Data"", 100, TimeUnit.MILLISECONDS);
+        System.out.println(result);
+    }
+}",Runtime error,Data,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Phaser phaser = new Phaser(1);
+        phaser.arriveAndAwaitAdvance();
+        System.out.println(""Done"");
+    }
+}",Done,Program hangs,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Phaser phaser = new Phaser(2);
+        phaser.arriveAndAwaitAdvance();
+        System.out.println(""Done"");
+    }
+}",Program hangs,Done,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Phaser phaser = new Phaser(1);
+        phaser.arrive();
+        System.out.println(phaser.getPhase());
+    }
+}",1,0,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(2);
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+    }
+}",Runtime error,Compilation error,Program completes normally,Queue contains all elements
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(2);
+        queue.offer(1);
+        queue.offer(2);
+        System.out.println(queue.offer(3));
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
+        queue.put(1);
+        queue.put(2);
+        System.out.println(queue.size());
+    }
+}",2,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        BlockingQueue<Integer> queue = new PriorityBlockingQueue<>();
+        queue.add(3);
+        queue.add(1);
+        queue.add(2);
+        System.out.println(queue.poll());
+    }
+}",1,3,Compilation error,2
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new SynchronousQueue<>();
+        System.out.println(queue.offer(1));
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        BlockingQueue<Integer> queue = new SynchronousQueue<>();
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        service.submit(() -> {
+            try {
+                queue.put(1);
+                System.out.println(""Put complete"");
+            } catch (Exception e) {}
+        });
+        Thread.sleep(100);
+        service.submit(() -> {
+            try {
+                System.out.println(queue.take());
+            } catch (Exception e) {}
+        });
+        Thread.sleep(100);
+        service.shutdown();
+    }
+}",Put complete and 1 printed,Compilation error,Runtime error,Program hangs
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Result"");
+        System.out.println(future.get());
+    }
+}",Result,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> System.out.println(""Task""));
+        future.get();
+        System.out.println(""Done"");
+    }
+}","Task
+Done",Compilation error,Done,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Hello"")
+            .thenApply(s -> s + "" World"");
+        System.out.println(future.get());
+    }
+}",Hello World,Hello,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Result"")
+            .thenApply(s -> {
+                throw new RuntimeException(""Error"");
+            });
+        System.out.println(future.get());
+    }
+}",Runtime error,Result,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> 5);
+        CompletableFuture<Integer> f2 = CompletableFuture.supplyAsync(() -> 10);
+        CompletableFuture<Integer> combined = f1.thenCombine(f2, (a, b) -> a + b);
+        System.out.println(combined.get());
+    }
+}",15,Compilation error,Runtime error,5
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> future = new CompletableFuture<>();
+        future.complete(""Result"");
+        System.out.println(future.get());
+    }
+}",Result,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> future = new CompletableFuture<>();
+        future.completeExceptionally(new RuntimeException(""Error""));
+        System.out.println(future.get());
+    }
+}",Runtime error,Compilation error,null,Error
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Result"");
+        System.out.println(future.getNow(""Default""));
+    }
+}",Result or Default,Result,Compilation error,Default
+"What is the result?
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        int sum = IntStream.rangeClosed(1, 100)
+            .parallel()
+            .sum();
+        System.out.println(sum);
+    }
+}",5050,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        double avg = IntStream.rangeClosed(1, 10)
+            .parallel()
+            .average()
+            .getAsDouble();
+        System.out.println(avg);
+    }
+}",5.5,Compilation error,Runtime error,5.0
+"What is the result?
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        int max = IntStream.of(3, 1, 4, 1, 5)
+            .parallel()
+            .max()
+            .getAsInt();
+        System.out.println(max);
+    }
+}",5,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        String result = Stream.of(""a"", ""b"", ""c"")
+            .parallel()
+            .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+            .toString();
+        System.out.println(result.length());
+    }
+}",3,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+import java.util.stream.*;
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Stream.of(""a"", ""b"", ""c"")
+            .parallel()
+            .collect(() -> new ArrayList<>(),
+                     (l, s) -> l.add(s),
+                     (l1, l2) -> l1.addAll(l2));
+        System.out.println(list.size());
+    }
+}",3,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+public class Test {
+    private static int counter = 0;
+    public static synchronized void increment() {
+        counter = counter + 1;
+    }
+    public static void main(String[] args) {
+        increment();
+        increment();
+        System.out.println(counter);
+    }
+}",2,Compilation error,0,1
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ForkJoinPool pool = new ForkJoinPool();
+        Integer result = pool.invoke(new RecursiveTask<Integer>() {
+            protected Integer compute() {
+                return 42;
+            }
+        });
+        System.out.println(result);
+        pool.shutdown();
+    }
+}",42,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ForkJoinPool pool = ForkJoinPool.commonPool();
+        pool.execute(() -> System.out.println(""Task""));
+        Thread.sleep(100);
+    }
+}",Task,Compilation error,Runtime error,Nothing prints
+"What is the result?
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        long count = Stream.generate(() -> 1)
+            .parallel()
+            .limit(1000)
+            .count();
+        System.out.println(count);
+    }
+}",1000,Compilation error,Runtime error,Result is unpredictable
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> {
+            System.out.println(Thread.currentThread().getName());
+        });
+        t.setName(""MyThread"");
+        t.start();
+    }
+}",MyThread,Thread-0,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> {
+            System.out.println(Thread.currentThread().getPriority());
+        });
+        t.setPriority(Thread.MAX_PRIORITY);
+        t.start();
+    }
+}",10,5,Compilation error,1
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getName());
+    }
+}",main,Thread-0,Compilation error,Runtime error
