@@ -79,7 +79,8 @@ export class QuestionChallengeHomeComponent {
     'USING-JAVA-IO-API-135Q-C-1.csv',
     'WORKING-WITH-DATES-AND-TIMES-130Q-E-1.csv',
     'WORKING-WITH-ENUMERATIONS-120Q-D-1.csv',
-    'WORKING-WITH-GENERICS-120Q-D-1.csv'
+    'WORKING-WITH-GENERICS-120Q-D-1.csv',
+    'WORKING-WITH-GENERICS-130Q-E-1.csv'
   ];
 
   onFileSelected(event: Event): void {
