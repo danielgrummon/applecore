@@ -1,0 +1,1379 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"Given the following module-info.java:
+module com.example {
+    exports com.example.api;
+}
+
+What is the result?",Compilation succeeds,Compilation error: missing semicolon,Compilation error: invalid module name,Runtime error
+"Given the following module-info.java:
+module com.example
+    exports com.example.api;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module loads successfully
+"Given the following module-info.java:
+module com.example {
+    exports com.example.api
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module loads successfully
+"Given the following module-info.java:
+module com.example {
+    exports com.example.api;
+    exports com.example.api;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module loads successfully
+"Given the following module-info.java:
+module com.example {
+    requires java.base;
+}
+
+What is the result?",Compilation succeeds,Compilation error: java.base is implicit,Compilation error: cannot require java.base,Runtime error
+"Given the following module-info.java:
+module com.example {
+    requires com.other;
+    requires com.other;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module loads successfully
+"Given the following module-info.java:
+module com.example {
+    opens com.example.internal;
+}
+
+What is the result?",Compilation succeeds,Compilation error: invalid syntax,Runtime error,Module cannot be opened
+"Given the following module-info.java:
+open module com.example {
+    exports com.example.api;
+}
+
+What is the result?",Compilation succeeds,Compilation error: cannot use both open and exports,Compilation error: invalid syntax,Runtime error
+"Given the following module-info.java:
+module com.example {
+    uses com.example.api.Service;
+}
+
+What is the result?",Compilation succeeds,Compilation error: invalid uses directive,Runtime error,Service cannot be used
+"Given the following module-info.java:
+module com.example {
+    provides com.example.api.Service with com.example.impl.ServiceImpl;
+}
+
+What is the result?",Compilation succeeds,Compilation error: invalid provides directive,Runtime error,Service cannot be provided
+"Given the following module-info.java:
+module com.example {
+    requires transitive com.other;
+}
+
+What is the result?",Compilation succeeds,Compilation error: invalid transitive keyword,Runtime error,Transitive not allowed
+"Given the following module-info.java:
+module com.example {
+    exports com.example.api to com.client;
+}
+
+What is the result?",Compilation succeeds,Compilation error: invalid qualified export,Runtime error,Qualified exports not allowed
+"Given the following module-info.java:
+module com.example {
+    opens com.example.internal to java.base;
+}
+
+What is the result?",Compilation succeeds,Compilation error: invalid qualified opens,Runtime error,Cannot open to java.base
+"Given the following module-info.java:
+module 123example {
+    exports com.example.api;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module name is valid
+"Given the following module-info.java:
+module com-example {
+    exports com.example.api;
+}
+
+What is the result?",Compilation succeeds,Compilation error: hyphens not allowed,Runtime error,Invalid module name
+"Given the following module-info.java:
+module com.example {
+    export com.example.api;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module loads successfully
+"Given the following module-info.java:
+module com.example {
+    require com.other;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module loads successfully
+"Given the following module-info.java:
+module com.example {
+    use com.example.api.Service;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Service directive valid
+"Given the following module-info.java:
+module com.example {
+    provide com.example.api.Service with com.example.impl.ServiceImpl;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Service directive valid
+"Given the following module-info.java:
+module com.example {
+    exports com.example.*;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Wildcard exports allowed
+"Given the following module-info.java:
+module com.example {
+    exports com.example.api;
+    requires com.other;
+}
+
+What is the order of directives?",Any order is valid,exports must come first,requires must come first,Compilation error
+"Given the following module-info.java:
+module com.example {
+    exports;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Empty exports allowed
+"Given the following module-info.java:
+module com.example {
+    requires;
+}
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Empty requires allowed
+"Given the following command line and files:
+Directory structure:
+myapp/
+  com/example/Main.java
+  module-info.java
+
+Command: javac -d out myapp/module-info.java myapp/com/example/Main.java
+
+What is the result?",Compilation succeeds,Compilation error: wrong directory,Compilation error: missing -p,Compilation error: module not found
+"Given the following command line:
+javac -d out myapp/*.java
+
+With module-info.java in myapp/
+
+What is the result?",Compilation may succeed,Compilation error: cannot use wildcard,Compilation error: missing module path,Compilation succeeds always
+"Given the following command line:
+javac -p mods -d out myapp/module-info.java myapp/com/example/Main.java
+
+What does -p specify?",Module path,Class path,Destination directory,Package name
+"Given the following command line:
+javac -d out -p mods myapp/module-info.java
+
+What does -d specify?",Output directory,Dependency path,Debug mode,Describe module
+"Given the following command line:
+javac --module-path mods -d out myapp/module-info.java
+
+What is --module-path equivalent to?",-p,-cp,-d,-m
+"Given the following command line:
+javac -cp mods -d out myapp/module-info.java
+
+What is the result for modular code?",Should use -p instead,Correct syntax,Compilation error,-cp works for modules
+"Given the following command line:
+javac -d out myapp/module-info.java
+
+If module requires com.other but com.other is not on module path
+
+What is the result?",Compilation error,Compilation succeeds,Runtime error,Module not found at runtime
+"Given the following command line:
+java -p mods -m com.example/com.example.Main
+
+What does -m specify?",Module name and main class,Module path,Main class only,Module mode
+"Given the following command line:
+java --module com.example/com.example.Main -p mods
+
+What is the result?",Runs successfully,-p must come before -m,Compilation error,Runtime error
+"Given the following command line:
+java -m com.example/com.example.Main -p mods
+
+What is the result?",Runs successfully,Missing module path,Compilation error,Invalid syntax
+"Given the following command line:
+java -p mods --module com.example/com.example.Main
+
+What is --module equivalent to?",-m,-p,-d,-cp
+"Given the following command line:
+java -p mods -m com.example
+
+If module com.example does not specify main class in module-info.java
+
+What is the result?",Runtime error,Runs successfully,Compilation error,Searches for Main class
+"Given the following command line:
+java -cp mods -m com.example/com.example.Main
+
+What is the result?",Error: modules require -p not -cp,Runs successfully,Compilation error,Module not found
+"Given the following command line:
+java -p mods -m com.example.Main
+
+If Main class is in com.example package
+
+What is the correct syntax?",com.example/com.example.Main,com.example.Main is correct,com.example\\com.example.Main,Syntax shown is correct
+"Given the following command line:
+java -p mods -d com.example
+
+What does -d do?",Describes the module,Runs the module,Specifies directory,Debug mode
+"Given the following command line:
+java --describe-module java.base
+
+What is the result?",Shows module details,Compilation error,Runs java.base,Lists all modules
+"Given the following command line:
+java -p mods --describe-module com.example
+
+What is --describe-module equivalent to?",-d,Both -d and --describe-module,-m,--module
+"Given the following command line:
+java --list-modules
+
+What is the result?",Lists all observable modules,Compilation error,Runs all modules,Describes modules
+"Given the following command line:
+java -p mods --list-modules
+
+What modules are listed?",System modules and modules in mods,Only system modules,Only modules in mods,Compilation error
+"Given the following command line:
+java --list-modules -p mods -m com.example/com.example.Main
+
+What happens?",Lists modules then exits,Lists modules then runs program,Compilation error,Runtime error
+"Given the following command line:
+java --show-module-resolution -p mods -m com.example/com.example.Main
+
+What is the result?",Shows module resolution then runs,Shows resolution only,Compilation error,Runtime error
+"Given the following command line:
+jar -cvf myapp.jar -C out/ .
+
+What does -c mean?",Create,Compile,Copy,Class
+"Given the following command line:
+jar -cvf myapp.jar -C out/ .
+
+What does -v mean?",Verbose,Version,Verify,Value
+"Given the following command line:
+jar -cvf myapp.jar -C out/ .
+
+What does -f mean?",File name,Filter,Format,Function
+"Given the following command line:
+jar -cvf myapp.jar -C out/ .
+
+What does -C mean?",Change directory,Create,Compile,Class
+"Given the following command line:
+jar --create --verbose --file myapp.jar -C out/ .
+
+What is the short form?",jar -cvf myapp.jar -C out/ .,jar -c -v -f myapp.jar -C out/ .,jar cvf myapp.jar -C out/ .,All are equivalent
+"Given the following command line:
+jar -f mods/com.example.jar -d
+
+What does -d do?",Describes the module,Deletes the jar,Debug mode,Directory
+"Given the following command line:
+jar --file mods/com.example.jar --describe-module
+
+What is the short form?",jar -f mods/com.example.jar -d,jar -f -d mods/com.example.jar,jar -d -f mods/com.example.jar,All are equivalent
+"Given the following command line:
+jar -cvf myapp.jar out/
+
+Without -C option
+
+What is the result?",Creates jar with out/ directory structure,Same as with -C,Compilation error,Runtime error
+"Given the following command line:
+jdeps myapp.jar
+
+What is the result?",Shows dependencies,Compilation error,Runs the jar,Creates module
+"Given the following command line:
+jdeps -s myapp.jar
+
+What does -s mean?",Summary,System,Show,Scan
+"Given the following command line:
+jdeps --summary myapp.jar
+
+What is the short form?",jdeps -s myapp.jar,jdeps -sum myapp.jar,jdeps -S myapp.jar,All are equivalent
+"Given the following command line:
+jdeps --jdk-internals myapp.jar
+
+What is shown?",Internal API usage,All dependencies,Module info,Compilation errors
+"Given the following command line:
+jdeps -jdkinternals myapp.jar
+
+Is this valid syntax?",Yes,No: must use --jdk-internals,Compilation error,Runtime error
+"Given the following command line:
+jdeps --module-path mods myapp.jar
+
+What does --module-path specify?",Location of dependent modules,Main module,Output path,Class path
+"Given the following command line:
+jlink --module-path mods --add-modules com.example --output myruntime
+
+What does --add-modules specify?",Modules to include,Module path,Output directory,Additional options
+"Given the following command line:
+jlink -p mods --add-modules com.example --output myruntime
+
+What is -p equivalent to?",--module-path,--package,--path,--provide
+"Given the following command line:
+jlink --module-path mods --add-modules com.example --output myruntime
+
+What does --output specify?",Output directory name,Output file,Output format,Output module
+"Given the following command line:
+jlink --module-path mods --add-modules com.example
+
+Missing --output option
+
+What is the result?",Error: --output required,Creates default output,Compilation error,Runtime error
+"Given a module com.example that exports com.example.api
+And a class com.example.api.Service
+
+From module com.client that requires com.example
+
+Can com.client access com.example.api.Service?",Yes,No: not exported,Compilation error,Runtime error
+"Given a module com.example that does NOT export com.example.internal
+And a class com.example.internal.Helper
+
+From module com.client that requires com.example
+
+Can com.client access com.example.internal.Helper?",No,Yes: requires is enough,Compilation error,Runtime error
+"Given a module com.example with:
+package com.example.api;
+public class Service {}
+
+No exports directive in module-info.java
+
+From module com.client that requires com.example
+
+Can com.client access Service?",No,Yes: public is enough,Compilation error,Runtime error
+"Given a module com.example that exports com.example.api
+And a class com.example.api.Service with package-private access
+
+From module com.client that requires com.example
+
+Can com.client access Service?",No,Yes: exports is enough,Compilation error,Runtime error
+"Given a module com.example that exports com.example.api to com.client
+And a module com.other that requires com.example
+
+Can com.other access com.example.api?",No,Yes: exports to means all,Compilation error,Runtime error
+"Given a module com.example that opens com.example.internal
+And a class com.example.internal.Helper
+
+Can other modules use reflection on Helper?",Yes,No: opens doesn't allow reflection,Compilation error,Only with exports
+"Given an open module:
+open module com.example {
+    exports com.example.api;
+}
+
+Are all packages opened for reflection?",Yes,No: only exported packages,Compilation error,Only com.example.api
+"Given a module com.example that requires transitive com.other
+And module com.client that requires com.example
+
+Does com.client have access to com.other?",Yes,No: must explicitly require,Compilation error,Runtime error
+"Given:
+module com.a { requires transitive com.b; }
+module com.b { requires transitive com.c; }
+module com.client { requires com.a; }
+
+Does com.client have access to com.c?",Yes,No: only direct transitive,Compilation error,Runtime error
+"Given:
+module com.example {
+    exports com.example.api;
+    requires com.other;
+}
+
+package com.example.api;
+public class Service {
+    private com.other.Helper helper;
+}
+
+What is the result?",Compilation error: com.other not accessible to clients,Compilation succeeds,Runtime error,Helper must be exported
+"Given a named module com.example.jar on the module path with module-info.java
+
+What type of module is it?",Named module,Automatic module,Unnamed module,Invalid module
+"Given a regular JAR file other.jar on the module path WITHOUT module-info.java
+
+What type of module is it?",Automatic module,Named module,Unnamed module,Invalid module
+"Given a regular JAR file app.jar on the classpath
+
+What type of module is it?",Unnamed module,Named module,Automatic module,Not a module
+"Given an automatic module on the module path
+
+What packages does it export?",All packages,No packages,Only public packages,Must declare exports
+"Given an unnamed module on the classpath
+
+What packages does it export?",No packages,All packages,Only public packages,Must declare exports
+"Given a named module with module-info.java placed on the classpath
+
+What happens to module-info.java?",It is ignored,Compilation error,Module is treated as named,Runtime error
+"Given an automatic module on the module path
+
+Can named modules require it?",Yes,No: cannot require automatic,Compilation error,Runtime error
+"Given an unnamed module on the classpath
+
+Can named modules require it?",No,Yes: can require unnamed,Compilation error,Runtime error
+"Given a named module that requires an automatic module
+
+Can this compile?",Yes,No: cannot require automatic,Compilation error,Runtime error
+"Given an automatic module
+And it contains META-INF/MANIFEST.MF with Automatic-Module-Name: com.auto
+
+What is the module name?",com.auto,Derived from JAR filename,META-INF name,Compilation error
+"Given an automatic module other-lib-1.0.jar
+Without Automatic-Module-Name in manifest
+
+What is the module name?",Derived from JAR filename,other-lib-1.0,Compilation error,No module name
+"Given:
+module com.example {
+    uses com.example.api.Service;
+}
+
+What is required for this to compile?",Service interface must be accessible,Service implementation required,Compilation error,uses not valid
+"Given:
+module com.example {
+    provides com.example.api.Service with com.example.impl.ServiceImpl;
+}
+
+What must ServiceImpl do?",Implement Service interface,Extend Service class,Be exported,Compilation error
+"Given:
+module com.example {
+    provides com.example.api.Service with com.example.impl.ServiceImpl;
+}
+
+Must com.example.impl package be exported?",No,Yes: implementations must be exported,Compilation error,Runtime error
+"Given:
+module com.consumer {
+    requires com.example;
+    uses com.example.api.Service;
+}
+
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
+
+What does loader return?",Stream of Service providers,Single Service instance,Compilation error,Runtime error
+"Given:
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
+loader.forEach(s -> s.doWork());
+
+What is the result?",May print nothing if no providers,Always has at least one provider,Compilation error,Runtime error
+"Given:
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
+Service service = loader.get();
+
+What is the result?",Compilation error: no get() method,Returns first service,Returns all services,Runtime error
+"Given:
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
+Stream<Service> services = loader.stream().map(Provider::get);
+
+What does this return?",Stream of Service instances,Stream of Providers,Compilation error,Runtime error
+"Given a service provider module:
+module com.provider {
+    requires com.api;
+    provides com.api.Service with com.provider.ServiceImpl;
+}
+
+Does com.provider need to export anything?",No,Yes: must export ServiceImpl,Yes: must export all,Compilation error
+"Given:
+module com.consumer {
+    uses com.api.Service;
+}
+
+Does com.consumer need to require the provider module?",No,Yes: must know provider,Compilation error,Runtime error
+"Given:
+module com.a { requires com.b; }
+module com.b { requires com.a; }
+
+What is the result?",Compilation error: cyclic dependency,Compilation succeeds,Runtime error,Allowed with transitive
+"Given:
+module com.a { requires com.b; }
+module com.b { requires com.c; }
+module com.c { requires com.a; }
+
+What is the result?",Compilation error: cyclic dependency,Compilation succeeds,Runtime error,Circular allowed
+"Given:
+module com.a { requires transitive com.b; }
+module com.b { requires transitive com.a; }
+
+What is the result?",Compilation error: cyclic dependency,Allowed with transitive,Compilation succeeds,Runtime error
+"Which module is implicitly required by all modules?",java.base,java.lang,java.util,java.module
+"Which of these is a valid JDK module name?",java.sql,java.io,java.util,java.lang
+"Which of these is a valid JDK module name?",java.logging,java.log,java.logger,java.util.logging
+"Which of these is a valid JDK module name?",java.desktop,java.swing,java.awt,java.gui
+"Which of these is a valid JDK module name?",jdk.compiler,jdk.javac,jdk.compile,java.compiler
+"Which of these is a valid JDK module name?",jdk.jshell,jdk.shell,java.jshell,java.shell
+"Which prefix do API modules use?",java,jdk,javax,java.api
+"Which prefix do JDK-specific modules use?",jdk,java,javax,jdk.api
+"Given:
+module com.example {
+    requires java.base;
+    requires java.sql;
+}
+
+Is requiring java.base necessary?",No: it's implicit,Yes: always required,Compilation error,Runtime error
+"Given:
+module com.example {
+}
+
+Does this module have access to java.lang.String?",Yes: java.base is implicit,No: must require java.base,Compilation error,Runtime error
+"Given the command:
+javac -classpath lib/other.jar -d out src/com/example/Main.java
+
+Is this for modular or non-modular code?",Non-modular,Modular,Both,Invalid syntax
+"Given the command:
+javac -p mods -d out src/module-info.java src/com/example/Main.java
+
+Is this for modular or non-modular code?",Modular,Non-modular,Both,Invalid syntax
+"Given the command:
+java -cp lib/other.jar com.example.Main
+
+Is this for modular or non-modular code?",Non-modular,Modular,Both,Invalid syntax
+"Given the command:
+java -p mods -m com.example/com.example.Main
+
+Is this for modular or non-modular code?",Modular,Non-modular,Both,Invalid syntax
+"Given the command:
+javac -d out --module-path mods src/module-info.java
+
+What would be the short form?",javac -d out -p mods src/module-info.java,javac -d out -m mods src/module-info.java,javac -d out -mp mods src/module-info.java,No short form exists
+"Given the command:
+java --module-path mods --module com.example/com.example.Main
+
+What would be the short form?",java -p mods -m com.example/com.example.Main,java -mp mods -mod com.example/com.example.Main,java -p mods --m com.example/com.example.Main,No short form exists
+"Given:
+javac -cp classpath -d directory *.java
+
+For modular code, what should replace -cp?",Replace -cp with -p,Keep -cp,Use --class-path,Add -m
+"Given:
+java -classpath jars com.example.Main
+
+For modular code, what should this become?",java -p jars -m com.example/com.example.Main,java -classpath jars -m com.example.Main,java -p jars com.example.Main,java --module-path jars com.example.Main
+"Given the following directory structure:
+src/
+  com.example/
+    module-info.java
+    com/example/Main.java
+
+What is the correct compile command?",javac -d out src/com.example/module-info.java src/com.example/com/example/Main.java,javac -d out src/module-info.java src/com/example/Main.java,javac -d out -p src com.example,javac -d out src/**/*.java
+"Given the following directory structure:
+out/
+  com.example/
+    module-info.class
+    com/example/Main.class
+
+What is the correct run command?",java -p out -m com.example/com.example.Main,java -cp out com.example.Main,java -p out com.example.Main,java -m com.example/com.example.Main
+"Given:
+jar -cvf mods/app.jar -C out/com.example/ .
+
+What directory structure is created in the jar?",Root contains module-info.class and com/,com.example/ contains everything,out/ directory structure,Compilation error
+"Given:
+jar -cvf mods/app.jar out/com.example/
+
+Without -C option
+
+What directory structure is created?",out/com.example/ at root of jar,Root contains module-info.class,Same as with -C,Compilation error
+"Given bottom-up migration strategy
+And a module at the bottom with no dependencies
+
+Where should it be placed?",Module path as named module,Classpath as unnamed module,Module path as automatic module,Either path
+"Given top-down migration strategy
+And a module at the top that depends on all others
+
+Where should it be placed initially?",Module path as named module,Classpath as unnamed module,Module path as automatic module,Either path
+"Given bottom-up migration
+And moving app.jar to module path without creating module-info.java
+
+What type of module is it?",Automatic module,Named module,Unnamed module,Invalid module
+"Given top-down migration
+And all JARs placed on module path
+
+JARs without module-info.java become what?",Automatic modules,Named modules,Unnamed modules,Invalid modules
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+And two classes:
+package com.example.api;
+public class Service {}
+package com.example.api;
+class Helper {}
+
+From another module, which can be accessed?",Only Service,Both Service and Helper,Neither,Only Helper
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+package com.example.internal;
+public class Helper {}
+
+From another module that requires com.example
+
+Can Helper be accessed?",No,Yes: it's public,Compilation error,Runtime error with exports
+"Given:
+module com.example {
+    opens com.example.internal;
+}
+
+package com.example.internal;
+public class Helper {}
+
+Can other modules access Helper directly?",No,Yes: opens allows access,Only via reflection,Compilation error
+"Given:
+module com.example {
+    opens com.example.internal;
+}
+
+package com.example.internal;
+public class Helper {}
+
+Can other modules access Helper via reflection?",Yes,No: opens doesn't allow reflection,No: needs exports,Compilation error
+"Given:
+module com.example {
+    exports com.example.api;
+    opens com.example.api;
+}
+
+Is this valid?",Yes,No: cannot both export and open,Compilation error,Runtime error
+"Given:
+open module com.example {
+    opens com.example.api;
+}
+
+What is the result?",Compilation error: redundant opens,Compilation succeeds,Runtime error,Opens is required
+"Given:
+open module com.example {
+}
+
+Are all packages opened?",Yes,No: must declare opens,Only exported packages,Compilation error
+"Given:
+module com.example {
+    requires static com.other;
+}
+
+What does static mean?",Compile-time only dependency,Cannot be modified,Static methods only,Compilation error
+"Given:
+module com.example {
+    requires transitive com.other;
+}
+
+module com.client {
+    requires com.example;
+}
+
+Can com.client access com.other packages?",Yes: if com.other exports them,No: must require com.other,Yes: all packages,Compilation error
+"Given:
+module com.a {
+    requires transitive com.b;
+    requires transitive com.c;
+}
+
+module com.b {
+    exports com.b.api;
+}
+
+module com.c {
+    exports com.c.api;
+}
+
+module com.client {
+    requires com.a;
+}
+
+What can com.client access?",Both com.b.api and com.c.api,Only com.a packages,Only com.b.api,Only com.c.api
+"Given:
+module com.example {
+    exports com.example.api to com.client1, com.client2;
+}
+
+Can com.client3 access com.example.api?",No,Yes: exports to multiple means all,Compilation error,Runtime error
+"Given:
+module com.example {
+    opens com.example.internal to java.base;
+}
+
+Is this valid?",Yes,No: cannot open to java.base,Compilation error,Runtime error
+"Given:
+module com.example {
+    uses com.api.Service;
+}
+
+But Service interface is not accessible to com.example
+
+What is the result?",Compilation error,Runtime error,Service is loaded,No error
+"Given:
+module com.example {
+    provides com.api.Service with com.example.ServiceImpl;
+}
+
+But com.example.ServiceImpl is not accessible
+
+What is the result?",Compilation error,Runtime error,Provides succeeds,No error
+"Given:
+module com.example {
+    provides com.api.Service with com.example.ServiceImpl;
+}
+
+But com.example.ServiceImpl does not implement Service
+
+What is the result?",Compilation error,Runtime error,Provides succeeds,No error
+"Given:
+public class ServiceImpl implements Service {
+    private ServiceImpl() {}
+}
+
+Used in provides directive
+
+What is the result?",Runtime error when loading,Compilation error,Service loads successfully,Private constructor is fine
+"Given:
+public class ServiceImpl implements Service {
+    public ServiceImpl(String param) {}
+}
+
+Used in provides directive, but no no-arg constructor
+
+What is the result?",Runtime error when loading,Compilation error,Service loads successfully,Parameterized constructor is fine
+"Given:
+module com.example {
+    exports com.example.api;
+    exports com.example.internal;
+}
+
+Is this valid?",Yes,No: only one exports allowed,Compilation error,Runtime error
+"Given:
+module com.example {
+    requires com.a;
+    requires com.b;
+    requires com.c;
+}
+
+Is this valid?",Yes,No: only one requires allowed,Compilation error,Runtime error
+"Given a JAR named my-app-1.0-SNAPSHOT.jar on module path without module-info.java
+
+What is the derived module name?",my.app,my-app-1.0-SNAPSHOT,my.app.1.0.SNAPSHOT,Compilation error
+"Given a JAR named commons_lang3.jar on module path without module-info.java
+
+What is the derived module name?",commons.lang3,commons_lang3,commons.lang.3,Compilation error
+"Given:
+javac src/com.example/module-info.java
+
+Without -d option
+
+Where are .class files created?",Same directory as source,out/ directory,bin/ directory,Compilation error
+"Given:
+java -jar app.jar -p mods -m com.example/com.example.Main
+
+What is the result?",Error: -jar and -m conflict,Runs successfully,Compilation error,-jar ignored
+"Given:
+jdeps -s -jdkinternals app.jar
+
+Can both -s and -jdkinternals be used together?",Yes,No: mutually exclusive,Compilation error,Runtime error
+"Given:
+jlink --module-path mods --add-modules com.example
+
+Without specifying output
+
+What is the result?",Error: --output required,Creates default directory,Compilation error,Runtime error
+"Given the module:
+module com.example {
+    exports com.example.api;
+}
+
+package com.example.api;
+protected class Service {}
+
+Can other modules access Service?",No: must be public,Yes: exported means accessible,Compilation error,Runtime error
+"Given:
+module com.example {
+}
+
+package com.example;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Main.class.getModule().getName());
+    }
+}
+
+What is printed?",com.example,null,unnamed,Compilation error
+"Given an unnamed module on classpath:
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Main.class.getModule().getName());
+    }
+}
+
+What is printed?",null,unnamed,Unnamed module,Compilation error
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+And the package com.example.api does not exist
+
+What is the result?",Compilation error,Runtime error,Exports succeeds,Warning only
+"Given:
+module com.example {
+    opens com.example.internal;
+}
+
+And the package com.example.internal does not exist
+
+What is the result?",Compilation error,Runtime error,Opens succeeds,Warning only
+"Given:
+module com.example {
+    requires com.other;
+}
+
+And com.other module does not exist
+
+What is the result?",Compilation error,Runtime error,Requires succeeds,Warning only
+"Given:
+javac --release 11 -d out src/module-info.java
+
+Compiling with Java 17
+
+What is the result?",Compiles for Java 11,Compilation error: modules need 17,Compiles for Java 17,Runtime error
+"Given:
+module com.example {
+    requires java.sql;
+}
+
+And java.sql is not in the JDK
+
+What is the result?",Compilation error,Runtime error,Module found,Automatic module created
+"Given:
+java -p mods --list-modules | grep com.example
+
+What is the result?",Lists matching modules,Error: cannot pipe,Runs program first,Compilation error
+"Given:
+jdeps --module-path mods --check com.example
+
+What does --check do?",Checks module dependencies,Compilation check,Runtime check,Invalid option
+"Given:
+jar -cvf app.jar -C out .
+
+If out/ is empty
+
+What is the result?",Creates empty jar,Error: no files,Compilation error,Creates jar with out/
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+Can this module export java.lang packages?",No,Yes: any package can be exported,Compilation error,Runtime error
+"Given:
+module com.example {
+    exports java.util;
+}
+
+What is the result?",Compilation error: cannot export java.*,Compilation succeeds,Runtime error,Exports succeeds
+"Given two separate modules both exporting com.example.api
+
+What is the result when both are on module path?",Error: split package,Both packages accessible,First one wins,Runtime error
+"Given:
+module com.example {
+    requires com.a;
+    requires com.b;
+}
+
+Both com.a and com.b export package com.util
+
+What is the result?",Error: split package,Compilation succeeds,Runtime error,Both accessible
+"Given:
+javac -d out --module-source-path src $(find src -name ""*.java"")
+
+What does --module-source-path do?",Specifies root of module sources,Same as -p,Same as -d,Invalid option
+"Given:
+java -p mods -m com.example
+
+Without specifying main class, and no Main-Class in manifest
+
+What is the result?",Error: no main class found,Searches for Main,Compilation error,Runtime error
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Class.forName(""com.example.internal.Helper"");
+    }
+}
+
+If Helper is not exported, what is the result?",Runtime error,Compilation succeeds and runs,Compilation error,Reflection always works
+"Given:
+module com.example {
+    opens com.example.internal;
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Class<?> c = Class.forName(""com.example.internal.Helper"");
+        c.getDeclaredConstructor().newInstance();
+    }
+}
+
+What is the result?",Succeeds if Helper exists,Compilation error,Runtime error,Opens doesn't allow reflection
+"Given:
+open module com.example {
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Class<?> c = Class.forName(""com.example.internal.Helper"");
+        System.out.println(c.getName());
+    }
+}
+
+What is the result?",Prints class name if Helper exists,Compilation error,Runtime error,Open doesn't allow reflection
+"Given:
+javac -p mods1:mods2 -d out src/module-info.java
+
+On Windows, what is the path separator?","Semicolon (;)","Colon (:)","Comma separator","Pipe (|)"
+"Given:
+javac -p mods1;mods2 -d out src/module-info.java
+
+On Linux/Mac, what is the path separator?","Colon (:)","Semicolon (;)","Comma separator","Pipe (|)"
+"Given:
+jmod create --class-path out mods/com.example.jmod
+
+What does this create?",JMOD file,JAR file,Module directory,Compilation error
+"Given:
+jmod describe mods/com.example.jmod
+
+What is shown?",Module descriptor,JMOD contents,Class files,Compilation error
+"Given:
+jmod list mods/com.example.jmod
+
+What is shown?",List of files in JMOD,Module dependencies,Module descriptor,Compilation error
+"Given:
+jmod extract --dir temp mods/com.example.jmod
+
+What happens?",Extracts JMOD contents to temp/,Creates new JMOD,Describes module,Compilation error
+"Given:
+jlink -p mods --add-modules ALL-MODULE-PATH --output runtime
+
+What does ALL-MODULE-PATH mean?",Include all modules on module path,Error: invalid module name,Include all JDK modules,Include java.base only
+"Given:
+jlink -p mods --add-modules java.base --output runtime
+
+What modules are included?",java.base and its dependencies,Only java.base,All java.* modules,Compilation error
+"Given:
+java -p mods -m com.example/com.example.Main arg1 arg2
+
+What are arg1 and arg2?",Command line arguments to Main,Module arguments,JVM arguments,Compilation error
+"Given:
+java -p mods -Dfoo=bar -m com.example/com.example.Main
+
+What is -Dfoo=bar?",System property,Module property,JVM argument,Compilation error
+"Given:
+module com.example {
+    requires java.se;
+}
+
+What does java.se provide?",Aggregate of common Java SE modules,Runtime environment,Core APIs only,Compilation error
+"Given a module that requires java.logging
+
+What module provides logging?",java.logging,java.util.logging,jdk.logging,java.log
+"Given a module that requires java.desktop
+
+What does java.desktop provide?",AWT and Swing APIs,Desktop environment,GUI only,Compilation error
+"Given a module that needs JDBC
+
+What module should it require?",java.sql,java.jdbc,jdk.sql,java.database
+"Given:
+module com.example {
+    requires jdk.compiler;
+}
+
+Is jdk.compiler a standard API?",No: JDK-specific,Yes: standard API,Compilation error,Always available
+"Given:
+javac @options.txt src/module-info.java
+
+What does @options.txt mean?",File containing javac options,Annotation,Directory,Compilation error
+"Given options.txt contains:
+-p mods
+-d out
+
+Command: javac @options.txt src/module-info.java
+
+What is the result?",Equivalent to javac -p mods -d out src/module-info.java,Compilation error,File not found,Invalid syntax
+"Given:
+module com.example {
+    exports com.example.api;
+    provides com.example.api.Service with com.example.impl.ServiceImpl;
+    uses com.example.api.Service;
+}
+
+Can a module both provide and use the same service?",Yes,No: cannot be both provider and consumer,Compilation error,Runtime error
+"Given:
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
+if (loader.findFirst().isPresent()) {
+    Service s = loader.findFirst().get();
+}
+
+What is the problem?",findFirst() called twice,No problem,Compilation error,Runtime error
+"Given:
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
+Optional<Service> opt = loader.findFirst();
+
+What does findFirst() return?",Optional of Provider mapped to Service,Optional of Service,Service instance,Compilation error
+"Given:
+module com.example {
+    exports com.example.api to com.client1;
+    exports com.example.api to com.client2;
+}
+
+What is the result?",Compilation error: duplicate qualified exports,Compilation succeeds,Exports to both,Runtime error
+"Given:
+module com.example {
+    exports com.example.api to com.client1, com.client2;
+}
+
+What is the correct syntax?",Shown syntax is correct,Must use separate exports,Must use semicolon separator,Compilation error
+"Given:
+module com.example {
+    opens com.example.internal to java.base, java.logging;
+}
+
+Is this valid?",Yes,No: can only open to one module,Compilation error,Runtime error
+"Given:
+module com.example {
+    requires mandated java.base;
+}
+
+What does mandated mean?",Not a valid keyword,Implicitly required,Explicitly required,Compilation error
+"Given:
+module com.example {
+    requires transitive static com.other;
+}
+
+Can transitive and static be combined?",Yes,No: mutually exclusive,Compilation error,Runtime error
+"Given:
+jdeps --generate-module-info src app.jar
+
+What does this do?",Generates module-info.java for app.jar,Analyzes dependencies,Lists modules,Compilation error
+"Given:
+jdeps --multi-release 11 app.jar
+
+What does --multi-release do?",Analyzes specific version in multi-release JAR,Creates multi-release JAR,Compilation error,Sets Java version
+"Given:
+jar --create --file app.jar --main-class com.example.Main -C out .
+
+What does --main-class do?",Sets Main-Class in manifest,Specifies main module,Compilation error,Sets entry point
+"Given a multi-release JAR with module-info in META-INF/versions/11/
+
+What Java version uses this module-info?",Java 11 and higher,Only Java 11,All versions,Compilation error
+"Given:
+java --validate-modules -p mods
+
+What does --validate-modules do?",Validates module descriptors,Runs validation,Compilation check,Invalid option
+"Given:
+java -XX:+TraceClassPaths -p mods -m com.example/com.example.Main
+
+What does -XX:+TraceClassPaths show?",JVM internal option for debugging,Module paths,Class loading,Compilation error
+"Given:
+module-info.java with UTF-8 BOM at start
+
+What is the result?",May cause compilation error,Compilation succeeds,BOM is ignored,Runtime error
+"Given:
+module com.example {
+    // exports com.example.api;
+}
+
+With exports commented out
+
+What is the result?",Module has no exports,Compilation error,Comment is invalid,Runtime error
+"Given:
+javac -Xlint:module -d out src/module-info.java
+
+What does -Xlint:module do?",Enables module-related warnings,Compilation error,Lists modules,Invalid option
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+package com.example.api;
+import com.other.Helper;
+
+If com.other is not required
+
+What is the result?",Compilation error,Runtime error,Compilation succeeds,Helper is inaccessible
+"Given:
+module com.example {
+    requires com.other;
+}
+
+package com.example.internal;
+import com.other.api.Service;
+
+If com.other does not export com.other.api
+
+What is the result?",Compilation error,Runtime error,Compilation succeeds,Service is inaccessible
+"Given:
+javac -d out --patch-module com.example=patch src/module-info.java
+
+What does --patch-module do?",Adds content to module,Patches module file,Compilation error,Updates module
+"Given:
+java --add-exports com.example/com.example.internal=ALL-UNNAMED -p mods -m com.example/com.example.Main
+
+What does --add-exports do?",Exports package to unnamed modules at runtime,Adds new export,Compilation error,Invalid option
+"Given:
+java --add-opens com.example/com.example.internal=ALL-UNNAMED -p mods -m com.example/com.example.Main
+
+What does --add-opens do?",Opens package to unnamed modules at runtime,Adds new opens,Compilation error,Invalid option
+"Given:
+java --add-modules java.se -p mods -m com.example/com.example.Main
+
+What does --add-modules do?",Adds root modules to resolve,Adds to module path,Compilation error,Creates modules
+"Given:
+java --limit-modules java.base -p mods -m com.example/com.example.Main
+
+What does --limit-modules do?",Limits observable modules,Limits module count,Compilation error,Invalid option
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Module m = Test.class.getModule();
+        System.out.println(m.isNamed());
+    }
+}
+
+What is printed?",true,false,null,Compilation error
+"Given an unnamed module:
+
+public class Test {
+    public static void main(String[] args) {
+        Module m = Test.class.getModule();
+        System.out.println(m.isNamed());
+    }
+}
+
+What is printed?",false,true,null,Compilation error
+"Given:
+jdeps --print-module-deps app.jar
+
+What is shown?",Module dependencies comma-separated,Module descriptor,All dependencies,Compilation error
+"Given:
+jlink --compress=2 -p mods --add-modules com.example --output runtime
+
+What does --compress do?",Compresses resources in output,Compression level 2,Compilation error,Invalid option
+"Given:
+jlink --strip-debug -p mods --add-modules com.example --output runtime
+
+What does --strip-debug do?",Removes debug info from output,Enables debug mode,Compilation error,Invalid option
+"Given:
+jar --update --file app.jar -C out com/example/NewClass.class
+
+What does --update do?",Updates existing JAR,Creates new JAR,Compilation error,Upgrades JAR version
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+And JAR created with jmod instead of jar
+
+Can this be placed on module path?",Yes,No: JMOD not allowed on module path,Compilation error,Runtime error
+"Given:
+jlink -p mods --add-modules com.example --launcher myapp=com.example/com.example.Main --output runtime
+
+What does --launcher create?",Script to run the module,JAR file,JMOD file,Compilation error
+"Given runtime created by jlink with --launcher:
+
+./runtime/bin/myapp
+
+What does this do?",Runs the module,Compilation error,Lists modules,Invalid command
+"Given the command:
+javac -d out src/com.example/module-info.java src/com.example/com/example/Main.java src/com.example/com/example/Helper.java
+
+If Helper.java has compilation errors but Main.java is valid
+
+What is the result?",Compilation error for entire module,Main.java compiles successfully,Only Helper.java fails,Partial compilation
+"Given the command:
+jar -cvf mods/app.jar -C out/com.example .
+jar -cvf mods/app.jar -C out/com.example .
+
+Running jar command twice
+
+What is the result?",Second command overwrites first jar,Creates two separate jars,Appends to existing jar,Compilation error
+"Given:
+module com.example {
+    exports com.example.api;
+    opens com.example.api;
+}
+
+package com.example.api;
+class InternalService {}
+public class PublicService {}
+
+From another module that requires com.example
+
+Which classes are accessible?",Only PublicService,Both classes,Neither class,Only InternalService
+"Given the command:
+java -p mods --add-reads com.example=com.other -m com.example/com.example.Main
+
+What does --add-reads do?",Adds module read edge at runtime,Reads module descriptor,Adds module to path,Compilation error
+"Given the command:
+javac --module-source-path src -d out --module com.example
+
+What does --module specify when compiling?",Module to compile,Module path,Module name in code,Compilation error
+"Given:
+module com.example {
+    requires java.compiler;
+}
+
+Is java.compiler always available?",No: it's not in java.base,Yes: always available,Compilation error,Runtime only
+"Given the command:
+jdeps --list-deps app.jar
+
+What is shown?",List of module dependencies,All dependencies,Class dependencies,Compilation error
+"Given the command:
+jdeps --list-reduced-deps app.jar
+
+What is shown?",Reduced list of dependencies,All dependencies,No output,Compilation error
+"Given the command:
+jlink --no-header-files -p mods --add-modules com.example --output runtime
+
+What does --no-header-files do?",Excludes include header files,Removes headers from jar,Compilation error,Invalid option
+"Given the command:
+jlink --no-man-pages -p mods --add-modules com.example --output runtime
+
+What does --no-man-pages do?",Excludes man pages,Removes manual pages from jar,Compilation error,Invalid option
+"Given:
+module com.example {
+    requires java.base;
+    exports com.example.api;
+}
+
+If com.example.api package is empty (no classes)
+
+What is the result?",Compilation succeeds,Compilation error: empty package,Runtime error,Warning only
+"Given the command:
+java -p mods -m com.example/com.example.Main --version
+
+What does --version do?",Invalid: arguments to main not java,Prints Java version,Prints module version,Compilation error
+"Given the command:
+javac -d out --release 8 src/module-info.java
+
+Compiling module-info for Java 8
+
+What is the result?",Compilation error: modules require 9+,Compiles successfully,Warning only,Runtime error
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Module m = Test.class.getModule();
+        m.getPackages().forEach(System.out::println);
+    }
+}
+
+What is printed?",All packages in the module,Only exported packages,Only com.example.api,Compilation error
+"Given the command:
+jar --describe-module --file mods/app.jar --release 11
+
+What does --release do?",Describes specific version in multi-release jar,Sets release version,Compilation error,Invalid option
+"Given:
+module com.example {
+    uses com.api.Service;
+}
+
+But no provides directive anywhere
+
+What happens when ServiceLoader.load() is called?",Returns empty loader,Compilation error,Runtime error,Finds automatic service
+"Given the command:
+jlink --suggest-providers java.sql.Driver -p mods --output runtime
+
+What does --suggest-providers do?",Suggests provider modules for service,Lists providers,Compilation error,Invalid option
+"Given the command:
+jdeps -R --module-path mods app.jar
+
+What does -R do?",Recursively analyzes dependencies,Reads module,Runtime check,Invalid option
+"Given the command:
+jdeps --inverse app.jar
+
+What is shown?",Modules depending on app.jar,Dependencies of app.jar,Compilation error,Invalid option
+"Given:
+module com.a { exports com.a.api; }
+module com.b { exports com.b.api; requires com.a; }
+module com.c { requires com.b; }
+
+Can com.c access com.a.api without requiring it?",No,Yes: transitive through b,Compilation error,Runtime error
+"Given the command:
+javac @argfile -d out
+
+Where argfile contains:
+src/com.example/module-info.java
+src/com.example/com/example/Main.java
+
+What is the result?",Compiles both files,Compilation error: @ syntax invalid,Argfile not found,Partial compilation
+"Given the command:
+java -p mods -m com.example --dry-run
+
+What does --dry-run do?",Invalid option,Simulates execution,Prints what would run,Compilation error
+"Given:
+module com.example {
+    exports com.example.api to ;
+}
+
+With empty qualified export target
+
+What is the result?",Compilation error,Exports to nothing,Compilation succeeds,Runtime error
+"Given the command:
+jmod hash --module-path mods mods/com.example.jmod
+
+What does hash do?",Records hashes of dependencies,Creates hash of module,Compilation error,Invalid command
+"Given:
+module com.example {
+    opens com.example.internal to ;
+}
+
+With empty qualified opens target
+
+What is the result?",Compilation error,Opens to nothing,Compilation succeeds,Runtime error
+"Given:
+ServiceLoader<Service> loader = ServiceLoader.load(Service.class);
+Iterator<Service> it = loader.iterator();
+while (it.hasNext()) {
+    Service s = it.next();
+}
+
+If provider constructor throws exception
+
+What happens?",Exception thrown during iteration,Compilation error,Service is skipped,Runtime error before loop
+"Given the command:
+jlink --bind-services -p mods --add-modules com.example --output runtime
+
+What does --bind-services do?",Links service provider modules,Binds to services,Compilation error,Invalid option
+"Given:
+module com.example {
+    requires transitive java.base;
+}
+
+Is requires transitive java.base allowed?",Yes but unnecessary,No: compilation error,No: runtime error,Invalid syntax
+"Given the command:
+javac -Xlint:all -d out src/module-info.java
+
+What warnings might be shown?",Module-related warnings,No warnings,Compilation error,All Java warnings
+"Given the command:
+jar --main-class com.example.Main --module-version 1.0 -cvf app.jar -C out .
+
+What does --module-version do?",Sets module version in descriptor,Sets jar version,Compilation error,Invalid option
+"Given:
+module com.example {
+    exports com.example.api;
+}
+
+And META-INF/services/com.example.api.Service file exists
+
+Is this file used?",No: use provides directive instead,Yes: automatic service,Compilation error,Both mechanisms work
+"Given the command:
+jdeps --check com.example --module-path mods
+
+What does --check do?",Analyzes module dependencies,Checks syntax,Verifies module,Compilation error
+"Given the command:
+java -p mods -m com.example/com.example.Main -Xmx1g
+
+What is -Xmx1g?",JVM option for max heap,Module option,Main class argument,Compilation error
+"Given the command:
+jlink --save-opts options.txt -p mods --add-modules com.example --output runtime
+
+What does --save-opts do?",Saves jlink options to file,Reads options from file,Compilation error,Invalid option
+"Given the command:
+jlink @options.txt
+
+Where options.txt contains jlink options
+
+What is the result?",Executes with options from file,Compilation error,File not found,Invalid syntax

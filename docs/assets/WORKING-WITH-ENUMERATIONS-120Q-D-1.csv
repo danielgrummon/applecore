@@ -1,0 +1,1246 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED);
+    }
+}",RED,Compilation error,0,red
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = new Color();
+    }
+}",Compilation error,Creates RED,Creates null,Runtime error
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.ordinal());
+    }
+}",0,1,RED,Compilation error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.BLUE.ordinal());
+    }
+}",2,0,1,3
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.name());
+    }
+}",RED,red,0,Compilation error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.valueOf(""RED"");
+        System.out.println(c);
+    }
+}",RED,Compilation error,null,0
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.valueOf(""red"");
+    }
+}",IllegalArgumentException,Returns RED,Compilation error,NullPointerException
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.values().length);
+    }
+}",3,Compilation error,0,4
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.values()[1]);
+    }
+}",GREEN,RED,BLUE,1
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED == Color.RED);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.equals(Color.RED));
+    }
+}",true,false,Compilation error,0
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED == Color.GREEN);
+    }
+}",false,true,Compilation error,0
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = null;
+        System.out.println(c == Color.RED);
+    }
+}",false,NullPointerException,true,Compilation error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = null;
+        System.out.println(c.equals(Color.RED));
+    }
+}",NullPointerException,false,true,Compilation error
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.compareTo(Color.GREEN));
+    }
+}",−1,1,0,Compilation error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.BLUE.compareTo(Color.RED));
+    }
+}",2,−2,0,Compilation error
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.GREEN.compareTo(Color.GREEN));
+    }
+}",0,−1,1,Compilation error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.RED;
+        switch(c) {
+            case RED: System.out.println(""R""); break;
+            case GREEN: System.out.println(""G""); break;
+        }
+    }
+}",R,Compilation error,G,Nothing printed
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.BLUE;
+        switch(c) {
+            case RED: System.out.println(""R""); break;
+            case GREEN: System.out.println(""G""); break;
+        }
+    }
+}",Nothing printed,BLUE,Compilation error,R
+"What is the result?
+enum Color {
+    RED, GREEN, BLUE;
+    public Color() { }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED);
+    }
+}",Compilation error,RED,GREEN,Runtime error
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    private Color() { }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED);
+    }
+}",RED,Compilation error,GREEN,Runtime error
+"What is the result?
+enum Color {
+    RED(1), GREEN(2), BLUE(3);
+    private int code;
+    private Color(int code) { this.code = code; }
+    public int getCode() { return code; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.getCode());
+    }
+}",1,0,RED,Compilation error
+"What is the output?
+enum Color {
+    RED(1), GREEN(2), BLUE(3);
+    private int code;
+    private Color(int code) { this.code = code; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.GREEN.ordinal());
+    }
+}",1,2,GREEN,Compilation error
+"What is the result?
+enum Color {
+    RED(""#FF0000""), GREEN(""#00FF00""), BLUE(""#0000FF"");
+    private String hex;
+    private Color(String hex) { this.hex = hex; }
+    public String getHex() { return hex; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.BLUE.getHex());
+    }
+}",#0000FF,BLUE,2,Compilation error
+"What is the output?
+enum Size {
+    SMALL(10), MEDIUM(20), LARGE(30);
+    private int value;
+    Size(int value) { this.value = value; }
+    public int getValue() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Size.LARGE.getValue());
+    }
+}",30,LARGE,2,Compilation error
+"What is the result?
+enum Day {
+    MON, TUE, WED;
+    public static int count = 0;
+    private Day() { count++; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Day.count);
+    }
+}",3,0,1,Compilation error
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    @Override
+    public String toString() { return ""Color: "" + name(); }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED);
+    }
+}",Color: RED,RED,Compilation error,0
+"What is the result?
+enum Color extends Object { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED);
+    }
+}",Compilation error,RED,GREEN,Runtime error
+"What is the output?
+interface Colored { String getColor(); }
+enum Color implements Colored {
+    RED, GREEN, BLUE;
+    public String getColor() { return name(); }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.getColor());
+    }
+}",RED,Compilation error,0,red
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+class MyColor extends Color { }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(new MyColor());
+    }
+}",Compilation error,MyColor instance,RED,Runtime error
+"What is the output?
+enum Operation {
+    PLUS { public int apply(int x, int y) { return x + y; } },
+    MINUS { public int apply(int x, int y) { return x - y; } };
+    public abstract int apply(int x, int y);
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Operation.PLUS.apply(5, 3));
+    }
+}",8,Compilation error,5,3
+"What is the result?
+enum Operation {
+    PLUS { public int apply(int x, int y) { return x + y; } },
+    MINUS { public int apply(int x, int y) { return x - y; } };
+    public abstract int apply(int x, int y);
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Operation.MINUS.apply(10, 3));
+    }
+}",7,Compilation error,10,−3
+"What is the output?
+enum Color {
+    RED { public String getHex() { return ""#FF0000""; } },
+    GREEN { public String getHex() { return ""#00FF00""; } };
+    public abstract String getHex();
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.getHex());
+    }
+}",#FF0000,RED,Compilation error,0
+"What is the result?
+enum Color {
+    RED, GREEN, BLUE;
+    public abstract String getHex();
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.getHex());
+    }
+}",Compilation error,#FF0000,RED,Runtime error
+"What is the output?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumSet<Color> set = EnumSet.allOf(Color.class);
+        System.out.println(set.size());
+    }
+}",3,Compilation error,0,4
+"What is the result?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumSet<Color> set = EnumSet.noneOf(Color.class);
+        System.out.println(set.size());
+    }
+}",0,3,Compilation error,null
+"What is the output?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumSet<Color> set = EnumSet.of(Color.RED, Color.BLUE);
+        System.out.println(set.size());
+    }
+}",2,3,1,Compilation error
+"What is the result?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumSet<Color> set = EnumSet.range(Color.RED, Color.BLUE);
+        System.out.println(set.size());
+    }
+}",3,2,1,Compilation error
+"What is the output?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumMap<Color, String> map = new EnumMap<>(Color.class);
+        map.put(Color.RED, ""Red"");
+        System.out.println(map.get(Color.RED));
+    }
+}",Red,RED,Compilation error,null
+"What is the result?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumMap<Color, String> map = new EnumMap<>(Color.class);
+        map.put(Color.RED, null);
+        System.out.println(map.get(Color.RED));
+    }
+}",null,RED,Compilation error,NullPointerException
+"What is the output?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumMap<Color, String> map = new EnumMap<>(Color.class);
+        map.put(null, ""test"");
+    }
+}",NullPointerException,Compilation error,null stored,Runtime error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        for(Color c : Color.values()) {
+            System.out.print(c + "" "");
+        }
+    }
+}",RED GREEN BLUE,Compilation error,0 1 2,RED BLUE GREEN
+"What is the output?
+enum Day { MON, TUE, WED }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Day.class.getSuperclass().getSimpleName());
+    }
+}",Enum,Object,Day,Compilation error
+"What is the result?
+enum Color {
+    RED, GREEN;
+    private static int counter = 0;
+    private Color() { counter++; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Color c1 = Color.RED;
+        Color c2 = Color.RED;
+        System.out.println(c1 == c2);
+    }
+}",true,false,Compilation error,2
+"What is the output?
+enum Priority { LOW, MEDIUM, HIGH }
+public class Test {
+    public static void main(String[] args) {
+        Priority p = Priority.valueOf(""MEDIUM"");
+        System.out.println(p.ordinal());
+    }
+}",1,MEDIUM,2,Compilation error
+"What is the result?
+enum Status {
+    PENDING(false), COMPLETE(true);
+    private boolean done;
+    Status(boolean done) { this.done = done; }
+    public boolean isDone() { return done; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Status.PENDING.isDone());
+    }
+}",false,true,PENDING,Compilation error
+"What is the output?
+enum Level {
+    LOW(1), MEDIUM(5), HIGH(10);
+    private int priority;
+    Level(int priority) { this.priority = priority; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Level.HIGH.ordinal());
+    }
+}",2,10,HIGH,Compilation error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color[] colors = Color.values();
+        colors[0] = null;
+        System.out.println(Color.RED);
+    }
+}",RED,null,Compilation error,NullPointerException
+"What is the output?
+enum Day {
+    MON, TUE;
+    public void test() { System.out.println(name()); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Day.MON.test();
+    }
+}",MON,Compilation error,TUE,0
+"What is the result?
+enum Color {
+    RED, GREEN, BLUE;
+    public static Color getDefault() { return RED; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.getDefault());
+    }
+}",RED,Compilation error,GREEN,null
+"What is the output?
+enum Size {
+    SMALL(""S""), MEDIUM(""M""), LARGE(""L"");
+    private String code;
+    Size(String code) { this.code = code; }
+    public String getCode() { return code; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Size.MEDIUM.getCode());
+    }
+}",M,MEDIUM,1,Compilation error
+"What is the result?
+enum Color {
+    RED, GREEN, BLUE;
+    class Inner { }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(""OK"");
+    }
+}",OK,Compilation error,RED,Runtime error
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    enum Shade { LIGHT, DARK }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.Shade.LIGHT);
+    }
+}",LIGHT,Compilation error,RED,Runtime error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.RED;
+        switch(c) {
+            case Color.RED: System.out.println(""R"");
+        }
+    }
+}",Compilation error,R,RED,Runtime error
+"What is the output?
+enum Animal { CAT, DOG, BIRD }
+public class Test {
+    public static void main(String[] args) {
+        Animal a = null;
+        switch(a) {
+            case CAT: System.out.println(""C"");
+        }
+    }
+}",NullPointerException,C,Compilation error,null
+"What is the result?
+enum Direction {
+    NORTH(0), SOUTH(180), EAST(90), WEST(270);
+    private int degrees;
+    Direction(int degrees) { this.degrees = degrees; }
+    public int getDegrees() { return degrees; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Direction.WEST.getDegrees());
+    }
+}",270,WEST,3,Compilation error
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    private int value = ordinal();
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(""OK"");
+    }
+}",Compilation error,OK,RED,Runtime error
+"What is the result?
+enum Month {
+    JAN(31), FEB(28), MAR(31);
+    private int days;
+    Month(int days) { this.days = days; }
+    public int getDays() { return days; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Month.FEB.getDays());
+    }
+}",28,FEB,1,Compilation error
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    public final String name() { return ""Color""; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.name());
+    }
+}",Compilation error,Color,RED,Runtime error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+interface Printable { void print(); }
+class Test implements Printable {
+    public void print() { System.out.println(Color.RED); }
+    public static void main(String[] args) {
+        new Test().print();
+    }
+}",RED,Compilation error,GREEN,Runtime error
+"What is the output?
+enum Coin {
+    PENNY(1), NICKEL(5), DIME(10), QUARTER(25);
+    private int cents;
+    Coin(int cents) { this.cents = cents; }
+    public int getCents() { return cents; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Coin.DIME.getCents());
+    }
+}",10,DIME,2,Compilation error
+"What is the result?
+enum Planet {
+    EARTH(5.97e24), MARS(6.39e23);
+    private double mass;
+    Planet(double mass) { this.mass = mass; }
+    public double getMass() { return mass; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Planet.EARTH.getMass() > Planet.MARS.getMass());
+    }
+}",true,false,Compilation error,0
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    static { System.out.println(""Static""); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.RED;
+    }
+}",Static,Compilation error,RED,Nothing printed
+"What is the result?
+enum TrafficLight {
+    RED(30), YELLOW(3), GREEN(25);
+    private int duration;
+    TrafficLight(int duration) { this.duration = duration; }
+    public int getDuration() { return duration; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(TrafficLight.YELLOW.getDuration());
+    }
+}",3,YELLOW,1,Compilation error
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.getClass());
+    }
+}",class Color,Compilation error,RED,Object
+"What is the result?
+enum Size {
+    SMALL, MEDIUM, LARGE;
+    public Size next() {
+        int nextOrdinal = (ordinal() + 1) % values().length;
+        return values()[nextOrdinal];
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Size.MEDIUM.next());
+    }
+}",LARGE,SMALL,MEDIUM,Compilation error
+"What is the output?
+enum Color {
+    RED { public boolean isPrimary() { return true; } },
+    PURPLE { public boolean isPrimary() { return false; } };
+    public abstract boolean isPrimary();
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED.isPrimary());
+    }
+}",true,false,Compilation error,RED
+"What is the result?
+enum Status { NEW, PENDING, DONE }
+public class Test {
+    public static void main(String[] args) {
+        Status s = Status.valueOf(""NEW"");
+        System.out.println(s == Status.NEW);
+    }
+}",true,false,Compilation error,NEW
+"What is the output?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumSet<Color> set = EnumSet.of(Color.RED);
+        set.add(Color.GREEN);
+        System.out.println(set.size());
+    }
+}",2,1,3,Compilation error
+"What is the result?
+enum Day {
+    MON(""Monday""), TUE(""Tuesday"");
+    private String fullName;
+    Day(String fullName) { this.fullName = fullName; }
+    public String getFullName() { return fullName; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Day.TUE.getFullName());
+    }
+}",Tuesday,TUE,1,Compilation error
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c1 = Color.RED;
+        Color c2 = Color.valueOf(""RED"");
+        System.out.println(c1.equals(c2));
+    }
+}",true,false,Compilation error,null
+"What is the result?
+enum Grade {
+    A(90), B(80), C(70);
+    private int minScore;
+    Grade(int minScore) { this.minScore = minScore; }
+    public int getMinScore() { return minScore; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Grade.B.getMinScore());
+    }
+}",80,B,1,Compilation error
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED instanceof Enum);
+    }
+}",true,false,Compilation error,RED
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.RED instanceof Color);
+    }
+}",true,false,Compilation error,RED
+"What is the output?
+enum Season {
+    SPRING, SUMMER, FALL, WINTER;
+    public boolean isWarm() {
+        return this == SPRING || this == SUMMER;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Season.FALL.isWarm());
+    }
+}",false,true,FALL,Compilation error
+"What is the result?
+enum Color {
+    RED(255, 0, 0), GREEN(0, 255, 0), BLUE(0, 0, 255);
+    private int r, g, b;
+    Color(int r, int g, int b) { this.r = r; this.g = g; this.b = b; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.GREEN.ordinal());
+    }
+}",1,GREEN,255,Compilation error
+"What is the output?
+enum Priority {
+    LOW, NORMAL, HIGH;
+    public static Priority getDefault() { return NORMAL; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Priority.getDefault());
+    }
+}",NORMAL,LOW,1,Compilation error
+"What is the result?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    enum Color { CYAN, MAGENTA, YELLOW }
+    public static void main(String[] args) {
+        System.out.println(Color.CYAN);
+    }
+}",CYAN,RED,Compilation error,Runtime error
+"What is the output?
+enum Status {
+    ACTIVE(true), INACTIVE(false);
+    private boolean enabled;
+    Status(boolean enabled) { this.enabled = enabled; }
+    public boolean isEnabled() { return enabled; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Status.ACTIVE.isEnabled());
+    }
+}",true,false,ACTIVE,Compilation error
+"What is the result?
+enum Temperature {
+    COLD, WARM, HOT;
+    @Override
+    public String toString() {
+        return ""Temperature: "" + ordinal();
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Temperature.WARM);
+    }
+}",Temperature: 1,WARM,Temperature: WARM,Compilation error
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.GREEN;
+        switch(c) {
+            default: System.out.println(""Other"");
+            case RED: System.out.println(""Red""); break;
+        }
+    }
+}",Other,Red,GREEN,Compilation error
+"What is the result?
+enum Role {
+    ADMIN(1), USER(2), GUEST(3);
+    private final int level;
+    Role(int level) { this.level = level; }
+    public int getLevel() { return level; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Role.USER.getLevel());
+    }
+}",2,USER,1,Compilation error
+"What is the output?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        List<Color> list = Arrays.asList(Color.values());
+        System.out.println(list.get(2));
+    }
+}",BLUE,2,RED,Compilation error
+"What is the result?
+enum Weekday { MON, TUE, WED, THU, FRI }
+enum Weekend { SAT, SUN }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Weekday.MON);
+    }
+}",MON,Compilation error,SAT,0
+"What is the output?
+enum Size {
+    SMALL(1), MEDIUM(2), LARGE(3);
+    private int code;
+    Size(int code) { this.code = code; }
+    public static Size fromCode(int code) {
+        for(Size s : values()) {
+            if(s.code == code) return s;
+        }
+        return null;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Size.fromCode(2));
+    }
+}",MEDIUM,2,null,Compilation error
+"What is the result?
+enum Color {
+    RED, GREEN, BLUE;
+    private int value;
+    private Color() { value = ordinal() * 10; }
+    public int getValue() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.BLUE.getValue());
+    }
+}",20,BLUE,2,Compilation error
+"What is the output?
+enum Permission {
+    READ(4), WRITE(2), EXECUTE(1);
+    private int bit;
+    Permission(int bit) { this.bit = bit; }
+    public int getBit() { return bit; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Permission.WRITE.getBit());
+    }
+}",2,WRITE,1,Compilation error
+"What is the result?
+enum HttpStatus {
+    OK(200), NOT_FOUND(404), ERROR(500);
+    private int code;
+    HttpStatus(int code) { this.code = code; }
+    public int getCode() { return code; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(HttpStatus.NOT_FOUND.getCode());
+    }
+}",404,NOT_FOUND,1,Compilation error
+"What is the output?
+interface Action { void execute(); }
+enum Command implements Action {
+    SAVE { public void execute() { System.out.println(""Saving""); } },
+    LOAD { public void execute() { System.out.println(""Loading""); } };
+}
+public class Test {
+    public static void main(String[] args) {
+        Command.SAVE.execute();
+    }
+}",Saving,Compilation error,SAVE,Loading
+"What is the result?
+enum Phase {
+    SOLID, LIQUID, GAS;
+    public Phase next() {
+        return values()[(ordinal() + 1) % 3];
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Phase.GAS.next());
+    }
+}",SOLID,GAS,LIQUID,Compilation error
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    public static int count() { return values().length; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.count());
+    }
+}",3,Compilation error,0,RED
+"What is the result?
+enum LogLevel {
+    DEBUG(1), INFO(2), WARN(3), ERROR(4);
+    private int severity;
+    LogLevel(int severity) { this.severity = severity; }
+    public boolean isMoreSevere(LogLevel other) {
+        return this.severity > other.severity;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(LogLevel.ERROR.isMoreSevere(LogLevel.WARN));
+    }
+}",true,false,ERROR,Compilation error
+"What is the output?
+enum State {
+    PENDING, RUNNING, COMPLETED;
+    public boolean isTerminal() {
+        return this == COMPLETED;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(State.RUNNING.isTerminal());
+    }
+}",false,true,RUNNING,Compilation error
+"What is the result?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumMap<Color, Integer> map = new EnumMap<>(Color.class);
+        map.put(Color.RED, 1);
+        map.put(Color.GREEN, 2);
+        System.out.println(map.size());
+    }
+}",2,3,1,Compilation error
+"What is the output?
+enum TimeUnit {
+    SECOND(1), MINUTE(60), HOUR(3600);
+    private int seconds;
+    TimeUnit(int seconds) { this.seconds = seconds; }
+    public int toSeconds(int value) { return value * seconds; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(TimeUnit.MINUTE.toSeconds(2));
+    }
+}",120,2,60,Compilation error
+"What is the result?
+enum Currency {
+    USD(""$""), EUR(""€""), GBP(""£"");
+    private String symbol;
+    Currency(String symbol) { this.symbol = symbol; }
+    public String getSymbol() { return symbol; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Currency.EUR.getSymbol());
+    }
+}",€,EUR,1,Compilation error
+"What is the output?
+enum Modifier {
+    PUBLIC, PRIVATE, PROTECTED;
+    public String toLowerCase() {
+        return name().toLowerCase();
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Modifier.PRIVATE.toLowerCase());
+    }
+}",private,PRIVATE,1,Compilation error
+"What is the result?
+enum CardSuit {
+    CLUBS(""♣""), DIAMONDS(""♦""), HEARTS(""♥""), SPADES(""♠"");
+    private String symbol;
+    CardSuit(String symbol) { this.symbol = symbol; }
+    public String getSymbol() { return symbol; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(CardSuit.HEARTS.getSymbol());
+    }
+}",♥,HEARTS,2,Compilation error
+"What is the output?
+enum Rating {
+    POOR(1), FAIR(2), GOOD(3), EXCELLENT(4);
+    private int stars;
+    Rating(int stars) { this.stars = stars; }
+    public int getStars() { return stars; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Rating.GOOD.getStars());
+    }
+}",3,GOOD,2,Compilation error
+"What is the result?
+enum Protocol {
+    HTTP(80), HTTPS(443), FTP(21);
+    private int port;
+    Protocol(int port) { this.port = port; }
+    public int getPort() { return port; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Protocol.HTTPS.getPort());
+    }
+}",443,HTTPS,1,Compilation error
+"What is the output?
+enum FileType {
+    TEXT("".txt""), IMAGE("".jpg""), VIDEO("".mp4"");
+    private String extension;
+    FileType(String extension) { this.extension = extension; }
+    public String getExtension() { return extension; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(FileType.IMAGE.getExtension());
+    }
+}",.jpg,IMAGE,1,Compilation error
+"What is the result?
+enum Alignment {
+    LEFT, CENTER, RIGHT;
+    public String format(String text, int width) {
+        return String.format(""%-"" + width + ""s"", text);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Alignment.LEFT.format(""Hi"", 5).length());
+    }
+}",5,2,LEFT,Compilation error
+"What is the output?
+enum Visibility {
+    VISIBLE(true), HIDDEN(false);
+    private boolean shown;
+    Visibility(boolean shown) { this.shown = shown; }
+    public boolean isShown() { return shown; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Visibility.HIDDEN.isShown());
+    }
+}",false,true,HIDDEN,Compilation error
+"What is the result?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        EnumSet<Color> set1 = EnumSet.of(Color.RED, Color.GREEN);
+        EnumSet<Color> set2 = EnumSet.complementOf(set1);
+        System.out.println(set2.size());
+    }
+}",1,2,3,Compilation error
+"What is the output?
+enum Quality {
+    LOW(1), MEDIUM(5), HIGH(10);
+    private int score;
+    Quality(int score) { this.score = score; }
+    public Quality upgrade() {
+        if(ordinal() < values().length - 1)
+            return values()[ordinal() + 1];
+        return this;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Quality.LOW.upgrade());
+    }
+}",MEDIUM,LOW,HIGH,Compilation error
+"What is the result?
+enum MessageType {
+    INFO, WARNING, ERROR;
+    public String prefix() {
+        return ""["" + name() + ""]"";
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(MessageType.WARNING.prefix());
+    }
+}","[WARNING]",WARNING,1,Compilation error
+"What is the output?
+enum ChessPiece {
+    PAWN(1), KNIGHT(3), BISHOP(3), ROOK(5), QUEEN(9), KING(0);
+    private int value;
+    ChessPiece(int value) { this.value = value; }
+    public int getValue() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(ChessPiece.QUEEN.getValue());
+    }
+}",9,QUEEN,4,Compilation error
+"What is the result?
+enum DatabaseType {
+    MYSQL, POSTGRES, ORACLE;
+    public String getDriver() {
+        return ""com.example."" + name().toLowerCase();
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(DatabaseType.POSTGRES.getDriver());
+    }
+}",com.example.postgres,POSTGRES,Compilation error,postgres
+"What is the output?
+enum BuildStatus {
+    SUCCESS(true), FAILURE(false), PENDING(false);
+    private boolean passed;
+    BuildStatus(boolean passed) { this.passed = passed; }
+    public boolean hasPassed() { return passed; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(BuildStatus.SUCCESS.hasPassed());
+    }
+}",true,false,SUCCESS,Compilation error
+"What is the result?
+enum Direction {
+    UP, DOWN, LEFT, RIGHT;
+    public Direction opposite() {
+        switch(this) {
+            case UP: return DOWN;
+            case DOWN: return UP;
+            case LEFT: return RIGHT;
+            case RIGHT: return LEFT;
+            default: return this;
+        }
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Direction.LEFT.opposite());
+    }
+}",RIGHT,LEFT,Compilation error,null
+"What is the output?
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.valueOf(""GREEN"").ordinal());
+    }
+}",1,GREEN,2,Compilation error
+"What is the result?
+enum Planet {
+    MERCURY(0.39), VENUS(0.72), EARTH(1.0);
+    private double au;
+    Planet(double au) { this.au = au; }
+    public double getAu() { return au; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Planet.VENUS.getAu());
+    }
+}",0.72,VENUS,1,Compilation error
+"What is the output?
+enum BooleanEnum { TRUE, FALSE }
+public class Test {
+    public static void main(String[] args) {
+        BooleanEnum b = BooleanEnum.TRUE;
+        System.out.println(b.name().toLowerCase());
+    }
+}",true,TRUE,Compilation error,false
+"What is the result?
+enum Color {
+    RED, GREEN, BLUE;
+    public static Color random() {
+        return values()[new java.util.Random().nextInt(3)];
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Color c = Color.random();
+        System.out.println(c != null);
+    }
+}",true,false,Compilation error,null
+"What is the output?
+enum RetryPolicy {
+    NEVER(0), ONCE(1), TWICE(2), ALWAYS(Integer.MAX_VALUE);
+    private int maxRetries;
+    RetryPolicy(int maxRetries) { this.maxRetries = maxRetries; }
+    public int getMaxRetries() { return maxRetries; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(RetryPolicy.TWICE.getMaxRetries());
+    }
+}",2,TWICE,Integer.MAX_VALUE,Compilation error
+"What is the result?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+public class Test {
+    public static void main(String[] args) {
+        Set<Color> set = EnumSet.allOf(Color.class);
+        set.remove(Color.GREEN);
+        System.out.println(set.contains(Color.RED));
+    }
+}",true,false,Compilation error,null
+"What is the output?
+enum ThreadState {
+    NEW, RUNNABLE, BLOCKED, WAITING, TERMINATED;
+    public boolean isActive() {
+        return this == RUNNABLE || this == BLOCKED || this == WAITING;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(ThreadState.BLOCKED.isActive());
+    }
+}",true,false,BLOCKED,Compilation error
+"What is the result?
+enum Access {
+    READ_ONLY(false), READ_WRITE(true);
+    private boolean writable;
+    Access(boolean writable) { this.writable = writable; }
+    public boolean canWrite() { return writable; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Access.READ_ONLY.canWrite());
+    }
+}",false,true,READ_ONLY,Compilation error
+"What is the output?
+enum Color {
+    RED, GREEN, BLUE;
+    public static boolean contains(String name) {
+        for(Color c : values()) {
+            if(c.name().equals(name)) return true;
+        }
+        return false;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Color.contains(""GREEN""));
+    }
+}",true,false,Compilation error,GREEN
+"What is the result?
+enum Size {
+    XS(""Extra Small""), S(""Small""), M(""Medium""), L(""Large""), XL(""Extra Large"");
+    private String description;
+    Size(String description) { this.description = description; }
+    public String getDescription() { return description; }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Size.XL.getDescription());
+    }
+}",Extra Large,XL,4,Compilation error

@@ -1,0 +1,1408 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+public class Test {
+    public static void main(String[] args) {
+        Runnable task = () -> System.out.println(""Running"");
+        Thread t = new Thread(task);
+        t.start();
+        System.out.println(""Main"");
+    }
+}",Output order not guaranteed,Running Main,Main Running,Compilation error
+"What is the result?
+public class Test implements Runnable {
+    public void run() {
+        System.out.println(""Thread"");
+    }
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.run();
+        System.out.println(""Main"");
+    }
+}",Thread Main,Main Thread,Output order not guaranteed,Compilation error
+"What is the result?
+public class Test implements Runnable {
+    public void run() {
+        System.out.println(""Thread"");
+    }
+    public static void main(String[] args) {
+        Thread t = new Thread(new Test());
+        t.start();
+        t.start();
+    }
+}",Runtime exception,Thread Thread,Thread,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test implements Callable<String> {
+    public String call() {
+        return ""Result"";
+    }
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(new Test());
+        System.out.println(future.get());
+        executor.shutdown();
+    }
+}",Result,Compilation error,Runtime error,No output
+"What is the result?
+import java.util.concurrent.*;
+public class Test implements Callable<Integer> {
+    public Integer call() {
+        return 42;
+    }
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<Integer> future = executor.submit(new Test());
+        System.out.println(future.get());
+        executor.shutdown();
+    }
+}",42,Compilation error,Runtime error,null
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        executor.execute(() -> System.out.println(""Task1""));
+        executor.execute(() -> System.out.println(""Task2""));
+        executor.shutdown();
+    }
+}",Output order not guaranteed,Task1 Task2,Task2 Task1,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(() -> ""Hello"");
+        executor.shutdown();
+        System.out.println(future.get());
+    }
+}",Hello,Compilation error,Runtime error,No output
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.shutdown();
+        executor.execute(() -> System.out.println(""Task""));
+    }
+}",RejectedExecutionException,Task,Compilation error,No output
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Future<Integer> f1 = executor.submit(() -> 10);
+        Future<Integer> f2 = executor.submit(() -> 20);
+        System.out.println(f1.get() + f2.get());
+        executor.shutdown();
+    }
+}",30,10,20,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> {
+            Thread.sleep(1000);
+            return ""Done"";
+        });
+        executor.shutdown();
+        System.out.println(executor.awaitTermination(2, TimeUnit.SECONDS));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static class Task implements Runnable {
+        public void run() {
+            System.out.println(Thread.currentThread().getName());
+        }
+    }
+    public static void main(String[] args) {
+        Thread t = new Thread(new Task());
+        t.setName(""MyThread"");
+        t.start();
+    }
+}",MyThread,Thread,Compilation error,main
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+                System.out.println(""Done"");
+            } catch (InterruptedException e) {}
+        });
+        t.start();
+        t.join();
+        System.out.println(""Main"");
+    }
+}",Done Main,Main Done,Output order not guaranteed,Compilation error
+"What is the result?
+public class Test {
+    static int counter = 0;
+    public static void main(String[] args) throws Exception {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter++;
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter++;
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println(counter);
+    }
+}",Result may vary due to race condition,2000,1000,Compilation error
+"What is the result?
+public class Test {
+    static int counter = 0;
+    public synchronized static void increment() {
+        counter++;
+    }
+    public static void main(String[] args) throws Exception {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) increment();
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) increment();
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println(counter);
+    }
+}",2000,Result may vary,1000,Compilation error
+"What is the result?
+public class Test {
+    static Object lock1 = new Object();
+    static Object lock2 = new Object();
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            synchronized(lock1) {
+                try { Thread.sleep(50); } catch(Exception e) {}
+                synchronized(lock2) {
+                    System.out.println(""T1"");
+                }
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            synchronized(lock2) {
+                try { Thread.sleep(50); } catch(Exception e) {}
+                synchronized(lock1) {
+                    System.out.println(""T2"");
+                }
+            }
+        });
+        t1.start();
+        t2.start();
+    }
+}",Potential deadlock,T1 T2,T2 T1,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    static AtomicInteger counter = new AtomicInteger(0);
+    public static void main(String[] args) throws Exception {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter.incrementAndGet();
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) counter.incrementAndGet();
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println(counter.get());
+    }
+}",2000,Result may vary,1000,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        System.out.println(ai.getAndIncrement());
+        System.out.println(ai.get());
+    }
+}",10 11,11 11,10 10,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        System.out.println(ai.incrementAndGet());
+        System.out.println(ai.get());
+    }
+}",6 6,5 6,6 7,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        System.out.println(ai.getAndAdd(5));
+        System.out.println(ai.get());
+    }
+}",10 15,15 15,10 10,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicBoolean ab = new AtomicBoolean(true);
+        System.out.println(ab.getAndSet(false));
+        System.out.println(ab.get());
+    }
+}",true false,false false,true true,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        map.forEach((k, v) -> System.out.print(k + v + "" ""));
+    }
+}",Output order not guaranteed,A1 B2,B2 A1,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        for (String s : list) {
+            System.out.print(s + "" "");
+            list.add(""C"");
+        }
+    }
+}",A B,A B C,Infinite loop,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CyclicBarrier barrier = new CyclicBarrier(2, () -> System.out.println(""Done""));
+        Thread t1 = new Thread(() -> {
+            try {
+                System.out.println(""T1"");
+                barrier.await();
+            } catch (Exception e) {}
+        });
+        Thread t2 = new Thread(() -> {
+            try {
+                System.out.println(""T2"");
+                barrier.await();
+            } catch (Exception e) {}
+        });
+        t1.start();
+        t2.start();
+    }
+}",Output order not guaranteed but ends with Done,T1 T2 Done,T2 T1 Done,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CountDownLatch latch = new CountDownLatch(2);
+        Thread t1 = new Thread(() -> {
+            System.out.println(""T1"");
+            latch.countDown();
+        });
+        Thread t2 = new Thread(() -> {
+            System.out.println(""T2"");
+            latch.countDown();
+        });
+        t1.start();
+        t2.start();
+        latch.await();
+        System.out.println(""Main"");
+    }
+}",Output order not guaranteed but ends with Main,T1 T2 Main,T2 T1 Main,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        Semaphore sem = new Semaphore(1);
+        Thread t = new Thread(() -> {
+            try {
+                sem.acquire();
+                System.out.println(""Acquired"");
+                sem.release();
+            } catch (Exception e) {}
+        });
+        t.start();
+    }
+}",Acquired,Compilation error,Runtime error,No output
+"What is the result?
+import java.util.concurrent.locks.*;
+public class Test {
+    static ReentrantLock lock = new ReentrantLock();
+    public static void main(String[] args) {
+        lock.lock();
+        try {
+            System.out.println(""Locked"");
+        } finally {
+            lock.unlock();
+        }
+    }
+}",Locked,Compilation error,Runtime error,No output
+"What is the result?
+import java.util.concurrent.*;
+import java.util.concurrent.locks.*;
+public class Test {
+    static ReentrantLock lock = new ReentrantLock();
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> {
+            if (lock.tryLock()) {
+                try {
+                    System.out.println(""Locked"");
+                } finally {
+                    lock.unlock();
+                }
+            } else {
+                System.out.println(""Failed"");
+            }
+        });
+        t.start();
+        t.join();
+    }
+}",Locked,Failed,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test extends RecursiveTask<Integer> {
+    private int n;
+    public Test(int n) {
+        this.n = n;
+    }
+    protected Integer compute() {
+        if (n <= 1) return n;
+        return n + new Test(n - 1).compute();
+    }
+    public static void main(String[] args) {
+        ForkJoinPool pool = new ForkJoinPool();
+        System.out.println(pool.invoke(new Test(5)));
+    }
+}",15,5,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test extends RecursiveTask<Integer> {
+    private int n;
+    public Test(int n) {
+        this.n = n;
+    }
+    protected Integer compute() {
+        if (n <= 1) return 1;
+        Test f1 = new Test(n - 1);
+        f1.fork();
+        return n * f1.join();
+    }
+    public static void main(String[] args) {
+        ForkJoinPool pool = new ForkJoinPool();
+        System.out.println(pool.invoke(new Test(5)));
+    }
+}",120,5,1,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test extends RecursiveAction {
+    private int n;
+    public Test(int n) {
+        this.n = n;
+    }
+    protected void compute() {
+        if (n > 0) {
+            System.out.println(n);
+            Test task = new Test(n - 1);
+            task.fork();
+            task.join();
+        }
+    }
+    public static void main(String[] args) {
+        ForkJoinPool pool = new ForkJoinPool();
+        pool.invoke(new Test(3));
+    }
+}",3 2 1,1 2 3,3,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+        int sum = list.parallelStream()
+            .mapToInt(Integer::intValue)
+            .sum();
+        System.out.println(sum);
+    }
+}",10,4,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+        String result = list.parallelStream()
+            .collect(Collectors.joining("",""));
+        System.out.println(result.length());
+    }
+}",5,3,Compilation error,Result may vary
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        long count = list.parallelStream()
+            .filter(x -> x % 2 == 0)
+            .count();
+        System.out.println(count);
+    }
+}",2,5,3,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        int product = list.parallelStream()
+            .reduce(1, (a, b) -> a * b);
+        System.out.println(product);
+    }
+}",6,1,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.parallelStream().forEach(x -> list.add(x));
+    }
+}",Potential ConcurrentModificationException,No output,Compilation error,Works correctly
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+        for (int i = 0; i < 5; i++) {
+            executor.execute(() -> System.out.println(Thread.currentThread().getName()));
+        }
+        executor.shutdown();
+    }
+}",Output order not guaranteed,Compilation error,Runtime error,Uses 5 threads
+"What is the result?
+import java.util.concurrent.*;
+import java.util.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        List<Callable<Integer>> tasks = Arrays.asList(
+            () -> 1,
+            () -> 2,
+            () -> 3
+        );
+        List<Future<Integer>> results = executor.invokeAll(tasks);
+        System.out.println(results.size());
+        executor.shutdown();
+    }
+}",3,1,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+import java.util.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        List<Callable<String>> tasks = Arrays.asList(
+            () -> ""A"",
+            () -> ""B""
+        );
+        String result = executor.invokeAny(tasks);
+        System.out.println(result.length());
+        executor.shutdown();
+    }
+}",1,2,Compilation error,Result may vary
+"What is the result?
+public class Test {
+    synchronized void method1() {
+        System.out.println(""M1"");
+        method2();
+    }
+    synchronized void method2() {
+        System.out.println(""M2"");
+    }
+    public static void main(String[] args) {
+        new Test().method1();
+    }
+}",M1 M2,Deadlock,Compilation error,M2 M1
+"What is the result?
+public class Test {
+    static int counter = 0;
+    public static void main(String[] args) {
+        Object lock = new Object();
+        Thread t = new Thread(() -> {
+            synchronized(lock) {
+                counter++;
+                System.out.println(counter);
+            }
+        });
+        t.start();
+    }
+}",1,0,Compilation error,Output order not guaranteed
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> System.out.println(""Running""));
+        t.start();
+        Thread.sleep(100);
+        System.out.println(t.isAlive());
+    }
+}",false,true,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicReference<String> ref = new AtomicReference<>(""Hello"");
+        System.out.println(ref.get());
+        ref.set(""World"");
+        System.out.println(ref.get());
+    }
+}",Hello World,World World,Hello Hello,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        boolean result = ai.compareAndSet(10, 20);
+        System.out.println(result + "" "" + ai.get());
+    }
+}",true 20,false 10,true 10,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        boolean result = ai.compareAndSet(5, 20);
+        System.out.println(result + "" "" + ai.get());
+    }
+}",false 10,true 20,false 20,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        map.putIfAbsent(""A"", 2);
+        System.out.println(map.get(""A""));
+    }
+}",1,2,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        map.putIfAbsent(""B"", 2);
+        System.out.println(map.size());
+    }
+}",2,1,Compilation error,0
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
+        queue.offer(1);
+        queue.offer(2);
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+    }
+}",1 2,2 1,Compilation error,Output order not guaranteed
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        BlockingQueue<String> queue = new ArrayBlockingQueue<>(2);
+        queue.put(""A"");
+        queue.put(""B"");
+        System.out.println(queue.take());
+        System.out.println(queue.take());
+    }
+}",A B,B A,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Semaphore sem = new Semaphore(2);
+        sem.acquire();
+        sem.acquire();
+        System.out.println(sem.availablePermits());
+    }
+}",0,2,1,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Semaphore sem = new Semaphore(1);
+        sem.acquire();
+        sem.release();
+        sem.release();
+        System.out.println(sem.availablePermits());
+    }
+}",2,1,0,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CountDownLatch latch = new CountDownLatch(3);
+        latch.countDown();
+        latch.countDown();
+        System.out.println(latch.getCount());
+    }
+}",1,3,2,0
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Exchanger<String> exchanger = new Exchanger<>();
+        Thread t1 = new Thread(() -> {
+            try {
+                String received = exchanger.exchange(""A"");
+                System.out.println(received);
+            } catch (Exception e) {}
+        });
+        Thread t2 = new Thread(() -> {
+            try {
+                String received = exchanger.exchange(""B"");
+                System.out.println(received);
+            } catch (Exception e) {}
+        });
+        t1.start();
+        t2.start();
+    }
+}",Output order not guaranteed - A and B,A B,B A,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+        Optional<Integer> result = list.parallelStream()
+            .reduce((a, b) -> a + b);
+        System.out.println(result.get());
+    }
+}",10,Optional[10],Compilation error,4
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        List<Integer> result = list.parallelStream()
+            .map(x -> x * 2)
+            .collect(Collectors.toList());
+        System.out.println(result);
+    }
+}","[2, 4, 6]","[1, 2, 3]",Compilation error,Order not guaranteed
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        boolean result = list.parallelStream()
+            .allMatch(x -> x > 0);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        boolean result = list.parallelStream()
+            .anyMatch(x -> x > 3);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Result may vary
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        boolean result = list.parallelStream()
+            .noneMatch(x -> x > 5);
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Result may vary
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""a"", ""b"", ""c"");
+        Optional<String> result = list.parallelStream()
+            .findAny();
+        System.out.println(result.isPresent());
+    }
+}",true,false,Result may vary,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 2, 8, 1);
+        Optional<Integer> result = list.parallelStream()
+            .max(Integer::compareTo);
+        System.out.println(result.get());
+    }
+}",8,5,1,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 2, 8, 1);
+        Optional<Integer> result = list.parallelStream()
+            .min(Integer::compareTo);
+        System.out.println(result.get());
+    }
+}",1,5,8,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long count = IntStream.range(0, 100)
+            .parallel()
+            .filter(x -> x % 2 == 0)
+            .count();
+        System.out.println(count);
+    }
+}",50,100,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        int sum = IntStream.range(1, 5)
+            .parallel()
+            .sum();
+        System.out.println(sum);
+    }
+}",10,5,15,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        double avg = IntStream.of(2, 4, 6)
+            .parallel()
+            .average()
+            .getAsDouble();
+        System.out.println(avg);
+    }
+}",4.0,6.0,2.0,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test extends RecursiveTask<Long> {
+    private long n;
+    public Test(long n) {
+        this.n = n;
+    }
+    protected Long compute() {
+        if (n <= 1) return 1L;
+        Test f1 = new Test(n - 1);
+        Test f2 = new Test(n - 2);
+        f1.fork();
+        return f2.compute() + f1.join();
+    }
+    public static void main(String[] args) {
+        ForkJoinPool pool = new ForkJoinPool();
+        System.out.println(pool.invoke(new Test(6)));
+    }
+}",13,6,8,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.schedule(() -> System.out.println(""Task""), 100, TimeUnit.MILLISECONDS);
+        Thread.sleep(200);
+        executor.shutdown();
+    }
+}",Task,No output,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        Future<Integer> f = executor.submit(() -> {
+            Thread.sleep(100);
+            return 42;
+        });
+        System.out.println(f.isDone());
+        Thread.sleep(200);
+        System.out.println(f.isDone());
+        executor.shutdown();
+    }
+}",false true,true true,false false,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> f = executor.submit(() -> ""Result"");
+        f.cancel(true);
+        System.out.println(f.isCancelled());
+        executor.shutdown();
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> f = executor.submit(() -> ""Result"");
+        f.cancel(true);
+        System.out.println(f.get());
+        executor.shutdown();
+    }
+}",CancellationException,Result,true,Compilation error
+"What is the result?
+public class Test {
+    static volatile int counter = 0;
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter++;
+            }
+        });
+        t.start();
+        t.join();
+        System.out.println(counter);
+    }
+}",1000,Result may vary,0,Compilation error
+"What is the result?
+public class Test {
+    static volatile boolean flag = false;
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> {
+            while (!flag) {
+                // busy wait
+            }
+            System.out.println(""Done"");
+        });
+        t.start();
+        Thread.sleep(100);
+        flag = true;
+        t.join();
+    }
+}",Done,No output,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.locks.*;
+public class Test {
+    static ReadWriteLock rwLock = new ReentrantReadWriteLock();
+    public static void main(String[] args) {
+        rwLock.readLock().lock();
+        try {
+            System.out.println(""Read"");
+        } finally {
+            rwLock.readLock().unlock();
+        }
+    }
+}",Read,Compilation error,Runtime error,No output
+"What is the result?
+import java.util.concurrent.locks.*;
+public class Test {
+    static ReadWriteLock rwLock = new ReentrantReadWriteLock();
+    public static void main(String[] args) {
+        rwLock.writeLock().lock();
+        try {
+            System.out.println(""Write"");
+        } finally {
+            rwLock.writeLock().unlock();
+        }
+    }
+}",Write,Compilation error,Runtime error,No output
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentSkipListSet<Integer> set = new ConcurrentSkipListSet<>();
+        set.add(3);
+        set.add(1);
+        set.add(2);
+        System.out.println(set);
+    }
+}","[1, 2, 3]","[3, 1, 2]",Order not guaranteed,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue<>();
+        queue.offer(""A"");
+        queue.offer(""B"");
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+    }
+}",A B,B A,Compilation error,Output order not guaranteed
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    static int counter = 0;
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        list.parallelStream().forEach(x -> counter++);
+        System.out.println(counter);
+    }
+}",Result may vary due to race condition,5,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+import java.util.concurrent.atomic.*;
+public class Test {
+    static AtomicInteger counter = new AtomicInteger(0);
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        list.parallelStream().forEach(x -> counter.incrementAndGet());
+        System.out.println(counter.get());
+    }
+}",5,Result may vary,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<List<Integer>> list = Arrays.asList(
+            Arrays.asList(1, 2),
+            Arrays.asList(3, 4)
+        );
+        long count = list.parallelStream()
+            .flatMap(l -> l.stream())
+            .count();
+        System.out.println(count);
+    }
+}",4,2,Compilation error,8
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<Boolean, List<Integer>> result = IntStream.range(0, 10)
+            .parallel()
+            .boxed()
+            .collect(Collectors.partitioningBy(x -> x % 2 == 0));
+        System.out.println(result.get(true).size());
+    }
+}",5,10,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, List<Integer>> result = IntStream.range(0, 10)
+            .parallel()
+            .boxed()
+            .collect(Collectors.groupingBy(x -> x % 3));
+        System.out.println(result.size());
+    }
+}",3,10,0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        String result = Stream.of(""a"", ""b"", ""c"")
+            .parallel()
+            .collect(Collectors.joining(""-""));
+        System.out.println(result);
+    }
+}",a-b-c,abc,Compilation error,Order not guaranteed
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        long sum = LongStream.range(1, 101)
+            .parallel()
+            .sum();
+        System.out.println(sum);
+    }
+}",5050,101,100,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Phaser phaser = new Phaser(1);
+        phaser.register();
+        phaser.arriveAndAwaitAdvance();
+        System.out.println(phaser.getPhase());
+    }
+}",1,0,2,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test implements Callable<Integer> {
+    public Integer call() throws Exception {
+        Thread.sleep(100);
+        return 10;
+    }
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<Integer> future = executor.submit(new Test());
+        System.out.println(future.get(200, TimeUnit.MILLISECONDS));
+        executor.shutdown();
+    }
+}",10,TimeoutException,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test implements Callable<Integer> {
+    public Integer call() throws Exception {
+        Thread.sleep(500);
+        return 10;
+    }
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<Integer> future = executor.submit(new Test());
+        System.out.println(future.get(100, TimeUnit.MILLISECONDS));
+        executor.shutdown();
+    }
+}",TimeoutException,10,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicLong al = new AtomicLong(100);
+        System.out.println(al.addAndGet(50));
+        System.out.println(al.get());
+    }
+}",150 150,100 150,150 100,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        map.compute(""A"", (k, v) -> v + 10);
+        System.out.println(map.get(""A""));
+    }
+}",11,1,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        map.merge(""A"", 5, (v1, v2) -> v1 + v2);
+        System.out.println(map.get(""A""));
+    }
+}",6,5,1,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+        map.put(""A"", 1);
+        map.computeIfPresent(""A"", (k, v) -> v * 2);
+        System.out.println(map.get(""A""));
+    }
+}",2,1,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+        map.computeIfAbsent(""A"", k -> 10);
+        System.out.println(map.get(""A""));
+    }
+}",10,null,Compilation error,0
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = IntStream.range(0, 1000)
+            .parallel()
+            .boxed()
+            .collect(Collectors.toSet());
+        System.out.println(set.size());
+    }
+}",1000,Result may vary,Compilation error,0
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        int result = list.parallelStream()
+            .reduce(0, (a, b) -> a + b, (a, b) -> a + b);
+        System.out.println(result);
+    }
+}",15,0,Compilation error,Result may vary
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""apple"", ""banana"", ""cherry"");
+        int totalLength = list.parallelStream()
+            .mapToInt(String::length)
+            .sum();
+        System.out.println(totalLength);
+    }
+}",17,3,Compilation error,Result may vary
+"What is the result?
+import java.util.concurrent.*;
+public class Test extends RecursiveTask<Integer> {
+    private int start, end;
+    public Test(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+    protected Integer compute() {
+        if (end - start <= 2) {
+            int sum = 0;
+            for (int i = start; i < end; i++) sum += i;
+            return sum;
+        }
+        int mid = (start + end) / 2;
+        Test left = new Test(start, mid);
+        Test right = new Test(mid, end);
+        left.fork();
+        return right.compute() + left.join();
+    }
+    public static void main(String[] args) {
+        ForkJoinPool pool = new ForkJoinPool();
+        System.out.println(pool.invoke(new Test(0, 10)));
+    }
+}",45,10,55,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test extends RecursiveAction {
+    private int[] arr;
+    private int start, end;
+    public Test(int[] arr, int start, int end) {
+        this.arr = arr;
+        this.start = start;
+        this.end = end;
+    }
+    protected void compute() {
+        if (end - start <= 1) {
+            arr[start] *= 2;
+        } else {
+            int mid = (start + end) / 2;
+            invokeAll(new Test(arr, start, mid), new Test(arr, mid, end));
+        }
+    }
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4};
+        ForkJoinPool pool = new ForkJoinPool();
+        pool.invoke(new Test(arr, 0, arr.length));
+        System.out.println(arr[0] + arr[3]);
+    }
+}",10,5,4,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        OptionalDouble avg = DoubleStream.of(1.0, 2.0, 3.0)
+            .parallel()
+            .average();
+        System.out.println(avg.getAsDouble());
+    }
+}",2.0,3.0,1.0,Compilation error
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        IntSummaryStatistics stats = IntStream.range(1, 6)
+            .parallel()
+            .summaryStatistics();
+        System.out.println(stats.getCount());
+    }
+}",5,6,Compilation error,1
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        boolean result = list.stream()
+            .parallel()
+            .isParallel();
+        System.out.println(result);
+    }
+}",true,false,Compilation error,Result may vary
+"What is the result?
+import java.util.*;
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        Stream<Integer> stream = list.stream().parallel();
+        Stream<Integer> sequential = stream.sequential();
+        System.out.println(sequential.isParallel());
+    }
+}",false,true,Compilation error,Result may vary
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Hello"");
+        System.out.println(future.get());
+    }
+}",Hello,Compilation error,Runtime error,No output
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 10)
+            .thenApply(x -> x * 2);
+        System.out.println(future.get());
+    }
+}",20,10,Compilation error,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() ->
+            System.out.println(""Task"")
+        );
+        future.get();
+        System.out.println(""Done"");
+    }
+}",Task Done,Done Task,Task,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<Integer> f1 = CompletableFuture.supplyAsync(() -> 10);
+        CompletableFuture<Integer> f2 = CompletableFuture.supplyAsync(() -> 20);
+        CompletableFuture<Integer> result = f1.thenCombine(f2, (a, b) -> a + b);
+        System.out.println(result.get());
+    }
+}",30,10,20,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Hello"")
+            .thenCompose(s -> CompletableFuture.supplyAsync(() -> s + "" World""));
+        System.out.println(future.get());
+    }
+}",Hello World,Hello,Compilation error,World
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException(""Error"");
+        }).exceptionally(ex -> 0);
+        System.out.println(future.get());
+    }
+}",0,RuntimeException,Compilation error,null
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
+            try { Thread.sleep(100); } catch(Exception e) {}
+            return ""A"";
+        });
+        CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> ""B"");
+        System.out.println(CompletableFuture.anyOf(f1, f2).get());
+    }
+}",B,A,Compilation error,Result may vary
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        CompletableFuture<String> f1 = CompletableFuture.completedFuture(""A"");
+        CompletableFuture<String> f2 = CompletableFuture.completedFuture(""B"");
+        CompletableFuture<Void> all = CompletableFuture.allOf(f1, f2);
+        all.get();
+        System.out.println(""Done"");
+    }
+}",Done,A B,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> {
+            System.out.println(Thread.currentThread().isDaemon());
+        });
+        t.setDaemon(true);
+        t.start();
+        try { t.join(); } catch(Exception e) {}
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println(""Interrupted"");
+            }
+        });
+        t.start();
+        Thread.sleep(50);
+        t.interrupt();
+        t.join();
+    }
+}",Interrupted,No output,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static int counter = 0;
+    static Object lock = new Object();
+    public static void main(String[] args) throws Exception {
+        Thread t1 = new Thread(() -> {
+            synchronized(lock) {
+                for (int i = 0; i < 1000; i++) counter++;
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            synchronized(lock) {
+                for (int i = 0; i < 1000; i++) counter++;
+            }
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println(counter);
+    }
+}",2000,Result may vary,1000,Compilation error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newWorkStealingPool();
+        executor.execute(() -> System.out.println(""Task""));
+        executor.shutdown();
+    }
+}",Task,Compilation error,No output,Runtime error
+"What is the result?
+import java.util.concurrent.*;
+public class Test {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> System.out.println(""Task1""));
+        executor.execute(() -> System.out.println(""Task2""));
+        executor.shutdownNow();
+    }
+}",May not execute all tasks,Task1 Task2,Task2 Task1,Compilation error
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(5);
+        ai.updateAndGet(x -> x * 2);
+        System.out.println(ai.get());
+    }
+}",10,5,Compilation error,20
+"What is the result?
+import java.util.concurrent.atomic.*;
+public class Test {
+    public static void main(String[] args) {
+        AtomicInteger ai = new AtomicInteger(10);
+        int result = ai.getAndUpdate(x -> x / 2);
+        System.out.println(result + "" "" + ai.get());
+    }
+}",10 5,5 5,10 10,Compilation error

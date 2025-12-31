@@ -1,0 +1,1418 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        String url = ""jdbc:derby:mydb"";
+        Connection conn = DriverManager.getConnection(url);
+        System.out.println(conn != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        String url = ""jdbc:derby:mydb"";
+        Connection conn = DriverManager.getConnection(url);
+        Statement stmt = conn.createStatement();
+        System.out.println(stmt != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getString(1));
+        }
+    }
+}",Prints the name value,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getString(""name""));
+        }
+    }
+}",Prints the name value,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        int count = stmt.executeUpdate(""INSERT INTO users (name) VALUES ('John')"");
+        System.out.println(count);
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        int count = stmt.executeUpdate(""UPDATE users SET name = 'Jane' WHERE id = 1"");
+        System.out.println(count);
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        int count = stmt.executeUpdate(""DELETE FROM users WHERE id = 1"");
+        System.out.println(count);
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        try (Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"")) {
+            System.out.println(""Connected"");
+        }
+    }
+}",Connected,Compilation error,SQLException,No output
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        try (Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+             Statement stmt = conn.createStatement()) {
+            System.out.println(""Statement created"");
+        }
+    }
+}",Statement created,Compilation error,SQLException,No output
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        try (Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(""SELECT * FROM users"")) {
+            System.out.println(""Query executed"");
+        }
+    }
+}",Query executed,Compilation error,SQLException,No output
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE id = ?"");
+        ps.setInt(1, 5);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""INSERT INTO users (name) VALUES (?)"");
+        ps.setString(1, ""Alice"");
+        int count = ps.executeUpdate();
+        System.out.println(count);
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""UPDATE users SET name = ? WHERE id = ?"");
+        ps.setString(1, ""Bob"");
+        ps.setInt(2, 10);
+        int count = ps.executeUpdate();
+        System.out.println(count);
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id, name FROM users"");
+        while (rs.next()) {
+            System.out.println(rs.getInt(1));
+        }
+    }
+}",Prints all id values,Compilation error,SQLException,Prints all name values
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id, name FROM users"");
+        while (rs.next()) {
+            System.out.println(rs.getString(2));
+        }
+    }
+}",Prints all name values,Compilation error,SQLException,Prints all id values
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id, name FROM users"");
+        while (rs.next()) {
+            System.out.println(rs.getInt(""id""));
+        }
+    }
+}",Prints all id values,Compilation error,SQLException,Prints all name values
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id, name FROM users"");
+        while (rs.next()) {
+            System.out.println(rs.getString(""name""));
+        }
+    }
+}",Prints all name values,Compilation error,SQLException,Prints all id values
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        conn.setAutoCommit(false);
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(""INSERT INTO users (name) VALUES ('Test')"");
+        conn.commit();
+        System.out.println(""Committed"");
+    }
+}",Committed,Compilation error,SQLException,RolledBack
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        conn.setAutoCommit(false);
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(""INSERT INTO users (name) VALUES ('Test')"");
+        conn.rollback();
+        System.out.println(""Rolled back"");
+    }
+}",Rolled back,Compilation error,SQLException,Committed
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        System.out.println(conn.getAutoCommit());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        conn.setAutoCommit(false);
+        System.out.println(conn.getAutoCommit());
+    }
+}",false,true,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        boolean isResultSet = stmt.execute(""SELECT * FROM users"");
+        System.out.println(isResultSet);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        boolean isResultSet = stmt.execute(""INSERT INTO users (name) VALUES ('Test')"");
+        System.out.println(isResultSet);
+    }
+}",false,true,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.execute(""SELECT * FROM users"");
+        ResultSet rs = stmt.getResultSet();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.execute(""INSERT INTO users (name) VALUES ('Test')"");
+        int count = stmt.getUpdateCount();
+        System.out.println(count);
+    }
+}",1,0,Compilation error,-1
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        String url = ""jdbc:derby:mydb"";
+        String user = ""admin"";
+        String pwd = ""password"";
+        Connection conn = DriverManager.getConnection(url, user, pwd);
+        System.out.println(conn != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT COUNT(*) FROM users"");
+        if (rs.next()) {
+            System.out.println(rs.getInt(1));
+        }
+    }
+}",Prints the count value,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE id = ? AND name = ?"");
+        ps.setInt(1, 1);
+        ps.setString(2, ""John"");
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name FROM users"");
+        System.out.println(rs.next());
+    }
+}",Prints true if users exist,Compilation error,SQLException,Always prints false
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.addBatch(""INSERT INTO users (name) VALUES ('A')"");
+        stmt.addBatch(""INSERT INTO users (name) VALUES ('B')"");
+        int[] counts = stmt.executeBatch();
+        System.out.println(counts.length);
+    }
+}",2,0,Compilation error,1
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""INSERT INTO users (name) VALUES (?)"");
+        ps.setString(1, ""A"");
+        ps.addBatch();
+        ps.setString(1, ""B"");
+        ps.addBatch();
+        int[] counts = ps.executeBatch();
+        System.out.println(counts.length);
+    }
+}",2,0,Compilation error,1
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id, name, age FROM users"");
+        ResultSetMetaData meta = rs.getMetaData();
+        System.out.println(meta.getColumnCount());
+    }
+}",3,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id, name FROM users"");
+        ResultSetMetaData meta = rs.getMetaData();
+        System.out.println(meta.getColumnName(1));
+    }
+}",id,name,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id, name FROM users"");
+        ResultSetMetaData meta = rs.getMetaData();
+        System.out.println(meta.getColumnName(2));
+    }
+}",name,id,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id FROM users"");
+        ResultSetMetaData meta = rs.getMetaData();
+        System.out.println(meta.getColumnType(1));
+    }
+}",Prints SQL type code,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        CallableStatement cs = conn.prepareCall(""{call getUserName(?)}"");
+        cs.setInt(1, 1);
+        ResultSet rs = cs.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        CallableStatement cs = conn.prepareCall(""{call updateUser(?, ?)}"");
+        cs.setInt(1, 1);
+        cs.setString(2, ""NewName"");
+        int count = cs.executeUpdate();
+        System.out.println(count);
+    }
+}",Prints update count,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT id FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getLong(1));
+        }
+    }
+}",Prints the id as long,Compilation error,SQLException,ClassCastException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT price FROM products WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getDouble(1));
+        }
+    }
+}",Prints the price as double,Compilation error,SQLException,ClassCastException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT active FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getBoolean(1));
+        }
+    }
+}",Prints boolean value,Compilation error,SQLException,ClassCastException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getObject(1));
+        }
+    }
+}",Prints the name value,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        System.out.println(conn.isClosed());
+    }
+}",false,true,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        conn.close();
+        System.out.println(conn.isClosed());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.close();
+        System.out.println(stmt.isClosed());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.close();
+        System.out.println(rs.isClosed());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE age > ?"");
+        ps.setInt(1, 18);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""DELETE FROM users WHERE id = ?"");
+        ps.setInt(1, 5);
+        int count = ps.executeUpdate();
+        System.out.println(count);
+    }
+}",Prints delete count,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        DatabaseMetaData meta = conn.getMetaData();
+        System.out.println(meta != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        DatabaseMetaData meta = conn.getMetaData();
+        System.out.println(meta.getDatabaseProductName() != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        DatabaseMetaData meta = conn.getMetaData();
+        System.out.println(meta.getDriverName() != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        System.out.println(rs.isBeforeFirst());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.next();
+        System.out.println(rs.isFirst());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.last();
+        System.out.println(rs.isLast());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.first();
+        System.out.println(rs.getRow());
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.absolute(3);
+        System.out.println(rs.getRow());
+    }
+}",3,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.first();
+        rs.relative(2);
+        System.out.println(rs.getRow());
+    }
+}",3,2,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.last();
+        rs.previous();
+        System.out.println(rs.getRow() > 0);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.afterLast();
+        System.out.println(rs.isAfterLast());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        rs.beforeFirst();
+        System.out.println(rs.isBeforeFirst());
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        try (Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(""SELECT * FROM users"")) {
+            while (rs.next()) {
+                System.out.println(rs.getInt(""id""));
+            }
+        }
+    }
+}",Prints all id values,Compilation error,SQLException,Prints nothing
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""INSERT INTO users (name, age) VALUES (?, ?)"");
+        ps.setString(1, ""Alice"");
+        ps.setInt(2, 25);
+        int count = ps.executeUpdate();
+        System.out.println(count);
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""UPDATE users SET age = ? WHERE name = ?"");
+        ps.setInt(1, 30);
+        ps.setString(2, ""Bob"");
+        int count = ps.executeUpdate();
+        System.out.println(count);
+    }
+}",Prints update count,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name FROM users WHERE id = 999"");
+        System.out.println(rs.next());
+    }
+}",false,true,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        int count = stmt.executeUpdate(""UPDATE users SET age = 30 WHERE id = 999"");
+        System.out.println(count);
+    }
+}",0,1,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) {
+        try {
+            Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+            System.out.println(""Success"");
+        } catch (SQLException e) {
+            System.out.println(""Error"");
+        }
+    }
+}",Success or Error,Compilation error,Always Success,Always Error
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        conn.setAutoCommit(false);
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(""INSERT INTO users (name) VALUES ('Test')"");
+            conn.commit();
+        } catch (SQLException e) {
+            conn.rollback();
+        }
+    }
+}",Executes without error,Compilation error,Always throws exception,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE name LIKE ?"");
+        ps.setString(1, ""%John%"");
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE age BETWEEN ? AND ?"");
+        ps.setInt(1, 18);
+        ps.setInt(2, 65);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE id IN (?, ?, ?)"");
+        ps.setInt(1, 1);
+        ps.setInt(2, 2);
+        ps.setInt(3, 3);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT MAX(age) FROM users"");
+        if (rs.next()) {
+            System.out.println(rs.getInt(1));
+        }
+    }
+}",Prints max age value,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT MIN(age) FROM users"");
+        if (rs.next()) {
+            System.out.println(rs.getInt(1));
+        }
+    }
+}",Prints min age value,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT AVG(age) FROM users"");
+        if (rs.next()) {
+            System.out.println(rs.getDouble(1));
+        }
+    }
+}",Prints average age,Compilation error,SQLException,0.0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT SUM(age) FROM users"");
+        if (rs.next()) {
+            System.out.println(rs.getInt(1));
+        }
+    }
+}",Prints sum of ages,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE created_date > ?"");
+        ps.setDate(1, new java.sql.Date(System.currentTimeMillis()));
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE created_time > ?"");
+        ps.setTime(1, new java.sql.Time(System.currentTimeMillis()));
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE created_timestamp > ?"");
+        ps.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()));
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT created_date FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getDate(1) != null);
+        }
+    }
+}",Prints boolean value,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT created_time FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getTime(1) != null);
+        }
+    }
+}",Prints boolean value,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT created_timestamp FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getTimestamp(1) != null);
+        }
+    }
+}",Prints boolean value,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""INSERT INTO users (name, salary) VALUES (?, ?)"");
+        ps.setString(1, ""John"");
+        ps.setBigDecimal(2, new java.math.BigDecimal(""50000.50""));
+        int count = ps.executeUpdate();
+        System.out.println(count);
+    }
+}",1,0,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT salary FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getBigDecimal(1) != null);
+        }
+    }
+}",Prints boolean value,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE active = ?"");
+        ps.setBoolean(1, true);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE score > ?"");
+        ps.setDouble(1, 75.5);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE total > ?"");
+        ps.setLong(1, 1000000L);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE rating > ?"");
+        ps.setFloat(1, 4.5f);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE status = ?"");
+        ps.setShort(1, (short) 1);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE level = ?"");
+        ps.setByte(1, (byte) 5);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT rating FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getFloat(1));
+        }
+    }
+}",Prints float value,Compilation error,SQLException,0.0f
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT status FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getShort(1));
+        }
+    }
+}",Prints short value,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT level FROM users WHERE id = 1"");
+        if (rs.next()) {
+            System.out.println(rs.getByte(1));
+        }
+    }
+}",Prints byte value,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name FROM users WHERE id = 999"");
+        if (rs.next()) {
+            System.out.println(rs.getString(1));
+        } else {
+            System.out.println(""Not found"");
+        }
+    }
+}",Not found,Compilation error,SQLException,null
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name FROM users WHERE id = 1"");
+        if (rs.next()) {
+            String name = rs.getString(1);
+            System.out.println(rs.wasNull());
+        }
+    }
+}",Prints false if not null,Compilation error,SQLException,Always true
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE name IS NULL"");
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""UPDATE users SET name = ? WHERE id = ?"");
+        ps.setNull(1, java.sql.Types.VARCHAR);
+        ps.setInt(2, 1);
+        int count = ps.executeUpdate();
+        System.out.println(count);
+    }
+}",Prints update count,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users ORDER BY name"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users ORDER BY age DESC"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT DISTINCT name FROM users"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users LIMIT 10"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT u.name, o.total FROM users u JOIN orders o ON u.id = o.user_id"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name, COUNT(*) FROM users GROUP BY name"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT name, COUNT(*) FROM users GROUP BY name HAVING COUNT(*) > 1"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        CallableStatement cs = conn.prepareCall(""{? = call getCount()}"");
+        cs.registerOutParameter(1, Types.INTEGER);
+        cs.execute();
+        System.out.println(cs.getInt(1));
+    }
+}",Prints the returned value,Compilation error,SQLException,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.setMaxRows(5);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.setQueryTimeout(30);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.setFetchSize(100);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE id = ?"");
+        ps.setInt(1, 1);
+        ps.clearParameters();
+        ps.setInt(1, 2);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        stmt.addBatch(""INSERT INTO users (name) VALUES ('A')"");
+        stmt.clearBatch();
+        stmt.addBatch(""INSERT INTO users (name) VALUES ('B')"");
+        int[] counts = stmt.executeBatch();
+        System.out.println(counts.length);
+    }
+}",1,2,Compilation error,0
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Savepoint sp = conn.setSavepoint(""sp1"");
+        System.out.println(sp != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        conn.setAutoCommit(false);
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(""INSERT INTO users (name) VALUES ('Test')"");
+        Savepoint sp = conn.setSavepoint();
+        stmt.executeUpdate(""INSERT INTO users (name) VALUES ('Test2')"");
+        conn.rollback(sp);
+        conn.commit();
+    }
+}",Executes without error,Compilation error,SQLException,NullPointerException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+        System.out.println(conn.getTransactionIsolation() == Connection.TRANSACTION_READ_COMMITTED);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users FOR UPDATE"");
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""INSERT INTO users (name) VALUES (?)"", Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, ""John"");
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        System.out.println(rs != null);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""INSERT INTO users (name) VALUES (?)"", Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, ""John"");
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            System.out.println(rs.getInt(1) > 0);
+        }
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        System.out.println(rs.getType() == ResultSet.TYPE_FORWARD_ONLY);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet rs = stmt.executeQuery(""SELECT * FROM users"");
+        System.out.println(rs.getConcurrency() == ResultSet.CONCUR_UPDATABLE);
+    }
+}",true,false,Compilation error,SQLException
+"What is the result?
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws SQLException {
+        Connection conn = DriverManager.getConnection(""jdbc:derby:mydb"");
+        PreparedStatement ps = conn.prepareStatement(""SELECT * FROM users WHERE id = ?"");
+        System.out.println(ps.getParameterMetaData() != null);
+    }
+}",true,false,Compilation error,SQLException

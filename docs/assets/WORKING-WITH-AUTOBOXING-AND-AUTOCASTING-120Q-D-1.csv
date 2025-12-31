@@ -1,0 +1,1437 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        test(5);
+    }
+}",int,Integer,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        Integer i = 5;
+        test(i);
+    }
+}",Integer,int,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",long,Integer,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Long,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",int,long,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",long,float,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(int... x) {
+        System.out.println(""varargs"");
+    }
+    public static void main(String[] args) {
+        test(5);
+    }
+}",Integer,varargs,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(int... x) {
+        System.out.println(""varargs"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",long,varargs,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(int... x) {
+        System.out.println(""varargs"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,varargs,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Compilation error,Long,Runtime error,int
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(short x) {
+        System.out.println(""short"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",short,int,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,double,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x, int y) {
+        System.out.println(""Integer then int"");
+    }
+    static void test(int x, Integer y) {
+        System.out.println(""int then Integer"");
+    }
+    public static void main(String[] args) {
+        test(5, 10);
+    }
+}",Compilation error,Integer then int,int then Integer,Runtime error
+"What is the result?
+public class Test {
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",float,double,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    static void test(long... x) {
+        System.out.println(""varargs"");
+    }
+    public static void main(String[] args) {
+        long l = 5L;
+        test(l);
+    }
+}",Long,varargs,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(byte x) {
+        System.out.println(""byte"");
+    }
+    static void test(short x) {
+        System.out.println(""short"");
+    }
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",byte,short,int,Compilation error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Compilation error,int,Runtime error
+"What is the result?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        Integer i = 5;
+        test(i);
+    }
+}",int,Integer,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Object x) {
+        System.out.println(""Object"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Object,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",long,Compilation error,int,Runtime error
+"What is the output?
+public class Test {
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        long l = 5L;
+        test(l);
+    }
+}",long,Long,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(Integer... x) {
+        System.out.println(""varargs"");
+    }
+    public static void main(String[] args) {
+        test(5);
+    }
+}",int,varargs,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(Object x) {
+        System.out.println(""Object"");
+    }
+    public static void main(String[] args) {
+        Integer i = 5;
+        test(i);
+    }
+}",Integer,Object,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(char x) {
+        System.out.println(""char"");
+    }
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        char c = 'A';
+        test(c);
+    }
+}",char,int,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(Character x) {
+        System.out.println(""Character"");
+    }
+    public static void main(String[] args) {
+        char c = 'A';
+        test(c);
+    }
+}",int,Character,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(Character x) {
+        System.out.println(""Character"");
+    }
+    public static void main(String[] args) {
+        char c = 'A';
+        test(c);
+    }
+}",Character,Integer,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(Character x) {
+        System.out.println(""Character"");
+    }
+    public static void main(String[] args) {
+        char c = 'A';
+        test(c);
+    }
+}",long,Character,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",float,Integer,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        float f = 5.0f;
+        test(f);
+    }
+}",double,Compilation error,float,Runtime error
+"What is the result?
+public class Test {
+    static void test(Float x) {
+        System.out.println(""Float"");
+    }
+    public static void main(String[] args) {
+        float f = 5.0f;
+        test(f);
+    }
+}",Float,Compilation error,float,Runtime error
+"What is the output?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    static void test(Double x) {
+        System.out.println(""Double"");
+    }
+    public static void main(String[] args) {
+        double d = 5.0;
+        test(d);
+    }
+}",double,Double,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Number x) {
+        System.out.println(""Number"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Number,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Byte x) {
+        System.out.println(""Byte"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",Byte,Compilation error,byte,Runtime error
+"What is the result?
+public class Test {
+    static void test(Short x) {
+        System.out.println(""Short"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",Short,Compilation error,short,Runtime error
+"What is the output?
+public class Test {
+    static void test(Boolean x) {
+        System.out.println(""Boolean"");
+    }
+    public static void main(String[] args) {
+        boolean b = true;
+        test(b);
+    }
+}",Boolean,Compilation error,boolean,Runtime error
+"What is the result?
+public class Test {
+    static void test(boolean x) {
+        System.out.println(""boolean"");
+    }
+    public static void main(String[] args) {
+        Boolean b = true;
+        test(b);
+    }
+}",boolean,Boolean,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int... x) {
+        System.out.println(""int varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",int varargs,Compilation error,Runtime error,No output
+"What is the result?
+public class Test {
+    static void test(Integer... x) {
+        System.out.println(""Integer varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",Integer varargs,Compilation error,int varargs,Runtime error
+"What is the output?
+public class Test {
+    static void test(int... x) {
+        System.out.println(""int varargs"");
+    }
+    static void test(Integer... x) {
+        System.out.println(""Integer varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",Compilation error,int varargs,Integer varargs,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x, long y) {
+        System.out.println(""two longs"");
+    }
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        test(x, y);
+    }
+}",two longs,Compilation error,two ints,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x, Integer y) {
+        System.out.println(""two Integers"");
+    }
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        test(x, y);
+    }
+}",two Integers,Compilation error,two ints,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x, Integer y) {
+        System.out.println(""long then Integer"");
+    }
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        test(x, y);
+    }
+}",long then Integer,Compilation error,two ints,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x, long y) {
+        System.out.println(""Integer then long"");
+    }
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        test(x, y);
+    }
+}",Integer then long,Compilation error,two ints,Runtime error
+"What is the result?
+public class Test {
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    public static void main(String[] args) {
+        Long l = 5L;
+        test(l);
+    }
+}",Long,Compilation error,long,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",int,double,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",long,double,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(short x) {
+        System.out.println(""short"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",short,long,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",int,float,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",Integer,double,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Byte x) {
+        System.out.println(""Byte"");
+    }
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",int,Byte,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Short x) {
+        System.out.println(""Short"");
+    }
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",int,Short,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Character x) {
+        System.out.println(""Character"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        char c = 'A';
+        test(c);
+    }
+}",long,Character,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",long,float,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    public static void main(String[] args) {
+        long l = 5L;
+        test(l);
+    }
+}",float,double,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",Integer,Long,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Float x) {
+        System.out.println(""Float"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Float,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Double x) {
+        System.out.println(""Double"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Double,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(Byte x) {
+        System.out.println(""Byte"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",long,Byte,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(Short x) {
+        System.out.println(""Short"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",int,Short,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(Byte x) {
+        System.out.println(""Byte"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Byte,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Number x) {
+        System.out.println(""Number"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Number,Compilation error,int,Runtime error
+"What is the result?
+public class Test {
+    static void test(Comparable x) {
+        System.out.println(""Comparable"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Comparable,Compilation error,int,Runtime error
+"What is the output?
+public class Test {
+    static void test(Object x) {
+        System.out.println(""Object"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Object,Compilation error,int,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(Object x) {
+        System.out.println(""Object"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",long,Integer,Object,Compilation error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(Number x) {
+        System.out.println(""Number"");
+    }
+    static void test(Object x) {
+        System.out.println(""Object"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Number,Object,Compilation error
+"What is the result?
+public class Test {
+    static void test(float x, int y) {
+        System.out.println(""float then int"");
+    }
+    public static void main(String[] args) {
+        byte x = 5;
+        short y = 10;
+        test(x, y);
+    }
+}",float then int,Compilation error,byte then short,Runtime error
+"What is the output?
+public class Test {
+    static void test(long x, long y) {
+        System.out.println(""two longs"");
+    }
+    public static void main(String[] args) {
+        byte x = 5;
+        short y = 10;
+        test(x, y);
+    }
+}",two longs,Compilation error,byte then short,Runtime error
+"What is the result?
+public class Test {
+    static void test(Integer x, Long y) {
+        System.out.println(""Integer then Long"");
+    }
+    public static void main(String[] args) {
+        int x = 5;
+        long y = 10L;
+        test(x, y);
+    }
+}",Integer then Long,Compilation error,int then long,Runtime error
+"What is the output?
+public class Test {
+    static void test(double x, double y) {
+        System.out.println(""two doubles"");
+    }
+    public static void main(String[] args) {
+        int x = 5;
+        float y = 10.0f;
+        test(x, y);
+    }
+}",two doubles,Compilation error,int then float,Runtime error
+"What is the result?
+public class Test {
+    static void test(Float x, Double y) {
+        System.out.println(""Float then Double"");
+    }
+    public static void main(String[] args) {
+        float x = 5.0f;
+        double y = 10.0;
+        test(x, y);
+    }
+}",Float then Double,Compilation error,float then double,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",int,long,Integer,Compilation error
+"What is the result?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",int,long,Integer,Compilation error
+"What is the output?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",long,float,Integer,Compilation error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        short s = 5;
+        test(s);
+    }
+}",long,Integer,double,Compilation error
+"What is the output?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,float,double,Compilation error
+"What is the result?
+public class Test {
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    static void test(Float x) {
+        System.out.println(""Float"");
+    }
+    public static void main(String[] args) {
+        long l = 5L;
+        test(l);
+    }
+}",Long,Float,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Byte x) {
+        System.out.println(""Byte"");
+    }
+    static void test(Short x) {
+        System.out.println(""Short"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",Byte,Short,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Character x) {
+        System.out.println(""Character"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        char c = 'A';
+        test(c);
+    }
+}",long,Character,Integer,Compilation error
+"What is the output?
+public class Test {
+    static void test(Character x) {
+        System.out.println(""Character"");
+    }
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        char c = 'A';
+        test(c);
+    }
+}",int,Character,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Integer... x) {
+        System.out.println(""Integer varargs"");
+    }
+    static void test(Number x) {
+        System.out.println(""Number"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Number,Integer varargs,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int... x) {
+        System.out.println(""int varargs"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",long,int varargs,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Integer... x) {
+        System.out.println(""Integer varargs"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",long,Integer varargs,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int... x) {
+        System.out.println(""int varargs"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",Integer,int varargs,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(long... x) {
+        System.out.println(""long varargs"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,long varargs,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(Object... x) {
+        System.out.println(""Object varargs"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Object varargs,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(Number... x) {
+        System.out.println(""Number varargs"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Number varargs,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x, long y) {
+        System.out.println(""int then long"");
+    }
+    static void test(long x, int y) {
+        System.out.println(""long then int"");
+    }
+    public static void main(String[] args) {
+        byte x = 5;
+        byte y = 10;
+        test(x, y);
+    }
+}",Compilation error,int then long,long then int,Runtime error
+"What is the result?
+public class Test {
+    static void test(Integer x, long y) {
+        System.out.println(""Integer then long"");
+    }
+    static void test(int x, Long y) {
+        System.out.println(""int then Long"");
+    }
+    public static void main(String[] args) {
+        byte x = 5;
+        byte y = 10;
+        test(x, y);
+    }
+}",Compilation error,Integer then long,int then Long,Runtime error
+"What is the output?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        Integer i = 5;
+        test(i);
+    }
+}",long,Integer,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        Integer i = 5;
+        test(i);
+    }
+}",double,Integer,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    public static void main(String[] args) {
+        Long l = 5L;
+        test(l);
+    }
+}",float,Long,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        Float f = 5.0f;
+        test(f);
+    }
+}",double,Float,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        Short s = 5;
+        test(s);
+    }
+}",long,Short,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        Byte b = 5;
+        test(b);
+    }
+}",int,Byte,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    public static void main(String[] args) {
+        Byte b = 5;
+        test(b);
+    }
+}",float,Byte,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        Short s = 5;
+        test(s);
+    }
+}",double,Short,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    public static void main(String[] args) {
+        Character c = 'A';
+        test(c);
+    }
+}",int,Character,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        Character c = 'A';
+        test(c);
+    }
+}",long,Character,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(int x, int... y) {
+        System.out.println(""int with varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",int with varargs,Compilation error,Runtime error,No output
+"What is the result?
+public class Test {
+    static void test(Integer x, int... y) {
+        System.out.println(""Integer with varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",Integer with varargs,Compilation error,Runtime error,No output
+"What is the output?
+public class Test {
+    static void test(long x, long... y) {
+        System.out.println(""long with varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",long with varargs,Compilation error,Runtime error,No output
+"What is the result?
+public class Test {
+    static void test(Integer x, Integer... y) {
+        System.out.println(""Integer with varargs"");
+    }
+    public static void main(String[] args) {
+        int x = 1;
+        int[] arr = {2, 3};
+        test(x, arr);
+    }
+}",Compilation error,Integer with varargs,Runtime error,No output
+"What is the output?
+public class Test {
+    static void test(int x, Integer... y) {
+        System.out.println(""int with Integer varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",int with Integer varargs,Compilation error,Runtime error,No output
+"What is the result?
+public class Test {
+    static void test(long x, Integer... y) {
+        System.out.println(""long with Integer varargs"");
+    }
+    public static void main(String[] args) {
+        byte x = 1;
+        int y = 2;
+        int z = 3;
+        test(x, y, z);
+    }
+}",long with Integer varargs,Compilation error,Runtime error,No output
+"What is the output?
+public class Test {
+    static void test(Integer x, long... y) {
+        System.out.println(""Integer with long varargs"");
+    }
+    public static void main(String[] args) {
+        int x = 1;
+        int y = 2;
+        int z = 3;
+        test(x, y, z);
+    }
+}",Integer with long varargs,Compilation error,Runtime error,No output
+"What is the result?
+public class Test {
+    static void test(Number x, Number... y) {
+        System.out.println(""Number with varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",Number with varargs,Compilation error,Runtime error,No output
+"What is the output?
+public class Test {
+    static void test(Object x, Object... y) {
+        System.out.println(""Object with varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",Object with varargs,Compilation error,Runtime error,No output
+"What is the result?
+public class Test {
+    static void test(Comparable x, Comparable... y) {
+        System.out.println(""Comparable with varargs"");
+    }
+    public static void main(String[] args) {
+        test(1, 2, 3);
+    }
+}",Comparable with varargs,Compilation error,Runtime error,No output
+"What is the output?
+public class Test {
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",int,long,float,Compilation error
+"What is the result?
+public class Test {
+    static void test(short x) {
+        System.out.println(""short"");
+    }
+    static void test(int x) {
+        System.out.println(""int"");
+    }
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",short,int,long,Compilation error
+"What is the output?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",long,float,double,Compilation error
+"What is the result?
+public class Test {
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    static void test(Long x) {
+        System.out.println(""Long"");
+    }
+    static void test(Float x) {
+        System.out.println(""Float"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,Long,Float,Compilation error
+"What is the output?
+public class Test {
+    static void test(Byte x) {
+        System.out.println(""Byte"");
+    }
+    static void test(Short x) {
+        System.out.println(""Short"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        byte b = 5;
+        test(b);
+    }
+}",Byte,Short,Integer,Compilation error
+"What is the result?
+public class Test {
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(Float x) {
+        System.out.println(""Float"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",float,Float,Compilation error,Runtime error
+"What is the output?
+public class Test {
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    static void test(Double x) {
+        System.out.println(""Double"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Double,double,Compilation error,Runtime error
+"What is the result?
+public class Test {
+    static void test(float x) {
+        System.out.println(""float"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    static void test(Float x) {
+        System.out.println(""Float"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",float,double,Float,Compilation error
+"What is the output?
+public class Test {
+    static void test(long x) {
+        System.out.println(""long"");
+    }
+    static void test(double x) {
+        System.out.println(""double"");
+    }
+    static void test(Integer x) {
+        System.out.println(""Integer"");
+    }
+    public static void main(String[] args) {
+        int i = 5;
+        test(i);
+    }
+}",Integer,long,double,Compilation error

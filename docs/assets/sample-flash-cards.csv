@@ -1,0 +1,1307 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result?
+class Box<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+    public T get() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+        box.set(""Hello"");
+        System.out.println(box.get());
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+class Box<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<Integer> box = new Box<>();
+        box.set(""Hello"");
+        System.out.println(""Success"");
+    }
+}",Compilation error,Success,Runtime error,Hello
+"What is the result?
+class Box<T> {
+    private T value;
+    public Box() { this.value = new T(); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,Runtime error,Success,Creates String object
+"What is the result?
+class Box<T> {
+    private T[] array = new T[10];
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,Runtime error,Success,Creates array
+"What is the result?
+class Box<T> {
+    private static T value;
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,Runtime error,Success,Creates static field
+"What is the result?
+class Box<T> {
+    private T value;
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<int> box = new Box<>();
+    }
+}",Compilation error,Runtime error,Success,Creates box
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<?> list = new ArrayList<String>();
+        System.out.println(list != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<?> list = new ArrayList<String>();
+        list.add(""Hello"");
+        System.out.println(list.size());
+    }
+}",Compilation error,1,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? extends Number> list = new ArrayList<Integer>();
+        list.add(5);
+        System.out.println(list.size());
+    }
+}",Compilation error,1,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? extends Number> list = new ArrayList<Integer>();
+        System.out.println(list != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? super Integer> list = new ArrayList<Number>();
+        list.add(5);
+        System.out.println(list.size());
+    }
+}",1,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? super Integer> list = new ArrayList<Number>();
+        Integer value = list.get(0);
+        System.out.println(value);
+    }
+}",Compilation error,Runtime error,0,null
+"What is the result?
+class Box<T extends Number> {
+    private T value;
+    public void set(T value) { this.value = value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<Integer> box = new Box<>();
+        box.set(10);
+        System.out.println(""Success"");
+    }
+}",Success,Compilation error,Runtime error,10
+"What is the result?
+class Box<T extends Number> {
+    private T value;
+    public void set(T value) { this.value = value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,Runtime error,Success,Creates box
+"What is the result?
+class Pair<K, V> {
+    private K key;
+    private V value;
+    public Pair(K key, V value) { this.key = key; this.value = value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<String, Integer> pair = new Pair<>(""Age"", 25);
+        System.out.println(""Success"");
+    }
+}",Success,Compilation error,Runtime error,Age 25
+"What is the result?
+public class Test {
+    public static <T> void print(T value) {
+        System.out.println(value);
+    }
+    public static void main(String[] args) {
+        print(""Hello"");
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+public class Test {
+    public static <T> T identity(T value) {
+        return value;
+    }
+    public static void main(String[] args) {
+        String result = identity(""Hello"");
+        System.out.println(result);
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+interface Container<T> {
+    void set(T value);
+    T get();
+}
+class Box<T> implements Container<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+    public T get() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+        box.set(""Hello"");
+        System.out.println(box.get());
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+class Box<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box box = new Box();
+        box.set(""Hello"");
+        System.out.println(""Success"");
+    }
+}",Success,Compilation error,Runtime error,Hello
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""Hello"");
+        System.out.println(list.get(0));
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add(""Hello"");
+        list.add(5);
+        System.out.println(list.size());
+    }
+}",2,Compilation error,Runtime error,0
+"What is the result?
+class Box<T> {
+    public void process(T value) {
+        if (value instanceof T) {
+            System.out.println(""Success"");
+        }
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,Success,Runtime error,false
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void printList(List<?> list) {
+        for (Object obj : list) {
+            System.out.print(obj);
+        }
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"");
+        printList(list);
+    }
+}",AB,Compilation error,Runtime error,BA
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void addNumber(List<? extends Number> list) {
+        list.add(5);
+    }
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        addNumber(list);
+    }
+}",Compilation error,Success,Runtime error,Adds 5
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void addNumber(List<? super Integer> list) {
+        list.add(5);
+    }
+    public static void main(String[] args) {
+        List<Number> list = new ArrayList<>();
+        addNumber(list);
+        System.out.println(list.size());
+    }
+}",1,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static double sum(List<? extends Number> list) {
+        double total = 0;
+        for (Number num : list) {
+            total += num.doubleValue();
+        }
+        return total;
+    }
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        System.out.println(sum(list));
+    }
+}",6.0,Compilation error,Runtime error,0.0
+"What is the result?
+class Box<E> {
+    private E element;
+    public void set(E element) { this.element = element; }
+    public E get() { return element; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+        box.set(""Hello"");
+        System.out.println(box.get());
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+class KeyValueStore<K, V> {
+    private Map<K, V> map = new HashMap<>();
+    public void put(K key, V value) { map.put(key, value); }
+    public V get(K key) { return map.get(key); }
+}
+public class Test {
+    public static void main(String[] args) {
+        KeyValueStore<String, Integer> store = new KeyValueStore<>();
+        store.put(""Age"", 25);
+        System.out.println(store.get(""Age""));
+    }
+}",25,Compilation error,Runtime error,null
+"What is the result?
+class NumberBox<N extends Number> {
+    private N value;
+    public void set(N value) { this.value = value; }
+    public double getValue() { return value.doubleValue(); }
+}
+public class Test {
+    public static void main(String[] args) {
+        NumberBox<Integer> box = new NumberBox<>();
+        box.set(10);
+        System.out.println(box.getValue());
+    }
+}",10.0,Compilation error,Runtime error,10
+"What is the result?
+class Pair<T, S> {
+    private T first;
+    private S second;
+    public Pair(T first, S second) { this.first = first; this.second = second; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<String, Integer> pair = new Pair<>(""Hello"", 5);
+        System.out.println(""Success"");
+    }
+}",Success,Compilation error,Runtime error,Hello 5
+"What is the result?
+class Triple<T, U, V> {
+    private T first;
+    private U second;
+    private V third;
+    public Triple(T first, U second, V third) {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Triple<String, Integer, Double> triple = new Triple<>(""A"", 1, 2.5);
+        System.out.println(""Success"");
+    }
+}",Success,Compilation error,Runtime error,A 1 2.5
+"What is the result?
+public class Test {
+    public static <T> void print(T value) {
+        System.out.println(value.getClass().getName());
+    }
+    public static void main(String[] args) {
+        print(""Hello"");
+    }
+}",java.lang.String,Compilation error,Runtime error,T
+"What is the result?
+import java.util.*;
+public class Test {
+    @SafeVarargs
+    public static <T> List<T> toList(T... elements) {
+        return Arrays.asList(elements);
+    }
+    public static void main(String[] args) {
+        List<String> list = toList(""A"", ""B"", ""C"");
+        System.out.println(list.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        List rawList = list;
+        rawList.add(5);
+        String s = list.get(0);
+    }
+}",Runtime error,Compilation error,5,Success
+"What is the result?
+class Box<T> {
+    private T value;
+    public Box(T value) { this.value = value; }
+    public <U> void print(U otherValue) {
+        System.out.println(otherValue);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>(""Hello"");
+        box.print(10);
+    }
+}",10,Compilation error,Runtime error,Hello
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T extends Comparable<T>> T max(T a, T b) {
+        return a.compareTo(b) > 0 ? a : b;
+    }
+    public static void main(String[] args) {
+        System.out.println(max(5, 10));
+    }
+}",10,5,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T extends Comparable<T>> T max(T a, T b) {
+        return a.compareTo(b) > 0 ? a : b;
+    }
+    public static void main(String[] args) {
+        System.out.println(max(""Apple"", ""Banana""));
+    }
+}",Banana,Apple,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void copy(List<? extends Number> source, List<? super Number> dest) {
+        for (Number num : source) {
+            dest.add(num);
+        }
+    }
+    public static void main(String[] args) {
+        List<Integer> source = List.of(1, 2, 3);
+        List<Number> dest = new ArrayList<>();
+        copy(source, dest);
+        System.out.println(dest.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Object> list = new ArrayList<>();
+        List<String> stringList = new ArrayList<>();
+        list = stringList;
+    }
+}",Compilation error,Success,Runtime error,Creates list
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? extends Object> list = new ArrayList<String>();
+        System.out.println(list != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+class Box<T extends Number & Comparable<T>> {
+    private T value;
+    public void set(T value) { this.value = value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<Integer> box = new Box<>();
+        box.set(10);
+        System.out.println(""Success"");
+    }
+}",Success,Compilation error,Runtime error,10
+"What is the result?
+class Box<T extends Number & Comparable<T>> {
+    private T value;
+    public void set(T value) { this.value = value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,Success,Runtime error,Creates box
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add(""A"");
+        set.add(""B"");
+        System.out.println(set.size());
+    }
+}",2,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""Age"", 25);
+        System.out.println(map.get(""Age""));
+    }
+}",25,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Deque<String> deque = new ArrayDeque<>();
+        deque.addFirst(""A"");
+        deque.addLast(""B"");
+        System.out.println(deque.size());
+    }
+}",2,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void printSet(Set<?> set) {
+        for (Object obj : set) {
+            System.out.print(obj);
+        }
+    }
+    public static void main(String[] args) {
+        Set<String> set = Set.of(""A"", ""B"");
+        printSet(set);
+    }
+}",Prints A and B,Compilation error,Runtime error,Prints nothing
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void printMap(Map<?, ?> map) {
+        System.out.println(map.size());
+    }
+    public static void main(String[] args) {
+        Map<String, Integer> map = Map.of(""A"", 1);
+        printMap(map);
+    }
+}",1,Compilation error,Runtime error,0
+"What is the result?
+class Box<T> {
+    private List<T> items = new ArrayList<>();
+    public void add(T item) { items.add(item); }
+    public T get(int index) { return items.get(index); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+        box.add(""Hello"");
+        System.out.println(box.get(0));
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+record Box<T>(T value) { }
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>(""Hello"");
+        System.out.println(box.value());
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> void swap(List<T> list, int i, int j) {
+        T temp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, temp);
+    }
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(List.of(""A"", ""B""));
+        swap(list, 0, 1);
+        System.out.println(list.get(0));
+    }
+}",B,A,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        System.out.println(list.getClass().getSimpleName());
+    }
+}",Arrays$ArrayList,ArrayList,Compilation error,List
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void process(List<Number> list) {
+        list.add(5);
+    }
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        process(list);
+    }
+}",Compilation error,Success,Runtime error,Adds 5
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void process(List<? super Integer> list) {
+        list.add(5);
+    }
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        process(list);
+        System.out.println(list.size());
+    }
+}",1,Compilation error,Runtime error,0
+"What is the result?
+class Box<T> {
+    private T value;
+    public static T getValue() {
+        return null;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,null,Runtime error,Creates box
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String>[] array = new ArrayList<String>[10];
+    }
+}",Compilation error,Creates array,Runtime error,Success
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<?>[] array = new ArrayList<?>[10];
+    }
+}",Compilation error,Creates array,Runtime error,Success
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+        System.out.println(list1.getClass() == list2.getClass());
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+class Box<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+    public void set(Object value) { this.value = (T) value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",Compilation error,Success,Runtime error,Creates box
+"What is the result?
+public class Test {
+    public static <T> void print(T value) {
+        System.out.println(value);
+    }
+    public static <T extends Number> void print(T value) {
+        System.out.println(value.doubleValue());
+    }
+    public static void main(String[] args) {
+        print(""Hello"");
+    }
+}",Compilation error,Hello,Runtime error,Calls first method
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        Collections.reverse(list);
+        System.out.println(list.get(0));
+    }
+}",2,1,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> T getFirst(List<T> list) {
+        return list.isEmpty() ? null : list.get(0);
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"");
+        System.out.println(getFirst(list));
+    }
+}",A,B,Compilation error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T extends Comparable<T>> void sort(List<T> list) {
+        Collections.sort(list);
+    }
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(List.of(3, 1, 2));
+        sort(list);
+        System.out.println(list.get(0));
+    }
+}",1,3,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void addToList(List list) {
+        list.add(""Hello"");
+        list.add(5);
+    }
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        addToList(list);
+        System.out.println(list.size());
+    }
+}",2,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List raw = new ArrayList();
+        raw.add(""Hello"");
+        List<String> typed = raw;
+        System.out.println(typed.get(0));
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+class Container<T> {
+    private T value;
+    public Container(T value) { this.value = value; }
+    public <U extends T> void process(U item) {
+        System.out.println(item);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Container<Number> container = new Container<>(10);
+        container.process(5);
+    }
+}",5,Compilation error,Runtime error,10
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> List<T> createList(T item) {
+        List<T> list = new ArrayList<>();
+        list.add(item);
+        return list;
+    }
+    public static void main(String[] args) {
+        List<String> list = createList(""Hello"");
+        System.out.println(list.get(0));
+    }
+}",Hello,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? extends Number> list = new ArrayList<Integer>();
+        Number num = list.get(0);
+    }
+}",Runtime error,Compilation error,null,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? super Integer> list = new ArrayList<Number>();
+        Object obj = list.get(0);
+    }
+}",Runtime error,Compilation error,null,0
+"What is the result?
+class Holder<T> {
+    private T value;
+    public Holder(T value) { this.value = value; }
+    public T getValue() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Holder<String> holder = new Holder<>(""Test"");
+        System.out.println(holder.getValue());
+    }
+}",Test,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        List<?> wildcardList = list;
+        System.out.println(wildcardList.get(0));
+    }
+}",A,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, ? extends Number> map = new HashMap<String, Integer>();
+        map.put(""Key"", 5);
+    }
+}",Compilation error,Success,Runtime error,Adds entry
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, ? extends Number> map = new HashMap<String, Integer>();
+        System.out.println(map != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> boolean contains(List<T> list, T element) {
+        return list.contains(element);
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"");
+        System.out.println(contains(list, ""A""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+class Wrapper<T> {
+    private T value;
+    public Wrapper(T value) { this.value = value; }
+    public boolean equals(Object obj) {
+        if (obj instanceof Wrapper) {
+            return value.equals(((Wrapper) obj).value);
+        }
+        return false;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Wrapper<String> w1 = new Wrapper<>(""Test"");
+        Wrapper<String> w2 = new Wrapper<>(""Test"");
+        System.out.println(w1.equals(w2));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        Collections.sort(list, Comparator.reverseOrder());
+        System.out.println(list.get(0));
+    }
+}",3,1,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> void fill(List<? super T> list, T value) {
+        for (int i = 0; i < 3; i++) {
+            list.add(value);
+        }
+    }
+    public static void main(String[] args) {
+        List<Number> list = new ArrayList<>();
+        fill(list, 5);
+        System.out.println(list.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<? extends Number> set = new HashSet<Integer>();
+        set.add(5);
+    }
+}",Compilation error,Success,Runtime error,Adds 5
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<? extends Number> set = new HashSet<Integer>();
+        System.out.println(set != null);
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Deque<? super Integer> deque = new ArrayDeque<Number>();
+        deque.add(5);
+        System.out.println(deque.size());
+    }
+}",1,Compilation error,Runtime error,0
+"What is the result?
+class Storage<T> {
+    private List<T> items;
+    public Storage() { items = new ArrayList<>(); }
+    public void add(T item) { items.add(item); }
+    public int size() { return items.size(); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Storage<String> storage = new Storage<>();
+        storage.add(""A"");
+        storage.add(""B"");
+        System.out.println(storage.size());
+    }
+}",2,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T extends Comparable<T>> T findMax(List<T> list) {
+        if (list.isEmpty()) return null;
+        T max = list.get(0);
+        for (T item : list) {
+            if (item.compareTo(max) > 0) max = item;
+        }
+        return max;
+    }
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 5, 3);
+        System.out.println(findMax(list));
+    }
+}",5,1,Compilation error,3
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list1 = new ArrayList<>();
+        List<String> list2 = list1;
+        list2.add(""A"");
+        System.out.println(list1.size());
+    }
+}",1,0,Compilation error,Runtime error
+"What is the result?
+class Box<T> {
+    private T value;
+    public Box(T value) { this.value = value; }
+    public <U> Pair<T, U> createPair(U other) {
+        return new Pair<>(value, other);
+    }
+}
+class Pair<A, B> {
+    A first;
+    B second;
+    Pair(A first, B second) { this.first = first; this.second = second; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>(""Hello"");
+        Pair<String, Integer> pair = box.createPair(5);
+        System.out.println(""Success"");
+    }
+}",Success,Compilation error,Runtime error,Hello 5
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, List<Integer>> map = new HashMap<>();
+        map.put(""nums"", new ArrayList<>(List.of(1, 2, 3)));
+        System.out.println(map.get(""nums"").size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <K, V> Map<K, V> createMap(K key, V value) {
+        Map<K, V> map = new HashMap<>();
+        map.put(key, value);
+        return map;
+    }
+    public static void main(String[] args) {
+        Map<String, Integer> map = createMap(""Age"", 25);
+        System.out.println(map.get(""Age""));
+    }
+}",25,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void addAll(List<? super Integer> dest, List<Integer> source) {
+        dest.addAll(source);
+    }
+    public static void main(String[] args) {
+        List<Number> dest = new ArrayList<>();
+        List<Integer> source = List.of(1, 2, 3);
+        addAll(dest, source);
+        System.out.println(dest.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Number> list = new ArrayList<>();
+        list.add(5);
+        list.add(3.14);
+        list.add(10L);
+        System.out.println(list.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> void reverse(List<T> list) {
+        Collections.reverse(list);
+    }
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(List.of(""A"", ""B"", ""C""));
+        reverse(list);
+        System.out.println(list.get(0));
+    }
+}",C,A,Compilation error,B
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new TreeSet<>();
+        set.add(5);
+        set.add(1);
+        set.add(3);
+        System.out.println(set.iterator().next());
+    }
+}",1,5,Compilation error,3
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> Set<T> union(Set<T> set1, Set<T> set2) {
+        Set<T> result = new HashSet<>(set1);
+        result.addAll(set2);
+        return result;
+    }
+    public static void main(String[] args) {
+        Set<Integer> s1 = Set.of(1, 2);
+        Set<Integer> s2 = Set.of(2, 3);
+        System.out.println(union(s1, s2).size());
+    }
+}",3,4,Compilation error,2
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(""A"");
+        queue.offer(""B"");
+        System.out.println(queue.poll());
+    }
+}",A,B,Compilation error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> void addIfAbsent(List<T> list, T element) {
+        if (!list.contains(element)) {
+            list.add(element);
+        }
+    }
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(List.of(""A"", ""B""));
+        addIfAbsent(list, ""C"");
+        addIfAbsent(list, ""A"");
+        System.out.println(list.size());
+    }
+}",3,4,Compilation error,2
+"What is the result?
+class Cache<K, V> {
+    private Map<K, V> map = new HashMap<>();
+    public void put(K key, V value) { map.put(key, value); }
+    public V get(K key) { return map.get(key); }
+    public boolean containsKey(K key) { return map.containsKey(key); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Cache<String, Integer> cache = new Cache<>();
+        cache.put(""count"", 10);
+        System.out.println(cache.containsKey(""count""));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T extends Number> double average(List<T> list) {
+        double sum = 0;
+        for (T num : list) {
+            sum += num.doubleValue();
+        }
+        return sum / list.size();
+    }
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        System.out.println(average(list));
+    }
+}",2.5,Compilation error,Runtime error,10.0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void printCollection(Collection<?> collection) {
+        System.out.println(collection.size());
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"");
+        Set<Integer> set = Set.of(1, 2, 3);
+        printCollection(list);
+        printCollection(set);
+    }
+}",Prints 2 then 3,Compilation error,Runtime error,Prints 5
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> List<T> filter(List<T> list, T exclude) {
+        List<T> result = new ArrayList<>();
+        for (T item : list) {
+            if (!item.equals(exclude)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""A"", ""C"");
+        System.out.println(filter(list, ""A"").size());
+    }
+}",2,4,Compilation error,0
+"What is the result?
+class Converter<T, U> {
+    public interface Function<F, T> {
+        T apply(F from);
+    }
+    private Function<T, U> function;
+    public Converter(Function<T, U> function) { this.function = function; }
+    public U convert(T from) { return function.apply(from); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Converter<String, Integer> converter = new Converter<>(s -> s.length());
+        System.out.println(converter.convert(""Hello""));
+    }
+}",5,Compilation error,Runtime error,Hello
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        List<Object> objList = (List<Object>) (List<?>) list;
+        objList.add(5);
+        String s = list.get(1);
+    }
+}",Runtime error,Compilation error,5,A
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> boolean isEmpty(Collection<T> collection) {
+        return collection == null || collection.isEmpty();
+    }
+    public static void main(String[] args) {
+        System.out.println(isEmpty(null));
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T extends Comparable<? super T>> void sort(List<T> list) {
+        Collections.sort(list);
+    }
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(List.of(""C"", ""A"", ""B""));
+        sort(list);
+        System.out.println(list.get(0));
+    }
+}",A,C,Compilation error,B
+"What is the result?
+class Node<T> {
+    T data;
+    Node<T> next;
+    Node(T data) { this.data = data; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Node<String> node = new Node<>(""A"");
+        node.next = new Node<>(""B"");
+        System.out.println(node.next.data);
+    }
+}",B,A,Compilation error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> void shuffle(List<T> list) {
+        Collections.shuffle(list);
+    }
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(List.of(1, 2, 3));
+        shuffle(list);
+        System.out.println(list.size());
+    }
+}",3,Compilation error,Runtime error,0
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> Optional<T> findFirst(List<T> list) {
+        return list.isEmpty() ? Optional.empty() : Optional.of(list.get(0));
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"");
+        System.out.println(findFirst(list).get());
+    }
+}",A,B,Compilation error,empty
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> List<T> concat(List<T> list1, List<T> list2) {
+        List<T> result = new ArrayList<>(list1);
+        result.addAll(list2);
+        return result;
+    }
+    public static void main(String[] args) {
+        List<String> l1 = List.of(""A"");
+        List<String> l2 = List.of(""B"", ""C"");
+        System.out.println(concat(l1, l2).size());
+    }
+}",3,2,Compilation error,1
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <K, V> void printMap(Map<K, V> map) {
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            System.out.print(entry.getKey());
+        }
+    }
+    public static void main(String[] args) {
+        Map<String, Integer> map = new LinkedHashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        printMap(map);
+    }
+}",AB,BA,Compilation error,12
+"What is the result?
+class Wrapper<T> {
+    private T value;
+    public Wrapper(T value) { this.value = value; }
+    public <U> U transform(Function<T, U> function) {
+        return function.apply(value);
+    }
+}
+interface Function<T, R> {
+    R apply(T t);
+}
+public class Test {
+    public static void main(String[] args) {
+        Wrapper<String> wrapper = new Wrapper<>(""Hello"");
+        Integer length = wrapper.transform(s -> s.length());
+        System.out.println(length);
+    }
+}",5,Compilation error,Runtime error,Hello
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3);
+        List<? extends Number> numList = list;
+        Number num = numList.get(0);
+        System.out.println(num);
+    }
+}",1,Compilation error,Runtime error,null
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> int count(Collection<T> collection, T element) {
+        int count = 0;
+        for (T item : collection) {
+            if (item.equals(element)) count++;
+        }
+        return count;
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""A"", ""C"", ""A"");
+        System.out.println(count(list, ""A""));
+    }
+}",3,5,Compilation error,1
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> Set<T> toSet(List<T> list) {
+        return new HashSet<>(list);
+    }
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""A"");
+        System.out.println(toSet(list).size());
+    }
+}",2,3,Compilation error,1
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> boolean containsDuplicates(List<T> list) {
+        return new HashSet<>(list).size() != list.size();
+    }
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 2);
+        System.out.println(containsDuplicates(list));
+    }
+}",true,false,Compilation error,Runtime error
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, ? super Number> map = new HashMap<String, Object>();
+        map.put(""value"", 5);
+        System.out.println(map.size());
+    }
+}",1,Compilation error,Runtime error,0
+"What is the result?
+class Pair<F, S> {
+    private F first;
+    private S second;
+    public Pair(F first, S second) { this.first = first; this.second = second; }
+    public F getFirst() { return first; }
+    public S getSecond() { return second; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<String, Integer> pair = new Pair<>(""Age"", 25);
+        System.out.println(pair.getFirst() + "": "" + pair.getSecond());
+    }
+}",Age: 25,Compilation error,Runtime error,25: Age
+"What is the result?
+import java.util.*;
+public class Test {
+    public static <T> List<List<T>> partition(List<T> list, int size) {
+        List<List<T>> result = new ArrayList<>();
+        for (int i = 0; i < list.size(); i += size) {
+            result.add(list.subList(i, Math.min(i + size, list.size())));
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        System.out.println(partition(list, 2).size());
+    }
+}",3,2,Compilation error,5

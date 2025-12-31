@@ -235,33 +235,37 @@ export class QuestionChallengeHomeComponent {
   }
 
   downloadSampleCSV(): void {
-    const sampleCSV = `Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
-What is the size of int in Java?,4 bytes,2 bytes,8 bytes,1 byte
-Which keyword is used to inherit a class?,extends,implements,inherits,super
-What is the default value of boolean?,false,true,0,null
-Which method is the entry point of a Java program?,main,start,run,init
-What does JVM stand for?,Java Virtual Machine,Java Variable Method,Java Visual Machine,Java Verified Module
-"What keyword is used to define a class in Java?
-A) function
-B) class
-C) def",class,function,def,object
-Which access modifier makes a member accessible only within the same class?,private,public,protected,default
-What is the correct syntax for a Java comment?,// comment,# comment,<!-- comment -->,/* comment
-Which collection allows duplicate elements?,ArrayList,HashSet,TreeSet,LinkedHashSet
-What is polymorphism in Java?,Many forms of a single entity,Single form of many entities,Multiple inheritance,Method overloading only
-Which operator is used to compare two values?,==,=,===,!=
-What is encapsulation?,Hiding data within a class,Combining data and methods,Creating multiple classes,Inheriting from parent class
-Which loop runs at least once?,do-while,while,for,foreach
-What is the output of 5 / 2 in Java?,2,2.5,3,Error
-Which exception is thrown for division by zero?,ArithmeticException,NullPointerException,ArrayIndexOutOfBoundsException,IOException`;
+    this.http.get('assets/sample-questions.csv', { responseType: 'text' }).subscribe({
+      next: (content) => {
+        const blob = new Blob([content], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'sample-questions.csv';
+        link.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (error) => {
+        console.error('Failed to load sample CSV:', error);
+      }
+    });
+  }
 
-    const blob = new Blob([sampleCSV], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'sample-questions.csv';
-    link.click();
-    window.URL.revokeObjectURL(url);
+  downloadFormattingGuide(): void {
+    this.http.get('assets/PROMPT-CSV-FORMATTING-GUIDE.md', { responseType: 'text' }).subscribe({
+      next: (content) => {
+        const blob = new Blob([content], { type: 'text/markdown' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'PROMPT-CSV-FORMATTING-GUIDE.md';
+        link.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (error) => {
+        console.error('Failed to load formatting guide:', error);
+      }
+    });
   }
 
   startGame(): void {

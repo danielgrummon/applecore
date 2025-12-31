@@ -1,0 +1,1340 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the output?
+class Box<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+    public T get() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+        box.set(""Hello"");
+        System.out.println(box.get());
+    }
+}",Hello,Compilation error,null,ClassCastException
+"What is the result?
+class Pair<K, V> {
+    private K key;
+    private V value;
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+    public K getKey() { return key; }
+    public V getValue() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<Integer, String> pair = new Pair<>(1, ""One"");
+        System.out.println(pair.getKey() + "" "" + pair.getValue());
+    }
+}",1 One,Compilation error,null null,ClassCastException
+"Does this compile?
+class Container<T> {
+    public static T value;
+}",No - static field cannot use type parameter,Yes,Yes but runtime error,Yes but warning
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""Java"");
+        list.add(""Python"");
+        System.out.println(list.get(0));
+    }
+}",Java,Compilation error,Python,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<int> list = new ArrayList<>();
+    }
+}",No - primitives cannot be type arguments,Yes,Yes but runtime error,Yes but warning
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add(""String"");
+        list.add(123);
+        System.out.println(list.size());
+    }
+}",2,Compilation error,ClassCastException,1
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""Hello"");
+        list.add(123);
+    }
+}",No - 123 is not a String,Yes,Yes but runtime error,Yes but warning
+"What is the output?
+class Box<T extends Number> {
+    private T value;
+    public void set(T value) { this.value = value; }
+    public T get() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<Integer> box = new Box<>();
+        box.set(10);
+        System.out.println(box.get());
+    }
+}",10,Compilation error,null,ClassCastException
+"Does this compile?
+class Box<T extends Number> {
+    private T value;
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+    }
+}",No - String is not a subtype of Number,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+class Util {
+    public static <T> void print(T value) {
+        System.out.println(value);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Util.print(""Hello"");
+        Util.print(123);
+    }
+}","Hello
+123",Compilation error,"Hello
+Hello",ClassCastException
+"Does this compile?
+class Box<T> {
+    public Box() {}
+    public <T> Box(T value) {}
+}",Yes - method type parameter shadows class type parameter,No - duplicate type parameter,Yes but runtime error,Yes but warning
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        print(list);
+    }
+    static void print(List<?> list) {
+        for (Object obj : list) {
+            System.out.print(obj + "" "");
+        }
+    }
+}",1 2 3,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    static void add(List<?> list) {
+        list.add(""Hello"");
+    }
+}",No - cannot add to List<?> except null,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        List<? extends Number> numbers = integers;
+        System.out.println(numbers.get(0));
+    }
+}",1,Compilation error,ClassCastException,null
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? extends Number> numbers = new ArrayList<Integer>();
+        numbers.add(123);
+    }
+}",No - cannot add to producer (extends),Yes,Yes but runtime error,Yes but warning
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        List<? super Integer> list = integers;
+        list.add(2);
+        System.out.println(list.size());
+    }
+}",2,Compilation error,1,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list1 = new ArrayList<>();
+        List<Number> list2 = list1;
+    }
+}",No - generics are invariant,Yes,Yes but runtime error,Yes but warning
+"What is the output?
+class Box<T> {
+    private T value;
+    public Box(T value) { this.value = value; }
+    public T get() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>(""Java"");
+        System.out.println(box.get());
+    }
+}",Java,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String>[] arrays = new ArrayList<String>[10];
+    }
+}",No - cannot create generic array,Yes,Yes but runtime error,Yes with warning
+"What is the result?
+class Util {
+    public static <T extends Comparable<T>> T max(T a, T b) {
+        return a.compareTo(b) > 0 ? a : b;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Util.max(5, 10));
+    }
+}",10,Compilation error,5,ClassCastException
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.add(""C"");
+        System.out.println(list.get(1));
+    }
+}",B,Compilation error,A,ArrayIndexOutOfBoundsException
+"Does this compile?
+class Box<T extends Number & Comparable<T>> {
+    private T value;
+}",Yes - multiple bounds are allowed,No - only one bound allowed,No - wrong syntax,Yes but warning
+"What is the result?
+class Animal {}
+class Dog extends Animal {}
+class Box<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+    public T get() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<Animal> box1 = new Box<>();
+        Box<Dog> box2 = new Box<>();
+        box1 = box2;
+    }
+}",Compilation error - incompatible types,Compiles successfully,Runtime error,Compiles with warning
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""one"", 1);
+        map.put(""two"", 2);
+        System.out.println(map.get(""one""));
+    }
+}",1,Compilation error,null,2
+"Does this compile?
+class Pair<K, V> {
+    private K key;
+    private V value;
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<String, String, Integer> pair = new Pair<>(""key"", ""value"");
+    }
+}",No - Pair expects 2 type arguments,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        var list = new ArrayList<String>();
+        list.add(""Hello"");
+        System.out.println(list.get(0));
+    }
+}",Hello,Compilation error,null,ClassCastException
+"What is the output?
+class Container<T> {
+    private List<T> items = new ArrayList<>();
+    public void add(T item) { items.add(item); }
+    public T get(int index) { return items.get(index); }
+}
+public class Test {
+    public static void main(String[] args) {
+        Container<String> container = new Container<>();
+        container.add(""First"");
+        container.add(""Second"");
+        System.out.println(container.get(0));
+    }
+}",First,Compilation error,Second,null
+"Does this compile?
+class Box<T> {
+    private T[] array = new T[10];
+}",No - cannot create array of type parameter,Yes,Yes but runtime error,Yes with warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        List<? extends Number> numbers = list;
+        Number num = numbers.get(0);
+        System.out.println(num);
+    }
+}",1,Compilation error,ClassCastException,null
+"What is the output?
+class Util {
+    public static <T> void swap(T[] array, int i, int j) {
+        T temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        String[] arr = {""A"", ""B"", ""C""};
+        Util.swap(arr, 0, 2);
+        System.out.println(arr[0]);
+    }
+}",C,Compilation error,A,B
+"Does this compile?
+class Box<T> {
+    public void method() {
+        if (this instanceof Box<String>) {}
+    }
+}",No - cannot use instanceof with parameterized type,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static void process(List<? super Integer> list) {
+        list.add(10);
+        list.add(20);
+    }
+    public static void main(String[] args) {
+        List<Number> numbers = new ArrayList<>();
+        process(numbers);
+        System.out.println(numbers.size());
+    }
+}",2,Compilation error,0,1
+"What is the output?
+class Box<T> {
+    private T value;
+    public void setValue(T value) { this.value = value; }
+    public T getValue() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<Integer> box = new Box<>();
+        box.setValue(100);
+        Integer value = box.getValue();
+        System.out.println(value);
+    }
+}",100,Compilation error,null,ClassCastException
+"Does this compile?
+interface Movable<T> {}
+class Animal {}
+class Dog extends Animal implements Movable<Dog> {}
+public class Test {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+    }
+}",Yes,No - syntax error,No - type mismatch,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List rawList = new ArrayList();
+        rawList.add(""String"");
+        rawList.add(123);
+        List<String> stringList = rawList;
+        String s = stringList.get(0);
+        System.out.println(s);
+    }
+}",String (compiles with warning),Compilation error without warning,ClassCastException at assignment,ClassCastException at get
+"What is the output?
+class Pair<K, V> {
+    private K key;
+    private V value;
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+    public void setKey(K key) { this.key = key; }
+    public K getKey() { return key; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<String, Integer> pair = new Pair<>(""Age"", 25);
+        pair.setKey(""Years"");
+        System.out.println(pair.getKey());
+    }
+}",Years,Compilation error,Age,null
+"Does this compile?
+class Box<T extends Runnable & Comparable<T>> {
+    private T value;
+}",Yes - class bound can be interface for type parameter,No - Runnable must be class,No - wrong order,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static <T> List<T> createList(T... elements) {
+        return new ArrayList<>(Arrays.asList(elements));
+    }
+    public static void main(String[] args) {
+        List<String> list = createList(""A"", ""B"", ""C"");
+        System.out.println(list.size());
+    }
+}",3,Compilation error,0,ClassCastException
+"What is the output?
+class Container<T> {
+    private T value;
+    public Container(T value) { this.value = value; }
+    public <E> void print(E element) {
+        System.out.println(element);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Container<String> container = new Container<>(""Test"");
+        container.print(123);
+    }
+}",123,Compilation error,Test,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Number> numbers = new ArrayList<>();
+        List<Integer> integers = numbers;
+    }
+}",No - incompatible types,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add(""A"");
+        set.add(""B"");
+        set.add(""A"");
+        System.out.println(set.size());
+    }
+}",2,Compilation error,3,1
+"What is the output?
+class Util {
+    public static <T extends Number> double sum(List<T> list) {
+        double total = 0;
+        for (T num : list) {
+            total += num.doubleValue();
+        }
+        return total;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        System.out.println(Util.sum(list));
+    }
+}",6.0,Compilation error,6,ClassCastException
+"Does this compile?
+class Box<T> {
+    private T value;
+    public Class<T> getType() {
+        return T.class;
+    }
+}",No - cannot use T.class,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""Java"");
+        list.add(""Python"");
+        list.add(""C++"");
+        List<String> subList = list.subList(1, 3);
+        System.out.println(subList.size());
+    }
+}",2,Compilation error,3,1
+"What is the output?
+class Wrapper<T> {
+    private T value;
+    public Wrapper(T value) { this.value = value; }
+    public T unwrap() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Wrapper<Integer> wrapper = new Wrapper<>(42);
+        int value = wrapper.unwrap();
+        System.out.println(value);
+    }
+}",42,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<?> list = new ArrayList<String>();
+        list.add(null);
+    }
+}",Yes - can add null to List<?>,No - cannot add anything,No - wrong syntax,Yes but warning
+"What is the result?
+class Animal {}
+class Dog extends Animal {}
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Dog> dogs = new ArrayList<>();
+        List<? extends Animal> animals = dogs;
+        System.out.println(animals.size());
+    }
+}",0,Compilation error,null,ClassCastException
+"What is the output?
+import java.util.*;
+public class Test {
+    static <T> void print(List<T> list) {
+        for (T item : list) {
+            System.out.print(item + "" "");
+        }
+    }
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(10, 20, 30);
+        print(list);
+    }
+}",10 20 30,Compilation error,null,ClassCastException
+"Does this compile?
+class Box<T> {
+    public Box() {}
+    public static <T> Box<T> create() {
+        return new Box<>();
+    }
+}",Yes - static generic method is allowed,No - static cannot use generics,No - duplicate T,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, ""One"");
+        map.put(2, ""Two"");
+        map.put(1, ""Uno"");
+        System.out.println(map.size());
+    }
+}",2,Compilation error,3,1
+"What is the output?
+class Pair<T> {
+    private T first;
+    private T second;
+    public Pair(T first, T second) {
+        this.first = first;
+        this.second = second;
+    }
+    public T getFirst() { return first; }
+    public T getSecond() { return second; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<String> pair = new Pair<>(""Hello"", ""World"");
+        System.out.println(pair.getFirst() + "" "" + pair.getSecond());
+    }
+}",Hello World,Compilation error,null null,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public void method(List<String> list) {}
+    public void method(List<Integer> list) {}
+}",No - both methods have same erasure,Yes - different type parameters,Yes but warning,Yes - overloading allowed
+"What is the result?
+import java.util.*;
+public class Test {
+    static void addNumbers(List<? super Integer> list) {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+    }
+    public static void main(String[] args) {
+        List<Object> list = new ArrayList<>();
+        addNumbers(list);
+        System.out.println(list.size());
+    }
+}",3,Compilation error,0,ClassCastException
+"What is the output?
+class Container<T> {
+    private List<T> items;
+    public Container() {
+        items = new ArrayList<>();
+    }
+    public void add(T item) {
+        items.add(item);
+    }
+    public int size() {
+        return items.size();
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Container<Double> container = new Container<>();
+        container.add(3.14);
+        container.add(2.71);
+        System.out.println(container.size());
+    }
+}",2,Compilation error,0,1
+"Does this compile?
+class Box<T> {
+    private T value;
+    public void setValue(T value) throws T {
+        this.value = value;
+    }
+}",No - cannot throw type parameter (unless bounded by Throwable),Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(""First"");
+        queue.offer(""Second"");
+        queue.offer(""Third"");
+        System.out.println(queue.poll());
+    }
+}",First,Compilation error,Second,Third
+"What is the output?
+class Util {
+    public static <T> T getFirst(List<T> list) {
+        return list.isEmpty() ? null : list.get(0);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""A"", ""B"", ""C"");
+        String first = Util.getFirst(list);
+        System.out.println(first);
+    }
+}",A,Compilation error,null,B
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<? extends Number> list = new ArrayList<Integer>();
+        Integer num = list.get(0);
+    }
+}",No - must cast to Integer or use Number,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.addFirst(1);
+        deque.addLast(2);
+        deque.addFirst(3);
+        System.out.println(deque.removeFirst());
+    }
+}",3,Compilation error,1,2
+"What is the output?
+class Box<T extends Comparable<T>> {
+    private T value;
+    public Box(T value) { this.value = value; }
+    public T getValue() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>(""Java"");
+        System.out.println(box.getValue());
+    }
+}",Java,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+enum Color { RED, GREEN, BLUE }
+class Box<T extends Enum<T>> {
+    private T value;
+}",Yes - enum bound is valid,No - cannot bound to Enum,No - wrong syntax,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(Arrays.asList(5, 3, 8, 1));
+        Collections.sort(list);
+        System.out.println(list.get(0));
+    }
+}",1,Compilation error,5,3
+"What is the output?
+class Holder<T> {
+    private T value;
+    public void set(T value) { this.value = value; }
+    public T get() { return value; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Holder<String> holder = new Holder<>();
+        holder.set(null);
+        System.out.println(holder.get());
+    }
+}",null,Compilation error,NullPointerException,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    static <T> void copy(List<T> dest, List<? extends T> src) {
+        for (T item : src) {
+            dest.add(item);
+        }
+    }
+}",Yes,No - incompatible types,No - wrong wildcard,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        NavigableSet<Integer> set = new TreeSet<>();
+        set.add(5);
+        set.add(2);
+        set.add(8);
+        set.add(1);
+        System.out.println(set.first());
+    }
+}",1,Compilation error,5,2
+"What is the output?
+class Triple<T> {
+    private T first, second, third;
+    public Triple(T first, T second, T third) {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+    }
+    public T getSecond() { return second; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Triple<Integer> triple = new Triple<>(10, 20, 30);
+        System.out.println(triple.getSecond());
+    }
+}",20,Compilation error,10,30
+"Does this compile?
+import java.util.*;
+public class Test {
+    static void process(List<Number> list) {}
+    public static void main(String[] args) {
+        List<Integer> integers = new ArrayList<>();
+        process(integers);
+    }
+}",No - List<Integer> is not List<Number>,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static <T> boolean contains(List<T> list, T element) {
+        return list.contains(element);
+    }
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""A"", ""B"", ""C"");
+        System.out.println(contains(list, ""B""));
+    }
+}",true,Compilation error,false,ClassCastException
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, List<Integer>> map = new HashMap<>();
+        map.put(""numbers"", new ArrayList<>());
+        map.get(""numbers"").add(1);
+        map.get(""numbers"").add(2);
+        System.out.println(map.get(""numbers"").size());
+    }
+}",2,Compilation error,0,1
+"Does this compile?
+class Box<T> {
+    private T value;
+    public <E extends T> void setValue(E value) {
+        this.value = value;
+    }
+}",Yes - method type parameter can extend class type parameter,No - wrong syntax,No - E must be separate,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(1, 3);
+        System.out.println(list.get(1));
+    }
+}",3,Compilation error,1,2
+"What is the output?
+class Util {
+    public static <T, R> R transform(T input, Function<T, R> fn) {
+        return fn.apply(input);
+    }
+}
+import java.util.function.*;
+public class Test {
+    public static void main(String[] args) {
+        String result = Util.transform(5, n -> ""Number: "" + n);
+        System.out.println(result);
+    }
+}",Number: 5,Compilation error,5,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        List<?> wildcard = list;
+        String s = wildcard.get(0);
+    }
+}",No - must cast from Object,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static <T extends Comparable<T>> T findMax(List<T> list) {
+        T max = list.get(0);
+        for (T item : list) {
+            if (item.compareTo(max) > 0) {
+                max = item;
+            }
+        }
+        return max;
+    }
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(3, 7, 2, 9, 1);
+        System.out.println(findMax(list));
+    }
+}",9,Compilation error,3,7
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        SortedSet<String> set = new TreeSet<>();
+        set.add(""Banana"");
+        set.add(""Apple"");
+        set.add(""Cherry"");
+        System.out.println(set.first());
+    }
+}",Apple,Compilation error,Banana,Cherry
+"Does this compile?
+class Container<T> {
+    private T value;
+    public Container(T value) { this.value = value; }
+    public boolean equals(T other) {
+        return value.equals(other);
+    }
+}",Yes - equals method with different signature,No - cannot override equals with different parameter,No - type mismatch,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new LinkedList<>();
+        list.add(""First"");
+        list.add(""Second"");
+        list.add(""Third"");
+        list.remove(1);
+        System.out.println(list.get(1));
+    }
+}",Third,Compilation error,Second,First
+"What is the output?
+class Pair<A, B> {
+    private A first;
+    private B second;
+    public Pair(A first, B second) {
+        this.first = first;
+        this.second = second;
+    }
+    public <T> void print(T value) {
+        System.out.println(first + "" "" + second + "" "" + value);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Pair<String, Integer> pair = new Pair<>(""Age"", 25);
+        pair.print(true);
+    }
+}",Age 25 true,Compilation error,Age 25,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    static <T> void addAll(List<T> dest, List<T> src) {
+        dest.addAll(src);
+    }
+    public static void main(String[] args) {
+        List<Number> numbers = new ArrayList<>();
+        List<Integer> integers = Arrays.asList(1, 2, 3);
+        addAll(numbers, integers);
+    }
+}",No - type mismatch (List<Number> vs List<Integer>),Yes - type inference works,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static void process(List<? extends Number> list) {
+        for (Number n : list) {
+            System.out.print(n + "" "");
+        }
+    }
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        process(list);
+    }
+}",1 2 3,Compilation error,ClassCastException,null
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new TreeMap<>();
+        map.put(""Z"", 26);
+        map.put(""A"", 1);
+        map.put(""M"", 13);
+        System.out.println(map.keySet().iterator().next());
+    }
+}",A,Compilation error,Z,M
+"Does this compile?
+class Box<T> {
+    private List<T> items = new ArrayList<>();
+    public void add(T item) { items.add(item); }
+    public void addAll(List<? extends T> newItems) {
+        items.addAll(newItems);
+    }
+}",Yes - wildcard allows subtype lists,No - type mismatch,No - wrong wildcard,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.set(1, 25);
+        System.out.println(list.get(1));
+    }
+}",25,Compilation error,20,30
+"What is the output?
+class Storage<T> {
+    private Map<String, T> map = new HashMap<>();
+    public void put(String key, T value) {
+        map.put(key, value);
+    }
+    public T get(String key) {
+        return map.get(key);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Storage<Integer> storage = new Storage<>();
+        storage.put(""age"", 30);
+        System.out.println(storage.get(""age""));
+    }
+}",30,Compilation error,null,ClassCastException
+"Does this compile?
+interface Processor<T> {
+    void process(T item);
+}
+class StringProcessor implements Processor<String> {
+    public void process(String item) {
+        System.out.println(item);
+    }
+}",Yes,No - type mismatch,No - wrong syntax,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static <K, V> void printMap(Map<K, V> map) {
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ""="" + entry.getValue());
+        }
+    }
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        printMap(map);
+    }
+}",A=1,Compilation error,null,ClassCastException
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.offer(5);
+        pq.offer(2);
+        pq.offer(8);
+        System.out.println(pq.poll());
+    }
+}",2,Compilation error,5,8
+"Does this compile?
+class Util {
+    public static <T extends Comparable<? super T>> void sort(List<T> list) {
+        Collections.sort(list);
+    }
+}",Yes - recursive bound with wildcard,No - too complex,No - wrong syntax,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 3));
+        Set<Integer> set2 = new HashSet<>(Arrays.asList(2, 3, 4));
+        set1.retainAll(set2);
+        System.out.println(set1.size());
+    }
+}",2,Compilation error,3,1
+"What is the output?
+class Node<T> {
+    private T data;
+    private Node<T> next;
+    public Node(T data) { this.data = data; }
+    public T getData() { return data; }
+    public void setNext(Node<T> next) { this.next = next; }
+}
+public class Test {
+    public static void main(String[] args) {
+        Node<String> node = new Node<>(""First"");
+        System.out.println(node.getData());
+    }
+}",First,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    static <T> void method(T... args) {
+        System.out.println(args.length);
+    }
+    public static void main(String[] args) {
+        method(1, 2, 3, 4, 5);
+    }
+}",Yes - varargs with generics,No - cannot use varargs with generics,No - wrong syntax,Yes but warning only
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(Arrays.asList(""A"", ""B"", ""C""));
+        Collections.reverse(list);
+        System.out.println(list.get(0));
+    }
+}",C,Compilation error,A,B
+"What is the output?
+class Registry<K, V> {
+    private Map<K, V> registry = new HashMap<>();
+    public void register(K key, V value) {
+        registry.put(key, value);
+    }
+    public V lookup(K key) {
+        return registry.get(key);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Registry<String, Integer> registry = new Registry<>();
+        registry.register(""port"", 8080);
+        System.out.println(registry.lookup(""port""));
+    }
+}",8080,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+class Box<T> {
+    public static void staticMethod(T value) {}
+}",No - static method cannot use class type parameter,Yes,Yes but runtime error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static <T> List<T> reverse(List<T> list) {
+        List<T> result = new ArrayList<>(list);
+        Collections.reverse(result);
+        return result;
+    }
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+        List<Integer> reversed = reverse(list);
+        System.out.println(reversed.get(0));
+    }
+}",4,Compilation error,1,2
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(100);
+        list.add(200);
+        list.clear();
+        System.out.println(list.size());
+    }
+}",0,Compilation error,2,1
+"Does this compile?
+import java.util.*;
+public class Test {
+    static void addItems(List<? super String> list) {
+        list.add(""Hello"");
+        list.add(""World"");
+    }
+    public static void main(String[] args) {
+        List<Object> list = new ArrayList<>();
+        addItems(list);
+    }
+}",Yes - super allows adding,No - cannot add to super,No - wrong wildcard,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Stack<String> stack = new Stack<>();
+        stack.push(""First"");
+        stack.push(""Second"");
+        stack.push(""Third"");
+        System.out.println(stack.pop());
+    }
+}",Third,Compilation error,First,Second
+"What is the output?
+class Calculator<T extends Number> {
+    public double add(T a, T b) {
+        return a.doubleValue() + b.doubleValue();
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Calculator<Integer> calc = new Calculator<>();
+        System.out.println(calc.add(5, 10));
+    }
+}",15.0,Compilation error,15,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    static <T> T getElement(List<T> list, int index) {
+        return list.get(index);
+    }
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""A"", ""B"", ""C"");
+        String s = getElement(list, 1);
+        System.out.println(s);
+    }
+}",Yes - type inference works,No - must specify type,No - wrong return type,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(10);
+        list.add(0, 3);
+        System.out.println(list.get(0));
+    }
+}",3,Compilation error,5,10
+"What is the output?
+class Wrapper<T> {
+    private T value;
+    public Wrapper(T value) { this.value = value; }
+    public <R> R convert(Function<T, R> converter) {
+        return converter.apply(value);
+    }
+}
+import java.util.function.*;
+public class Test {
+    public static void main(String[] args) {
+        Wrapper<String> wrapper = new Wrapper<>(""123"");
+        Integer num = wrapper.convert(Integer::parseInt);
+        System.out.println(num);
+    }
+}",123,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Number> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2.5);
+        numbers.add(3L);
+        System.out.println(numbers.size());
+    }
+}",Yes - all are subtypes of Number,No - type mismatch,No - mixed types not allowed,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static <T> void printAll(Collection<T> collection) {
+        for (T item : collection) {
+            System.out.print(item + "" "");
+        }
+    }
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>(Arrays.asList(""X"", ""Y"", ""Z""));
+        printAll(set);
+    }
+}",Prints X Y Z in undefined order,Compilation error,X Y Z in that order,ClassCastException
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""C"", ""A"", ""B"");
+        Collections.sort(list);
+        System.out.println(list);
+    }
+}","[A, B, C]",Compilation error,"[C, A, B]",ClassCastException
+"Does this compile?
+class Factory<T> {
+    public T create(Class<T> clazz) throws Exception {
+        return clazz.getDeclaredConstructor().newInstance();
+    }
+}",Yes - using Class<T> for instantiation,No - cannot instantiate T,No - wrong syntax,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    static <T> Optional<T> findFirst(List<T> list) {
+        return list.isEmpty() ? Optional.empty() : Optional.of(list.get(0));
+    }
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""First"", ""Second"");
+        System.out.println(findFirst(list).orElse(""None""));
+    }
+}",First,Compilation error,None,Second
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new LinkedHashMap<>();
+        map.put(3, ""Three"");
+        map.put(1, ""One"");
+        map.put(2, ""Two"");
+        for (Integer key : map.keySet()) {
+            System.out.print(key + "" "");
+        }
+    }
+}",3 1 2,Compilation error,1 2 3,Undefined order
+"Does this compile?
+class Bounds<T extends Number & Runnable> {
+    private T value;
+    public void run() {
+        value.run();
+    }
+}",Yes - T must implement both,No - cannot have both class and interface,No - wrong order,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            list.add(i * 2);
+        }
+        System.out.println(list.get(2));
+    }
+}",4,Compilation error,2,6
+"What is the output?
+import java.util.*;
+class Holder<T> {
+    private List<T> items = new ArrayList<>();
+    public void add(T item) { items.add(item); }
+    public Stream<T> stream() { return items.stream(); }
+}
+import java.util.stream.*;
+public class Test {
+    public static void main(String[] args) {
+        Holder<Integer> holder = new Holder<>();
+        holder.add(1);
+        holder.add(2);
+        holder.add(3);
+        System.out.println(holder.stream().count());
+    }
+}",3,Compilation error,0,1
+"Does this compile?
+import java.util.*;
+public class Test {
+    static <T extends Comparable<T>> boolean isSorted(List<T> list) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i).compareTo(list.get(i + 1)) > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}",Yes,No - wrong bound,No - syntax error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        Deque<String> deque = new LinkedList<>();
+        deque.offerFirst(""A"");
+        deque.offerLast(""B"");
+        deque.offerFirst(""C"");
+        System.out.println(deque.pollFirst());
+    }
+}",C,Compilation error,A,B
+"What is the output?
+class Converter<F, T> {
+    private Function<F, T> function;
+    public Converter(Function<F, T> function) {
+        this.function = function;
+    }
+    public T convert(F from) {
+        return function.apply(from);
+    }
+}
+import java.util.function.*;
+public class Test {
+    public static void main(String[] args) {
+        Converter<String, Integer> converter = new Converter<>(String::length);
+        System.out.println(converter.convert(""Hello""));
+    }
+}",5,Compilation error,null,ClassCastException
+"Does this compile?
+import java.util.*;
+public class Test {
+    static void method(List<?>... lists) {
+        System.out.println(lists.length);
+    }
+    public static void main(String[] args) {
+        method(new ArrayList<>(), new LinkedList<>());
+    }
+}",Yes but with unchecked warning,No - syntax error,Yes without warning,Compilation error
+"What is the result?
+import java.util.*;
+public class Test {
+    static <T> List<T> filter(List<T> list, Predicate<T> predicate) {
+        List<T> result = new ArrayList<>();
+        for (T item : list) {
+            if (predicate.test(item)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> evens = filter(list, n -> n % 2 == 0);
+        System.out.println(evens.size());
+    }
+}",2,Compilation error,5,3
+"What is the output?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        NavigableMap<String, Integer> map = new TreeMap<>();
+        map.put(""B"", 2);
+        map.put(""A"", 1);
+        map.put(""C"", 3);
+        System.out.println(map.firstKey());
+    }
+}",A,Compilation error,B,C
+"Does this compile?
+class Matrix<T extends Number> {
+    private List<List<T>> data;
+    public Matrix() {
+        data = new ArrayList<>();
+    }
+    public void add(List<T> row) {
+        data.add(row);
+    }
+}",Yes,No - nested generics not allowed,No - syntax error,Yes but warning
+"What is the result?
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(Arrays.asList(5, 2, 8, 1, 9));
+        Integer min = Collections.min(list);
+        Integer max = Collections.max(list);
+        System.out.println(max - min);
+    }
+}",8,Compilation error,9,1
+"What is the output?
+import java.util.*;
+class Cache<K, V> {
+    private Map<K, V> cache = new WeakHashMap<>();
+    public void put(K key, V value) {
+        cache.put(key, value);
+    }
+    public V get(K key) {
+        return cache.get(key);
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Cache<String, Integer> cache = new Cache<>();
+        cache.put(""key"", 100);
+        System.out.println(cache.get(""key""));
+    }
+}",100,Compilation error,null,ClassCastException

@@ -223,20 +223,37 @@ export class FlashCardHomeComponent {
   }
 
   downloadSampleCSV(): void {
-    const sampleCSV = `Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
-What is the size of int in Java?,4 bytes,2 bytes,8 bytes,1 byte
-Which keyword is used to inherit a class?,extends,implements,inherits,super
-What is the default value of boolean?,false,true,0,null
-Which method is the entry point of a Java program?,main,start,run,init
-What does JVM stand for?,Java Virtual Machine,Java Variable Method,Java Visual Machine,Java Verified Module`;
+    this.http.get('assets/sample-flash-cards.csv', { responseType: 'text' }).subscribe({
+      next: (content) => {
+        const blob = new Blob([content], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'sample-flash-cards.csv';
+        link.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (error) => {
+        console.error('Failed to load sample CSV:', error);
+      }
+    });
+  }
 
-    const blob = new Blob([sampleCSV], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'sample-flash-cards.csv';
-    link.click();
-    window.URL.revokeObjectURL(url);
+  downloadFormattingGuide(): void {
+    this.http.get('assets/PROMPT-CSV-FORMATTING-GUIDE.md', { responseType: 'text' }).subscribe({
+      next: (content) => {
+        const blob = new Blob([content], { type: 'text/markdown' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'PROMPT-CSV-FORMATTING-GUIDE.md';
+        link.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: (error) => {
+        console.error('Failed to load formatting guide:', error);
+      }
+    });
   }
 
   startFlashCards(): void {
