@@ -31,7 +31,7 @@ export class QuestionChallengeHomeComponent {
 
   // Available CSV files in assets directory
   availableCSVFiles = [
-    'LAMBDA-BUILT-IN-FUNCTIONAL-INTERFACES-120Q-D-1.csv',
+    'WORKING-WITH-BUILT-IN-FUNCTIONAL-INTERFACES-120Q-D-1.csv',
     'WORKING-WITH-ADVANCED-JAVA-CLASS-DESIGN-120Q-D-1.csv',
     'WORKING-WITH-ARRAYS-LISTS-AND-COLLECTIONS-120Q-D-1.csv',
     'WORKING-WITH-AUTOBOXING-AND-AUTOCASTING-120Q-D-1.csv',
@@ -53,7 +53,8 @@ export class QuestionChallengeHomeComponent {
     'WORKING-WITH-JAVA-OPERATORS-130Q-D-1.csv',
     'WORKING-WITH-JAVA-PLATFORM-MODULE-SYSTEM-120Q-D-1.csv',
     'WORKING-WITH-JAVA-STREAM-API-120Q-D-1.csv',
-    'WORKING-WITH-JAVA-STREAM-API-120Q-D-2.csv'
+    'WORKING-WITH-JAVA-STREAM-API-120Q-D-2.csv',
+    'WORKING-WITH-MODULE-SYSTEM-260Q-E-1.csv'
   ];
 
   onFileSelected(event: Event): void {
