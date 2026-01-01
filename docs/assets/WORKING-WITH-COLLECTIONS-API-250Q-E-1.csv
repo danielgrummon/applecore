@@ -1,0 +1,2972 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new LinkedList<>();
+        list.add(3);
+        list.add(2);
+        list.add(1);
+        list.remove(2);
+        System.out.println(list);
+    }
+}","[3, 2]","[3, 1]","[2, 1]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new LinkedList<>();
+        list.add(3);
+        list.add(2);
+        list.add(1);
+        list.remove(Integer.valueOf(2));
+        System.out.println(list);
+    }
+}","[3, 1]","[3, 2]","[2, 1]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.remove(1);
+        list.remove(Integer.valueOf(10));
+        System.out.println(list);
+    }
+}","[30]","[20]","[10]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(10);
+        list.add(5);
+        list.remove(5);
+        System.out.println(list);
+    }
+}",IndexOutOfBoundsException,"[5, 10]","[10, 5]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.remove(Integer.valueOf(1));
+        list.remove(0);
+        System.out.println(list);
+    }
+}","[]","[1]","[2]",IndexOutOfBoundsException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new LinkedList<>();
+        nums.add(100);
+        nums.add(200);
+        nums.add(100);
+        nums.remove(100);
+        System.out.println(nums);
+    }
+}",IndexOutOfBoundsException,"[100, 200]","[200, 100]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(0);
+        nums.add(1);
+        nums.add(0);
+        nums.remove(0);
+        System.out.println(nums);
+    }
+}","[1, 0]","[0, 1]","[0, 0]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(0);
+        nums.add(1);
+        nums.add(0);
+        nums.remove(Integer.valueOf(0));
+        System.out.println(nums);
+    }
+}","[1, 0]","[0, 1]","[0, 0]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 10, 15);
+        list.remove(1);
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[5, 15]","[10, 15]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = List.of(5, 10, 15);
+        list.remove(Integer.valueOf(10));
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[5, 15]","[5, 10]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.add(""C"");
+        list.add(1, ""X"");
+        System.out.println(list);
+    }
+}","[A, X, B, C]","[A, B, X, C]","[X, A, B, C]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""SD"");
+        list.add(0, ""NY"");
+        list.set(1, ""FL"");
+        System.out.println(list.get(0));
+    }
+}",NY,SD,FL,IndexOutOfBoundsException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.set(2, ""C"");
+        System.out.println(list);
+    }
+}",IndexOutOfBoundsException,"[A, B, C]","[A, C]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var numbers = Arrays.asList(1, 2, 3);
+        numbers.replaceAll(x -> x * 2);
+        System.out.println(numbers);
+    }
+}","[2, 4, 6]","[1, 2, 3]",UnsupportedOperationException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var numbers = List.of(1, 2, 3);
+        numbers.replaceAll(x -> x * 2);
+        System.out.println(numbers);
+    }
+}",UnsupportedOperationException,"[2, 4, 6]","[1, 2, 3]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""hawk"");
+        list.add(""robin"");
+        Object[] objectArray = list.toArray();
+        System.out.println(objectArray.length);
+    }
+}",2,0,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""hawk"");
+        list.add(""robin"");
+        String[] stringArray = list.toArray(new String[0]);
+        System.out.println(stringArray.length);
+    }
+}",2,0,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""hawk"");
+        list.add(""robin"");
+        String[] stringArray = list.toArray(new String[0]);
+        list.clear();
+        System.out.println(stringArray.length);
+    }
+}",2,0,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Character> letters = Set.of('z', 'o', 'o');
+        System.out.println(letters.size());
+    }
+}",IllegalArgumentException,3,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new HashSet<>();
+        set.add(66);
+        set.add(10);
+        boolean b = set.add(66);
+        set.add(8);
+        System.out.println(b);
+    }
+}",false,true,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new TreeSet<>();
+        set.add(66);
+        set.add(10);
+        set.add(8);
+        System.out.println(set);
+    }
+}","[8, 10, 66]","[66, 10, 8]","[8, 66, 10]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new HashSet<>();
+        set.add(66);
+        set.add(10);
+        set.add(8);
+        System.out.println(set);
+    }
+}","Order not guaranteed","[8, 10, 66]","[66, 10, 8]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var set1 = List.of(1, 2);
+        var set2 = Set.of(2, 1);
+        System.out.println(set1.equals(set2));
+    }
+}",false,true,Compilation error,ClassCastException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var set1 = Set.of(1, 2);
+        var set2 = Set.of(2, 1);
+        System.out.println(set1.equals(set2));
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.removeIf(s -> s.equals(""A""));
+        System.out.println(list);
+    }
+}","[B]","[A]","[A, B]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"");
+        list.removeIf(s -> s.equals(""A""));
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[B]","[A]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        list.add(4);
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[1, 2, 3, 4]",Compilation error,IndexOutOfBoundsException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        list.set(0, 10);
+        System.out.println(list);
+    }
+}","[10, 2, 3]",UnsupportedOperationException,"[1, 2, 3]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Integer[] array = {1, 2, 3};
+        List<Integer> list = Arrays.asList(array);
+        array[0] = 10;
+        System.out.println(list.get(0));
+    }
+}",10,1,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> source = new ArrayList<>();
+        source.add(1);
+        source.add(2);
+        List<Integer> copy = List.copyOf(source);
+        source.add(3);
+        System.out.println(copy.size());
+    }
+}",2,3,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.offerFirst(10);
+        deque.offerLast(4);
+        System.out.println(deque.peekFirst());
+    }
+}",10,4,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.offerFirst(10);
+        deque.offerLast(4);
+        deque.pollFirst();
+        System.out.println(deque.pollLast());
+    }
+}",4,10,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.offerFirst(10);
+        deque.offerLast(4);
+        deque.pollFirst();
+        deque.pollLast();
+        System.out.println(deque.pollFirst());
+    }
+}",null,10,4,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(10);
+        stack.push(4);
+        System.out.println(stack.peek());
+    }
+}",4,10,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(10);
+        stack.push(4);
+        stack.poll();
+        System.out.println(stack.poll());
+    }
+}",10,4,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(10);
+        stack.push(4);
+        stack.poll();
+        stack.poll();
+        System.out.println(stack.peek());
+    }
+}",null,NoSuchElementException,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(10);
+        queue.add(4);
+        System.out.println(queue.remove());
+    }
+}",10,4,null,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        System.out.println(queue.poll());
+    }
+}",null,NoSuchElementException,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        System.out.println(queue.remove());
+    }
+}",NoSuchElementException,null,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        System.out.println(queue.element());
+    }
+}",NoSuchElementException,null,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(10);
+        System.out.println(queue.peek());
+    }
+}",10,null,NoSuchElementException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = Map.of(""key1"", ""value1"", ""key2"", ""value2"");
+        System.out.println(map.get(""key1""));
+    }
+}",value1,value2,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = Map.of(""key1"", ""value1"", ""key1"", ""value2"");
+        System.out.println(map.size());
+    }
+}",IllegalArgumentException,1,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Character, String> map = new HashMap<>();
+        map.put('x', ""spot"");
+        System.out.println(map.get('x'));
+    }
+}",spot,null,x,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Character, String> map = new HashMap<>();
+        map.put('x', ""spot"");
+        System.out.println(map.get('y'));
+    }
+}",null,spot,y,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Character, String> map = new HashMap<>();
+        map.put('x', ""spot"");
+        System.out.println(map.getOrDefault('y', """"));
+    }
+}","""""",null,spot,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 10);
+        map.put(2, 20);
+        map.replace(2, 30);
+        System.out.println(map.get(2));
+    }
+}",30,20,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 10);
+        map.put(2, 20);
+        map.replaceAll((k, v) -> k + v);
+        System.out.println(map.get(2));
+    }
+}",22,20,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""Tom"", ""Tram"");
+        map.putIfAbsent(""Tom"", ""Skyride"");
+        System.out.println(map.get(""Tom""));
+    }
+}",Tram,Skyride,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.putIfAbsent(""Tom"", ""Tram"");
+        System.out.println(map.get(""Tom""));
+    }
+}",Tram,null,Skyride,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""Jenny"", ""Bus Tour"");
+        String result = map.merge(""Jenny"", ""Skyride"", (v1, v2) -> v1.length() > v2.length() ? v1 : v2);
+        System.out.println(result);
+    }
+}",Bus Tour,Skyride,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""Tom"", ""Tram"");
+        String result = map.merge(""Tom"", ""Skyride"", (v1, v2) -> v1.length() > v2.length() ? v1 : v2);
+        System.out.println(result);
+    }
+}",Skyride,Tram,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        String result = map.merge(""Sam"", ""Skyride"", (v1, v2) -> v1 + v2);
+        System.out.println(result);
+    }
+}",Skyride,null,SamSkyride,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""Tom"", ""Tram"");
+        String result = map.merge(""Tom"", ""Skyride"", (v1, v2) -> null);
+        System.out.println(map.containsKey(""Tom""));
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""Tom"", null);
+        String result = map.merge(""Tom"", ""Skyride"", (v1, v2) -> v1 + v2);
+        System.out.println(map.get(""Tom""));
+    }
+}",Skyride,null,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""Tom"", ""Tram"");
+        String result = map.merge(""Tom"", null, (v1, v2) -> v1 + v2);
+        System.out.println(map.containsKey(""Tom""));
+    }
+}",NullPointerException,true,false,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""key"", ""value"");
+        System.out.println(map.containsKey(""key""));
+    }
+}",true,false,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""key"", ""value"");
+        System.out.println(map.containsValue(""value""));
+    }
+}",true,false,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new TreeMap<>();
+        map.put(""c"", ""cat"");
+        map.put(""a"", ""apple"");
+        map.put(""b"", ""ball"");
+        System.out.println(map.keySet());
+    }
+}","[a, b, c]","[c, a, b]","Order not guaranteed",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""c"", ""cat"");
+        map.put(""a"", ""apple"");
+        map.put(""b"", ""ball"");
+        System.out.println(map.keySet());
+    }
+}","Order not guaranteed","[a, b, c]","[c, a, b]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        System.out.println(map.values().size());
+    }
+}",2,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.forEach(System.out::println);
+    }
+}",Prints A B on separate lines,Compilation error,Prints A B on same line,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        map.put(""B"", ""2"");
+        map.forEach((k, v) -> System.out.println(k));
+    }
+}",Prints keys A and B,Prints values 1 and 2,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        System.out.println(list.isEmpty());
+    }
+}",false,true,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.clear();
+        System.out.println(list.isEmpty());
+    }
+}",true,false,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        System.out.println(list.contains(""A""));
+    }
+}",true,false,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        System.out.println(list.contains(""C""));
+    }
+}",false,true,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var list = new LinkedList<String>();
+        list.add(""A"");
+        list.add(""B"");
+        list.addFirst(""Z"");
+        System.out.println(list.getFirst());
+    }
+}",Z,A,B,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var list = new LinkedList<String>();
+        list.add(""A"");
+        list.add(""B"");
+        list.addLast(""Z"");
+        System.out.println(list.getLast());
+    }
+}",Z,A,B,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""apple"");
+        list.add(""banana"");
+        list.sort((a, b) -> a.compareTo(b));
+        System.out.println(list.get(0));
+    }
+}",apple,banana,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""apple"");
+        list.add(""banana"");
+        list.sort((a, b) -> b.compareTo(a));
+        System.out.println(list.get(0));
+    }
+}",banana,apple,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(1);
+        list.add(2);
+        Collections.sort(list);
+        System.out.println(list);
+    }
+}","[1, 2, 3]","[3, 1, 2]","[3, 2, 1]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        Collections.reverse(list);
+        System.out.println(list);
+    }
+}","[3, 2, 1]","[1, 2, 3]",Compilation error,UnsupportedOperationException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        int index = Collections.binarySearch(list, 3);
+        System.out.println(index);
+    }
+}",2,3,-1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        int index = Collections.binarySearch(list, 6);
+        System.out.println(index);
+    }
+}",Negative number,5,6,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 4, 3, 2, 1);
+        int index = Collections.binarySearch(list, 3);
+        System.out.println(index >= 0);
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = (s1, s2) -> s1.length() - s2.length();
+        List<String> list = Arrays.asList(""cat"", ""a"", ""dog"");
+        Collections.sort(list, comp);
+        System.out.println(list.get(0));
+    }
+}",a,cat,dog,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparing(String::length);
+        List<String> list = Arrays.asList(""cat"", ""a"", ""dog"");
+        Collections.sort(list, comp);
+        System.out.println(list.get(0));
+    }
+}",a,cat,dog,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparing(String::length).reversed();
+        List<String> list = Arrays.asList(""cat"", ""a"", ""dog"");
+        Collections.sort(list, comp);
+        System.out.println(list.get(0));
+    }
+}",cat or dog,a,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparing(String::length)
+            .thenComparing(String::compareTo);
+        List<String> list = Arrays.asList(""cat"", ""a"", ""bat"");
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[a, bat, cat]","[a, cat, bat]","[cat, bat, a]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<Integer> comp = Comparator.naturalOrder();
+        List<Integer> list = Arrays.asList(3, 1, 2);
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[1, 2, 3]","[3, 2, 1]",Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<Integer> comp = Comparator.reverseOrder();
+        List<Integer> list = Arrays.asList(3, 1, 2);
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[3, 2, 1]","[1, 2, 3]",Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.add(""C"");
+        Iterator<String> iter = list.iterator();
+        while (iter.hasNext()) {
+            iter.next();
+            iter.remove();
+        }
+        System.out.println(list.size());
+    }
+}",0,3,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""C"");
+        Iterator<String> iter = list.iterator();
+        while (iter.hasNext()) {
+            iter.next();
+            iter.remove();
+        }
+        System.out.println(list.size());
+    }
+}",UnsupportedOperationException,0,3,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var list1 = List.of(1, 2, 3);
+        var list2 = List.of(1, 2, 3);
+        System.out.println(list1.equals(list2));
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        var list1 = new ArrayList<>(List.of(1, 2, 3));
+        var list2 = new ArrayList<>(List.of(1, 2, 3));
+        System.out.println(list1 == list2);
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>(10);
+        System.out.println(list.size());
+    }
+}",0,10,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list1 = new ArrayList<>();
+        list1.add(""A"");
+        List<String> list2 = new ArrayList<>(list1);
+        list1.clear();
+        System.out.println(list2.size());
+    }
+}",1,0,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        map.put(""B"", ""2"");
+        Set<String> keys = map.keySet();
+        System.out.println(keys.size());
+    }
+}",2,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        map.put(""B"", ""2"");
+        Collection<String> values = map.values();
+        System.out.println(values.size());
+    }
+}",2,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        map.put(""B"", ""2"");
+        Set<Map.Entry<String, String>> entries = map.entrySet();
+        System.out.println(entries.size());
+    }
+}",2,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        String result = map.put(""A"", ""2"");
+        System.out.println(result);
+    }
+}",1,2,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        String result = map.put(""A"", ""1"");
+        System.out.println(result);
+    }
+}",null,1,A,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        String result = map.remove(""A"");
+        System.out.println(result);
+    }
+}",1,null,A,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        String result = map.remove(""B"");
+        System.out.println(result);
+    }
+}",null,1,B,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        String result = map.replace(""A"", ""2"");
+        System.out.println(result);
+    }
+}",1,2,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        String result = map.replace(""B"", ""2"");
+        System.out.println(result);
+    }
+}",null,1,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = Map.of(""A"", ""1"", ""B"", ""2"");
+        map.put(""C"", ""3"");
+        System.out.println(map.size());
+    }
+}",UnsupportedOperationException,3,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = Map.ofEntries(
+            Map.entry(""A"", ""1""),
+            Map.entry(""B"", ""2"")
+        );
+        map.clear();
+        System.out.println(map.size());
+    }
+}",UnsupportedOperationException,0,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new TreeSet<>();
+        set.add(""B"");
+        set.add(""A"");
+        set.add(""C"");
+        System.out.println(set);
+    }
+}","[A, B, C]","[B, A, C]","Order not guaranteed",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = Set.of(""A"", ""B"", ""C"");
+        set.add(""D"");
+        System.out.println(set.size());
+    }
+}",UnsupportedOperationException,4,3,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> source = new HashSet<>();
+        source.add(""A"");
+        Set<String> copy = Set.copyOf(source);
+        source.add(""B"");
+        System.out.println(copy.size());
+    }
+}",1,2,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""cat"");
+        list.add(""dog"");
+        list.add(""bird"");
+        list.replaceAll(s -> s.toUpperCase());
+        System.out.println(list.get(0));
+    }
+}",CAT,cat,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, 10);
+        map.put(2, 20);
+        map.put(3, 30);
+        map.replaceAll((k, v) -> v * 2);
+        System.out.println(map.get(1));
+    }
+}",20,10,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<String> deque = new ArrayDeque<>();
+        deque.push(""A"");
+        deque.push(""B"");
+        System.out.println(deque.pop());
+    }
+}",B,A,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<String> deque = new ArrayDeque<>();
+        deque.push(""A"");
+        deque.push(""B"");
+        deque.pop();
+        deque.pop();
+        System.out.println(deque.pop());
+    }
+}",NoSuchElementException,null,A,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(""A"");
+        queue.offer(""B"");
+        System.out.println(queue.element());
+    }
+}",A,B,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""key"", ""value"");
+        map.entrySet().forEach(e -> System.out.println(e.getKey()));
+    }
+}",Prints key,Prints value,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""key"", ""value"");
+        map.values().forEach(System.out::println);
+    }
+}",Prints value,Prints key,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparingInt(String::length);
+        System.out.println(comp.compare(""cat"", ""dog""));
+    }
+}",0,Negative number,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparingInt(String::length);
+        System.out.println(comp.compare(""a"", ""dog""));
+    }
+}",Negative number,0,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparingInt(String::length);
+        System.out.println(comp.compare(""cats"", ""dog""));
+    }
+}",Positive number,0,Negative number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(1, 10);
+        System.out.println(list);
+    }
+}","[1, 10, 2]","[10, 1, 2]","[1, 2, 10]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3, 10);
+        System.out.println(list);
+    }
+}",IndexOutOfBoundsException,"[1, 2, 10]","[1, 2, 3, 10]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        map.put(""B"", ""2"");
+        map.put(""A"", ""3"");
+        System.out.println(map.size());
+    }
+}",2,3,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add(""A"");
+        set.add(""B"");
+        set.add(""A"");
+        System.out.println(set.size());
+    }
+}",2,3,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.add(""A"");
+        System.out.println(list.size());
+    }
+}",3,2,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.addFirst(1);
+        deque.addLast(2);
+        deque.addFirst(3);
+        System.out.println(deque.getFirst());
+    }
+}",3,1,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.addFirst(1);
+        deque.addLast(2);
+        deque.addFirst(3);
+        System.out.println(deque.getLast());
+    }
+}",2,1,3,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.addFirst(1);
+        deque.addLast(2);
+        deque.removeFirst();
+        System.out.println(deque.peekFirst());
+    }
+}",2,1,null,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.addFirst(1);
+        deque.addLast(2);
+        deque.removeLast();
+        System.out.println(deque.peekLast());
+    }
+}",1,2,null,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        System.out.println(deque.peekFirst());
+    }
+}",null,NoSuchElementException,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        System.out.println(deque.getFirst());
+    }
+}",NoSuchElementException,null,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        map.put(""C"", 3);
+        System.out.println(map.size());
+    }
+}",3,2,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        map.clear();
+        System.out.println(map.size());
+    }
+}",0,2,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        System.out.println(map.isEmpty());
+    }
+}",false,true,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(50);
+        nums.add(100);
+        nums.add(25);
+        nums.remove(1);
+        nums.remove(Integer.valueOf(50));
+        System.out.println(nums);
+    }
+}","[25]","[100]","[50]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(10);
+        nums.add(20);
+        nums.add(30);
+        nums.remove(Integer.valueOf(20));
+        nums.remove(1);
+        System.out.println(nums);
+    }
+}","[10]","[20]","[30]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(10);
+        list.add(15);
+        list.remove(0);
+        list.remove(Integer.valueOf(15));
+        System.out.println(list);
+    }
+}","[10]","[5]","[15]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        list.remove(Integer.valueOf(1));
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[2, 3]","[1, 2]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(1);
+        list.add(1);
+        list.remove(1);
+        list.remove(Integer.valueOf(1));
+        System.out.println(list);
+    }
+}","[1]","[]","[1, 1]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(2);
+        list.add(4);
+        list.add(6);
+        list.remove(2);
+        list.remove(Integer.valueOf(2));
+        System.out.println(list);
+    }
+}","[4]","[2]","[6]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new LinkedList<>();
+        list.add(7);
+        list.add(14);
+        list.add(7);
+        list.remove(Integer.valueOf(7));
+        list.remove(0);
+        System.out.println(list);
+    }
+}","[7]","[14]","[]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", null);
+        String result = map.merge(""A"", ""Value"", (v1, v2) -> v1 + v2);
+        System.out.println(result);
+    }
+}",Value,null,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""Old"");
+        String result = map.merge(""A"", ""New"", (v1, v2) -> null);
+        System.out.println(map.containsKey(""A""));
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        String result = map.merge(""A"", ""Value"", (v1, v2) -> v1 + v2);
+        System.out.println(map.get(""A""));
+    }
+}",Value,null,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""First"");
+        String result = map.merge(""A"", ""Second"", (v1, v2) -> v1 + ""_"" + v2);
+        System.out.println(result);
+    }
+}",First_Second,Second,First,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        map.merge(""A"", 5, (v1, v2) -> v1 + v2);
+        System.out.println(map.get(""A""));
+    }
+}",15,10,5,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.merge(""A"", 10, (v1, v2) -> v1 + v2);
+        System.out.println(map.get(""A""));
+    }
+}",10,null,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""Value"");
+        map.merge(""A"", ""New"", (v1, v2) -> null);
+        System.out.println(map.get(""A""));
+    }
+}",null,Value,New,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> c1 = (s1, s2) -> s1.compareTo(s2);
+        Comparator<String> c2 = c1.reversed();
+        System.out.println(c2.compare(""a"", ""b""));
+    }
+}",Positive number,Negative number,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparing(String::length)
+            .thenComparing(Comparator.naturalOrder());
+        List<String> list = Arrays.asList(""dog"", ""cat"", ""bird"");
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[cat, dog, bird]","[bird, cat, dog]","[dog, cat, bird]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""apple"", ""banana"", ""cherry"");
+        Comparator<String> comp = Comparator.comparingInt(String::length)
+            .thenComparing(String::compareTo);
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[apple, banana, cherry]","[cherry, banana, apple]","[apple, cherry, banana]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<Integer> comp = Comparator.comparingInt(i -> i);
+        List<Integer> list = Arrays.asList(3, 1, 2);
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[1, 2, 3]","[3, 2, 1]",Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<Integer> comp = Comparator.comparingLong(i -> (long)i);
+        System.out.println(comp.compare(10, 20));
+    }
+}",Negative number,Positive number,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<Double> comp = Comparator.comparingDouble(d -> d);
+        System.out.println(comp.compare(1.5, 1.5));
+    }
+}",0,Negative number,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""cat"");
+        list.add(""bird"");
+        list.add(""dog"");
+        Comparator<String> comp = (s1, s2) -> s2.compareTo(s1);
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[dog, cat, bird]","[bird, cat, dog]","[cat, bird, dog]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 2, 8, 1, 9);
+        Collections.sort(list);
+        int index = Collections.binarySearch(list, 8);
+        System.out.println(index);
+    }
+}",3,2,8,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 5, 8, 9);
+        int index = Collections.binarySearch(list, 4);
+        System.out.println(index >= 0);
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""Z"");
+        list.add(""A"");
+        list.add(""M"");
+        Collections.sort(list);
+        Collections.reverse(list);
+        System.out.println(list);
+    }
+}","[Z, M, A]","[A, M, Z]","[M, A, Z]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set1 = new HashSet<>();
+        set1.add(""A"");
+        set1.add(""B"");
+        Set<String> set2 = new HashSet<>();
+        set2.add(""B"");
+        set2.add(""A"");
+        System.out.println(set1.equals(set2));
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list1 = Arrays.asList(""A"", ""B"");
+        List<String> list2 = Arrays.asList(""B"", ""A"");
+        System.out.println(list1.equals(list2));
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(1);
+        queue.offer(2);
+        queue.offer(3);
+        queue.poll();
+        System.out.println(queue.element());
+    }
+}",2,1,3,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(1);
+        queue.add(2);
+        queue.remove();
+        queue.remove();
+        System.out.println(queue.peek());
+    }
+}",null,NoSuchElementException,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new TreeMap<>();
+        map.put(3, ""three"");
+        map.put(1, ""one"");
+        map.put(2, ""two"");
+        System.out.println(map.keySet());
+    }
+}","[1, 2, 3]","[3, 1, 2]","Order not guaranteed",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        String result = map.putIfAbsent(""A"", 2);
+        System.out.println(result);
+    }
+}",1,2,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        String result = map.putIfAbsent(""A"", 1);
+        System.out.println(result);
+    }
+}",null,1,A,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.add(""C"");
+        for (String s : list) {
+            list.remove(s);
+        }
+        System.out.println(list.size());
+    }
+}",ConcurrentModificationException,0,3,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        Iterator<String> iter = list.iterator();
+        String s = iter.next();
+        System.out.println(s);
+    }
+}",A,B,Compilation error,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        Iterator<String> iter = list.iterator();
+        System.out.println(iter.hasNext());
+    }
+}",false,true,NoSuchElementException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.removeIf(n -> n % 2 == 0);
+        System.out.println(list);
+    }
+}","[1, 3]","[2, 4]","[1, 2, 3, 4]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new HashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(3);
+        set.removeIf(n -> n > 1);
+        System.out.println(set.size());
+    }
+}",1,3,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        map.put(""B"", 20);
+        map.replaceAll((k, v) -> v / 10);
+        System.out.println(map.get(""B""));
+    }
+}",2,20,B,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""apple"", ""banana"", ""cherry"");
+        String[] array = list.toArray(new String[5]);
+        System.out.println(array.length);
+    }
+}",5,3,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""apple"", ""banana"", ""cherry"");
+        Object[] array = list.toArray();
+        System.out.println(array[0]);
+    }
+}",apple,banana,Compilation error,ArrayIndexOutOfBoundsException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.offerFirst(1);
+        deque.offerFirst(2);
+        deque.offerLast(3);
+        System.out.println(deque.pollLast());
+    }
+}",3,1,2,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.offerFirst(1);
+        deque.offerLast(2);
+        deque.offerFirst(3);
+        deque.pollFirst();
+        deque.pollLast();
+        System.out.println(deque.peek());
+    }
+}",1,2,3,null
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(1);
+        list.add(4);
+        list.add(1);
+        list.add(5);
+        list.remove(Integer.valueOf(1));
+        System.out.println(list);
+    }
+}","[3, 4, 1, 5]","[3, 4, 5]","[3, 1, 4, 5]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(10);
+        list.add(20);
+        list.add(10);
+        list.add(30);
+        list.remove(Integer.valueOf(10));
+        list.remove(0);
+        System.out.println(list);
+    }
+}","[10, 30]","[20, 30]","[20, 10, 30]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        list.add(0);
+        list.add(0);
+        list.remove(0);
+        list.remove(Integer.valueOf(0));
+        System.out.println(list.size());
+    }
+}",1,0,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""key"", ""oldValue"");
+        map.merge(""key"", ""newValue"", (old, new_) -> old.length() > new_.length() ? old : new_);
+        System.out.println(map.get(""key""));
+    }
+}",oldValue,newValue,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        map.merge(""C"", 3, (v1, v2) -> v1 + v2);
+        System.out.println(map.get(""C""));
+    }
+}",3,null,6,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 5);
+        map.merge(""A"", 10, Integer::sum);
+        System.out.println(map.get(""A""));
+    }
+}",15,10,5,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparing(String::length)
+            .thenComparingInt(s -> s.charAt(0));
+        System.out.println(comp.compare(""ab"", ""ba""));
+    }
+}",Negative number,0,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""C"");
+        System.out.println(list.get(1));
+    }
+}",B,A,C,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""C"");
+        list.set(0, ""Z"");
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[Z, B, C]","[A, B, C]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""A"", ""B"", ""C"");
+        list.remove(1);
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[A, C]","[A, B]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> source = Arrays.asList(""A"", ""B"", ""C"");
+        List<String> copy = List.copyOf(source);
+        System.out.println(source == copy);
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = Set.of(1, 2, 3);
+        Set<Integer> copy = Set.copyOf(set);
+        System.out.println(set.equals(copy));
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(2);
+        nums.add(3);
+        nums.add(1);
+        nums.remove(0);
+        nums.remove(Integer.valueOf(3));
+        System.out.println(nums);
+    }
+}","[1]","[2]","[3]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(4);
+        nums.add(5);
+        nums.add(6);
+        nums.add(4);
+        nums.remove(Integer.valueOf(4));
+        nums.remove(1);
+        System.out.println(nums);
+    }
+}","[5, 4]","[6, 4]","[5, 6]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> favorites = new HashMap<>();
+        favorites.put(""Jenny"", ""Bus Tour"");
+        favorites.put(""Tom"", null);
+        String jenny = favorites.merge(""Jenny"", ""Skyride"", (v1, v2) -> v1.length() > v2.length() ? v1 : v2);
+        String tom = favorites.merge(""Tom"", ""Skyride"", (v1, v2) -> v1.length() > v2.length() ? v1 : v2);
+        System.out.println(jenny + "" "" + tom);
+    }
+}",Bus Tour Skyride,Skyride Skyride,Bus Tour null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", null);
+        map.merge(""A"", 10, (v1, v2) -> v1 + v2);
+        System.out.println(map.get(""A""));
+    }
+}",10,null,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 5);
+        map.merge(""A"", 10, (v1, v2) -> null);
+        System.out.println(map.size());
+    }
+}",0,1,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> byLength = Comparator.comparingInt(String::length);
+        Comparator<String> byLetter = Comparator.comparing(s -> s);
+        Comparator<String> combined = byLength.thenComparing(byLetter);
+        System.out.println(combined.compare(""abc"", ""def""));
+    }
+}",Negative number,0,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""dog"", ""cat"", ""bird"", ""ant"");
+        Comparator<String> comp = Comparator.comparingInt(String::length)
+            .thenComparing(Comparator.reverseOrder());
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[cat, dog, bird, ant]","[ant, cat, dog, bird]","[ant, bird, cat, dog]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(15);
+        list.add(10);
+        list.add(20);
+        list.remove(1);
+        list.remove(Integer.valueOf(15));
+        System.out.println(list);
+    }
+}","[20]","[10]","[15]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<String> stack = new ArrayDeque<>();
+        stack.push(""First"");
+        stack.push(""Second"");
+        stack.push(""Third"");
+        stack.pop();
+        System.out.println(stack.pop());
+    }
+}",Second,Third,First,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(""First"");
+        queue.offer(""Second"");
+        queue.offer(""Third"");
+        queue.poll();
+        System.out.println(queue.poll());
+    }
+}",Second,First,Third,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new TreeSet<>();
+        set.add(""zebra"");
+        set.add(""apple"");
+        set.add(""monkey"");
+        System.out.println(set);
+    }
+}","[apple, monkey, zebra]","[zebra, apple, monkey]","Order not guaranteed",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""key1"", ""value1"");
+        map.put(""key2"", ""value2"");
+        map.entrySet().forEach(e -> System.out.println(e.getValue()));
+    }
+}",Prints values,Prints keys,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(8);
+        list.add(4);
+        list.add(2);
+        list.add(1);
+        list.remove(2);
+        list.remove(Integer.valueOf(8));
+        System.out.println(list);
+    }
+}","[4, 1]","[4, 2]","[2, 1]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(1);
+        list.add(2);
+        list.add(1);
+        list.remove(Integer.valueOf(1));
+        list.remove(0);
+        System.out.println(list);
+    }
+}","[2, 1]","[1, 2]","[1, 1]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        map.put(""B"", 20);
+        map.compute(""A"", (k, v) -> v + 5);
+        System.out.println(map.get(""A""));
+    }
+}",15,10,5,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        map.compute(""A"", (k, v) -> null);
+        System.out.println(map.containsKey(""A""));
+    }
+}",false,true,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.computeIfAbsent(""A"", k -> 10);
+        System.out.println(map.get(""A""));
+    }
+}",10,null,A,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        map.computeIfAbsent(""A"", k -> 20);
+        System.out.println(map.get(""A""));
+    }
+}",10,20,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        map.computeIfPresent(""A"", (k, v) -> v * 2);
+        System.out.println(map.get(""A""));
+    }
+}",20,10,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.computeIfPresent(""A"", (k, v) -> v * 2);
+        System.out.println(map.containsKey(""A""));
+    }
+}",false,true,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(100);
+        list.add(200);
+        list.add(100);
+        list.add(300);
+        list.remove(Integer.valueOf(100));
+        list.remove(2);
+        System.out.println(list);
+    }
+}","[200, 100]","[200, 300]","[100, 200]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(5);
+        list.add(5);
+        list.remove(0);
+        list.remove(Integer.valueOf(5));
+        list.remove(0);
+        System.out.println(list);
+    }
+}","[]","[5]","[5, 5]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        set.add(""A"");
+        set.add(""B"");
+        set.add(""C"");
+        set.removeIf(s -> s.compareTo(""B"") > 0);
+        System.out.println(set.size());
+    }
+}",2,1,3,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""A"", ""B"", ""C"");
+        Collections.sort(list, Comparator.reverseOrder());
+        System.out.println(list);
+    }
+}","[C, B, A]","[A, B, C]",UnsupportedOperationException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""C"");
+        Collections.sort(list);
+        System.out.println(list);
+    }
+}",UnsupportedOperationException,"[A, B, C]","[C, B, A]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.push(1);
+        deque.push(2);
+        deque.push(3);
+        System.out.println(deque.size());
+    }
+}",3,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(1);
+        queue.add(2);
+        System.out.println(queue.peek());
+    }
+}",1,2,null,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new TreeMap<>();
+        map.put(10, ""ten"");
+        map.put(5, ""five"");
+        map.put(15, ""fifteen"");
+        System.out.println(map.values());
+    }
+}","[five, ten, fifteen]","[ten, five, fifteen]","Order not guaranteed",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new TreeSet<>();
+        set.add(null);
+        System.out.println(set.size());
+    }
+}",NullPointerException,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new HashSet<>();
+        set.add(null);
+        System.out.println(set.size());
+    }
+}",1,0,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(null);
+        list.add(""A"");
+        list.add(null);
+        System.out.println(list.size());
+    }
+}",3,2,1,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(null, ""A"");
+        System.out.println(list.size());
+    }
+}",NullPointerException,2,1,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = Map.of(""A"", null);
+        System.out.println(map.size());
+    }
+}",NullPointerException,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(null, 10);
+        System.out.println(map.containsKey(null));
+    }
+}",true,false,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new TreeMap<>();
+        map.put(null, ""value"");
+        System.out.println(map.size());
+    }
+}",NullPointerException,1,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(2);
+        list.add(1);
+        Comparator<Integer> comp = (a, b) -> a - b;
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[1, 2, 3]","[3, 2, 1]",Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(2);
+        list.add(1);
+        Comparator<Integer> comp = (a, b) -> b - a;
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[3, 2, 1]","[1, 2, 3]",Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""dog"");
+        list.add(""cat"");
+        list.add(""bird"");
+        Comparator<String> comp = (a, b) -> Integer.compare(a.length(), b.length());
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[cat, dog, bird]","[bird, cat, dog]","[dog, cat, bird]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        map.put(""C"", 3);
+        map.keySet().removeIf(k -> map.get(k) > 1);
+        System.out.println(map.size());
+    }
+}",1,2,3,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        list.replaceAll(n -> n * 2);
+        System.out.println(list);
+    }
+}","[2, 4, 6, 8, 10]","[1, 2, 3, 4, 5]",UnsupportedOperationException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(10);
+        list.add(5);
+        list.add(20);
+        list.add(15);
+        Collections.sort(list);
+        int index = Collections.binarySearch(list, 20);
+        System.out.println(index);
+    }
+}",3,2,20,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 10, 15, 20);
+        int index = Collections.binarySearch(list, 12);
+        System.out.println(index < 0);
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set1 = new TreeSet<>();
+        set1.add(""A"");
+        set1.add(""B"");
+        Set<String> set2 = new TreeSet<>();
+        set2.add(""B"");
+        set2.add(""A"");
+        System.out.println(set1.equals(set2));
+    }
+}",true,false,Compilation error,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        map.put(""B"", ""2"");
+        System.out.println(map.remove(""A"", ""1""));
+    }
+}",true,false,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        System.out.println(map.remove(""A"", ""2""));
+    }
+}",false,true,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        System.out.println(map.replace(""A"", ""1"", ""2""));
+    }
+}",true,false,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""1"");
+        System.out.println(map.replace(""A"", ""2"", ""3""));
+    }
+}",false,true,null,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<Integer> deque = new LinkedList<>();
+        deque.addFirst(1);
+        deque.addFirst(2);
+        deque.addLast(3);
+        deque.addLast(4);
+        System.out.println(deque);
+    }
+}","[2, 1, 3, 4]","[1, 2, 3, 4]","[4, 3, 1, 2]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.subList(0, 2).clear();
+        System.out.println(list);
+    }
+}","[3]","[1, 2, 3]","[1, 2]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> sublist = list.subList(1, 4);
+        System.out.println(sublist);
+    }
+}","[2, 3, 4]","[1, 2, 3]","[2, 3, 4, 5]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> sublist = list.subList(2, 5);
+        sublist.set(0, 10);
+        System.out.println(list);
+    }
+}","[1, 2, 10, 4, 5]","[1, 2, 3, 4, 5]","[10, 4, 5]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = List.of(""A"", ""B"", ""C"");
+        List<String> sublist = list.subList(0, 2);
+        System.out.println(sublist);
+    }
+}","[A, B]","[A, B, C]","[B, C]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""A"");
+        list.add(""B"");
+        list.add(""C"");
+        list.subList(1, 2).clear();
+        System.out.println(list);
+    }
+}","[A, C]","[A, B, C]","[B]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 1);
+        map.put(""B"", 2);
+        map.put(""C"", 3);
+        map.values().removeIf(v -> v > 1);
+        System.out.println(map.size());
+    }
+}",1,2,3,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<Integer> set = new HashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(3);
+        Iterator<Integer> iter = set.iterator();
+        while (iter.hasNext()) {
+            Integer num = iter.next();
+            if (num > 1) {
+                iter.remove();
+            }
+        }
+        System.out.println(set.size());
+    }
+}",1,3,2,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(7);
+        nums.add(8);
+        nums.add(9);
+        nums.add(7);
+        nums.remove(1);
+        nums.remove(Integer.valueOf(7));
+        System.out.println(nums);
+    }
+}","[9, 7]","[7, 9]","[8, 9]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(11);
+        nums.add(12);
+        nums.add(13);
+        nums.remove(Integer.valueOf(12));
+        nums.remove(0);
+        System.out.println(nums);
+    }
+}","[13]","[11]","[12]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp1 = Comparator.comparing(String::length);
+        Comparator<String> comp2 = comp1.thenComparing(s -> s);
+        System.out.println(comp2.compare(""abc"", ""xyz""));
+    }
+}",Negative number,0,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp1 = Comparator.comparing(String::length);
+        Comparator<String> comp2 = comp1.thenComparing(s -> s);
+        System.out.println(comp2.compare(""cat"", ""dog""));
+    }
+}",Negative number,0,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Comparator<String> comp = Comparator.comparing(String::length)
+            .thenComparing(String::compareTo);
+        System.out.println(comp.compare(""abc"", ""abc""));
+    }
+}",0,Negative number,Positive number,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""zzz"", ""aaa"", ""mmm"");
+        Comparator<String> comp = Comparator.naturalOrder();
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[aaa, mmm, zzz]","[zzz, mmm, aaa]","[zzz, aaa, mmm]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList(""zzz"", ""aaa"", ""mmm"");
+        Comparator<String> comp = Comparator.reverseOrder();
+        Collections.sort(list, comp);
+        System.out.println(list);
+    }
+}","[zzz, mmm, aaa]","[aaa, mmm, zzz]","[zzz, aaa, mmm]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        map.put(""B"", 20);
+        Integer result = map.merge(""C"", 30, (v1, v2) -> v1 + v2);
+        System.out.println(result);
+    }
+}",30,null,60,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", 10);
+        Integer result = map.merge(""A"", 20, (v1, v2) -> v1 * v2);
+        System.out.println(result);
+    }
+}",200,10,20,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        map.put(""A"", ""Hello"");
+        String result = map.merge(""A"", ""World"", (v1, v2) -> v1 + "" "" + v2);
+        System.out.println(result);
+    }
+}",Hello World,World,Hello,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(6);
+        list.add(7);
+        list.add(8);
+        list.remove(0);
+        list.remove(Integer.valueOf(8));
+        System.out.println(list);
+    }
+}","[7]","[6]","[8]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(25);
+        list.add(50);
+        list.add(75);
+        list.add(25);
+        list.remove(Integer.valueOf(25));
+        list.remove(2);
+        System.out.println(list);
+    }
+}","[50, 75]","[50, 25]","[75, 25]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<String> deque = new LinkedList<>();
+        deque.offerLast(""A"");
+        deque.offerLast(""B"");
+        deque.offerFirst(""C"");
+        System.out.println(deque.pollFirst());
+    }
+}",C,A,B,null
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Deque<String> deque = new LinkedList<>();
+        deque.offerLast(""A"");
+        deque.offerLast(""B"");
+        deque.offerFirst(""C"");
+        System.out.println(deque.pollLast());
+    }
+}",B,A,C,null
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(""First"");
+        queue.offer(""Second"");
+        queue.offer(""Third"");
+        System.out.println(queue.remove());
+    }
+}",First,Second,Third,NoSuchElementException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        queue.add(""A"");
+        queue.add(""B"");
+        queue.poll();
+        queue.poll();
+        System.out.println(queue.element());
+    }
+}",NoSuchElementException,null,A,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Set<String> set = Set.of(""A"", ""B"", ""C"", ""D"");
+        System.out.println(set.size());
+    }
+}",4,3,0,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, String> map = Map.of(""A"", ""1"", ""B"", ""2"", ""C"", ""3"");
+        System.out.println(map.size());
+    }
+}",3,2,6,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(""X"");
+        list.add(""Y"");
+        list.add(""Z"");
+        Collections.reverse(list);
+        System.out.println(list);
+    }
+}","[Z, Y, X]","[X, Y, Z]",UnsupportedOperationException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(3, 1, 4, 1, 5);
+        Collections.sort(list);
+        System.out.println(list);
+    }
+}","[1, 1, 3, 4, 5]","[3, 1, 4, 1, 5]","[5, 4, 3, 1, 1]",Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", null);
+        System.out.println(map.containsKey(""A""));
+    }
+}",true,false,NullPointerException,Compilation error
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put(""A"", null);
+        System.out.println(map.get(""A""));
+    }
+}",null,0,A,NullPointerException
+"What is the result?
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(9);
+        nums.add(18);
+        nums.add(27);
+        nums.remove(2);
+        nums.remove(Integer.valueOf(9));
+        System.out.println(nums);
+    }
+}","[18]","[9]","[27]",Compilation error
