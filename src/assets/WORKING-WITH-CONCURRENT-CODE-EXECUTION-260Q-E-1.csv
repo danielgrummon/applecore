@@ -1,18 +1,18 @@
-Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"Question","Correct Answer","Wrong Answer 1","Wrong Answer 2","Wrong Answer 3"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
         Runnable r = () -> System.out.println(""Running"");
         r.run();
     }
-}",Running,Compilation error,Runtime error,Nothing prints
+}","Running","Compilation error","Runtime error","Nothing prints"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
         Runnable r = () -> System.out.println(""Running"");
         r.start();
     }
-}",Compilation error,Running,Runtime error,Nothing prints
+}","Compilation error","Running","Runtime error","Nothing prints"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
@@ -21,8 +21,8 @@ public class Test {
         System.out.println(""Main"");
     }
 }","Running
-Main",Compilation error,"Main
-Running",Runtime error
+Main","Compilation error","Main
+Running","Runtime error"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
@@ -30,8 +30,8 @@ public class Test {
         t.start();
         System.out.println(""Main"");
     }
-}",Output order is unpredictable,"Running
-Main",Compilation error,"Main
+}","Output order is unpredictable","Running
+Main","Compilation error","Main
 Running"
 "What is the result?
 import java.util.concurrent.*;
@@ -42,7 +42,7 @@ public class Test {
         String result = c.call();
         System.out.println(result);
     }
-}",Compilation error,Result,Runtime error,Nothing prints
+}","Compilation error","Result","Runtime error","Nothing prints"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -52,7 +52,7 @@ public class Test {
         String result = c.call();
         System.out.println(result);
     }
-}",Result,Compilation error,Runtime error,Nothing prints
+}","Result","Compilation error","Runtime error","Nothing prints"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -61,7 +61,7 @@ public class Test {
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(() -> System.out.println(""Task""));
     }
-}",Program may not terminate,Task,Compilation error,Runtime error
+}","Program may not terminate","Task","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -71,7 +71,7 @@ public class Test {
         service.execute(() -> System.out.println(""Task""));
         service.shutdown();
     }
-}",Task,Compilation error,Runtime error,Program hangs
+}","Task","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -81,7 +81,7 @@ public class Test {
         service.shutdown();
         service.execute(() -> System.out.println(""Task""));
     }
-}",Runtime error,Task,Compilation error,Program hangs
+}","Runtime error","Task","Compilation error","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -92,7 +92,7 @@ public class Test {
         System.out.println(future.get());
         service.shutdown();
     }
-}",Compilation error,null,Task,Runtime error
+}","Compilation error","null","Task","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -104,7 +104,7 @@ public class Test {
         service.shutdown();
     }
 }","Task
-null",Compilation error,null,Runtime error
+null","Compilation error","null","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -115,7 +115,7 @@ public class Test {
         System.out.println(future.get());
         service.shutdown();
     }
-}",Compilation error,Result,Runtime error,null
+}","Compilation error","Result","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -127,7 +127,7 @@ public class Test {
         System.out.println(future.get());
         service.shutdown();
     }
-}",Result,Compilation error,Runtime error,null
+}","Result","Compilation error","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -137,7 +137,7 @@ public class Test {
         service.execute(() -> ""Result"");
         service.shutdown();
     }
-}",Compilation error,Nothing prints,Runtime error,Result
+}","Compilation error","Nothing prints","Runtime error","Result"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -148,7 +148,7 @@ public class Test {
         System.out.println(result);
         service.shutdown();
     }
-}",Compilation error,Result,Runtime error,null
+}","Compilation error","Result","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -159,7 +159,7 @@ public class Test {
         service.shutdown();
         System.out.println(future.get());
     }
-}",Result,Compilation error,Runtime error,null
+}","Result","Compilation error","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -170,7 +170,7 @@ public class Test {
         Future<String> future = service.submit(() -> ""Result"");
         System.out.println(future.get());
     }
-}",Runtime error,Result,Compilation error,null
+}","Runtime error","Result","Compilation error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -181,7 +181,7 @@ public class Test {
         System.out.println(future.get());
         service.shutdown();
     }
-}",Runtime error,Compilation error,0,ArithmeticException at submit
+}","Runtime error","Compilation error","0","ArithmeticException at submit"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -191,7 +191,7 @@ public class Test {
         Future<Integer> future = service.submit(() -> 5 / 0);
         service.shutdown();
     }
-}",Program completes normally,Runtime error,Compilation error,ArithmeticException thrown
+}","Program completes normally","Runtime error","Compilation error","ArithmeticException thrown"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -203,7 +203,7 @@ public class Test {
         System.out.println(future.get());
         service.shutdown();
     }
-}",Runtime error,null,Compilation error,Task
+}","Runtime error","null","Compilation error","Task"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -215,7 +215,7 @@ public class Test {
         System.out.println(future.isCancelled());
         service.shutdown();
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -228,8 +228,8 @@ public class Test {
         System.out.println(future.isDone());
         service.shutdown();
     }
-}",Output is unpredictable,"false
-true",Compilation error,"true
+}","Output is unpredictable","false
+true","Compilation error","true
 true"
 "What is the result?
 import java.util.concurrent.*;
@@ -242,8 +242,8 @@ public class Test {
         System.out.println(service.isShutdown());
     }
 }","false
-true",Compilation error,"true
-true",Runtime error
+true","Compilation error","true
+true","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -253,7 +253,7 @@ public class Test {
         service.shutdown();
         System.out.println(service.isTerminated());
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -265,7 +265,7 @@ public class Test {
         service.awaitTermination(1, TimeUnit.SECONDS);
         System.out.println(service.isTerminated());
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -277,7 +277,7 @@ public class Test {
         service.awaitTermination(1, TimeUnit.SECONDS);
         System.out.println(service.isTerminated());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -287,7 +287,7 @@ public class Test {
         boolean result = service.awaitTermination(1, TimeUnit.SECONDS);
         System.out.println(result);
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -298,7 +298,7 @@ public class Test {
         boolean result = service.awaitTermination(1, TimeUnit.SECONDS);
         System.out.println(result);
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -309,7 +309,7 @@ public class Test {
         service.shutdown();
         Thread.sleep(2000);
     }
-}",Task,Nothing prints,Compilation error,Runtime error
+}","Task","Nothing prints","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -319,7 +319,7 @@ public class Test {
         service.schedule(() -> System.out.println(""Task""), 1, TimeUnit.SECONDS);
         service.shutdown();
     }
-}",Nothing prints,Task,Compilation error,Runtime error
+}","Nothing prints","Task","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -331,7 +331,7 @@ public class Test {
         System.out.println(future.get());
         service.shutdown();
     }
-}",Result,Compilation error,Runtime error,null
+}","Result","Compilation error","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -341,7 +341,7 @@ public class Test {
         service.scheduleAtFixedRate(() -> System.out.println(""Task""), 0, 1, TimeUnit.SECONDS);
         service.shutdown();
     }
-}",Nothing prints,Task,Compilation error,Runtime error
+}","Nothing prints","Task","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -352,7 +352,7 @@ public class Test {
         service.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
         service.shutdown();
     }
-}",Compilation error,Nothing prints,Runtime error,Result
+}","Compilation error","Nothing prints","Runtime error","Result"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -363,7 +363,7 @@ public class Test {
         Thread.sleep(3500);
         service.shutdown();
     }
-}",Task prints 3-4 times,Task prints once,Compilation error,Runtime error
+}","Task prints 3-4 times","Task prints once","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -374,7 +374,7 @@ public class Test {
         Thread.sleep(500);
         service.shutdown();
     }
-}",Nothing prints,Task,Compilation error,Runtime error
+}","Nothing prints","Task","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 import java.util.*;
@@ -387,7 +387,7 @@ public class Test {
         System.out.println(futures.size());
         service.shutdown();
     }
-}",2,Compilation error,Runtime error,0
+}","2","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.concurrent.*;
 import java.util.*;
@@ -400,7 +400,7 @@ public class Test {
         System.out.println(result);
         service.shutdown();
     }
-}",Either A or B,AB,Compilation error,Runtime error
+}","Either A or B","AB","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 import java.util.*;
@@ -413,7 +413,7 @@ public class Test {
         System.out.println(result);
         service.shutdown();
     }
-}",Runtime error,null,Compilation error,Nothing prints
+}","Runtime error","null","Compilation error","Nothing prints"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -422,7 +422,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger(5);
         System.out.println(ai.get());
     }
-}",5,Compilation error,0,Runtime error
+}","5","Compilation error","0","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -432,7 +432,7 @@ public class Test {
         ai.set(10);
         System.out.println(ai.get());
     }
-}",10,5,Compilation error,Runtime error
+}","10","5","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -443,7 +443,7 @@ public class Test {
         System.out.println(ai.get());
     }
 }","5
-10",Compilation error,"10
+10","Compilation error","10
 5","10
 10"
 "What is the result?
@@ -454,7 +454,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger(5);
         System.out.println(ai.incrementAndGet());
     }
-}",6,5,Compilation error,Runtime error
+}","6","5","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -463,7 +463,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger(5);
         System.out.println(ai.getAndIncrement());
     }
-}",5,6,Compilation error,Runtime error
+}","5","6","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -474,7 +474,7 @@ public class Test {
         System.out.println(ai.get());
     }
 }","5
-6",Compilation error,"6
+6","Compilation error","6
 6","6
 5"
 "What is the result?
@@ -485,7 +485,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger(5);
         System.out.println(ai.decrementAndGet());
     }
-}",4,5,Compilation error,Runtime error
+}","4","5","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -494,7 +494,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger(5);
         System.out.println(ai.getAndDecrement());
     }
-}",5,4,Compilation error,Runtime error
+}","5","4","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -503,7 +503,7 @@ public class Test {
         AtomicBoolean ab = new AtomicBoolean(true);
         System.out.println(ab.get());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -514,7 +514,7 @@ public class Test {
         System.out.println(ab.get());
     }
 }","true
-false",Compilation error,"false
+false","Compilation error","false
 false","false
 true"
 "What is the result?
@@ -525,7 +525,7 @@ public class Test {
         AtomicLong al = new AtomicLong(100L);
         System.out.println(al.incrementAndGet());
     }
-}",101,100,Compilation error,Runtime error
+}","101","100","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -536,7 +536,7 @@ public class Test {
         ai.incrementAndGet();
         System.out.println(ai.get());
     }
-}",7,5,Compilation error,6
+}","7","5","Compilation error","6"
 "What is the result?
 public class Test {
     private int count = 0;
@@ -546,7 +546,7 @@ public class Test {
         }
         System.out.println(count);
     }
-}",Compilation error,1,Runtime error,0
+}","Compilation error","1","Runtime error","0"
 "What is the result?
 public class Test {
     private int count = 0;
@@ -558,7 +558,7 @@ public class Test {
     public static void main(String[] args) {
         new Test().increment();
     }
-}",Program completes normally,Compilation error,Runtime error,1
+}","Program completes normally","Compilation error","Runtime error","1"
 "What is the result?
 public class Test {
     private static int count = 0;
@@ -569,7 +569,7 @@ public class Test {
         new Test().increment();
         System.out.println(count);
     }
-}",1,Compilation error,0,Runtime error
+}","1","Compilation error","0","Runtime error"
 "What is the result?
 public class Test {
     private static int count = 0;
@@ -580,7 +580,7 @@ public class Test {
         increment();
         System.out.println(count);
     }
-}",1,Compilation error,0,Runtime error
+}","1","Compilation error","0","Runtime error"
 "What is the result?
 public class Test {
     private int count = 0;
@@ -590,7 +590,7 @@ public class Test {
     public static void main(String[] args) {
         increment();
     }
-}",Compilation error,1,Runtime error,0
+}","Compilation error","1","Runtime error","0"
 "What is the result?
 public class Test {
     private final Object lock = new Object();
@@ -603,7 +603,7 @@ public class Test {
     public static void main(String[] args) {
         new Test().increment();
     }
-}",Program completes normally,Compilation error,Runtime error,1
+}","Program completes normally","Compilation error","Runtime error","1"
 "What is the result?
 public class Test {
     private static final Object lock = new Object();
@@ -612,7 +612,7 @@ public class Test {
             System.out.println(""Task"");
         }
     }
-}",Task,Compilation error,Runtime error,Nothing prints
+}","Task","Compilation error","Runtime error","Nothing prints"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
@@ -621,7 +621,7 @@ public class Test {
             System.out.println(""Task"");
         }
     }
-}",Runtime error,Task,Compilation error,Nothing prints
+}","Runtime error","Task","Compilation error","Nothing prints"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -632,7 +632,7 @@ public class Test {
         System.out.println(""Task"");
         lock.unlock();
     }
-}",Task,Compilation error,Runtime error,Program hangs
+}","Task","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -646,7 +646,7 @@ public class Test {
             lock.unlock();
         }
     }
-}",Task,Compilation error,Runtime error,Program hangs
+}","Task","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -659,7 +659,7 @@ public class Test {
         lock.unlock();
         lock.unlock();
     }
-}",Task,Compilation error,Runtime error,Program hangs
+}","Task","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -671,7 +671,7 @@ public class Test {
         lock.unlock();
         lock.unlock();
     }
-}",Runtime error,Task,Compilation error,Program hangs
+}","Runtime error","Task","Compilation error","Program hangs"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -681,7 +681,7 @@ public class Test {
         System.out.println(lock.tryLock());
         lock.unlock();
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -696,7 +696,7 @@ public class Test {
             }
         }
     }
-}",Locked,Compilation error,Runtime error,Nothing prints
+}","Locked","Compilation error","Runtime error","Nothing prints"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -706,7 +706,7 @@ public class Test {
         System.out.println(lock.tryLock(1, TimeUnit.SECONDS));
         lock.unlock();
     }
-}",Compilation error,true,Runtime error,false
+}","Compilation error","true","Runtime error","false"
 "What is the result?
 import java.util.concurrent.locks.*;
 import java.util.concurrent.*;
@@ -717,7 +717,7 @@ public class Test {
         System.out.println(lock.tryLock(1, TimeUnit.SECONDS));
         lock.unlock();
     }
-}",true,Compilation error,false,Runtime error
+}","true","Compilation error","false","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -728,7 +728,7 @@ public class Test {
         System.out.println(lock.isLocked());
         lock.unlock();
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -738,7 +738,7 @@ public class Test {
         barrier.await();
         System.out.println(""Done"");
     }
-}",Program hangs,Done,Compilation error,Runtime error
+}","Program hangs","Done","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -748,7 +748,7 @@ public class Test {
         barrier.await();
         System.out.println(""Done"");
     }
-}",Done,Program hangs,Compilation error,Runtime error
+}","Done","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -765,7 +765,7 @@ public class Test {
         service.awaitTermination(1, TimeUnit.SECONDS);
         System.out.println(""Done"");
     }
-}",Done,Program hangs,Compilation error,Runtime error
+}","Done","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 
@@ -777,7 +777,7 @@ public class Test {
             list.add(""B"");
         }
     }
-}",Runtime error,Compilation error,Program completes normally,AB
+}","Runtime error","Compilation error","Program completes normally","AB"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -791,7 +791,7 @@ public class Test {
         }
         System.out.println(list.size());
     }
-}",Program hangs,2,Compilation error,Runtime error
+}","Program hangs","2","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -802,7 +802,7 @@ public class Test {
         map.put(""A"", 1);
         System.out.println(map.get(""A""));
     }
-}",1,Compilation error,null,Runtime error
+}","1","Compilation error","null","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -813,7 +813,7 @@ public class Test {
         map.put(null, 1);
         System.out.println(map.size());
     }
-}",Runtime error,1,Compilation error,0
+}","Runtime error","1","Compilation error","0"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -824,7 +824,7 @@ public class Test {
         map.put(""A"", null);
         System.out.println(map.size());
     }
-}",Runtime error,1,Compilation error,0
+}","Runtime error","1","Compilation error","0"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -835,7 +835,7 @@ public class Test {
         queue.add(""A"");
         System.out.println(queue.poll());
     }
-}",A,Compilation error,null,Runtime error
+}","A","Compilation error","null","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -846,7 +846,7 @@ public class Test {
         queue.add(null);
         System.out.println(queue.size());
     }
-}",Runtime error,1,Compilation error,0
+}","Runtime error","1","Compilation error","0"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -860,7 +860,7 @@ public class Test {
         }
         System.out.println(set.size());
     }
-}",2,Compilation error,Runtime error,Program hangs
+}","2","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -872,7 +872,7 @@ public class Test {
         map.put(""A"", 1);
         System.out.println(map.keySet());
     }
-}","[A, B]",Compilation error,"[B, A]",Runtime error
+}","[A, B]","Compilation error","[B, A]","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -884,7 +884,7 @@ public class Test {
         set.add(""A"");
         System.out.println(set);
     }
-}","[A, B]",Compilation error,"[B, A]",Runtime error
+}","[A, B]","Compilation error","[B, A]","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -895,7 +895,7 @@ public class Test {
         queue.add(""A"");
         System.out.println(queue.take());
     }
-}",A,Compilation error,Runtime error,Program hangs
+}","A","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -905,7 +905,7 @@ public class Test {
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         System.out.println(queue.take());
     }
-}",Program hangs,null,Compilation error,Runtime error
+}","Program hangs","null","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 
@@ -915,7 +915,7 @@ public class Test {
         list.add(""A"");
         System.out.println(list.get(0));
     }
-}",A,Compilation error,null,Runtime error
+}","A","Compilation error","null","Runtime error"
 "What is the result?
 import java.util.*;
 
@@ -927,7 +927,7 @@ public class Test {
             list.add(""B"");
         }
     }
-}",Runtime error,Compilation error,Program completes normally,Program hangs
+}","Runtime error","Compilation error","Program completes normally","Program hangs"
 "What is the result?
 import java.util.*;
 
@@ -937,7 +937,7 @@ public class Test {
         map.put(""A"", 1);
         System.out.println(map.get(""A""));
     }
-}",1,Compilation error,null,Runtime error
+}","1","Compilation error","null","Runtime error"
 "What is the result?
 import java.util.*;
 
@@ -947,7 +947,7 @@ public class Test {
         set.add(""A"");
         System.out.println(set.contains(""A""));
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -958,7 +958,7 @@ public class Test {
         Stream<Integer> s = list.stream().parallel();
         System.out.println(s.isParallel());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -969,7 +969,7 @@ public class Test {
         Stream<Integer> s = list.parallelStream();
         System.out.println(s.isParallel());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -979,7 +979,7 @@ public class Test {
         List<Integer> list = List.of(1, 2, 3, 4);
         list.parallelStream().forEach(System.out::print);
     }
-}",Output order is unpredictable,1234,Compilation error,4321
+}","Output order is unpredictable","1234","Compilation error","4321"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -989,7 +989,7 @@ public class Test {
         List<Integer> list = List.of(1, 2, 3, 4);
         list.parallelStream().forEachOrdered(System.out::print);
     }
-}",1234,Output order is unpredictable,Compilation error,4321
+}","1234","Output order is unpredictable","Compilation error","4321"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1000,7 +1000,7 @@ public class Test {
         Optional<Integer> result = list.parallelStream().findAny();
         System.out.println(result.get());
     }
-}",Any element from list,1,Compilation error,Runtime error
+}","Any element from list","1","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1011,7 +1011,7 @@ public class Test {
         Optional<Integer> result = list.parallelStream().findFirst();
         System.out.println(result.get());
     }
-}",1,Any element from list,Compilation error,Runtime error
+}","1","Any element from list","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1022,7 +1022,7 @@ public class Test {
         Optional<Integer> result = list.stream().findAny();
         System.out.println(result.get());
     }
-}",1,Any element from list,Compilation error,Runtime error
+}","1","Any element from list","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1033,7 +1033,7 @@ public class Test {
         s = s.unordered();
         System.out.println(s.isParallel());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1045,7 +1045,7 @@ public class Test {
             .reduce("""", (s1, c) -> s1 + c);
         System.out.println(result);
     }
-}",Output is unpredictable,wolf,Compilation error,Runtime error
+}","Output is unpredictable","wolf","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1057,7 +1057,7 @@ public class Test {
             .reduce("""", (s1, c) -> s1 + c, (s2, s3) -> s2 + s3);
         System.out.println(result);
     }
-}",wolf,Output is unpredictable,Compilation error,Runtime error
+}","wolf","Output is unpredictable","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1069,7 +1069,7 @@ public class Test {
             .reduce(0, (a, b) -> a + b);
         System.out.println(result);
     }
-}",10,Compilation error,Runtime error,0
+}","10","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1081,7 +1081,7 @@ public class Test {
             .reduce(1, (a, b) -> a + b);
         System.out.println(result);
     }
-}",Result is unpredictable,10,Compilation error,11
+}","Result is unpredictable","10","Compilation error","11"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1093,7 +1093,7 @@ public class Test {
             .reduce(0, (a, b) -> a + b, (c, d) -> c + d);
         System.out.println(result);
     }
-}",6,Compilation error,Runtime error,0
+}","6","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1105,7 +1105,7 @@ public class Test {
             .reduce(0, (i, s) -> i + s.length(), (i1, i2) -> i1 + i2);
         System.out.println(result);
     }
-}",6,Compilation error,Runtime error,3
+}","6","Compilation error","Runtime error","3"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1118,7 +1118,7 @@ public class Test {
             .forEach(s -> list.add(s));
         System.out.println(list.size());
     }
-}",Runtime error may occur,3,Compilation error,1
+}","Runtime error may occur","3","Compilation error","1"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1132,7 +1132,7 @@ public class Test {
             .forEach(s -> list.add(s));
         System.out.println(list.size());
     }
-}",3,Runtime error,Compilation error,1
+}","3","Runtime error","Compilation error","1"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1144,7 +1144,7 @@ public class Test {
             .collect(Collectors.toList());
         System.out.println(result.size());
     }
-}",3,Compilation error,Runtime error,0
+}","3","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1156,7 +1156,7 @@ public class Test {
             .collect(Collectors.toSet());
         System.out.println(result.size());
     }
-}",3,Compilation error,Runtime error,0
+}","3","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1168,7 +1168,7 @@ public class Test {
             .collect(Collectors.groupingBy(String::length));
         System.out.println(result.size());
     }
-}",3,Compilation error,Runtime error,1
+}","3","Compilation error","Runtime error","1"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1180,7 +1180,7 @@ public class Test {
             .collect(Collectors.groupingByConcurrent(String::length));
         System.out.println(result.size());
     }
-}",3,Compilation error,Runtime error,1
+}","3","Compilation error","Runtime error","1"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1192,7 +1192,7 @@ public class Test {
             .collect(Collectors.joining());
         System.out.println(result);
     }
-}",abc,Compilation error,Runtime error,Output is unpredictable
+}","abc","Compilation error","Runtime error","Output is unpredictable"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1205,7 +1205,7 @@ public class Test {
             .sum();
         System.out.println(sum);
     }
-}",6,Compilation error,Runtime error,0
+}","6","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1218,7 +1218,7 @@ public class Test {
             .count();
         System.out.println(count);
     }
-}",2,Compilation error,4,0
+}","2","Compilation error","4","0"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -1226,7 +1226,7 @@ public class Test {
         t.start();
         t.start();
     }
-}",Runtime error,Running prints twice,Compilation error,Running prints once
+}","Runtime error","Running prints twice","Compilation error","Running prints once"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -1236,14 +1236,14 @@ public class Test {
         t.start();
         System.out.println(t.getState());
     }
-}",Output is unpredictable,NEW,Compilation error,TERMINATED
+}","Output is unpredictable","NEW","Compilation error","TERMINATED"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
         Thread t = new Thread(() -> System.out.println(""Running""));
         System.out.println(t.getState());
     }
-}",NEW,RUNNABLE,Compilation error,TERMINATED
+}","NEW","RUNNABLE","Compilation error","TERMINATED"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -1252,21 +1252,21 @@ public class Test {
         t.join();
         System.out.println(t.getState());
     }
-}",TERMINATED,RUNNABLE,NEW,Compilation error
+}","TERMINATED","RUNNABLE","NEW","Compilation error"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
         Thread.sleep(100);
         System.out.println(""Done"");
     }
-}",Done,Compilation error,Runtime error,Program hangs
+}","Done","Compilation error","Runtime error","Program hangs"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
         Thread.sleep(100);
         System.out.println(""Done"");
     }
-}",Compilation error,Done,Runtime error,Program hangs
+}","Compilation error","Done","Runtime error","Program hangs"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
@@ -1281,7 +1281,7 @@ public class Test {
         t.start();
         t.interrupt();
     }
-}",Interrupted or nothing prints,Compilation error,Runtime error,Program hangs
+}","Interrupted or nothing prints","Compilation error","Runtime error","Program hangs"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -1296,7 +1296,7 @@ public class Test {
         t.interrupt();
         t.join();
     }
-}",Interrupted,Nothing prints,Compilation error,Runtime error
+}","Interrupted","Nothing prints","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1307,7 +1307,7 @@ public class Test {
         service.submit(() -> System.out.println(""Task 2""));
         service.shutdown();
     }
-}",Both tasks may print,Compilation error,Runtime error,Neither task prints
+}","Both tasks may print","Compilation error","Runtime error","Neither task prints"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1317,7 +1317,7 @@ public class Test {
         service.submit(() -> System.out.println(""Task""));
         service.shutdown();
     }
-}",Task may or may not print,Compilation error,Runtime error,Task
+}","Task may or may not print","Compilation error","Runtime error","Task"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1331,7 +1331,7 @@ public class Test {
         service.shutdown();
         service.awaitTermination(1, TimeUnit.SECONDS);
     }
-}",012 in any order,012,Compilation error,Runtime error
+}","012 in any order","012","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1342,7 +1342,7 @@ public class Test {
         Thread.sleep(100);
         service.shutdown();
     }
-}",Task,Nothing prints,Compilation error,Runtime error
+}","Task","Nothing prints","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1354,7 +1354,7 @@ public class Test {
         System.out.println(f1.get() + f2.get());
         service.shutdown();
     }
-}",30,Compilation error,Runtime error,Program hangs
+}","30","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1368,7 +1368,7 @@ public class Test {
         future.get(50, TimeUnit.MILLISECONDS);
         service.shutdown();
     }
-}",Runtime error,Result,Compilation error,null
+}","Runtime error","Result","Compilation error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1382,7 +1382,7 @@ public class Test {
         System.out.println(future.get(1, TimeUnit.SECONDS));
         service.shutdown();
     }
-}",Result,Runtime error,Compilation error,null
+}","Result","Runtime error","Compilation error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1394,7 +1394,7 @@ public class Test {
         });
         service.shutdown();
     }
-}",Program may deadlock,Inner,Compilation error,Runtime error
+}","Program may deadlock","Inner","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1404,7 +1404,7 @@ public class Test {
         service.shutdownNow();
         System.out.println(service.isShutdown());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 import java.util.*;
@@ -1415,7 +1415,7 @@ public class Test {
         List<Runnable> tasks = service.shutdownNow();
         System.out.println(tasks.size());
     }
-}",0,Compilation error,Runtime error,null
+}","0","Compilation error","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 import java.util.*;
@@ -1428,7 +1428,7 @@ public class Test {
         Thread.sleep(100);
         System.out.println(service.isTerminated());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -1437,7 +1437,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger(10);
         System.out.println(ai.addAndGet(5));
     }
-}",15,10,Compilation error,5
+}","15","10","Compilation error","5"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -1446,7 +1446,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger(10);
         System.out.println(ai.getAndAdd(5));
     }
-}",10,15,Compilation error,5
+}","10","15","Compilation error","5"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -1457,7 +1457,7 @@ public class Test {
         System.out.println(ai.get());
     }
 }","10
-15",Compilation error,"15
+15","Compilation error","15
 15","5
 10"
 "What is the result?
@@ -1468,7 +1468,7 @@ public class Test {
         AtomicBoolean ab = new AtomicBoolean();
         System.out.println(ab.get());
     }
-}",false,true,Compilation error,null
+}","false","true","Compilation error","null"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -1477,7 +1477,7 @@ public class Test {
         AtomicInteger ai = new AtomicInteger();
         System.out.println(ai.get());
     }
-}",0,Compilation error,null,Random value
+}","0","Compilation error","null","Random value"
 "What is the result?
 public class Test {
     private int count = 0;
@@ -1492,7 +1492,7 @@ public class Test {
         t.increment();
         System.out.println(t.getCount());
     }
-}",1,Compilation error,0,Runtime error
+}","1","Compilation error","0","Runtime error"
 "What is the result?
 public class Test {
     private static int count = 0;
@@ -1505,7 +1505,7 @@ public class Test {
         increment();
         System.out.println(count);
     }
-}",1,Compilation error,0,Runtime error
+}","1","Compilation error","0","Runtime error"
 "What is the result?
 public class Test {
     public void method1() {
@@ -1519,7 +1519,7 @@ public class Test {
     public static void main(String[] args) {
         new Test().method1();
     }
-}",Method 2,Compilation error,Program hangs,Runtime error
+}","Method 2","Compilation error","Program hangs","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -1533,7 +1533,7 @@ public class Test {
             lock.unlock();
         }
     }
-}",Program may hang,Task,Compilation error,Runtime error
+}","Program may hang","Task","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -1546,7 +1546,7 @@ public class Test {
         lock.unlock();
         lock.unlock();
     }
-}",2,1,Compilation error,0
+}","2","1","Compilation error","0"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -1557,7 +1557,7 @@ public class Test {
         System.out.println(lock.getHoldCount());
         lock.unlock();
     }
-}",1,0,Compilation error,2
+}","1","0","Compilation error","2"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1574,7 +1574,7 @@ public class Test {
         service.awaitTermination(1, TimeUnit.SECONDS);
         System.out.println(""Done"");
     }
-}",Done,Program hangs,Compilation error,Runtime error
+}","Done","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1590,7 +1590,7 @@ public class Test {
         service.shutdown();
         service.awaitTermination(1, TimeUnit.SECONDS);
     }
-}",Action,Nothing prints,Compilation error,Runtime error
+}","Action","Nothing prints","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -1605,7 +1605,7 @@ public class Test {
         }
         System.out.println(list.size());
     }
-}",0,2,Compilation error,Runtime error
+}","0","2","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -1617,7 +1617,7 @@ public class Test {
         map.putIfAbsent(""A"", ""2"");
         System.out.println(map.get(""A""));
     }
-}",1,2,Compilation error,Runtime error
+}","1","2","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -1629,7 +1629,7 @@ public class Test {
         map.put(""A"", ""2"");
         System.out.println(map.get(""A""));
     }
-}",2,1,Compilation error,Runtime error
+}","2","1","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -1641,7 +1641,7 @@ public class Test {
         queue.offer(2);
         System.out.println(queue.offer(3));
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -1654,7 +1654,7 @@ public class Test {
         queue.put(3);
         System.out.println(""Done"");
     }
-}",Program hangs,Done,Compilation error,Runtime error
+}","Program hangs","Done","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -1670,9 +1670,9 @@ public class Test {
     }
 }","1
 2
-null",Compilation error,"1
+null","Compilation error","1
 2
-Program hangs",Runtime error
+Program hangs","Runtime error"
 "What is the result?
 import java.util.*;
 
@@ -1686,7 +1686,7 @@ public class Test {
             }
         }
     }
-}",Runtime error,Compilation error,Program completes normally,Program hangs
+}","Runtime error","Compilation error","Program completes normally","Program hangs"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1697,7 +1697,7 @@ public class Test {
         s.parallel();
         System.out.println(s.isParallel());
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1708,7 +1708,7 @@ public class Test {
         s = s.parallel();
         System.out.println(s.isParallel());
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1721,7 +1721,7 @@ public class Test {
             .count();
         System.out.println(count);
     }
-}",Elements may not print,3,Compilation error,Runtime error
+}","Elements may not print","3","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1733,7 +1733,7 @@ public class Test {
             .reduce(10, (a, b) -> a + b);
         System.out.println(sum);
     }
-}",Result is unpredictable,21,Compilation error,Runtime error
+}","Result is unpredictable","21","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1745,7 +1745,7 @@ public class Test {
             .reduce((a, b) -> a + b);
         System.out.println(result.get());
     }
-}",10,Compilation error,Runtime error,Result is unpredictable
+}","10","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1757,7 +1757,7 @@ public class Test {
             .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         System.out.println(result.size());
     }
-}",3,Compilation error,Runtime error,0
+}","3","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1770,7 +1770,7 @@ public class Test {
             .forEach(i -> sb.append(i));
         System.out.println(sb.length());
     }
-}",Result is unpredictable,3,Compilation error,Runtime error
+}","Result is unpredictable","3","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1782,7 +1782,7 @@ public class Test {
             .forEach(i -> set.add(i));
         System.out.println(set.size());
     }
-}",Runtime error may occur,3,Compilation error,0
+}","Runtime error may occur","3","Compilation error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1795,7 +1795,7 @@ public class Test {
             .forEach(i -> set.add(i));
         System.out.println(set.size());
     }
-}",3,Runtime error,Compilation error,0
+}","3","Runtime error","Compilation error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1807,7 +1807,7 @@ public class Test {
             .collect(Collectors.partitioningBy(s -> s.equals(""a"")));
         System.out.println(result.size());
     }
-}",2,3,Compilation error,1
+}","2","3","Compilation error","1"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1820,7 +1820,7 @@ public class Test {
                 s -> s.charAt(0), Collectors.counting()));
         System.out.println(result.get('a'));
     }
-}",2,3,Compilation error,1
+}","2","3","Compilation error","1"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1834,7 +1834,7 @@ public class Test {
         System.out.println(f1.get() + f2.get());
         service.shutdown();
     }
-}",15,Compilation error,Runtime error,5
+}","15","Compilation error","Runtime error","5"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1846,7 +1846,7 @@ public class Test {
         });
         service.shutdown();
     }
-}",Program completes normally,Runtime error at submit,Compilation error,Runtime error
+}","Program completes normally","Runtime error at submit","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1859,7 +1859,7 @@ public class Test {
         future.get();
         service.shutdown();
     }
-}",Runtime error at get(),Runtime error at submit,Compilation error,null
+}","Runtime error at get()","Runtime error at submit","Compilation error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1871,7 +1871,7 @@ public class Test {
         });
         service.shutdown();
     }
-}",Exception may print to console,Compilation error,Runtime error in main,Program hangs
+}","Exception may print to console","Compilation error","Runtime error in main","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1882,7 +1882,7 @@ public class Test {
         Thread.sleep(2500);
         service.shutdown();
     }
-}",A prints 3 times,A prints once,Compilation error,Runtime error
+}","A prints 3 times","A prints once","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -1896,7 +1896,7 @@ public class Test {
         Thread.sleep(1500);
         service.shutdown();
     }
-}",A prints 2-3 times,A prints once,Compilation error,Runtime error
+}","A prints 2-3 times","A prints once","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -1915,7 +1915,7 @@ public class Test {
         increment();
         System.out.println(count);
     }
-}",1,Compilation error,0,Runtime error
+}","1","Compilation error","0","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -1926,7 +1926,7 @@ public class Test {
         System.out.println(acquired);
         if (acquired) lock.unlock();
     }
-}",Compilation error,true,false,Runtime error
+}","Compilation error","true","false","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 import java.util.concurrent.*;
@@ -1938,7 +1938,7 @@ public class Test {
         System.out.println(acquired);
         if (acquired) lock.unlock();
     }
-}",true,Compilation error,false,Runtime error
+}","true","Compilation error","false","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -1950,7 +1950,7 @@ public class Test {
         deque.push(2);
         System.out.println(deque.pop());
     }
-}",2,1,Compilation error,Runtime error
+}","2","1","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 
@@ -1959,7 +1959,7 @@ public class Test {
         IntStream.range(1, 5).parallel()
             .forEachOrdered(System.out::print);
     }
-}",1234,Output is unpredictable,Compilation error,5432
+}","1234","Output is unpredictable","Compilation error","5432"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1971,7 +1971,7 @@ public class Test {
             .reduce("""", String::concat);
         System.out.println(result.length());
     }
-}",Result is unpredictable,3,Compilation error,0
+}","Result is unpredictable","3","Compilation error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1983,7 +1983,7 @@ public class Test {
             .reduce((a, b) -> a + b);
         System.out.println(opt.isPresent());
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -1996,7 +1996,7 @@ public class Test {
             .reduce(0, Integer::sum);
         System.out.println(result);
     }
-}",10,Compilation error,Runtime error,0
+}","10","Compilation error","Runtime error","0"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2009,7 +2009,7 @@ public class Test {
         map.put(""B"", 2);
         System.out.println(map.firstKey());
     }
-}",A,C,Compilation error,Runtime error
+}","A","C","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2022,7 +2022,7 @@ public class Test {
         set.add(2);
         System.out.println(set.pollFirst());
     }
-}",1,3,Compilation error,Runtime error
+}","1","3","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2033,7 +2033,7 @@ public class Test {
         latch.await();
         System.out.println(""Done"");
     }
-}",Done,Program hangs,Compilation error,Runtime error
+}","Done","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2044,7 +2044,7 @@ public class Test {
         latch.await(100, TimeUnit.MILLISECONDS);
         System.out.println(""Done"");
     }
-}",Done,Program hangs,Compilation error,Runtime error
+}","Done","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2059,7 +2059,7 @@ public class Test {
         System.out.println(""Done"");
         service.shutdown();
     }
-}",Done,Program hangs,Compilation error,Runtime error
+}","Done","Program hangs","Compilation error","Runtime error"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -2068,7 +2068,7 @@ public class Test {
         t1.start();
         t2.start();
     }
-}",Output order is unpredictable,AB,BA,Compilation error
+}","Output order is unpredictable","AB","BA","Compilation error"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -2079,7 +2079,7 @@ public class Test {
         t2.start();
         t2.join();
     }
-}",AB,BA,Output order is unpredictable,Compilation error
+}","AB","BA","Output order is unpredictable","Compilation error"
 "What is the result?
 import java.util.stream.*;
 
@@ -2091,7 +2091,7 @@ public class Test {
             .count();
         System.out.println(count);
     }
-}",100,Compilation error,Runtime error,Result is unpredictable
+}","100","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2104,7 +2104,7 @@ public class Test {
             .collect(Collectors.toList());
         System.out.println(list);
     }
-}","[1, 2, 3]",Output is unpredictable,Compilation error,Runtime error
+}","[1, 2, 3]","Output is unpredictable","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2113,7 +2113,7 @@ public class Test {
         ExecutorService service = null;
         service.execute(() -> System.out.println(""Task""));
     }
-}",Runtime error,Compilation error,Task,Nothing prints
+}","Runtime error","Compilation error","Task","Nothing prints"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2125,7 +2125,7 @@ public class Test {
         System.out.println(future.get());
         service.shutdown();
     }
-}",Runtime error,Result,Compilation error,null
+}","Runtime error","Result","Compilation error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2141,7 +2141,7 @@ public class Test {
         System.out.println(future.isCancelled());
         service.shutdown();
     }
-}",Output is unpredictable,true,false,Compilation error
+}","Output is unpredictable","true","false","Compilation error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2156,7 +2156,7 @@ public class Test {
         System.out.println(future.isCancelled());
         service.shutdown();
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 public class Test {
     private volatile int count = 0;
@@ -2166,7 +2166,7 @@ public class Test {
     public static void main(String[] args) {
         new Test().increment();
     }
-}",Program completes normally,Compilation error,Runtime error,1
+}","Program completes normally","Compilation error","Runtime error","1"
 "What is the result?
 public class Test {
     private volatile boolean flag = false;
@@ -2175,7 +2175,7 @@ public class Test {
         t.flag = true;
         System.out.println(t.flag);
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2185,7 +2185,7 @@ public class Test {
         service.submit(() -> System.out.println(""Task""));
         service.shutdown();
     }
-}",Runtime error,Task,Compilation error,Program hangs
+}","Runtime error","Task","Compilation error","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2195,7 +2195,7 @@ public class Test {
         service.schedule(() -> System.out.println(""Task""), 0, TimeUnit.SECONDS);
         service.shutdown();
     }
-}",Runtime error,Task,Compilation error,Nothing prints
+}","Runtime error","Task","Compilation error","Nothing prints"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2208,7 +2208,7 @@ public class Test {
         Thread.sleep(100);
         service.shutdown();
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -2216,7 +2216,7 @@ public class Test {
         t.setDaemon(true);
         t.start();
     }
-}",Task may not print,Task,Compilation error,Runtime error
+}","Task may not print","Task","Compilation error","Runtime error"
 "What is the result?
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -2224,7 +2224,7 @@ public class Test {
         t.start();
         t.setDaemon(true);
     }
-}",Runtime error,Task,Compilation error,Program completes normally
+}","Runtime error","Task","Compilation error","Program completes normally"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2238,7 +2238,7 @@ public class Test {
         System.out.println(result);
     }
 }","Task
-Result",Compilation error,Runtime error,Result
+Result","Compilation error","Runtime error","Result"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2253,7 +2253,7 @@ public class Test {
             System.out.print(it.next());
         }
     }
-}",A,AB,Compilation error,Runtime error
+}","A","AB","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2268,7 +2268,7 @@ public class Test {
             System.out.print(it.next());
         }
     }
-}",Runtime error,AB,A,Compilation error
+}","Runtime error","AB","A","Compilation error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -2282,7 +2282,7 @@ public class Test {
         lock1.unlock();
         lock2.unlock();
     }
-}",Both locked,Compilation error,Runtime error,Program hangs
+}","Both locked","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2293,7 +2293,7 @@ public class Test {
         System.out.println(""Acquired"");
         semaphore.release();
     }
-}",Acquired,Program hangs,Compilation error,Runtime error
+}","Acquired","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2303,7 +2303,7 @@ public class Test {
         semaphore.acquire();
         System.out.println(""Acquired"");
     }
-}",Program hangs,Acquired,Compilation error,Runtime error
+}","Program hangs","Acquired","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2314,7 +2314,7 @@ public class Test {
         System.out.println(semaphore.availablePermits());
     }
 }","true
-0",Compilation error,"false
+0","Compilation error","false
 1","true
 1"
 "What is the result?
@@ -2327,7 +2327,7 @@ public class Test {
         semaphore.acquire();
         System.out.println(semaphore.availablePermits());
     }
-}",0,2,Compilation error,1
+}","0","2","Compilation error","1"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2337,7 +2337,7 @@ public class Test {
         semaphore.release();
         System.out.println(semaphore.availablePermits());
     }
-}",2,1,Compilation error,0
+}","2","1","Compilation error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2353,7 +2353,7 @@ public class Test {
             .count();
         System.out.println(data.size());
     }
-}",Runtime error may occur,3,Compilation error,0
+}","Runtime error may occur","3","Compilation error","0"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2365,7 +2365,7 @@ public class Test {
             .forEach(i -> counter[0]++);
         System.out.println(counter[0]);
     }
-}",Result is unpredictable,3,Compilation error,0
+}","Result is unpredictable","3","Compilation error","0"
 "What is the result?
 import java.util.concurrent.atomic.*;
 
@@ -2376,7 +2376,7 @@ public class Test {
             .forEach(i -> counter.incrementAndGet());
         System.out.println(counter.get());
     }
-}",Compilation error,3,Runtime error,Result is unpredictable
+}","Compilation error","3","Runtime error","Result is unpredictable"
 "What is the result?
 import java.util.concurrent.atomic.*;
 import java.util.*;
@@ -2388,7 +2388,7 @@ public class Test {
             .forEach(i -> counter.incrementAndGet());
         System.out.println(counter.get());
     }
-}",3,Compilation error,Runtime error,Result is unpredictable
+}","3","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 import java.util.*;
 
@@ -2400,7 +2400,7 @@ public class Test {
             map.put(""B"", 2);
         }
     }
-}",Runtime error,Compilation error,Program completes normally,AB
+}","Runtime error","Compilation error","Program completes normally","AB"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2414,7 +2414,7 @@ public class Test {
         }
         System.out.println(map.size());
     }
-}",2,Compilation error,Runtime error,1
+}","2","Compilation error","Runtime error","1"
 "What is the result?
 public class Test {
     private static int value = 0;
@@ -2428,7 +2428,7 @@ public class Test {
         setValue(10);
         System.out.println(getValue());
     }
-}",10,Compilation error,0,Runtime error
+}","10","Compilation error","0","Runtime error"
 "What is the result?
 public class Test {
     private static volatile int value = 0;
@@ -2442,7 +2442,7 @@ public class Test {
         setValue(10);
         System.out.println(getValue());
     }
-}",10,Compilation error,0,Runtime error
+}","10","Compilation error","0","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2455,7 +2455,7 @@ public class Test {
         f2.get();
         service.shutdown();
     }
-}",Both tasks print,Compilation error,Runtime error,Only Task 1 prints
+}","Both tasks print","Compilation error","Runtime error","Only Task 1 prints"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2475,7 +2475,7 @@ public class Test {
         Thread.sleep(100);
         service.shutdown();
     }
-}",0123456789,Output order is unpredictable,Compilation error,Runtime error
+}","0123456789","Output order is unpredictable","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2495,7 +2495,7 @@ public class Test {
         Thread.sleep(100);
         service.shutdown();
     }
-}",Output order is unpredictable,0123456789,Compilation error,Runtime error
+}","Output order is unpredictable","0123456789","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2506,7 +2506,7 @@ public class Test {
         System.out.println(future.getDelay(TimeUnit.SECONDS));
         service.shutdown();
     }
-}",Value close to 1,Compilation error,1,0
+}","Value close to 1","Compilation error","1","0"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2517,7 +2517,7 @@ public class Test {
         future.cancel(false);
         service.shutdown();
     }
-}",Program completes normally,Program hangs,Compilation error,Runtime error
+}","Program completes normally","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2529,7 +2529,7 @@ public class Test {
             .findAny();
         System.out.println(result.isPresent());
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2541,7 +2541,7 @@ public class Test {
             .findFirst();
         System.out.println(result.isPresent());
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2553,7 +2553,7 @@ public class Test {
             .anyMatch(i -> i > 2);
         System.out.println(result);
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2565,7 +2565,7 @@ public class Test {
             .allMatch(i -> i > 0);
         System.out.println(result);
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2577,7 +2577,7 @@ public class Test {
             .noneMatch(i -> i > 10);
         System.out.println(result);
     }
-}",true,false,Compilation error,Runtime error
+}","true","false","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -2588,7 +2588,7 @@ public class Test {
         System.out.println(""Read locked"");
         rwLock.readLock().unlock();
     }
-}",Read locked,Compilation error,Runtime error,Program hangs
+}","Read locked","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -2599,7 +2599,7 @@ public class Test {
         System.out.println(""Write locked"");
         rwLock.writeLock().unlock();
     }
-}",Write locked,Compilation error,Runtime error,Program hangs
+}","Write locked","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.locks.*;
 
@@ -2612,7 +2612,7 @@ public class Test {
         rwLock.readLock().unlock();
         rwLock.readLock().unlock();
     }
-}",Double read locked,Compilation error,Runtime error,Program hangs
+}","Double read locked","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2635,7 +2635,7 @@ public class Test {
         Thread.sleep(100);
         service.shutdown();
     }
-}",A and B printed,Compilation error,Runtime error,Nothing prints
+}","A and B printed","Compilation error","Runtime error","Nothing prints"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2645,7 +2645,7 @@ public class Test {
         String result = exchanger.exchange(""Data"", 100, TimeUnit.MILLISECONDS);
         System.out.println(result);
     }
-}",Runtime error,Data,Compilation error,null
+}","Runtime error","Data","Compilation error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2655,7 +2655,7 @@ public class Test {
         phaser.arriveAndAwaitAdvance();
         System.out.println(""Done"");
     }
-}",Done,Program hangs,Compilation error,Runtime error
+}","Done","Program hangs","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2665,7 +2665,7 @@ public class Test {
         phaser.arriveAndAwaitAdvance();
         System.out.println(""Done"");
     }
-}",Program hangs,Done,Compilation error,Runtime error
+}","Program hangs","Done","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2675,7 +2675,7 @@ public class Test {
         phaser.arrive();
         System.out.println(phaser.getPhase());
     }
-}",1,0,Compilation error,Runtime error
+}","1","0","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2687,7 +2687,7 @@ public class Test {
         queue.add(2);
         queue.add(3);
     }
-}",Runtime error,Compilation error,Program completes normally,Queue contains all elements
+}","Runtime error","Compilation error","Program completes normally","Queue contains all elements"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2699,7 +2699,7 @@ public class Test {
         queue.offer(2);
         System.out.println(queue.offer(3));
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2711,7 +2711,7 @@ public class Test {
         queue.put(2);
         System.out.println(queue.size());
     }
-}",2,Compilation error,Runtime error,Program hangs
+}","2","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2724,7 +2724,7 @@ public class Test {
         queue.add(2);
         System.out.println(queue.poll());
     }
-}",1,3,Compilation error,2
+}","1","3","Compilation error","2"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2734,7 +2734,7 @@ public class Test {
         BlockingQueue<Integer> queue = new SynchronousQueue<>();
         System.out.println(queue.offer(1));
     }
-}",false,true,Compilation error,Runtime error
+}","false","true","Compilation error","Runtime error"
 "What is the result?
 import java.util.*;
 import java.util.concurrent.*;
@@ -2758,7 +2758,7 @@ public class Test {
         Thread.sleep(100);
         service.shutdown();
     }
-}",Put complete and 1 printed,Compilation error,Runtime error,Program hangs
+}","Put complete and 1 printed","Compilation error","Runtime error","Program hangs"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2767,7 +2767,7 @@ public class Test {
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Result"");
         System.out.println(future.get());
     }
-}",Result,Compilation error,Runtime error,null
+}","Result","Compilation error","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2778,7 +2778,7 @@ public class Test {
         System.out.println(""Done"");
     }
 }","Task
-Done",Compilation error,Done,Runtime error
+Done","Compilation error","Done","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2788,7 +2788,7 @@ public class Test {
             .thenApply(s -> s + "" World"");
         System.out.println(future.get());
     }
-}",Hello World,Hello,Compilation error,Runtime error
+}","Hello World","Hello","Compilation error","Runtime error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2800,7 +2800,7 @@ public class Test {
             });
         System.out.println(future.get());
     }
-}",Runtime error,Result,Compilation error,null
+}","Runtime error","Result","Compilation error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2811,7 +2811,7 @@ public class Test {
         CompletableFuture<Integer> combined = f1.thenCombine(f2, (a, b) -> a + b);
         System.out.println(combined.get());
     }
-}",15,Compilation error,Runtime error,5
+}","15","Compilation error","Runtime error","5"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2821,7 +2821,7 @@ public class Test {
         future.complete(""Result"");
         System.out.println(future.get());
     }
-}",Result,Compilation error,Runtime error,null
+}","Result","Compilation error","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2831,7 +2831,7 @@ public class Test {
         future.completeExceptionally(new RuntimeException(""Error""));
         System.out.println(future.get());
     }
-}",Runtime error,Compilation error,null,Error
+}","Runtime error","Compilation error","null","Error"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2840,7 +2840,7 @@ public class Test {
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> ""Result"");
         System.out.println(future.getNow(""Default""));
     }
-}",Result or Default,Result,Compilation error,Default
+}","Result or Default","Result","Compilation error","Default"
 "What is the result?
 import java.util.stream.*;
 
@@ -2851,7 +2851,7 @@ public class Test {
             .sum();
         System.out.println(sum);
     }
-}",5050,Compilation error,Runtime error,Result is unpredictable
+}","5050","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 import java.util.stream.*;
 
@@ -2863,7 +2863,7 @@ public class Test {
             .getAsDouble();
         System.out.println(avg);
     }
-}",5.5,Compilation error,Runtime error,5.0
+}","5.5","Compilation error","Runtime error","5.0"
 "What is the result?
 import java.util.stream.*;
 
@@ -2875,7 +2875,7 @@ public class Test {
             .getAsInt();
         System.out.println(max);
     }
-}",5,Compilation error,Runtime error,Result is unpredictable
+}","5","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2888,7 +2888,7 @@ public class Test {
             .toString();
         System.out.println(result.length());
     }
-}",3,Compilation error,Runtime error,Result is unpredictable
+}","3","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 import java.util.stream.*;
 import java.util.*;
@@ -2902,7 +2902,7 @@ public class Test {
                      (l1, l2) -> l1.addAll(l2));
         System.out.println(list.size());
     }
-}",3,Compilation error,Runtime error,Result is unpredictable
+}","3","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 public class Test {
     private static int counter = 0;
@@ -2914,7 +2914,7 @@ public class Test {
         increment();
         System.out.println(counter);
     }
-}",2,Compilation error,0,1
+}","2","Compilation error","0","1"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2929,7 +2929,7 @@ public class Test {
         System.out.println(result);
         pool.shutdown();
     }
-}",42,Compilation error,Runtime error,null
+}","42","Compilation error","Runtime error","null"
 "What is the result?
 import java.util.concurrent.*;
 
@@ -2939,7 +2939,7 @@ public class Test {
         pool.execute(() -> System.out.println(""Task""));
         Thread.sleep(100);
     }
-}",Task,Compilation error,Runtime error,Nothing prints
+}","Task","Compilation error","Runtime error","Nothing prints"
 "What is the result?
 import java.util.stream.*;
 
@@ -2951,7 +2951,7 @@ public class Test {
             .count();
         System.out.println(count);
     }
-}",1000,Compilation error,Runtime error,Result is unpredictable
+}","1000","Compilation error","Runtime error","Result is unpredictable"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
@@ -2961,7 +2961,7 @@ public class Test {
         t.setName(""MyThread"");
         t.start();
     }
-}",MyThread,Thread-0,Compilation error,Runtime error
+}","MyThread","Thread-0","Compilation error","Runtime error"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
@@ -2971,10 +2971,10 @@ public class Test {
         t.setPriority(Thread.MAX_PRIORITY);
         t.start();
     }
-}",10,5,Compilation error,1
+}","10","5","Compilation error","1"
 "What is the result?
 public class Test {
     public static void main(String[] args) {
         System.out.println(Thread.currentThread().getName());
     }
-}",main,Thread-0,Compilation error,Runtime error
+}","main","Thread-0","Compilation error","Runtime error"
