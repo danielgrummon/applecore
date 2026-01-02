@@ -1,0 +1,2498 @@
+Question,Correct Answer,Wrong Answer 1,Wrong Answer 2,Wrong Answer 3
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(1);
+        System.out.println(period);
+    }
+}","Prints P1D","Prints PT1D","Prints PT24H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofDays(1);
+        System.out.println(duration);
+    }
+}","Prints PT24H","Prints P1D","Prints PT1D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.of(1, 2, 3);
+        System.out.println(period);
+    }
+}","Prints P1Y2M3D","Prints PT1Y2M3D","Prints P1Y2M3D0H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofYears(1);
+        System.out.println(period);
+    }
+}","Prints P1Y","Prints PT1Y","Prints P1Y0M0D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofMonths(3);
+        System.out.println(period);
+    }
+}","Prints P3M","Prints PT3M","Prints P0Y3M0D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofHours(2);
+        System.out.println(duration);
+    }
+}","Prints PT2H","Prints P2H","Prints PT2H0M","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofMinutes(90);
+        System.out.println(duration);
+    }
+}","Prints PT1H30M","Prints PT90M","Prints P90M","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofSeconds(3661);
+        System.out.println(duration);
+    }
+}","Prints PT1H1M1S","Prints PT3661S","Prints P3661S","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofWeeks(2);
+        System.out.println(period);
+    }
+}","Prints P14D","Prints P2W","Prints PT14D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(0);
+        System.out.println(period);
+    }
+}","Prints P0D","Prints P","Prints PT0D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofDays(2);
+        System.out.println(duration);
+    }
+}","Prints PT48H","Prints P2D","Prints PT2D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 3, 13);
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = date.atStartOfDay(zone).plusHours(2);
+        System.out.println(zdt.getHour());
+    }
+}","Prints 3","Prints 2","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 11, 6);
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = date.atStartOfDay(zone).plusHours(2);
+        System.out.println(zdt.getHour());
+    }
+}","Prints 2","Prints 1","Compilation error","Prints 3"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt = LocalDateTime.of(2022, 3, 13, 2, 30);
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, zone);
+        System.out.println(zdt.getHour());
+    }
+}","Prints 3","Prints 2","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt = LocalDateTime.of(2022, 11, 6, 1, 30);
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, zone);
+        System.out.println(zdt.getOffset());
+    }
+}","Prints -05:00","Prints -04:00","Compilation error","Prints Z"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(7);
+        Duration duration = Duration.ofDays(7);
+        System.out.println(period.toString().equals(duration.toString()));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        Period period = Period.ofDays(1);
+        Duration duration = Duration.ofDays(1);
+        System.out.println(date.plus(period).equals(date.plus(duration)));
+    }
+}","Compilation error","Prints true","Runtime error","UnsupportedTemporalTypeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.of(0, 0, 7);
+        System.out.println(period);
+    }
+}","Prints P7D","Prints P0Y0M7D","Prints PT7D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofHours(0);
+        System.out.println(duration);
+    }
+}","Prints PT0S","Prints PT0H","Prints P0H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofYears(1).ofMonths(1);
+        System.out.println(period);
+    }
+}","Prints P1M","Prints P1Y1M","Prints P13M","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        date.plusDays(10);
+        System.out.println(date);
+    }
+}","Prints 2022-01-20","Prints 2022-01-30","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        date = date.plusMinutes(1);
+        System.out.println(date);
+    }
+}","Compilation error","Prints 2022-01-20","Runtime error","Prints 2022-01-20T00:01"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        time = time.plusDays(1);
+        System.out.println(time);
+    }
+}","Compilation error","Prints 06:15","Runtime error","UnsupportedTemporalTypeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, Month.JANUARY, 32);
+        System.out.println(date);
+    }
+}","DateTimeException","Prints 2022-02-01","Compilation error","Prints 2022-01-32"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        LocalTime time = LocalTime.of(6, 15);
+        Period period = Period.ofMonths(1);
+        System.out.println(time.plus(period));
+    }
+}","UnsupportedTemporalTypeException","Prints 06:15","Compilation error","Prints 07:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        Duration duration = Duration.ofHours(6);
+        System.out.println(date.plus(duration));
+    }
+}","UnsupportedTemporalTypeException","Prints 2022-01-20","Compilation error","Prints 2022-01-20T06:00"
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime one = LocalTime.of(5, 15);
+        LocalTime two = LocalTime.of(6, 30);
+        System.out.println(ChronoUnit.HOURS.between(one, two));
+    }
+}","Prints 1","Prints 2","Compilation error","Prints 1.25"
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime one = LocalTime.of(5, 15);
+        LocalTime two = LocalTime.of(6, 30);
+        System.out.println(ChronoUnit.MINUTES.between(one, two));
+    }
+}","Prints 75","Prints 1","Compilation error","Prints 1.25"
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime one = LocalTime.of(5, 15);
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        System.out.println(ChronoUnit.MINUTES.between(one, date));
+    }
+}","DateTimeException","Prints 0","Compilation error","Prints 75"
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(3, 12, 45);
+        LocalTime truncated = time.truncatedTo(ChronoUnit.MINUTES);
+        System.out.println(truncated);
+    }
+}","Prints 03:12","Prints 03:12:45","Compilation error","Prints 03:13"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        Duration duration = Duration.ofHours(23);
+        System.out.println(time.plus(duration));
+    }
+}","Prints 05:15","Prints 06:15","Runtime error","Prints 29:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 1, 20, 6, 15);
+        Duration duration = Duration.ofHours(23);
+        System.out.println(dateTime.plus(duration));
+    }
+}","Prints 2022-01-21T05:15","Prints 2022-01-20T29:15","Compilation error","Prints 2022-01-20T06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 5, 25);
+        Period period = Period.ofDays(1);
+        Duration days = Duration.ofDays(1);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-05-26","Compilation error","Runtime error","Prints 2022-05-25"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 5, 25);
+        Period period = Period.ofDays(1);
+        Duration days = Duration.ofDays(1);
+        System.out.println(date.plus(days));
+    }
+}","UnsupportedTemporalTypeException","Prints 2022-05-26","Compilation error","Prints 2022-05-25"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 5, 25, 6, 15);
+        Period period = Period.ofDays(1);
+        System.out.println(dateTime.plus(period));
+    }
+}","Prints 2022-05-26T06:15","Compilation error","Runtime error","Prints 2022-05-25T06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 5, 25, 6, 15);
+        Duration duration = Duration.ofDays(1);
+        System.out.println(dateTime.plus(duration));
+    }
+}","Prints 2022-05-26T06:15","Compilation error","Runtime error","Prints 2022-05-25T06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        Period period = Period.ofDays(1);
+        System.out.println(time.plus(period));
+    }
+}","UnsupportedTemporalTypeException","Prints 06:15","Compilation error","Prints 07:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        Duration duration = Duration.ofDays(1);
+        System.out.println(time.plus(duration));
+    }
+}","Prints 06:15","UnsupportedTemporalTypeException","Compilation error","Prints 07:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Instant now = Instant.now();
+        Instant later = Instant.now();
+        Duration duration = Duration.between(now, later);
+        System.out.println(duration.toMillis() >= 0);
+    }
+}","Prints true","Compilation error","Runtime error","Prints false"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 5, 25);
+        LocalTime time = LocalTime.of(11, 55, 0);
+        ZoneId zone = ZoneId.of(""US/Eastern"");
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(date, time, zone);
+        Instant instant = zonedDateTime.toInstant();
+        System.out.println(""Success"");
+    }
+}","Prints Success","Compilation error","Runtime error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 5, 25, 11, 55);
+        Instant instant = dateTime.toInstant();
+        System.out.println(instant);
+    }
+}","Compilation error","Prints 2022-05-25T11:55:00Z","Runtime error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt1 = LocalDateTime.of(2022, 3, 13, 1, 30);
+        LocalDateTime ldt2 = LocalDateTime.of(2022, 3, 13, 3, 30);
+        Duration duration = Duration.between(
+            ZonedDateTime.of(ldt1, zone),
+            ZonedDateTime.of(ldt2, zone)
+        );
+        System.out.println(duration.toHours());
+    }
+}","Prints 1","Prints 2","Compilation error","Prints 0"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt1 = LocalDateTime.of(2022, 11, 6, 0, 30);
+        LocalDateTime ldt2 = LocalDateTime.of(2022, 11, 6, 2, 30);
+        Duration duration = Duration.between(
+            ZonedDateTime.of(ldt1, zone),
+            ZonedDateTime.of(ldt2, zone)
+        );
+        System.out.println(duration.toHours());
+    }
+}","Prints 3","Prints 2","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(30);
+        Period p2 = Period.ofMonths(1);
+        System.out.println(p1.equals(p2));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofDays(1);
+        Duration d2 = Duration.ofHours(24);
+        System.out.println(d1.equals(d2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.parse(""P1D"");
+        System.out.println(period);
+    }
+}","Prints P1D","Prints PT1D","Compilation error","DateTimeParseException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.parse(""PT1D"");
+        System.out.println(duration);
+    }
+}","DateTimeParseException","Prints PT1D","Prints PT24H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.parse(""PT24H"");
+        System.out.println(duration);
+    }
+}","Prints PT24H","Prints P1D","Compilation error","DateTimeParseException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.parse(""PT1H"");
+        System.out.println(period);
+    }
+}","DateTimeParseException","Prints PT1H","Prints P1H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.parse(""P1Y2M3D"");
+        System.out.println(period);
+    }
+}","Prints P1Y2M3D","Prints PT1Y2M3D","Compilation error","DateTimeParseException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.parse(""PT1H30M"");
+        System.out.println(duration);
+    }
+}","Prints PT1H30M","Prints P1H30M","Compilation error","DateTimeParseException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 31);
+        date = date.plusMonths(1);
+        System.out.println(date);
+    }
+}","Prints 2022-02-28","Prints 2022-03-03","Compilation error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 1, 20, 5, 15);
+        dateTime = dateTime.minusDays(1).minusHours(10).minusSeconds(30);
+        System.out.println(dateTime);
+    }
+}","Prints 2022-01-18T19:14:30","Prints 2022-01-19T05:14:30","Compilation error","Prints 2022-01-19T19:14:30"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2022, Month.JANUARY, 20);
+        LocalDate date2 = LocalDate.of(2022, 1, 20);
+        System.out.println(date1.equals(date2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15, 30);
+        System.out.println(time);
+    }
+}","Prints 06:15:30","Prints 6:15:30","Compilation error","Prints 06:15:30.000"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15, 30, 200);
+        System.out.println(time);
+    }
+}","Prints 06:15:30.000000200","Prints 06:15:30.200","Compilation error","Prints 06:15:30"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, Month.JANUARY, 20, 6, 15);
+        System.out.println(dateTime);
+    }
+}","Prints 2022-01-20T06:15","Prints 2022-01-20 06:15","Compilation error","Prints 2022-01-20T06:15:00"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        LocalTime time = LocalTime.of(6, 15);
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+        System.out.println(dateTime);
+    }
+}","Prints 2022-01-20T06:15","Compilation error","Runtime error","Prints 2022-01-20 06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""US/Eastern"");
+        ZonedDateTime zoned = ZonedDateTime.of(2022, 1, 20, 6, 15, 30, 200, zone);
+        System.out.println(""Success"");
+    }
+}","Prints Success","Compilation error","Runtime error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""US/Eastern"");
+        ZonedDateTime zoned = ZonedDateTime.of(2022, Month.JANUARY, 20, 6, 15, 30, 200, zone);
+        System.out.println(""Success"");
+    }
+}","Compilation error","Prints Success","Runtime error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        date = date.plusDays(2).plusWeeks(1).plusMonths(1).plusYears(5);
+        System.out.println(date);
+    }
+}","Prints 2027-02-29","Prints 2027-02-22","Compilation error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofWeeks(3);
+        System.out.println(period);
+    }
+}","Prints P21D","Prints P3W","Compilation error","Prints PT3W"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofMinutes(1);
+        System.out.println(duration);
+    }
+}","Prints PT1M","Prints P1M","Compilation error","Prints PT60S"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofSeconds(10);
+        System.out.println(duration);
+    }
+}","Prints PT10S","Prints PT0.1M","Compilation error","Prints P10S"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofMillis(1);
+        System.out.println(duration);
+    }
+}","Prints PT0.001S","Prints PT1MS","Compilation error","Prints PT0.000001S"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofNanos(1);
+        System.out.println(duration);
+    }
+}","Prints PT0.000000001S","Prints PT1NS","Compilation error","Prints PT0.001S"
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.of(1, ChronoUnit.DAYS);
+        System.out.println(duration);
+    }
+}","Prints PT24H","Prints P1D","Compilation error","Prints PT1D"
+"What is the result?
+import java.time.*;
+import java.time.temporal.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.of(1, ChronoUnit.HALF_DAYS);
+        System.out.println(duration);
+    }
+}","Prints PT12H","Prints PT0.5D","Compilation error","Prints P0.5D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        Period period = Period.ofDays(1);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-01-21","Compilation error","Runtime error","Prints 2022-01-20"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 1, 20, 6, 15);
+        Period period = Period.ofMonths(1);
+        System.out.println(dateTime.plus(period));
+    }
+}","Prints 2022-02-20T06:15","Compilation error","Runtime error","Prints 2022-01-20T06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 1, 20, 6, 15);
+        Duration duration = Duration.ofHours(6);
+        System.out.println(dateTime.plus(duration));
+    }
+}","Prints 2022-01-20T12:15","Compilation error","Runtime error","Prints 2022-01-20T06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        Duration duration = Duration.ofHours(6);
+        System.out.println(time.plus(duration));
+    }
+}","Prints 12:15","Compilation error","Runtime error","Prints 06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zoned = ZonedDateTime.now();
+        Period period = Period.ofMonths(1);
+        System.out.println(zoned.plus(period) != null);
+    }
+}","Prints true","Compilation error","Runtime error","Prints false"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zoned = ZonedDateTime.now();
+        Duration duration = Duration.ofHours(1);
+        System.out.println(zoned.plus(duration) != null);
+    }
+}","Prints true","Compilation error","Runtime error","Prints false"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        date = date.minusYears(1);
+        System.out.println(date);
+    }
+}","Prints 2021-01-20","Compilation error","Runtime error","Prints 2022-01-20"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        time = time.minusYears(1);
+        System.out.println(time);
+    }
+}","Compilation error","Prints 06:15","Runtime error","UnsupportedTemporalTypeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        date = date.minusHours(1);
+        System.out.println(date);
+    }
+}","Compilation error","Prints 2022-01-19","Runtime error","Prints 2022-01-20"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        time = time.minusHours(1);
+        System.out.println(time);
+    }
+}","Prints 05:15","Compilation error","Runtime error","Prints 06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 1, 20, 6, 15);
+        dateTime = dateTime.plusNanos(1000000000);
+        System.out.println(dateTime);
+    }
+}","Prints 2022-01-20T06:15:01","Prints 2022-01-20T06:15","Compilation error","Prints 2022-01-20T06:15:00.1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        date = date.plusNanos(1);
+        System.out.println(date);
+    }
+}","Compilation error","Prints 2022-01-20","Runtime error","UnsupportedTemporalTypeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period annually = Period.ofYears(1);
+        Period quarterly = Period.ofMonths(3);
+        Period everyThreeWeeks = Period.ofWeeks(3);
+        Period everyOtherDay = Period.ofDays(2);
+        System.out.println(annually);
+    }
+}","Prints P1Y","Prints P12M","Compilation error","Prints P365D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.of(0, 0, 0);
+        System.out.println(period);
+    }
+}","Prints P0D","Prints P","Compilation error","Prints P0Y0M0D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.of(1, 0, 0);
+        System.out.println(period);
+    }
+}","Prints P1Y","Prints P1Y0M0D","Compilation error","Prints P1Y0M"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2022, 1, 1);
+        LocalDate end = LocalDate.of(2022, 3, 30);
+        System.out.println(start.isBefore(end));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2022, 1, 1);
+        LocalDate end = LocalDate.of(2022, 1, 1);
+        System.out.println(start.isBefore(end));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2022, 1, 1);
+        LocalDate end = LocalDate.of(2022, 1, 1);
+        System.out.println(start.isAfter(end));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(25, 0);
+        System.out.println(time);
+    }
+}","DateTimeException","Prints 01:00","Compilation error","Prints 25:00"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(0, 60);
+        System.out.println(time);
+    }
+}","DateTimeException","Prints 01:00","Compilation error","Prints 00:60"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15, 60);
+        System.out.println(time);
+    }
+}","DateTimeException","Prints 06:16:00","Compilation error","Prints 06:15:60"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 0, 1);
+        System.out.println(date);
+    }
+}","DateTimeException","Prints 2021-12-01","Compilation error","Prints 2022-00-01"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 2, 29);
+        System.out.println(date);
+    }
+}","DateTimeException","Prints 2022-03-01","Compilation error","Prints 2022-02-29"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2024, 2, 29);
+        System.out.println(date);
+    }
+}","Prints 2024-02-29","DateTimeException","Compilation error","Prints 2024-03-01"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = new LocalDateTime();
+        System.out.println(dateTime);
+    }
+}","Compilation error","Prints current date and time","Runtime error","NullPointerException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = new LocalDate();
+        System.out.println(date);
+    }
+}","Compilation error","Prints current date","Runtime error","NullPointerException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = new LocalTime();
+        System.out.println(time);
+    }
+}","Compilation error","Prints current time","Runtime error","NullPointerException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zoned = new ZonedDateTime();
+        System.out.println(zoned);
+    }
+}","Compilation error","Prints current date and time with zone","Runtime error","NullPointerException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = new Period();
+        System.out.println(period);
+    }
+}","Compilation error","Prints P0D","Runtime error","NullPointerException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = new Duration();
+        System.out.println(duration);
+    }
+}","Compilation error","Prints PT0S","Runtime error","NullPointerException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        LocalTime time = LocalTime.of(6, 15);
+        ZoneId zone = ZoneId.of(""US/Eastern"");
+        ZonedDateTime zoned = ZonedDateTime.of(date, time, zone);
+        System.out.println(""Success"");
+    }
+}","Prints Success","Compilation error","Runtime error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 1, 20, 6, 15);
+        ZoneId zone = ZoneId.of(""US/Eastern"");
+        ZonedDateTime zoned = ZonedDateTime.of(dateTime, zone);
+        System.out.println(""Success"");
+    }
+}","Prints Success","Compilation error","Runtime error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""Invalid/Zone"");
+        System.out.println(zone);
+    }
+}","ZoneRulesException","Compilation error","Prints Invalid/Zone","NullPointerException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt = LocalDateTime.of(2022, 3, 13, 2, 0);
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, zone);
+        System.out.println(zdt.plusHours(1).getHour());
+    }
+}","Prints 4","Prints 3","Compilation error","Prints 2"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt = LocalDateTime.of(2022, 3, 13, 1, 0);
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, zone);
+        System.out.println(zdt.plusHours(2).getHour());
+    }
+}","Prints 4","Prints 3","Compilation error","Prints 5"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 1, 30, 0, 0, zone);
+        ZonedDateTime result = zdt.plusHours(1);
+        System.out.println(result.getHour());
+    }
+}","Prints 3","Prints 2","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 1, 30, 0, 0, zone);
+        ZonedDateTime result = zdt.plusHours(1);
+        System.out.println(result.getOffset());
+    }
+}","Prints -05:00","Prints -04:00","Compilation error","Prints Z"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 0, 30, 0, 0, zone);
+        ZonedDateTime result = zdt.plusHours(2);
+        System.out.println(result.getHour());
+    }
+}","Prints 1","Prints 2","Compilation error","Prints 3"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofDays(1);
+        Duration d = Duration.ofDays(1);
+        System.out.println(p.toString().startsWith(""P""));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofDays(1);
+        Duration d = Duration.ofDays(1);
+        System.out.println(d.toString().startsWith(""PT""));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(10);
+        Duration duration = Duration.ofDays(10);
+        System.out.println(period.toString().contains(""T""));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(10);
+        Duration duration = Duration.ofDays(10);
+        System.out.println(duration.toString().contains(""T""));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.parse(""P7D"");
+        Duration duration = Duration.parse(""PT168H"");
+        LocalDate date = LocalDate.of(2022, 1, 1);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-01-08","Compilation error","Runtime error","Prints 2022-01-07"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.parse(""P7D"");
+        Duration duration = Duration.parse(""PT168H"");
+        LocalDate date = LocalDate.of(2022, 1, 1);
+        System.out.println(date.plus(duration));
+    }
+}","UnsupportedTemporalTypeException","Prints 2022-01-08","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofDays(1);
+        Duration d2 = Duration.parse(""PT24H"");
+        System.out.println(d1.toString().equals(d2.toString()));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(7);
+        Period p2 = Period.parse(""P7D"");
+        System.out.println(p1.equals(p2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofDays(2);
+        System.out.println(duration.toString().contains(""D""));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofDays(2);
+        System.out.println(duration.toString().contains(""H""));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(48);
+        System.out.println(period.toString().contains(""H""));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        Period period = Period.ofDays(2);
+        Duration duration = Duration.ofDays(2);
+        System.out.println(time.plus(period));
+    }
+}","UnsupportedTemporalTypeException","Prints 06:15","Compilation error","Prints 08:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        Period period = Period.ofDays(2);
+        Duration duration = Duration.ofDays(2);
+        System.out.println(time.plus(duration));
+    }
+}","Prints 06:15","UnsupportedTemporalTypeException","Compilation error","Prints 08:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2022, 1, 1, 0, 0);
+        Period period = Period.ofDays(2);
+        Duration duration = Duration.ofDays(2);
+        System.out.println(ldt.plus(period).equals(ldt.plus(duration)));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 1);
+        Period period = Period.ofDays(2);
+        Duration duration = Duration.ofDays(2);
+        LocalDate d1 = date.plus(period);
+        LocalDate d2 = date.plus(duration);
+        System.out.println(d1.equals(d2));
+    }
+}","Compilation error","Prints true","Runtime error","UnsupportedTemporalTypeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZonedDateTime zdt = ZonedDateTime.now();
+        Period period = Period.ofDays(2);
+        Duration duration = Duration.ofDays(2);
+        System.out.println(zdt.plus(period) != null && zdt.plus(duration) != null);
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(1);
+        Period p2 = Period.ofWeeks(1);
+        System.out.println(p1.toString());
+    }
+}","Prints P1D","Prints P0Y0M1D","Compilation error","Prints PT1D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(1);
+        Period p2 = Period.ofWeeks(1);
+        System.out.println(p2.toString());
+    }
+}","Prints P7D","Prints P1W","Compilation error","Prints PT7D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofDays(1);
+        Duration d2 = Duration.ofHours(24);
+        System.out.println(d1.toString());
+    }
+}","Prints PT24H","Prints P1D","Compilation error","Prints PT1D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofDays(1);
+        Duration d2 = Duration.ofHours(24);
+        System.out.println(d2.toString());
+    }
+}","Prints PT24H","Prints P1D","Compilation error","Prints PT1D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.parse(""P"");
+        System.out.println(period);
+    }
+}","DateTimeParseException","Prints P","Prints P0D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.parse(""PT"");
+        System.out.println(duration);
+    }
+}","DateTimeParseException","Prints PT","Prints PT0S","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.parse(""P0Y0M0D"");
+        System.out.println(period);
+    }
+}","Prints P0D","Prints P0Y0M0D","Compilation error","DateTimeParseException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.parse(""PT0H0M0S"");
+        System.out.println(duration);
+    }
+}","Prints PT0S","Prints PT0H0M0S","Compilation error","DateTimeParseException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt1 = LocalDateTime.of(2022, 3, 13, 2, 30);
+        LocalDateTime ldt2 = ldt1.plusHours(1);
+        System.out.println(ZonedDateTime.of(ldt1, zone).getHour());
+    }
+}","Prints 3","Prints 2","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 3, 13, 1, 0, 0, 0, zone);
+        ZonedDateTime zdt2 = zdt1.plusDays(1);
+        System.out.println(zdt2.getDayOfMonth());
+    }
+}","Prints 14","Prints 13","Compilation error","Prints 15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 11, 6, 0, 0, 0, 0, zone);
+        ZonedDateTime zdt2 = zdt1.plusDays(1);
+        System.out.println(zdt2.getDayOfMonth());
+    }
+}","Prints 7","Prints 6","Compilation error","Prints 8"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.of(1, 2, 3);
+        System.out.println(period.toString().startsWith(""P"") && !period.toString().contains(""T""));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.of(1, java.time.temporal.ChronoUnit.HOURS);
+        System.out.println(duration.toString().startsWith(""PT""));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2022, 1, 1, 12, 0);
+        Period p = Period.ofDays(10);
+        Duration d = Duration.ofDays(10);
+        System.out.println(ldt.plus(p).getDayOfMonth());
+    }
+}","Prints 11","Prints 10","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2022, 1, 1, 12, 0);
+        Period p = Period.ofDays(10);
+        Duration d = Duration.ofDays(10);
+        System.out.println(ldt.plus(d).getDayOfMonth());
+    }
+}","Prints 11","Prints 10","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 3, 0, 0, 0, zone);
+        Period period = Period.ofDays(1);
+        System.out.println(zdt.plus(period).getDayOfMonth());
+    }
+}","Prints 14","Prints 13","Compilation error","Prints 15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 3, 0, 0, 0, zone);
+        Duration duration = Duration.ofDays(1);
+        System.out.println(zdt.plus(duration).getDayOfMonth());
+    }
+}","Prints 14","Prints 13","Compilation error","Prints 15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.of(0, 1, 0);
+        System.out.println(p.toString());
+    }
+}","Prints P1M","Prints P0Y1M0D","Compilation error","Prints PT1M"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofMinutes(60);
+        System.out.println(d.toString());
+    }
+}","Prints PT1H","Prints PT60M","Compilation error","Prints P1H"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofMonths(12);
+        System.out.println(p.toString());
+    }
+}","Prints P12M","Prints P1Y","Compilation error","Prints PT12M"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofHours(24);
+        System.out.println(d.toString());
+    }
+}","Prints PT24H","Prints P1D","Compilation error","Prints PT1D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 1);
+        Period period = Period.ofDays(7);
+        Duration duration = Duration.ofHours(168);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-01-08","Compilation error","Runtime error","Prints 2022-01-07"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(0, 0);
+        Duration duration = Duration.ofHours(168);
+        System.out.println(time.plus(duration));
+    }
+}","Prints 00:00","Compilation error","Runtime error","Prints 168:00"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(365);
+        Period p2 = Period.ofYears(1);
+        System.out.println(p1.equals(p2));
+    }
+}","Prints false","Prints true","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofHours(8760);
+        Duration d2 = Duration.ofDays(365);
+        System.out.println(d1.equals(d2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime before = ZonedDateTime.of(2022, 3, 13, 1, 30, 0, 0, zone);
+        ZonedDateTime after = ZonedDateTime.of(2022, 3, 13, 3, 30, 0, 0, zone);
+        long hours = java.time.Duration.between(before, after).toHours();
+        System.out.println(hours);
+    }
+}","Prints 1","Prints 2","Compilation error","Prints 0"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime before = ZonedDateTime.of(2022, 11, 6, 0, 30, 0, 0, zone);
+        ZonedDateTime after = ZonedDateTime.of(2022, 11, 6, 2, 30, 0, 0, zone);
+        long hours = java.time.Duration.between(before, after).toHours();
+        System.out.println(hours);
+    }
+}","Prints 3","Prints 2","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.parse(""P1Y2M3D"");
+        System.out.println(p.getYears() + ""-"" + p.getMonths() + ""-"" + p.getDays());
+    }
+}","Prints 1-2-3","Prints 14-3-0","Compilation error","Prints 0-14-3"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.parse(""PT1H30M45S"");
+        System.out.println(d.toHours() + "":"" + d.toMinutes());
+    }
+}","Prints 1:90","Prints 1:30","Compilation error","Prints 90:5445"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofDays(100);
+        System.out.println(period.toString());
+    }
+}","Prints P100D","Prints P3M10D","Compilation error","Prints PT100D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofDays(100);
+        System.out.println(duration.toString());
+    }
+}","Prints PT2400H","Prints P100D","Compilation error","Prints PT100D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofWeeks(0);
+        System.out.println(period);
+    }
+}","Prints P0D","Prints P0W","Compilation error","Prints PT0D"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofSeconds(0);
+        System.out.println(duration);
+    }
+}","Prints PT0S","Prints PT0","Compilation error","Prints P0S"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        date = date.plusDays(10).minusDays(5);
+        System.out.println(date);
+    }
+}","Prints 2022-01-25","Prints 2022-01-20","Compilation error","Prints 2022-01-30"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        time = time.plusHours(1).plusMinutes(30);
+        System.out.println(time);
+    }
+}","Prints 07:45","Prints 06:15","Compilation error","Prints 07:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        LocalTime time = LocalTime.of(6, 15);
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+        System.out.println(dateTime.toLocalDate());
+    }
+}","Prints 2022-01-20","Compilation error","Runtime error","Prints 2022-01-20T06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        LocalTime time = LocalTime.of(6, 15);
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+        System.out.println(dateTime.toLocalTime());
+    }
+}","Prints 06:15","Compilation error","Runtime error","Prints 2022-01-20T06:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 1, 59, 59, 0, zone);
+        System.out.println(zdt.plusSeconds(2).getHour());
+    }
+}","Prints 3","Prints 2","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 1, 59, 59, 0, zone);
+        System.out.println(zdt.plusSeconds(2).getHour());
+    }
+}","Prints 1","Prints 2","Compilation error","Prints 0"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(1);
+        Period p2 = Period.of(0, 0, 1);
+        System.out.println(p1.equals(p2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofHours(1);
+        Duration d2 = Duration.of(1, java.time.temporal.ChronoUnit.HOURS);
+        System.out.println(d1.equals(d2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.of(-1, -2, -3);
+        System.out.println(period);
+    }
+}","Prints P-1Y-2M-3D","Prints P1Y2M3D","Compilation error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration duration = Duration.ofHours(-5);
+        System.out.println(duration);
+    }
+}","Prints PT-5H","Prints PT5H","Compilation error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 20);
+        Period period = Period.ofDays(-10);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-01-10","Prints 2022-01-20","Compilation error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        Duration duration = Duration.ofHours(-1);
+        System.out.println(time.plus(duration));
+    }
+}","Prints 05:15","Prints 06:15","Compilation error","DateTimeException"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 3, 13, 1, 0, 0, 0, zone);
+        ZonedDateTime zdt2 = ZonedDateTime.of(2022, 3, 13, 4, 0, 0, 0, zone);
+        System.out.println(java.time.Duration.between(zdt1, zdt2).toHours());
+    }
+}","Prints 2","Prints 3","Compilation error","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 11, 6, 0, 0, 0, 0, zone);
+        ZonedDateTime zdt2 = ZonedDateTime.of(2022, 11, 6, 3, 0, 0, 0, zone);
+        System.out.println(java.time.Duration.between(zdt1, zdt2).toHours());
+    }
+}","Prints 4","Prints 3","Compilation error","Prints 2"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.parse(""P0D"");
+        Duration d = Duration.parse(""PT0S"");
+        System.out.println(p.isZero() && d.isZero());
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofDays(1);
+        Duration d = Duration.ofDays(1);
+        LocalDate date = LocalDate.of(2022, 1, 1);
+        LocalDateTime ldt = date.atStartOfDay();
+        System.out.println(date.plus(p).equals(ldt.plus(d).toLocalDate()));
+    }
+}","Prints true","Prints false","Compilation error","Runtime error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period period = Period.ofYears(2).ofMonths(3).ofDays(4);
+        System.out.println(period);
+    }
+}","Prints P4D","Prints P2Y3M4D","Compilation error","Prints P2Y"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 1);
+        date.plusDays(10).plusMonths(1);
+        System.out.println(date);
+    }
+}","Prints 2022-01-01","Prints 2022-02-11","Compilation error","Prints 2022-01-11"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(6, 15);
+        time.plusHours(1).plusMinutes(30);
+        System.out.println(time);
+    }
+}","Prints 06:15","Prints 07:45","Compilation error","Prints 07:15"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt = LocalDateTime.of(2022, 11, 6, 1, 15);
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, zone);
+        ZonedDateTime later = zdt.plusHours(1);
+        System.out.println(later.getHour());
+    }
+}","Prints 1","Prints 2","Prints 0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofDays(10);
+        Duration d = Duration.ofDays(10);
+        System.out.println(p.toString().equals(d.toString()));
+    }
+}","Prints false","Prints true","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 15);
+        Period period = Period.of(0, 0, 100);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-04-25","Prints 2022-03-26","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofDays(2);
+        Duration d2 = Duration.ofHours(48);
+        System.out.println(d1.equals(d2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 1, 0, 0, 0, zone);
+        ZonedDateTime later = zdt.plusHours(2);
+        System.out.println(later.getHour());
+    }
+}","Prints 4","Prints 3","Prints 2","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.parse(""P3W"");
+        System.out.println(p);
+    }
+}","Runtime exception","Prints P3W","Prints P21D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.parse(""P1D"");
+        System.out.println(d);
+    }
+}","Runtime exception","Prints P1D","Prints PT24H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 30);
+        Period period = Period.ofDays(1);
+        System.out.println(time.plus(period));
+    }
+}","Runtime exception","Prints 10:30","Compilation error","Prints 34:30"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 3, 15);
+        Duration duration = Duration.ofDays(5);
+        System.out.println(date.plus(duration));
+    }
+}","Runtime exception","Prints 2022-03-20","Compilation error","Prints 2022-03-15T00:00"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 1, 30, 0, 0, zone);
+        System.out.println(zdt.getOffset());
+    }
+}","Prints -04:00","Prints -05:00","Runtime exception","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(7);
+        Period p2 = Period.ofWeeks(1);
+        System.out.println(p1.equals(p2));
+    }
+}","Prints false","Prints true","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofDays(3);
+        System.out.println(d.toDays());
+    }
+}","Prints 3","Prints 72","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofDays(3);
+        System.out.println(p.getDays());
+    }
+}","Prints 3","Prints 72","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        LocalDateTime ldt = LocalDateTime.of(2022, 3, 13, 3, 0);
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, zone);
+        ZonedDateTime earlier = zdt.minusHours(1);
+        System.out.println(earlier.getHour());
+    }
+}","Prints 1","Prints 2","Prints 4","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.parse(""PT48H"");
+        System.out.println(d.toDays());
+    }
+}","Prints 2","Prints 48","Prints 0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.of(1, 2, 3);
+        System.out.println(p);
+    }
+}","Prints P1Y2M3D","Prints P1Y2M3DT0H","Prints PT1Y2M3D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2022, 1, 1, 10, 30);
+        Period period = Period.ofDays(30);
+        Duration duration = Duration.ofDays(30);
+        System.out.println(ldt.plus(period).equals(ldt.plus(duration)));
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 0, 30, 0, 0, zone);
+        ZonedDateTime later = zdt.plusHours(3);
+        System.out.println(later.getHour());
+    }
+}","Prints 2","Prints 3","Prints 4","Prints 1"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofHours(25);
+        System.out.println(d.toHours());
+    }
+}","Prints 25","Prints 1","Prints 24","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofMonths(13);
+        System.out.println(p.getMonths());
+    }
+}","Prints 13","Prints 1","Prints 0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 12, 23, 0, 0, 0, zone);
+        ZonedDateTime later = zdt.plusHours(4);
+        System.out.println(later.getHour());
+    }
+}","Prints 4","Prints 3","Prints 2","Prints 5"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofDays(1).plusHours(2);
+        System.out.println(d);
+    }
+}","Prints PT26H","Prints PT1DT2H","Prints P1DT2H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofYears(1).plusMonths(2).plusDays(3);
+        System.out.println(p);
+    }
+}","Prints P1Y2M3D","Prints PT1Y2M3D","Prints P1Y2M3DT0H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 11, 6, 1, 0, 0, 0, zone);
+        ZonedDateTime zdt2 = zdt1.plusHours(1);
+        ZonedDateTime zdt3 = zdt2.plusHours(1);
+        System.out.println(zdt3.getHour());
+    }
+}","Prints 1","Prints 2","Prints 3","Prints 0"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 2, 28);
+        Period period = Period.ofDays(1);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-03-01","Prints 2022-02-29","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofDays(1);
+        Duration d2 = Duration.ofMinutes(1440);
+        System.out.println(d1.equals(d2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.parse(""P1Y2M3D"");
+        System.out.println(p.getYears() + ""-"" + p.getMonths() + ""-"" + p.getDays());
+    }
+}","Prints 1-2-3","Prints 0-14-3","Prints 1-2-0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.parse(""PT1H30M"");
+        System.out.println(d.toMinutes());
+    }
+}","Prints 90","Prints 30","Prints 1","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 1, 59, 0, 0, zone);
+        ZonedDateTime later = zdt.plusMinutes(2);
+        System.out.println(later.getHour());
+    }
+}","Prints 3","Prints 2","Prints 1","Prints 4"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(23, 30);
+        Duration duration = Duration.ofHours(2);
+        System.out.println(time.plus(duration));
+    }
+}","Prints 01:30","Prints 25:30","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofDays(365);
+        System.out.println(p.getYears());
+    }
+}","Prints 0","Prints 1","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofSeconds(86400);
+        System.out.println(d.toDays());
+    }
+}","Prints 1","Prints 0","Prints 86400","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 1, 0, 0, 0, zone);
+        Duration d = Duration.between(zdt, zdt.plusHours(2));
+        System.out.println(d.toHours());
+    }
+}","Prints 2","Prints 1","Prints 3","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt1 = LocalDateTime.of(2022, 3, 13, 1, 0);
+        LocalDateTime ldt2 = LocalDateTime.of(2022, 3, 13, 3, 0);
+        Duration d = Duration.between(ldt1, ldt2);
+        System.out.println(d.toHours());
+    }
+}","Prints 2","Prints 1","Prints 3","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofWeeks(2);
+        System.out.println(p);
+    }
+}","Prints P14D","Prints P2W","Prints PT2W","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofMinutes(120);
+        System.out.println(d);
+    }
+}","Prints PT2H","Prints PT120M","Prints P2H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 4, 0, 0, 0, zone);
+        ZonedDateTime earlier = zdt.minusHours(2);
+        System.out.println(earlier.getHour());
+    }
+}","Prints 1","Prints 2","Prints 3","Prints 0"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 31);
+        Period period = Period.ofMonths(1);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2022-02-28","Prints 2022-02-31","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofDays(7);
+        System.out.println(d);
+    }
+}","Prints PT168H","Prints P7D","Prints PT7D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.of(0, 0, 7);
+        System.out.println(p);
+    }
+}","Prints P7D","Prints PT7D","Prints PT168H","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 11, 6, 0, 30, 0, 0, zone);
+        ZonedDateTime zdt2 = zdt1.plusHours(2);
+        Duration d = Duration.between(zdt1, zdt2);
+        System.out.println(d.toHours());
+    }
+}","Prints 2","Prints 1","Prints 3","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2022, 1, 1, 0, 0);
+        Duration d = Duration.ofDays(1);
+        Period p = Period.ofDays(1);
+        LocalDateTime result1 = ldt.plus(d);
+        LocalDateTime result2 = ldt.plus(p);
+        System.out.println(result1.equals(result2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.parse(""PT24H"");
+        System.out.println(d.toDaysPart());
+    }
+}","Prints 1","Prints 0","Prints 24","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 1, 30, 0, 0, zone);
+        ZonedDateTime later = zdt.plusMinutes(60);
+        System.out.println(later.getHour());
+    }
+}","Prints 3","Prints 2","Prints 1","Prints 4"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p1 = Period.ofDays(1);
+        Period p2 = Period.of(0, 0, 1);
+        System.out.println(p1.equals(p2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofHours(24);
+        Duration d2 = Duration.ofDays(1);
+        System.out.println(d1.equals(d2));
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2022, 1, 1);
+        Period period = Period.of(1, 1, 1);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2023-02-02","Prints 2022-02-02","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 1, 15, 0, 0, zone);
+        System.out.println(zdt.plusHours(1).getHour() == zdt.getHour());
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofSeconds(3661);
+        System.out.println(d.toHours() + "":"" + d.toMinutesPart());
+    }
+}","Prints 1:1","Prints 1:61","Prints 0:61","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.parse(""P2M"");
+        System.out.println(p.getDays());
+    }
+}","Prints 0","Prints 60","Prints 61","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 13, 0, 0, 0, 0, zone);
+        ZonedDateTime later = zdt.plusHours(3);
+        System.out.println(later.getHour());
+    }
+}","Prints 4","Prints 3","Prints 2","Prints 5"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time = LocalTime.of(10, 0);
+        Duration d1 = Duration.ofHours(1);
+        Duration d2 = Duration.ofMinutes(60);
+        System.out.println(time.plus(d1).equals(time.plus(d2)));
+    }
+}","Prints true","Prints false","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofMonths(12);
+        System.out.println(p.getYears());
+    }
+}","Prints 0","Prints 1","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofHours(24);
+        System.out.println(d.toHoursPart());
+    }
+}","Prints 0","Prints 24","Prints 1","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 2, 0, 0, 0, zone);
+        ZonedDateTime earlier = zdt.minusHours(1);
+        System.out.println(earlier.getHour());
+    }
+}","Prints 1","Prints 2","Prints 3","Prints 0"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2022, 12, 31, 23, 59);
+        Duration duration = Duration.ofMinutes(2);
+        System.out.println(ldt.plus(duration).getDayOfMonth());
+    }
+}","Prints 1","Prints 31","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofDays(100);
+        System.out.println(p);
+    }
+}","Prints P100D","Prints P3M10D","Prints PT100D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofDays(100);
+        System.out.println(d);
+    }
+}","Prints PT2400H","Prints P100D","Prints PT100D","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 3, 13, 1, 0, 0, 0, zone);
+        ZonedDateTime zdt2 = ZonedDateTime.of(2022, 3, 13, 3, 0, 0, 0, zone);
+        Duration d = Duration.between(zdt1, zdt2);
+        System.out.println(d.toHours());
+    }
+}","Prints 1","Prints 2","Prints 0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date1 = LocalDate.of(2022, 1, 1);
+        LocalDate date2 = LocalDate.of(2022, 1, 10);
+        Period p = Period.between(date1, date2);
+        System.out.println(p.getDays());
+    }
+}","Prints 9","Prints 10","Prints 0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.parse(""PT1H30M45S"");
+        System.out.println(d.toMinutes());
+    }
+}","Prints 90","Prints 91","Prints 30","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.ofYears(2).ofMonths(3);
+        System.out.println(p);
+    }
+}","Prints P3M","Prints P2Y3M","Prints P2Y","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 5, 23, 30, 0, 0, zone);
+        ZonedDateTime later = zdt.plusHours(3);
+        System.out.println(later.getHour());
+    }
+}","Prints 1","Prints 2","Prints 3","Prints 0"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalTime time1 = LocalTime.of(10, 0);
+        LocalTime time2 = LocalTime.of(14, 30);
+        Duration d = Duration.between(time1, time2);
+        System.out.println(d.toHours());
+    }
+}","Prints 4","Prints 5","Prints 3","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofDays(2).plusHours(3);
+        System.out.println(d.toDays());
+    }
+}","Prints 2","Prints 3","Prints 0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.of(1, 0, 0);
+        System.out.println(p);
+    }
+}","Prints P1Y","Prints P1Y0M0D","Prints PT1Y","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 3, 12, 22, 0, 0, 0, zone);
+        ZonedDateTime later = zdt.plusHours(5);
+        System.out.println(later.getHour());
+    }
+}","Prints 4","Prints 3","Prints 2","Prints 5"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.of(2022, 1, 15, 10, 30);
+        Period p = Period.ofWeeks(2);
+        System.out.println(ldt.plus(p).getDayOfMonth());
+    }
+}","Prints 29","Prints 28","Prints 15","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofSeconds(90);
+        System.out.println(d);
+    }
+}","Prints PT1M30S","Prints PT90S","Prints P1M30S","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.parse(""P1Y"");
+        System.out.println(p.getMonths());
+    }
+}","Prints 0","Prints 12","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt = ZonedDateTime.of(2022, 11, 6, 1, 45, 0, 0, zone);
+        ZonedDateTime later = zdt.plusMinutes(30);
+        System.out.println(later.getHour());
+    }
+}","Prints 1","Prints 2","Prints 0","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d1 = Duration.ofMinutes(60);
+        Duration d2 = Duration.ofHours(1);
+        System.out.println(d1.compareTo(d2));
+    }
+}","Prints 0","Prints 1","Prints -1","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.of(2020, 2, 29);
+        Period period = Period.ofYears(1);
+        System.out.println(date.plus(period));
+    }
+}","Prints 2021-02-28","Prints 2021-02-29","Compilation error","Runtime exception"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Period p = Period.of(0, 1, 0);
+        System.out.println(p);
+    }
+}","Prints P1M","Prints P0Y1M0D","Prints PT1M","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Duration d = Duration.ofMinutes(1);
+        System.out.println(d);
+    }
+}","Prints PT1M","Prints P1M","Prints PT60S","Compilation error"
+"What is the result?
+import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        ZoneId zone = ZoneId.of(""America/New_York"");
+        ZonedDateTime zdt1 = ZonedDateTime.of(2022, 3, 13, 1, 30, 0, 0, zone);
+        ZonedDateTime zdt2 = zdt1.plusHours(1);
+        long minutes = Duration.between(zdt1, zdt2).toMinutes();
+        System.out.println(minutes);
+    }
+}","Prints 0","Prints 60","Prints 30","Compilation error"
