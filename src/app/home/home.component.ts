@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.seoService.updateMetaTags({
       title: 'Flash Owls - Interactive Quiz and Learning Platform',
-      description: 'Test your knowledge with Flash Owls - an interactive quiz and flashcard platform. Create your own question bankractice question banks using AI and improve your skills through gamified learning.',
-      keywords: 'quiz, flashcards, learning, education, practice questions, test preparation',
+      description: 'A free online interactive quiz and flashcard platform. Create your own practice exams in any subject using AI prompts.',
+      keywords: 'free, online, AI, quiz, flashcards, learning, education, practice questions, test preparation',
       url: 'https://flashowls.com/'
     });
   }
