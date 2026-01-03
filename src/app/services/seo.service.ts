@@ -23,7 +23,7 @@ export class SeoService {
       description,
       image = 'https://flashowls.com/assets/og-image.png',
       url = 'https://flashowls.com',
-      keywords = 'quiz, flashcards, learning, education, java 17 certification, exam preparation',
+      keywords = 'quiz, online, flashcards, multiple choice questions, learning, education',
       type = 'website'
     } = config;
 
